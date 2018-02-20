@@ -6,15 +6,11 @@
 #    By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/20 14:07:37 by vkozlov           #+#    #+#              #
-#    Updated: 2018/02/20 15:34:59 by vkozlov          ###   ########.fr        #
+#    Updated: 2018/02/20 18:01:09 by vkozlov          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-DIR_GSDL = ~/SDL_INVADERS
-
-DIR_SDL2 = SDL2
-
-DIR_SDL2_IMG = SDL2_image
+DIR_GSDL = ready_libs
 
 all: dir lsdl lsdl_img
 
@@ -22,17 +18,18 @@ dir:
 	mkdir -p $(DIR_GSDL)
 
 lsdl:
-	./lsdl.sh
+	./libSDL_src/lsdl.sh
 
 lsdl_img:
-	./lsdl_im.sh
+	./libSDL_src/lsdl_im.sh
 
 clean:
-	@rm -rf $(DIR_GSDL)
+	echo "\n"
 
 fclean: clean
+	@rm -rf $(DIR_GSDL)
 
 re: fclean all
 
 .PHONY: all clean fclean
-#.SILENT:
+.SILENT:
