@@ -6,7 +6,7 @@
 #    By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/21 16:21:44 by vkozlov           #+#    #+#              #
-#    Updated: 2018/02/21 18:17:59 by vkozlov          ###   ########.fr        #
+#    Updated: 2018/02/21 18:24:35 by vkozlov          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,6 +68,7 @@ $(DIR_O)/%.o: $(DIR_S)/%.c $(DEPS)
 
 norme:
 		make norme -C $(LIBFT)
+		make norme -C $(LIBCL)
 		echo "--------------------Checking header files $(NAME)"
 		norminette ./$(HEADER)
 		echo "--------------------Checking source files $(NAME)"

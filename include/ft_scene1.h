@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_scene.h                                         :+:      :+:    :+:   */
+/*   ft_scene1.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkozlov <vkozlov@student.unit.ua>          +#+  +:+       +#+        */
+/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 22:15:03 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/01/23 20:01:56 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/02/21 18:25:13 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # define O_PLANE	3
 # define O_CYL		4
 # define L_SUN		1
-typedef float	t_vector __attribute__((vector_size(sizeof(float)*3)));
 
+typedef float	t_vector __attribute__((vector_size(sizeof(float)*3)));
 typedef struct		s_object
 {
 	short			type;
