@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_rt.h                                            :+:      :+:    :+:   */
+/*   sdl_pixel_put.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/21 16:32:12 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/02/21 19:02:58 by vkozlov          ###   ########.fr       */
+/*   Created: 2018/02/21 18:46:08 by vkozlov           #+#    #+#             */
+/*   Updated: 2018/02/21 18:46:17 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_RT_H
-# define FT_RT_H
-# include <stdio.h>
-# include <time.h>
-# include "my_cl.h"
-# include "ft_sdl.h"
-# include "ft_libftu.h"
-# include "ft_scene1.h"
+#include "ft_sdl.h"
 
-#endif
+void				sdl_pixel_put(t_img *img, int x, int y, int color)
+{
+	if (x < 0 || (size_t)x > img->w || y < 0 || (size_t)y > img->h)
+		return ;
+	img->pixels[x + y * img->w] = color;
+}

@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_rt.h                                            :+:      :+:    :+:   */
+/*   sdl_create_image.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/21 16:32:12 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/02/21 19:02:58 by vkozlov          ###   ########.fr       */
+/*   Created: 2018/02/21 18:43:37 by vkozlov           #+#    #+#             */
+/*   Updated: 2018/02/21 18:44:56 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_RT_H
-# define FT_RT_H
-# include <stdio.h>
-# include <time.h>
-# include "my_cl.h"
-# include "ft_sdl.h"
-# include "ft_libftu.h"
-# include "ft_scene1.h"
+#include "ft_sdl.h"
 
-#endif
+t_img				sdl_create_image(size_t w, size_t h)
+{
+	t_img img;
+
+	img.w = w;
+	img.h = h;
+	if (!(img.pixels = ft_memalloc(sizeof(int) * img.w * img.h)))
+		MSG("Error allocating memory for pixels");
+	sdl_clear_image(&img);
+	return (img);
+}

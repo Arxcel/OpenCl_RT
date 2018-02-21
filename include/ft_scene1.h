@@ -6,12 +6,12 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 22:15:03 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/02/21 18:25:13 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/02/21 19:06:04 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_SCENE_H
-# define FT_SCENE_H
+#ifndef FT_SCENE1_H
+# define FT_SCENE1_H
 # define O_SPHERE	1
 # define O_CON		2
 # define O_PLANE	3

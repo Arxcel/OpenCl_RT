@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:33:57 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/02/21 18:25:35 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/02/21 19:11:16 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,12 +98,12 @@ int					main(void) {
 	cl_exec_kernel(&cl, 2, wd);
 	///results = cl_get_res(&cl, (size_t)1280 * 600);
 	free(text);
-	int i = -1;
-	while (++i < 1280 * 600)
-	{
-		if (img[i])
-			printf("%#x\n", img[i]);
-	}
+	// int i = -1;
+	// while (++i < 1280 * 600)
+	// {
+	// 	if (img[i])
+	// 		printf("%#x\n", img[i]);
+	// }
 	clock_t stop = clock();
 	float elapsed = (float) (stop - start) / CLOCKS_PER_SEC;
 	printf("\nTime elapsed: %.5f\n", elapsed);
