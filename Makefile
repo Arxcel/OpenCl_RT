@@ -6,7 +6,7 @@
 #    By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/21 16:21:44 by vkozlov           #+#    #+#              #
-#    Updated: 2018/02/21 19:20:15 by vkozlov          ###   ########.fr        #
+#    Updated: 2018/02/23 16:43:42 by vkozlov          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,8 +21,8 @@ IDIR = ./include
 CFLAGS = -I$(IDIR) \
 		 -I./libft/include \
 		 -I./libCL/include \
-		 -I./libSDL/ready_libs/SDL2/include/SDL2/ \
-		 -I./libSDL/ready_libs/SDL2_image/include/SDL2 \
+		 -I./libSDL/SDL2.framework/Headers/ \
+		 -I./libSDL/SDL2_image.framework/Headers/ \
 		 -I./libftSDL/include \
 
 
@@ -30,14 +30,11 @@ LIBFT = libft
 
 LIBCL = libCL
 
-LIBSDL = libSDL
-
 LIBFTSDL = libftSDL
 
-LSDL2 = -L ./libSDL/ready_libs/SDL2/lib -lSDL2 \
-		-L ./libSDL/ready_libs/SDL2_image/lib -lSDL2_image
+SDL2_F		= -framework SDL2 -framework SDL2_image  -F ./libSDL/
 
-SDL2_P = @loader_path/libSDL/ready_libs/
+SDL2_P		= -rpath @loader_path/libSDL/
 
 DIR_S = src
 
@@ -58,17 +55,17 @@ OBJS = $(addprefix $(DIR_O)/,$(SOURCES:.c=.o))
 all: obj libs $(NAME)
 
 $(NAME): $(OBJS)
+		$(CC) -o $(NAME) $(OBJS) $(FLAGS) $(CFLAGS) -L $(LIBFT) -lft -L $(LIBCL) -lCL -framework OpenCl $(SDL2_P) $(SDL2_F) $(FSDL2) -L $(LIBFTSDL) -lftsdl
 
-		$(CC) -o $(NAME) $(OBJS) $(FLAGS) $(CFLAGS) -L $(LIBFT) -lft -L $(LIBCL) -lCL -framework OpenCl $(SDL2_P) $(LSDL2) -L $(LIBFTSDL) -lftsdl
+		
 
 libs: 
-		make -C $(LIBFT)
-		make -C $(LIBCL)
-		make -C $(LIBSDL)
-		make -C $(LIBFTSDL)
+	make -C $(LIBFT)
+	make -C $(LIBCL)
+	make -C $(LIBFTSDL)
 
 obj:
-		mkdir -p obj
+	mkdir -p obj
 
 $(DIR_O)/%.o: $(DIR_S)/%.c $(DEPS)
 		$(CC) -c -o $@ $< $(FLAGS) $(CFLAGS)
@@ -86,7 +83,6 @@ clean:
 		rm -f $(OBJS)
 		make clean -C $(LIBFT)
 		make clean -C $(LIBCL)
-		make clean -C $(LIBSDL)
 		make clean -C $(LIBFTSDL)
 		rm -rf $(DIR_O)
 
@@ -94,7 +90,6 @@ fclean: clean
 		rm -f $(NAME)
 		make fclean -C $(LIBFT)
 		make fclean -C $(LIBCL)
-		make fclean -C $(LIBSDL)
 		make fclean -C $(LIBFTSDL)
 
 re: fclean all
