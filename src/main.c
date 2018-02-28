@@ -6,11 +6,22 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:33:57 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/02/23 17:19:43 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/02/28 18:38:33 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_rt.h"
+
+unsigned int					set_rgb(unsigned int r, unsigned int g, unsigned int b)
+{
+	return ((r << 16) | (g << 8) | b);
+}
+
+unsigned int		set_color(int hexValue)
+{
+	return set_rgb(((hexValue >> 16) & 0xFF) / 255.0, ((hexValue >> 8) & 0xFF) / 255.0, ((hexValue) & 0xFF) / 255.0);
+}
+
 
 int					main(void) {
 	clock_t start = clock();
@@ -49,9 +60,12 @@ int					main(void) {
 			"}                                             \n");
 
 	t_cl cl;
+	t_sdl sdl;
 	size_t wd[2] = {1280, 600};
 	t_scene s;
-	//unsigned int *results;
+	sdl.win_w = WIN_W;
+	sdl.win_h = WIN_H;
+	sdl_init(&sdl);
 	unsigned int img[1280 * 600];
 
 	if (!(s.object = (t_object*)ft_memalloc(sizeof(t_object) * 2)))
@@ -97,13 +111,19 @@ int					main(void) {
 	cl_set_args(&cl, img, (size_t)1280 * 600, 3);
 	cl_exec_kernel(&cl, 2, wd);
 	///results = cl_get_res(&cl, (size_t)1280 * 600);
-	// free(text);
-	// int i = -1;
-	// while (++i < 1280 * 600)
-	// {
-	// 	if (img[i])
-	// 		printf("%#x\n", img[i]);
-	// }
+	free(text);
+	int i = -1;
+	while (++i < 1280 * 600)
+	{
+		sdl.img.pixels[i] = img[i];
+		if (img[i])
+			printf("%#x\n", sdl.img.pixels[i]);
+	}
+	sdl_put_image(&sdl);
+	while (sdl.running)
+	{
+		sdl_hook(&sdl);
+	}
 	clock_t stop = clock();
 	float elapsed = (float) (stop - start) / CLOCKS_PER_SEC;
 	printf("\nTime elapsed: %.5f\n", elapsed);

@@ -6,7 +6,7 @@
 #    By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/21 16:21:44 by vkozlov           #+#    #+#              #
-#    Updated: 2018/02/23 17:18:48 by vkozlov          ###   ########.fr        #
+#    Updated: 2018/02/28 18:03:55 by vkozlov          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,8 @@ _DEPS = ft_rt.h
 
 DEPS = $(patsubst %,$(HEADER)/%,$(_DEPS))
 
-SOURCES =  main.c
+SOURCES =   main.c \
+			sdl_hook.c
 
 SRCS = $(addprefix $(DIR_S)/,$(SOURCES))
 

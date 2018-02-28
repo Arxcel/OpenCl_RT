@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 18:42:04 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/02/21 19:00:40 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/02/28 18:35:31 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void				sdl_init(t_sdl *sdl)
 								SDL_TEXTUREACCESS_STREAMING,
 								sdl->win_w, sdl->win_h)))
 		MSG(SDL_GetError());
-	SDL_SetRenderDrawColor(sdl->ren, 0, 0, 0, 0xFF);
+	SDL_SetRenderDrawColor(sdl->ren, 0, 0, 0, 0);
 	SDL_RenderClear(sdl->ren);
 	SDL_RenderPresent(sdl->ren);
 	sdl->img = sdl_create_image(sdl->win_w, sdl->win_h);

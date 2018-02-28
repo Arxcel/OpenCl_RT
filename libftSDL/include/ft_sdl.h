@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 18:38:51 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/02/23 16:36:31 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/02/28 17:36:09 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ typedef struct		s_img
 {
 	size_t			w;
 	size_t			h;
-	int				*pixels;
+	unsigned int	*pixels;
 }					t_img;
 
 typedef struct		s_sdl
