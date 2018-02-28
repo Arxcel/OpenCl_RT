@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:33:57 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/02/21 19:11:16 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/02/23 17:19:43 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int					main(void) {
 	cl_set_args(&cl, img, (size_t)1280 * 600, 3);
 	cl_exec_kernel(&cl, 2, wd);
 	///results = cl_get_res(&cl, (size_t)1280 * 600);
-	free(text);
+	// free(text);
 	// int i = -1;
 	// while (++i < 1280 * 600)
 	// {
