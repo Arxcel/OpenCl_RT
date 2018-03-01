@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 22:15:03 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/01/23 20:01:56 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/01 13:29:16 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,6 @@ typedef struct		s_light
 	t_vector		color;
 	t_vector		pos;
 }					t_light;
-typedef struct		s_cam_trance
-{
-	t_vector		trans;
-	t_vector		rot;
-}					t_cam_trance;
 typedef struct		s_camera
 {
 	short			type;
@@ -48,12 +43,11 @@ typedef struct		s_camera
 	t_vector		dir;
 	t_vector		rot;
 	float			fov;
-	float			dias;
+	float			bias;
 }					t_camera;
 typedef struct		s_scene
 {
 	short			id;
-	t_cam_trance	cam_trance;
 	t_object		*object;
 	t_light			*light;
 	t_camera		*camera;

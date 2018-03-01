@@ -1,26 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cl_get_results.c                                   :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vkozlov <vkozlov@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/09 12:48:00 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/01 13:19:47 by vkozlov          ###   ########.fr       */
+/*   Created: 2018/03/01 15:00:11 by vkozlov           #+#    #+#             */
+/*   Updated: 2018/03/01 15:02:15 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "my_cl.h"
+#include "ft_rt.h"
 
-void	cl_get_res(t_cl *cl, size_t size, unsigned int *result)
+void	put_error(const char *err_text)
 {
-	cl_int			ret;
-
-	ret = clEnqueueReadBuffer(cl->commands, cl->output_buf, CL_TRUE,
-						0, size, result, 0, NULL, NULL);
-	if (ret != CL_SUCCESS)
-	{
-		ft_printf("Error while getting the results. Code:[%d]\n", ret);
-		exit(1);
-	}
+	ft_putendl_fd(err_text, 2);
+	exit(1);
 }

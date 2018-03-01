@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cl_get_results.c                                   :+:      :+:    :+:   */
+/*   ft_matrix.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vkozlov <vkozlov@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/09 12:48:00 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/01 13:19:47 by vkozlov          ###   ########.fr       */
+/*   Created: 2018/01/22 22:34:23 by vkozlov           #+#    #+#             */
+/*   Updated: 2018/03/01 17:02:39 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "my_cl.h"
+#ifndef FT_MATRIX_H
+# define FT_MATRIX_H
+# include "ft_mymath.h"
 
-void	cl_get_res(t_cl *cl, size_t size, unsigned int *result)
+typedef float	t_mrow __attribute__((vector_size(sizeof(float)*4)));
+typedef struct	s_matrix
 {
-	cl_int			ret;
+	t_mrow		r[4];
+}				t_matrix;
 
-	ret = clEnqueueReadBuffer(cl->commands, cl->output_buf, CL_TRUE,
-						0, size, result, 0, NULL, NULL);
-	if (ret != CL_SUCCESS)
-	{
-		ft_printf("Error while getting the results. Code:[%d]\n", ret);
-		exit(1);
-	}
-}
+t_matrix		m_mult_m(t_matrix a, t_matrix b);
+t_matrix		m_transpose(t_matrix a);
+t_vector		m_mult_v(t_matrix m, t_vector v);
+t_vector		m_mult_p(t_matrix m, t_vector v);
+#endif

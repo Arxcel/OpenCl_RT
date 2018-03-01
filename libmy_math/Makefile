@@ -5,14 +5,14 @@
 #                                                     +:+ +:+         +:+      #
 #    By: vkozlov <vkozlov@student.unit.ua>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2018/02/21 13:49:03 by vkozlov           #+#    #+#              #
-#    Updated: 2018/03/01 12:50:50 by vkozlov          ###   ########.fr        #
+#    Created: 2018/02/21 18:38:09 by vkozlov           #+#    #+#              #
+#    Updated: 2018/03/01 16:37:09 by vkozlov          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC = clang
+CC = gcc
 
-NAME = libCL.a
+NAME = libmy_math.a
 
 FLAGS = -Wall -Wextra -Werror
 
@@ -22,20 +22,11 @@ DIR_O = obj
 
 HEADER = include
 
-SOURCES = cl_create_compile_program.c \
-			cl_create_context.c \
-			cl_create_input.c \
-			cl_create_kernel.c \
-			cl_create_queue.c \
-			cl_err_message.c \
-			cl_execute_kernel.c \
-			cl_get_devices.c \
-			cl_get_platforms.c \
-			cl_get_results.c \
-			cl_init.c \
-			cl_set_args.c \
-			cl_set_out_arg.c
+HEADERS = -I include \
 
+SOURCES = ft_vector.c \
+			ft_matrix.c 
+		  
 SRCS = $(addprefix $(DIR_S)/,$(SOURCES))
 
 OBJS = $(addprefix $(DIR_O)/,$(SOURCES:.c=.o))
@@ -43,29 +34,30 @@ OBJS = $(addprefix $(DIR_O)/,$(SOURCES:.c=.o))
 all: obj $(NAME)
 
 $(NAME): $(OBJS)
-		@ar rc $(NAME) $(OBJS)
-		@ranlib $(NAME)
+		ar rc $(NAME) $(OBJS)
+		ranlib $(NAME)
 
 obj:
-		@mkdir -p obj
+		mkdir -p obj
 
 $(DIR_O)/%.o: $(DIR_S)/%.c
-		@$(CC) $(FLAGS) -I $(HEADER) -o $@ -c $<
+		$(CC) $(FLAGS) $(HEADERS) -o $@ -c $<
 
 norme:
-		@echo "--------------------Checking header files $(NAME)"
-		@norminette ./$(HEADER)
-		@echo "--------------------Checking source files $(NAME)"
-		@norminette ./$(DIR_S)
+		echo "--------------------Checking header files $(NAME)"
+		norminette ./$(HEADER)
+		echo "--------------------Checking source files $(NAME)"
+		norminette ./$(DIR_S)
 
 clean:
-		@rm -f $(OBJS)
-		@rm -rf $(DIR_O)
+		rm -f $(OBJS)
+		rm -rf $(DIR_O)
 
 fclean: clean
-		@rm -f $(NAME)
+		rm -f $(NAME)
 
 re: fclean all
 
 .PHONY: all obj norme clean fclean re
 .NOTPARALLEL: all obj norme clean fclean re
+.SILENT:

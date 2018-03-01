@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_scene1.h                                        :+:      :+:    :+:   */
+/*   ft_scene.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vkozlov <vkozlov@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 22:15:03 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/02/21 19:06:04 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/01 19:19:53 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,10 @@ typedef struct		s_object
 }					t_object;
 typedef struct		s_light
 {
-	int				type;
+	short			type;
 	t_vector		color;
 	t_vector		pos;
 }					t_light;
-typedef struct		s_cam_trance
-{
-	t_vector		trans;
-	t_vector		rot;
-}					t_cam_trance;
 typedef struct		s_camera
 {
 	short			type;
@@ -48,12 +43,14 @@ typedef struct		s_camera
 	t_vector		dir;
 	t_vector		rot;
 	float			fov;
-	float			dias;
+	float			bias;
 }					t_camera;
 typedef struct		s_scene
 {
 	short			id;
-	t_cam_trance	cam_trance;
+	int				o_num;
+	int				l_num;
+	int				c_num;
 	t_object		*object;
 	t_light			*light;
 	t_camera		*camera;

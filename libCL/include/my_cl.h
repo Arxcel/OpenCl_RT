@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_cl.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vkozlov <vkozlov@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/07 17:09:00 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/02/21 16:14:06 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/01 13:02:09 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void					cl_set_args(t_cl *cl, void *a,
 void					cl_exec_kernel(t_cl *cl,
 				cl_uint size_wd, const size_t *val);
 void					cl_init(t_cl *cl);
-unsigned int			*cl_get_res(t_cl *cl, size_t size);
+void					cl_get_res(t_cl *cl, size_t size, unsigned int *res);
+void					cl_set_out_arg(t_cl *cl, cl_uint arg_index);
 int						ft_printf(const char *format, ...);
 #endif

@@ -6,15 +6,13 @@
 #    By: vkozlov <vkozlov@student.unit.ua>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/21 13:49:03 by vkozlov           #+#    #+#              #
-#    Updated: 2018/03/01 12:50:50 by vkozlov          ###   ########.fr        #
+#    Updated: 2018/03/01 14:23:54 by vkozlov          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = clang
 
-NAME = libCL.a
-
-FLAGS = -Wall -Wextra -Werror
+NAME = libJSON.a
 
 DIR_S = src
 
@@ -22,19 +20,7 @@ DIR_O = obj
 
 HEADER = include
 
-SOURCES = cl_create_compile_program.c \
-			cl_create_context.c \
-			cl_create_input.c \
-			cl_create_kernel.c \
-			cl_create_queue.c \
-			cl_err_message.c \
-			cl_execute_kernel.c \
-			cl_get_devices.c \
-			cl_get_platforms.c \
-			cl_get_results.c \
-			cl_init.c \
-			cl_set_args.c \
-			cl_set_out_arg.c
+SOURCES = json.c
 
 SRCS = $(addprefix $(DIR_S)/,$(SOURCES))
 
@@ -52,12 +38,6 @@ obj:
 $(DIR_O)/%.o: $(DIR_S)/%.c
 		@$(CC) $(FLAGS) -I $(HEADER) -o $@ -c $<
 
-norme:
-		@echo "--------------------Checking header files $(NAME)"
-		@norminette ./$(HEADER)
-		@echo "--------------------Checking source files $(NAME)"
-		@norminette ./$(DIR_S)
-
 clean:
 		@rm -f $(OBJS)
 		@rm -rf $(DIR_O)
@@ -67,5 +47,5 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all obj norme clean fclean re
-.NOTPARALLEL: all obj norme clean fclean re
+.PHONY: all obj clean fclean re
+.NOTPARALLEL: all obj clean fclean re

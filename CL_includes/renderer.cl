@@ -83,7 +83,7 @@ static t_vector			get_color(__global t_object	*o,
     while (l[++i].type)
     {
         light.dir = v_normalize(l[i].pos - ray.p_hit);
-        light.orig = ray.p_hit + v_mult_d(ray.n_hit, cam[0].dias);
+        light.orig = ray.p_hit + v_mult_d(ray.n_hit, cam[0].bias);
         lt = v_dot(ray.n_hit, light.dir);
         if (!ft_trace(o, l, cam, &shader.p, &shader, &light))
         {
