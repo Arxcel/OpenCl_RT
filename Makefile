@@ -6,7 +6,7 @@
 #    By: vkozlov <vkozlov@student.unit.ua>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/21 16:21:44 by vkozlov           #+#    #+#              #
-#    Updated: 2018/03/01 16:50:48 by vkozlov          ###   ########.fr        #
+#    Updated: 2018/03/03 17:04:35 by vkozlov          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,7 @@ _DEPS = ft_rt.h
 DEPS = $(patsubst %,$(HEADER)/%,$(_DEPS))
 
 SOURCES =   main.c \
-			sdl_hook.c \
+			sdl_handle.c \
 			ft_ftoa.c \
 			error.c
 

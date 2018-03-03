@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sdl_hook.c                                         :+:      :+:    :+:   */
+/*   sdl_handle.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vkozlov <vkozlov@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 18:01:54 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/02/28 18:03:15 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/03 17:02:57 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,12 @@ static void			key_down(int key, t_sdl *sdl)
 {
 	if (key == SDLK_ESCAPE)
 		sdl->running = 0;
+}
+
+void				sdl_loop(t_sdl *sdl)
+{
+	while (sdl->running)
+		sdl_hook(sdl);
 }
 
 void				sdl_hook(t_sdl *sdl)

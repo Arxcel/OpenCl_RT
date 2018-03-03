@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/01 14:30:30 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/01 20:15:03 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/03 16:52:20 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,11 +192,11 @@ static void get_object_info(json_value* value, t_object *o)
 		if (!ft_strcmp(value->u.object.values[x].name, "radius"))
 			o->radius = get_number(value->u.object.values[x].value);
 		if (!ft_strcmp(value->u.object.values[x].name, "shape"))
-			o->radius = get_number(value->u.object.values[x].value);
+			o->shape = get_number(value->u.object.values[x].value);
 		if (!ft_strcmp(value->u.object.values[x].name, "angle"))
-			o->radius = get_number(value->u.object.values[x].value);
+			o->angle = get_number(value->u.object.values[x].value);
 		if (!ft_strcmp(value->u.object.values[x].name, "distance"))
-			o->radius = get_number(value->u.object.values[x].value);
+			o->p = get_number(value->u.object.values[x].value);
 	}
 }
 
@@ -204,11 +204,11 @@ static void process_scene_o(json_value* value, t_scene *s)
 {
 	int x;
 
-	s->o_num = value->u.object.length;
-	s->object = (t_object*)ft_memalloc(sizeof(t_object) * s->o_num + 1);
+	s->o_num = value->u.object.length + 1;
+	s->object = (t_object*)ft_memalloc(sizeof(t_object) * s->o_num);
 	ft_bzero(s->object, sizeof(s->object));
 	x = -1;
-	while (++x < s->o_num)
+	while (++x < s->o_num - 1)
 		get_object_info(value->u.array.values[x], &s->object[x]);
 	s->object[x].type = 0;
 }
@@ -237,11 +237,11 @@ static void process_scene_l(json_value* value, t_scene *s)
 {
 	int x;
 
-	s->l_num = value->u.object.length;
-	s->light = (t_light*)ft_memalloc(sizeof(t_light) * s->l_num + 1);
+	s->l_num = value->u.object.length + 1;
+	s->light = (t_light*)ft_memalloc(sizeof(t_light) * s->l_num);
 	ft_bzero(s->light, sizeof(s->light));
 	x = -1;
-	while (++x < s->l_num)
+	while (++x < s->l_num - 1)
 		get_light_info(value->u.array.values[x], &s->light[x]);
 	s->light[x].type = 0;
 
@@ -275,11 +275,11 @@ static void process_scene_c(json_value* value, t_scene *s)
 {
 	int x;
 
-	s->c_num = value->u.object.length;
-	s->camera = (t_camera*)ft_memalloc(sizeof(t_camera) * s->c_num + 1);
+	s->c_num = value->u.object.length + 1;
+	s->camera = (t_camera*)ft_memalloc(sizeof(t_camera) * s->c_num);
 	ft_bzero(s->camera, sizeof(s->camera));
 	x = -1;
-	while (++x < s->c_num)
+	while (++x < s->c_num - 1)
 		get_camera_info(value->u.array.values[x], &s->camera[x]);
 	s->camera[x].type = 0;
 }

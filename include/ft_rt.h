@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:32:12 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/01 20:13:41 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/03 17:03:07 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # define WIN_W			1280
 # define WIN_H			600
 void				sdl_hook(t_sdl *sdl);
+void				sdl_loop(t_sdl *sdl);
 void				get_scene(const char *filepath, t_scene *s);
 void				put_error(const char *err_text);
 void				process_value(json_value* value, t_scene *s);
