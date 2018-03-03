@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/01 14:30:30 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/03 16:52:20 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/03 17:28:19 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,9 +115,9 @@ static float get_number(json_value* value)
 }
 static t_vector get_vector(json_value* value)
 {
-	t_vector v;
-	int length;
-	int x;
+	t_vector	v;
+	int			length;
+	int			x;
 
 	v = (t_vector){0, 0, 0};
 	if (value == NULL)
@@ -130,11 +130,11 @@ static t_vector get_vector(json_value* value)
 	return (v);
 }
 
-static t_vector get_normalized_vector(json_value* value)
+static t_vector get_n_vector(json_value* value)
 {
-	t_vector v;
-	int length;
-	int x;
+	t_vector	v;
+	int			length;
+	int			x;
 
 	v = (t_vector){0, 0, 0};
 	if (value == NULL)
@@ -150,9 +150,9 @@ static t_vector get_normalized_vector(json_value* value)
 
 static t_vector get_color(json_value* value)
 {
-	t_vector v;
-	int length;
-	int x;
+	t_vector	v;
+	int			length;
+	int			x;
 
 	v = (t_vector){0, 0, 0};
 	if (value == NULL)
@@ -184,7 +184,7 @@ static void get_object_info(json_value* value, t_object *o)
 		if (!ft_strcmp(value->u.object.values[x].name, "type"))
 			o->type = set_o_type(value->u.object.values[x].value);
 		if (!ft_strcmp(value->u.object.values[x].name, "direction"))
-			o->dir = get_normalized_vector(value->u.object.values[x].value);
+			o->dir = get_n_vector(value->u.object.values[x].value);
 		if (!ft_strcmp(value->u.object.values[x].name, "point"))
 			o->point = get_vector(value->u.object.values[x].value);
 		if (!ft_strcmp(value->u.object.values[x].name, "color"))
@@ -326,11 +326,13 @@ void	process_value(json_value* value, t_scene *s)
 
 void	get_scene(const char *filename, t_scene *s)
 {
-	json_char* json;
-	json_value* value;
-	int file_size;
-	char *file_str;
+	json_char*	json;
+	json_value*	value;
+	int			file_size;
+	char		*file_str;
 
+	if (ft_strcmp(".rt", (char*)(filename + ft_strlen(filename) - 3)))
+		put_error("Wrong file format. Please choose file *.rt");
 	ft_bzero(s, sizeof(s));
 	file_str = get_file_content(filename, &file_size);
 	json = (json_char*)file_str;

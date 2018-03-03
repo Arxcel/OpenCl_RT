@@ -1,0 +1,102 @@
+{
+	"objects": [{
+			"type": "sphere",
+			"color": [0.33, 0.02, 0.02],
+			"point": [0, -200, -1000],
+			"radius": 50,
+			"shape": 50
+		},
+		{
+			"type": "sphere",
+			"color": [0.3, 0.3, 0.3],
+			"point": [300, -300, -1700],
+			"radius": 100,
+			"shape": 15
+		},
+		{
+			"type": "sphere",
+			"color": [0.3, 0.3, 0.3],
+			"point": [-300, -300, -1700],
+			"radius": 100,
+			"shape": 15
+		},
+		{
+			"type": "sphere",
+			"color": [0.3, 0.3, 0.3],
+			"point": [-300, -300, -800],
+			"radius": 100,
+			"shape": 15
+		},
+		{
+			"type": "sphere",
+			"color": [0.3, 0.3, 0.3],
+			"point": [300, -300, -800],
+			"radius": 100,
+			"shape": 15
+		},
+		{
+			"type": "cylinder",
+			"direction": [0, 1, 0],
+			"color": [0.3, 0.3, 0.3],
+			"point": [-300, 0, -800],
+			"radius": 50,
+			"shape": 15
+		},
+		{
+			"type": "cylinder",
+			"direction": [0, 1, 0],
+			"color": [0.3, 0.3, 0.3],
+			"point": [300, 0, -800],
+			"radius": 50,
+			"shape": 15
+		},
+		{
+			"type": "cylinder",
+			"direction": [0, 1, 0],
+			"color": [0.3, 0.3, 0.3],
+			"point": [300, 0, -1700],
+			"radius": 50,
+			"shape": 15
+		},
+		{
+			"type": "cylinder",
+			"direction": [0, 1, 0],
+			"color": [0.3, 0.3, 0.3],
+			"point": [-300, 0, -1700],
+			"radius": 50,
+			"shape": 15
+		},
+		{
+			"type": "plane",
+			"distance": 300,
+			"direction": [0, 1, 0],
+			"color": [0.4, 0.4, 0.4],
+			"shape": 15
+		},
+		{
+			"type": "plane",
+			"distance": 1800,
+			"direction": [0, 0, 1],
+			"color": [0.24, 0.12, 0],
+			"shape": 15
+		}
+	],
+	"lights": [{
+			"type": "sun",
+			"position": [1000, 900, 400],
+			"color": [1, 1, 1]
+		},
+		{
+			"type": "sun",
+			"position": [-1000, 900, 400],
+			"color": [1, 1, 1]
+		}
+	],
+	"cameras": [{
+		"type": "common",
+		"rotation": [0, 0, 0],
+		"position": [0, 0, 0],
+		"field_of_view": 50,
+		"bias": 0.3
+	}]
+}
