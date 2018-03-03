@@ -87,10 +87,13 @@ static t_vector			get_color(__global t_object	*o,
         lt = v_dot(ray.n_hit, light.dir);
         if (!ft_trace(o, l, cam, &shader.p, &shader, &light))
         {
-            col = v_mult_d(h.color, lt + 0.101) + v_mult_d(h.color, 0.101);
-            col[0] += (0.8 - h.color[0]) * pow(lt, h.shape) * 0.9;
-            col[1] += (0.8 - h.color[1]) * pow(lt, h.shape) * 0.9;
-            col[2] += (0.8 - h.color[2]) * pow(lt, h.shape) * 0.9;
+			// if (shader.p < 1000)
+			// {
+				col = v_mult_d(h.color, lt + 0.101) + v_mult_d(h.color, 0.101);
+				col[0] += (0.8 - h.color[0]) * pow(lt, h.shape) * 0.9;
+				col[1] += (0.8 - h.color[1]) * pow(lt, h.shape) * 0.9;
+				col[2] += (0.8 - h.color[2]) * pow(lt, h.shape) * 0.9;
+			// }
         }
         else
             col = v_mult_d(h.color, 0.101);
