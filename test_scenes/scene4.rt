@@ -35,6 +35,34 @@
 			"shape": 15
 		},
 		{
+			"type": "sphere",
+			"color": [0.3, 0.3, 0.3],
+			"point": [300, 500, -1700],
+			"radius": 100,
+			"shape": 15
+		},
+		{
+			"type": "sphere",
+			"color": [0.3, 0.3, 0.3],
+			"point": [-300, 500, -1700],
+			"radius": 100,
+			"shape": 15
+		},
+		{
+			"type": "sphere",
+			"color": [0.3, 0.3, 0.3],
+			"point": [-300, 500, -800],
+			"radius": 100,
+			"shape": 15
+		},
+		{
+			"type": "sphere",
+			"color": [0.3, 0.3, 0.3],
+			"point": [300, 500, -800],
+			"radius": 100,
+			"shape": 15
+		},
+		{
 			"type": "cylinder",
 			"direction": [0, 1, 0],
 			"color": [0.3, 0.3, 0.3],
@@ -82,27 +110,41 @@
 		},
 		{
 			"type": "plane",
-			"distance": 1000,
+			"distance": 800,
 			"direction": [1, 0, 0],
+			"color": [0.24, 0.12, 0],
+			"shape": 15
+		},
+		{
+			"type": "plane",
+			"distance": 500,
+			"direction": [0, -1, 0],
+			"color": [0.24, 0.12, 0],
+			"shape": 15
+		},
+		{
+			"type": "plane",
+			"distance": 800,
+			"direction": [-1, 0, 0],
 			"color": [0.24, 0.12, 0],
 			"shape": 15
 		}
 	],
 	"lights": [{
 			"type": "sun",
-			"position": [500, 900, 400],
+			"position": [500, 300, 400],
 			"color": [1, 1, 1]
 		},
 		{
 			"type": "sun",
-			"position": [-500, 900, 400],
+			"position": [-500, 300, 400],
 			"color": [1, 1, 1]
 		}
 	],
 	"cameras": [{
 		"type": "common",
 		"rotation": [0, 0, 0],
-		"position": [0, 0, 0],
+		"position": [0, 0, 300],
 		"field_of_view": 50,
 		"bias": 0.3
 	}]

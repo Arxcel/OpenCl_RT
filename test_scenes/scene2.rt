@@ -2,7 +2,7 @@
 	"objects": [{
 			"type": "sphere",
 			"color": [0.33, 0.02, 0.02],
-			"point": [0, -200, -1000],
+			"point": [0, -150, -1000],
 			"radius": 50,
 			"shape": 50
 		},
