@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vkozlov <vkozlov@student.unit.ua>          +#+  +:+       +#+         #
+#    By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/21 16:21:44 by vkozlov           #+#    #+#              #
-#    Updated: 2018/03/03 17:04:35 by vkozlov          ###   ########.fr        #
+#    Updated: 2018/03/06 11:33:28 by vkozlov          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,8 +54,9 @@ DEPS = $(patsubst %,$(HEADER)/%,$(_DEPS))
 
 SOURCES =   main.c \
 			sdl_handle.c \
-			ft_ftoa.c \
-			error.c
+			parse_json.c \
+			error.c \
+			set_flags.c
 
 SRCS = $(addprefix $(DIR_S)/,$(SOURCES))
 

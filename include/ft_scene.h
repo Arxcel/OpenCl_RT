@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_scene.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkozlov <vkozlov@student.unit.ua>          +#+  +:+       +#+        */
+/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 22:15:03 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/01 19:19:53 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/06 10:01:19 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_SCENE1_H
-# define FT_SCENE1_H
+#ifndef FT_SCENE_H
+# define FT_SCENE_H
 # define O_SPHERE	1
 # define O_CON		2
 # define O_PLANE	3

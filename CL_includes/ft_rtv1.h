@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_rtv1.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkozlov <vkozlov@student.unit.ua>          +#+  +:+       +#+        */
+/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 11:57:16 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/01/23 19:36:49 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/06 10:56:20 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,6 @@
 # include "ft_vector.h"
 # include "ft_matrix.h"
 # include "ft_scene.h"
-//# include "../libft/include/ft_libftu.h"
-# define INF				999999999999999999999999999999.9
-# define MENU_WIDTH			0
-# define IMG_WIDTH			1280
-# define WIN_WIDTH			1280
-# define WIN_HEIGHT			600
-# define MSG(x)				ft_killer(x)
 
 typedef struct				s_img
 {
@@ -60,10 +53,6 @@ short						solve_quadratic(const float *p,
 unsigned int				set_rgb(t_vector c);
 t_vector					get_color_percent(t_vector c);
 void						ft_swap_d(float *d1, float *d2);
-//void						find_cam_dir(t_camera *cam,
-//										 const int i, const int j);
-//unsigned int				ft_cast_ray(t_scene scene, unsigned int hit_color,
-//												t_object *hit_object);
 /*
 **  Drawing functions
 */

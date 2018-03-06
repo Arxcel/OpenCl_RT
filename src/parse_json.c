@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ftoa.c                                          :+:      :+:    :+:   */
+/*   parse_json.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkozlov <vkozlov@student.unit.ua>          +#+  +:+       +#+        */
+/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/01 14:30:30 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/03 17:28:19 by vkozlov          ###   ########.fr       */
+/*   Created: 2018/03/06 11:33:17 by vkozlov           #+#    #+#             */
+/*   Updated: 2018/03/06 11:33:19 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_rt.h"
 
-static char *get_file_content(const char *filename, int *file_size)
+static char		*get_file_content(const char *filename, int *file_size)
 {
 	struct stat	filestatus;
 	int			fd;
@@ -27,7 +27,8 @@ static char *get_file_content(const char *filename, int *file_size)
 	file_contents = (char*)malloc(filestatus.st_size + 1);
 	if (file_contents == NULL)
 		put_error("Memory error: unable to allocate.");
-	if (read(fd, file_contents, filestatus.st_size + 1) < 0) {
+	if (read(fd, file_contents, filestatus.st_size + 1) < 0)
+	{
 		close(fd);
 		free(file_contents);
 		put_error("Error reading the file.");
@@ -37,7 +38,7 @@ static char *get_file_content(const char *filename, int *file_size)
 	return (file_contents);
 }
 
-static int	set_o_type(json_value* value)
+static int		set_o_type(json_value *value)
 {
 	int err;
 	int val;
@@ -61,7 +62,7 @@ static int	set_o_type(json_value* value)
 	return (val);
 }
 
-static int	set_l_type(json_value* value)
+static int		set_l_type(json_value *value)
 {
 	int err;
 	int val;
@@ -71,10 +72,7 @@ static int	set_l_type(json_value* value)
 	if (value->type != json_string)
 		err = 1;
 	if (!err && !ft_strcmp(value->u.string.ptr, "sun"))
-	{
 		val = L_SUN;
-
-	}
 	else
 		err = 1;
 	if (err)
@@ -82,7 +80,7 @@ static int	set_l_type(json_value* value)
 	return (val);
 }
 
-static int	set_c_type(json_value* value)
+static int		set_c_type(json_value *value)
 {
 	int err;
 	int val;
@@ -100,7 +98,7 @@ static int	set_c_type(json_value* value)
 	return (val);
 }
 
-static float get_number(json_value* value)
+static float	get_number(json_value *value)
 {
 	float ret;
 
@@ -111,9 +109,10 @@ static float get_number(json_value* value)
 		ret = (float)value->u.dbl;
 	else
 		put_error("Not a number format where expected.");
-	return ret;
+	return (ret);
 }
-static t_vector get_vector(json_value* value)
+
+static t_vector	get_vector(json_value *value)
 {
 	t_vector	v;
 	int			length;
@@ -130,7 +129,7 @@ static t_vector get_vector(json_value* value)
 	return (v);
 }
 
-static t_vector get_n_vector(json_value* value)
+static t_vector	get_n_vector(json_value *value)
 {
 	t_vector	v;
 	int			length;
@@ -148,7 +147,7 @@ static t_vector get_n_vector(json_value* value)
 	return (v);
 }
 
-static t_vector get_color(json_value* value)
+static t_vector	get_color(json_value *value)
 {
 	t_vector	v;
 	int			length;
@@ -164,19 +163,17 @@ static t_vector get_color(json_value* value)
 	{
 		v[x] = get_number(value->u.array.values[x]);
 		if (v[x] > 1 || v[x] < 0)
-			put_error("The color intensity can not be more than 1 or less than 0.");
-
-	}	
+			put_error("The color intensity can not\
+			be more than 1 or less than 0.");
+	}
 	return (v);
 }
 
-static void get_object_info(json_value* value, t_object *o)
+static void		get_object_info(json_value *value, t_object *o)
 {
 	int length;
 	int x;
 
-	if (value == NULL)
-		return;
 	length = value->u.object.length;
 	x = -1;
 	while (++x < length)
@@ -200,7 +197,7 @@ static void get_object_info(json_value* value, t_object *o)
 	}
 }
 
-static void process_scene_o(json_value* value, t_scene *s)
+static void		process_scene_o(json_value *value, t_scene *s)
 {
 	int x;
 
@@ -213,13 +210,13 @@ static void process_scene_o(json_value* value, t_scene *s)
 	s->object[x].type = 0;
 }
 
-static void get_light_info(json_value* value, t_light *l)
+static void		get_light_info(json_value *value, t_light *l)
 {
 	int length;
 	int x;
 
 	if (value == NULL)
-		return;
+		return ;
 	length = value->u.object.length;
 	x = -1;
 	while (++x < length)
@@ -233,7 +230,7 @@ static void get_light_info(json_value* value, t_light *l)
 	}
 }
 
-static void process_scene_l(json_value* value, t_scene *s)
+static void		process_scene_l(json_value *value, t_scene *s)
 {
 	int x;
 
@@ -244,16 +241,15 @@ static void process_scene_l(json_value* value, t_scene *s)
 	while (++x < s->l_num - 1)
 		get_light_info(value->u.array.values[x], &s->light[x]);
 	s->light[x].type = 0;
-
 }
 
-static void get_camera_info(json_value* value, t_camera *c)
+static void		get_camera_info(json_value *value, t_camera *c)
 {
 	int length;
 	int x;
 
 	if (value == NULL)
-		return;
+		return ;
 	length = value->u.object.length;
 	x = -1;
 	while (++x < length)
@@ -271,7 +267,7 @@ static void get_camera_info(json_value* value, t_camera *c)
 	}
 }
 
-static void process_scene_c(json_value* value, t_scene *s)
+static void		process_scene_c(json_value *value, t_scene *s)
 {
 	int x;
 
@@ -284,13 +280,13 @@ static void process_scene_c(json_value* value, t_scene *s)
 	s->camera[x].type = 0;
 }
 
-static void process_object(json_value* value, t_scene *s)
+static void		process_object(json_value *value, t_scene *s)
 {
 	int length;
 	int x;
 
 	if (value == NULL)
-		return;
+		return ;
 	length = value->u.object.length;
 	x = -1;
 	while (++x < length)
@@ -304,9 +300,9 @@ static void process_object(json_value* value, t_scene *s)
 	}
 }
 
-void	process_value(json_value* value, t_scene *s)
+void			process_value(json_value *value, t_scene *s)
 {
-	if (value == NULL) 
+	if (value == NULL)
 		return ;
 	if (value->type == json_none)
 		ft_printf("none");
@@ -324,10 +320,10 @@ void	process_value(json_value* value, t_scene *s)
 		put_error("Unexpected boolean.");
 }
 
-void	get_scene(const char *filename, t_scene *s)
+void			get_scene(const char *filename, t_scene *s)
 {
-	json_char*	json;
-	json_value*	value;
+	json_char	*json;
+	json_value	*value;
 	int			file_size;
 	char		*file_str;
 
