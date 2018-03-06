@@ -10982,23 +10982,23 @@ GLAPI void APIENTRY glGetColorTableParameterivSGI (GLenum target, GLenum pname, 
 #define GL_PROXY_TEXTURE_COLOR_TABLE_SGI  0x80BD
 #endif /* GL_SGI_texture_color_table */
 
-#ifndef GL_SUNX_constant_data
-#define GL_SUNX_constant_data 1
+#ifndef GL_LAMPX_constant_data
+#define GL_LAMPX_constant_data 1
 #define GL_UNPACK_CONSTANT_DATA_SUNX      0x81D5
 #define GL_TEXTURE_CONSTANT_DATA_SUNX     0x81D6
 typedef void (APIENTRYP PFNGLFINISHTEXTURESUNXPROC) (void);
 #ifdef GL_GLEXT_PROTOTYPES
 GLAPI void APIENTRY glFinishTextureSUNX (void);
 #endif
-#endif /* GL_SUNX_constant_data */
+#endif /* GL_LAMPX_constant_data */
 
-#ifndef GL_SUN_convolution_border_modes
-#define GL_SUN_convolution_border_modes 1
+#ifndef GL_LAMP_convolution_border_modes
+#define GL_LAMP_convolution_border_modes 1
 #define GL_WRAP_BORDER_SUN                0x81D4
-#endif /* GL_SUN_convolution_border_modes */
+#endif /* GL_LAMP_convolution_border_modes */
 
-#ifndef GL_SUN_global_alpha
-#define GL_SUN_global_alpha 1
+#ifndef GL_LAMP_global_alpha
+#define GL_LAMP_global_alpha 1
 #define GL_GLOBAL_ALPHA_SUN               0x81D9
 #define GL_GLOBAL_ALPHA_FACTOR_SUN        0x81DA
 typedef void (APIENTRYP PFNGLGLOBALALPHAFACTORBSUNPROC) (GLbyte factor);
@@ -11019,25 +11019,25 @@ GLAPI void APIENTRY glGlobalAlphaFactorubSUN (GLubyte factor);
 GLAPI void APIENTRY glGlobalAlphaFactorusSUN (GLushort factor);
 GLAPI void APIENTRY glGlobalAlphaFactoruiSUN (GLuint factor);
 #endif
-#endif /* GL_SUN_global_alpha */
+#endif /* GL_LAMP_global_alpha */
 
-#ifndef GL_SUN_mesh_array
-#define GL_SUN_mesh_array 1
+#ifndef GL_LAMP_mesh_array
+#define GL_LAMP_mesh_array 1
 #define GL_QUAD_MESH_SUN                  0x8614
 #define GL_TRIANGLE_MESH_SUN              0x8615
 typedef void (APIENTRYP PFNGLDRAWMESHARRAYSSUNPROC) (GLenum mode, GLint first, GLsizei count, GLsizei width);
 #ifdef GL_GLEXT_PROTOTYPES
 GLAPI void APIENTRY glDrawMeshArraysSUN (GLenum mode, GLint first, GLsizei count, GLsizei width);
 #endif
-#endif /* GL_SUN_mesh_array */
+#endif /* GL_LAMP_mesh_array */
 
-#ifndef GL_SUN_slice_accum
-#define GL_SUN_slice_accum 1
+#ifndef GL_LAMP_slice_accum
+#define GL_LAMP_slice_accum 1
 #define GL_SLICE_ACCUM_SUN                0x85CC
-#endif /* GL_SUN_slice_accum */
+#endif /* GL_LAMP_slice_accum */
 
-#ifndef GL_SUN_triangle_list
-#define GL_SUN_triangle_list 1
+#ifndef GL_LAMP_triangle_list
+#define GL_LAMP_triangle_list 1
 #define GL_RESTART_SUN                    0x0001
 #define GL_REPLACE_MIDDLE_SUN             0x0002
 #define GL_REPLACE_OLDEST_SUN             0x0003
@@ -11071,10 +11071,10 @@ GLAPI void APIENTRY glReplacementCodeusvSUN (const GLushort *code);
 GLAPI void APIENTRY glReplacementCodeubvSUN (const GLubyte *code);
 GLAPI void APIENTRY glReplacementCodePointerSUN (GLenum type, GLsizei stride, const void **pointer);
 #endif
-#endif /* GL_SUN_triangle_list */
+#endif /* GL_LAMP_triangle_list */
 
-#ifndef GL_SUN_vertex
-#define GL_SUN_vertex 1
+#ifndef GL_LAMP_vertex
+#define GL_LAMP_vertex 1
 typedef void (APIENTRYP PFNGLCOLOR4UBVERTEX2FSUNPROC) (GLubyte r, GLubyte g, GLubyte b, GLubyte a, GLfloat x, GLfloat y);
 typedef void (APIENTRYP PFNGLCOLOR4UBVERTEX2FVSUNPROC) (const GLubyte *c, const GLfloat *v);
 typedef void (APIENTRYP PFNGLCOLOR4UBVERTEX3FSUNPROC) (GLubyte r, GLubyte g, GLubyte b, GLubyte a, GLfloat x, GLfloat y, GLfloat z);
@@ -11157,7 +11157,7 @@ GLAPI void APIENTRY glReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN (const GLu
 GLAPI void APIENTRY glReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fSUN (GLuint rc, GLfloat s, GLfloat t, GLfloat r, GLfloat g, GLfloat b, GLfloat a, GLfloat nx, GLfloat ny, GLfloat nz, GLfloat x, GLfloat y, GLfloat z);
 GLAPI void APIENTRY glReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN (const GLuint *rc, const GLfloat *tc, const GLfloat *c, const GLfloat *n, const GLfloat *v);
 #endif
-#endif /* GL_SUN_vertex */
+#endif /* GL_LAMP_vertex */
 
 #ifndef GL_WIN_phong_shading
 #define GL_WIN_phong_shading 1

@@ -82,12 +82,12 @@
 		}
 	],
 	"lights": [{
-			"type": "sun",
+			"type": "lamp",
 			"position": [1000, 900, 400],
 			"color": [1, 1, 1]
 		},
 		{
-			"type": "sun",
+			"type": "lamp",
 			"position": [-1000, 900, 400],
 			"color": [1, 1, 1]
 		}

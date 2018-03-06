@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 11:33:17 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/06 11:33:19 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/06 13:42:13 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ static int		set_l_type(json_value *value)
 	val = -1;
 	if (value->type != json_string)
 		err = 1;
-	if (!err && !ft_strcmp(value->u.string.ptr, "sun"))
-		val = L_SUN;
+	if (!err && !ft_strcmp(value->u.string.ptr, "lamp"))
+		val = L_LAMP;
 	else
 		err = 1;
 	if (err)
