@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 22:15:03 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/06 13:41:34 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/06 16:19:07 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@
 # define O_CON		2
 # define O_PLANE	3
 # define O_CYL		4
-# define L_LAMP		1
+# define O_DISK		5
+# define L_SUN		1
+# define L_LAMP		2
 
 typedef float	t_vector __attribute__((vector_size(sizeof(float)*3)));
 typedef struct		s_object
@@ -29,12 +31,14 @@ typedef struct		s_object
 	t_vector		dir;
 	float			p;
 	int				shape;
+	float			reflect;
 }					t_object;
 typedef struct		s_light
 {
 	short			type;
 	t_vector		color;
 	t_vector		pos;
+	float			intence;
 }					t_light;
 typedef struct		s_camera
 {

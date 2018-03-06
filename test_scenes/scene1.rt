@@ -4,14 +4,16 @@
 			"distance": 100,
 			"direction": [0, 1, 0],
 			"color": [0.25, 0.24, 0.84],
-			"shape": 15
+			"shape": 15,
+			"reflect": 0.3
 		},
 		{
 			"type": "sphere",
 			"color": [0.33, 0.02, 0.02],
 			"point": [-200, 50, -700],
 			"radius": 100,
-			"shape": 15
+			"shape": 15,
+			"reflect": 0.3
 		},
 		{
 			"type": "cylinder",
@@ -19,18 +21,21 @@
 			"color": [0.08, 0.32, 0.08],
 			"point": [100, 0, -650],
 			"radius": 50,
-			"shape": 15
+			"shape": 15,
+			"reflect": 0.3
 		}
 	],
 	"lights": [{
 			"type": "lamp",
 			"position": [550, 5000, 3000],
-			"color": [1, 1, 1]
+			"color": [1, 1, 1],
+			"intensity" : 1
 		},
 		{
 			"type": "lamp",
 			"position": [-5500, 5000, 3000],
-			"color": [1, 1, 1]
+			"color": [1, 1, 1],
+			"intensity" : 1
 		}
 	],
 	"cameras": [{

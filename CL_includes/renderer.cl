@@ -12,6 +12,23 @@
 
 #include "ft_rtv1.h"
 
+static t_vector		ft_clamp(t_vector v)
+{
+	if (v[0] > 1)
+		v[0] = 1;
+	else if (v[0] < 0)
+		v[0] = 0;
+	if (v[1] > 1)
+		v[1] = 1;
+	else if (v[1] < 0)
+		v[1] = 0;
+	if (v[2] > 1)
+		v[2] = 1;
+	else if (v[2] < 0)
+		v[2] = 0;
+	return (v);
+}		
+
 void	get_surface_data(t_ray *ray, t_object object, float t)
 {
 	if (object.type == O_SPHERE)
@@ -22,6 +39,8 @@ void	get_surface_data(t_ray *ray, t_object object, float t)
 		get_con_data(ray, object, t);
 	else if (object.type == O_PLANE)
 		get_plane_data(ray, object, t);
+	else if (object.type == O_DISK)
+		get_disk_data(ray, object, t);
 }
 
 int		check_object_type(t_object object, t_ray *ray, float *t)
@@ -34,6 +53,8 @@ int		check_object_type(t_object object, t_ray *ray, float *t)
 		return (con_cross(object, ray->orig, ray->dir, t));
 	if (object.type == O_PLANE)
 		return (plane_cross(&object, ray, t));
+	if (object.type == O_DISK)
+		return (disk_cross(&object, ray, t));
 	return (0);
 }
 
@@ -74,6 +95,7 @@ static t_vector			get_color(__global t_object	*o,
 									t_ray ray, t_vector hit_color)
 {
 	float			lt;
+	float			gt;
 	t_vector		col;
 	t_ray			light;
 	t_object		shader;
@@ -81,6 +103,8 @@ static t_vector			get_color(__global t_object	*o,
 	float			distance;
 	int				f;
 	float			shader_distance;
+	t_vector		glare;
+
 
 	i = -1;
 	while (l[++i].type)
@@ -91,13 +115,24 @@ static t_vector			get_color(__global t_object	*o,
 		f = ft_trace(o, l, cam, &shader_distance, &shader, &light);
 		distance = v_length(l[i].pos - ray.p_hit);
 		if (f && shader_distance < distance)
-			col = v_mult_d(h.color, 0.101);
+			col = v_mult_d(h.color, 0.101 * l[i].intence);
 		else
 		{
-			col = v_mult_d(h.color, lt + 0.101) + v_mult_d(h.color, 0.101);
-			col[0] += (0.8 - h.color[0]) * pow(lt, h.shape) * 0.9;
-			col[1] += (0.8 - h.color[1]) * pow(lt, h.shape) * 0.9;
-			col[2] += (0.8 - h.color[2]) * pow(lt, h.shape) * 0.9;
+			col = v_mult_d(h.color, (lt + 0.101) * l[i].intence) + v_mult_d(h.color, 0.101 * l[i].intence);
+
+			// Блики
+			if (h.shape > 0)
+			{
+				glare = v_mult_d(ray.n_hit, 2 * lt) - light.dir;
+				gt = v_dot(glare, - ray.dir);
+				if (gt > 0)
+				{
+					col[0] += l[i].intence * native_powr(gt, h.shape);
+					col[1] += l[i].intence * native_powr(gt, h.shape);
+					col[2] += l[i].intence * native_powr(gt, h.shape);
+				}
+			}
+			
 		}
 		hit_color += col;
 	}
@@ -109,7 +144,7 @@ static void				find_cam_dir(__global t_camera    *cam, const int *iter)
     float scale;
     float x;
     float y;
-    
+
     scale = native_tan(ft_deg2rad(cam->fov * 0.5));
     x = (2 * (iter[1] + 0.5) / (float)IMG_WIDTH - 1) *
     (IMG_WIDTH / (float)WIN_HEIGHT) * scale;

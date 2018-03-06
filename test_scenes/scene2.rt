@@ -4,35 +4,40 @@
 			"color": [0.33, 0.02, 0.02],
 			"point": [0, -150, -1000],
 			"radius": 50,
-			"shape": 50
+			"shape": 50,
+			"reflect": 0.3
 		},
 		{
 			"type": "sphere",
 			"color": [0.3, 0.3, 0.3],
 			"point": [300, -300, -1700],
 			"radius": 100,
-			"shape": 15
+			"shape": 15,
+			"reflect": 0.3
 		},
 		{
 			"type": "sphere",
 			"color": [0.3, 0.3, 0.3],
 			"point": [-300, -300, -1700],
 			"radius": 100,
-			"shape": 15
+			"shape": 15,
+			"reflect": 0.3
 		},
 		{
 			"type": "sphere",
 			"color": [0.3, 0.3, 0.3],
 			"point": [-300, -300, -800],
 			"radius": 100,
-			"shape": 15
+			"shape": 15,
+			"reflect": 0.3
 		},
 		{
 			"type": "sphere",
 			"color": [0.3, 0.3, 0.3],
 			"point": [300, -300, -800],
 			"radius": 100,
-			"shape": 15
+			"shape": 15,
+			"reflect": 0.3
 		},
 		{
 			"type": "cylinder",
@@ -40,7 +45,8 @@
 			"color": [0.3, 0.3, 0.3],
 			"point": [-300, 0, -800],
 			"radius": 50,
-			"shape": 15
+			"shape": 15,
+			"reflect": 0.3
 		},
 		{
 			"type": "cylinder",
@@ -48,7 +54,8 @@
 			"color": [0.3, 0.3, 0.3],
 			"point": [300, 0, -800],
 			"radius": 50,
-			"shape": 15
+			"shape": 15,
+			"reflect": 0.3
 		},
 		{
 			"type": "cylinder",
@@ -56,7 +63,8 @@
 			"color": [0.3, 0.3, 0.3],
 			"point": [300, 0, -1700],
 			"radius": 50,
-			"shape": 15
+			"shape": 15,
+			"reflect": 0.3
 		},
 		{
 			"type": "cylinder",
@@ -64,32 +72,38 @@
 			"color": [0.3, 0.3, 0.3],
 			"point": [-300, 0, -1700],
 			"radius": 50,
-			"shape": 15
+			"shape": 15,
+			"reflect": 0.3
 		},
 		{
 			"type": "plane",
-			"distance": 300,
-			"direction": [0, 1, 0],
+			"point": [0, -300, 0],
+			"direction": [0, -1, 0],
 			"color": [0.4, 0.4, 0.4],
-			"shape": 15
+			"shape": 15,
+			"reflect": 0.3
 		},
 		{
-			"type": "plane",
-			"distance": 1800,
-			"direction": [0, 0, 1],
+			"type": "disk",
+			"point": [0, 0, -1800],
+			"direction": [0, 0, -1],
 			"color": [0.24, 0.12, 0],
-			"shape": 15
+			"radius": 800,
+			"shape": 1000,
+			"reflect": 0.3
 		}
 	],
 	"lights": [{
 			"type": "lamp",
 			"position": [1000, 900, 400],
-			"color": [1, 1, 1]
+			"color": [1, 1, 1],
+			"intensity" : 1
 		},
 		{
 			"type": "lamp",
-			"position": [-1000, 900, 400],
-			"color": [1, 1, 1]
+			"position": [-400, 900, 400],
+			"color": [1, 1, 1],
+			"intensity" : 1
 		}
 	],
 	"cameras": [{

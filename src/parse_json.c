@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 11:33:17 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/06 13:42:13 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/06 17:35:04 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ static int		set_o_type(json_value *value)
 		val = O_CYL;
 	else if (!err && !ft_strcmp(value->u.string.ptr, "conus"))
 		val = O_CON;
+	else if (!err && !ft_strcmp(value->u.string.ptr, "disk"))
+		val = O_DISK;
 	else
 		err = 1;
 	if (err)
@@ -171,12 +173,10 @@ static t_vector	get_color(json_value *value)
 
 static void		get_object_info(json_value *value, t_object *o)
 {
-	int length;
 	int x;
 
-	length = value->u.object.length;
 	x = -1;
-	while (++x < length)
+	while (++x < value->u.object.length)
 	{
 		if (!ft_strcmp(value->u.object.values[x].name, "type"))
 			o->type = set_o_type(value->u.object.values[x].value);
@@ -194,6 +194,8 @@ static void		get_object_info(json_value *value, t_object *o)
 			o->angle = get_number(value->u.object.values[x].value);
 		if (!ft_strcmp(value->u.object.values[x].name, "distance"))
 			o->p = get_number(value->u.object.values[x].value);
+		if (!ft_strcmp(value->u.object.values[x].name, "reflect"))
+			o->reflect = get_number(value->u.object.values[x].value);
 	}
 }
 
@@ -227,6 +229,8 @@ static void		get_light_info(json_value *value, t_light *l)
 			l->pos = get_vector(value->u.object.values[x].value);
 		if (!ft_strcmp(value->u.object.values[x].name, "color"))
 			l->color = get_color(value->u.object.values[x].value);
+		if (!ft_strcmp(value->u.object.values[x].name, "intensity"))
+			l->intence = get_number(value->u.object.values[x].value);
 	}
 }
 

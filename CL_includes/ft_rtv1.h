@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 11:57:16 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/06 10:56:20 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/06 16:38:23 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ short						get_con_data(t_ray *ray, t_object con, float t);
 short						plane_cross(t_object *p, t_ray *r, float *t);
 short						get_plane_data(t_ray *ray,
 											t_object plane, float t);
+short						disk_cross(t_object *d, t_ray *r, float *t);
+short						get_disk_data(t_ray *ray, t_object disk, float t);
 /*
 **  Additional mlx functions
 */
