@@ -1,11 +1,11 @@
 {
 	"objects": [{
 			"type": "plane",
-			"distance": 100,
-			"direction": [0, 1, 0],
+			"point": [0, -100, 0],
+			"direction": [0, -1, 0],
 			"color": [0.25, 0.24, 0.84],
 			"shape": 15,
-			"reflect": 0.3
+			"reflect": 0
 		},
 		{
 			"type": "sphere",
@@ -13,7 +13,7 @@
 			"point": [-200, 50, -700],
 			"radius": 100,
 			"shape": 15,
-			"reflect": 0.3
+			"reflect": 0
 		},
 		{
 			"type": "cylinder",
@@ -22,7 +22,7 @@
 			"point": [100, 0, -650],
 			"radius": 50,
 			"shape": 15,
-			"reflect": 0.3
+			"reflect": 0
 		}
 	],
 	"lights": [{

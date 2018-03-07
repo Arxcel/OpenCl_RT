@@ -18,16 +18,16 @@
 		},
 		{
 			"type": "plane",
-			"distance": 100,
-			"direction": [0, 1, 0],
+			"point": [0, -100, 0],
+			"direction": [0, -1, 0],
 			"color": [0.2, 0.22, 0.85],
 			"shape": 15,
 			"reflect": 0.3
 		},
 		{
 			"type": "plane",
-			"distance": 2000,
-			"direction": [0, 0, 1],
+			"point": [0, 0, -2000],
+			"direction": [0, 0, -1],
 			"color": [0.5, 0.5, 0.5],
 			"shape": 15,
 			"reflect": 0.3

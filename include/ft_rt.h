@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_rt.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vkozlov <vkozlov@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:32:12 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/06 11:27:30 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/07 21:35:46 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include "ft_scene.h"
 # define WIN_W			1280
 # define WIN_H			600
+# define MAX_ITER		10
 
 void				sdl_hook(t_sdl *sdl);
 void				sdl_loop(t_sdl *sdl);

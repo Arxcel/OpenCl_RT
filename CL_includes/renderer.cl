@@ -168,39 +168,24 @@ static t_vector				reflect_ray(t_vector n, t_vector dir)
 	return (v_mult_d(n, 2 * v_dot(n, dir)) - dir);
 }
 
-static unsigned int		ft_cast_ray(
+static t_vector					ft_cast_ray(
 								__global t_object	*o,
 								__global t_light	*l,
 								t_ray				*r,
 								unsigned int hit_color,
-								t_object *hit_object,
-								int depth)
+								t_object *hit_object)
 {
     float			t;
     t_vector		light;
-	int				reflect;
-	unsigned int	local_color;
-	unsigned int	reflect_color;
-	t_ray			tmp;
-	t_object		reflect_object;
 
-	local_color = 0;
-	reflect_color = 0;
-
+	hit_object->reflect = 0;
+	light = (t_vector){0, 0, 0};
     if (ft_trace(o, l, &t, hit_object, r))
     {
         get_surface_data(r, *hit_object, t);
         light = get_color(o, l, *hit_object, *r, (t_vector){0, 0, 0});
-        local_color = set_rgb(light);
-
-		// reflect = hit_object->reflect;
-		// if (depth && reflect)
-		// 	return (local_color);
-		// tmp.dir = reflect_ray(r->n_hit, -r->dir);
-		// tmp.orig = r->p_hit;
-		// reflect_color = ft_cast_ray(o, l, &tmp, 0, &reflect_object, depth - 1);
 	}
-	return (local_color);// * (1 - reflect) + reflect_color * reflect);
+	return (light);
 }
 
 unsigned int		ft_renderer(
@@ -212,15 +197,32 @@ unsigned int		ft_renderer(
 )
 {
     int				iter[2];
-    unsigned int	z_color;
+    t_vector		z_color;
+	t_vector		reflect_color;
+	t_vector		res;
     t_object		hit_object;
 	t_ray			ray;
+	float			reflect;
+	int				i;
 
 	iter[0] = y;
 	iter[1] = x;
     find_cam_dir(cam, iter);
 	ray.dir = cam->dir;
     ray.orig = cam->pos;
-    z_color = ft_cast_ray(o, l, &ray, 0, &hit_object, 1);
-    return (z_color);
+    z_color = ft_cast_ray(o, l, &ray, 0, &hit_object);
+	res = z_color;
+	i = -1;
+	while (++i < MAX_ITER)
+	{
+		reflect = hit_object.reflect;
+		if (!reflect)
+			return (set_rgb(res));
+		res = v_mult_d(res, (1 - reflect));
+		ray.dir = reflect_ray(ray.n_hit, -ray.dir);
+		ray.orig = ray.p_hit + + v_mult_d(ray.n_hit, 0.3);
+		reflect_color = ft_cast_ray(o, l, &ray, 0, &hit_object);
+		res += v_mult_d(res, (1 - reflect)) + v_mult_d(reflect_color, reflect);
+	}
+    return (set_rgb(res));
 }

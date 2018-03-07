@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_flags.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vkozlov <vkozlov@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 11:01:13 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/06 11:27:25 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/07 21:35:24 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,11 @@ char		*set_flags(const char *path)
 	free(to_free);
 	free(buf);
 	buf = pair(" -D WIN_HEIGHT=", WIN_H);
+	to_free = flags;
+	flags = ft_strjoin(flags, buf);
+	free(to_free);
+	free(buf);
+	buf = pair(" -D MAX_ITER=", MAX_ITER);
 	to_free = flags;
 	flags = ft_strjoin(flags, buf);
 	free(to_free);
