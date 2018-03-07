@@ -4,7 +4,7 @@
 			"color": [0.33, 0.02, 0.02],
 			"point": [0, -150, -1000],
 			"radius": 50,
-			"shape": 50,
+			"shape": 1300,
 			"reflect": 0.3
 		},
 		{
@@ -89,19 +89,19 @@
 			"direction": [0, 0, -1],
 			"color": [0.24, 0.12, 0],
 			"radius": 800,
-			"shape": 1000,
+			"shape": 2,
 			"reflect": 0.3
 		}
 	],
 	"lights": [{
 			"type": "lamp",
-			"position": [1000, 900, 400],
+			"position": [1000, 1000, 10],
 			"color": [1, 1, 1],
 			"intensity" : 1
 		},
 		{
 			"type": "lamp",
-			"position": [-400, 900, 400],
+			"position": [-400, 900, 500],
 			"color": [1, 1, 1],
 			"intensity" : 1
 		}

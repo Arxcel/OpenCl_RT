@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 22:15:03 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/06 16:18:54 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/07 12:37:15 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # define O_DISK		5
 # define L_SUN		1
 # define L_LAMP		2
+# define L_AMBIENT	3
+# define L_AREA		4
 
 typedef struct		s_object
 {

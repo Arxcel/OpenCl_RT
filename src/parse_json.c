@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 11:33:17 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/06 17:35:04 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/07 12:16:57 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,7 +173,7 @@ static t_vector	get_color(json_value *value)
 
 static void		get_object_info(json_value *value, t_object *o)
 {
-	int x;
+	unsigned int x;
 
 	x = -1;
 	while (++x < value->u.object.length)

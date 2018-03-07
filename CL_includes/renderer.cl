@@ -60,7 +60,6 @@ int		check_object_type(t_object object, t_ray *ray, float *t)
 
 static int				ft_trace(__global t_object	*o,
 								__global t_light	*l,
-								__global t_camera	*cam,
 								float *t_near,
 								t_object *hit_object, t_ray *ray)
 {
@@ -90,7 +89,6 @@ static int				ft_trace(__global t_object	*o,
 
 static t_vector			get_color(__global t_object	*o,
 									__global t_light	*l,
-									__global t_camera	*cam,
 									t_object h,
 									t_ray ray, t_vector hit_color)
 {
@@ -104,15 +102,15 @@ static t_vector			get_color(__global t_object	*o,
 	int				f;
 	float			shader_distance;
 	t_vector		glare;
-
+	float			corel;
 
 	i = -1;
 	while (l[++i].type)
 	{
 		light.dir = v_normalize(l[i].pos - ray.p_hit);
-		light.orig = ray.p_hit + v_mult_d(ray.n_hit, cam->bias);
+		light.orig = ray.p_hit + v_mult_d(ray.n_hit, 0.3);
 		lt = v_dot(ray.n_hit, light.dir);
-		f = ft_trace(o, l, cam, &shader_distance, &shader, &light);
+		f = ft_trace(o, l, &shader_distance, &shader, &light);
 		distance = v_length(l[i].pos - ray.p_hit);
 		if (f && shader_distance < distance)
 			col = v_mult_d(h.color, 0.101 * l[i].intence);
@@ -127,12 +125,23 @@ static t_vector			get_color(__global t_object	*o,
 				gt = v_dot(glare, - ray.dir);
 				if (gt > 0)
 				{
-					col[0] += l[i].intence * native_powr(gt, h.shape);
-					col[1] += l[i].intence * native_powr(gt, h.shape);
-					col[2] += l[i].intence * native_powr(gt, h.shape);
+					if (h.shape <= 2)
+						corel = 0.04;
+					else if (h.shape <= 10)
+						corel = 0.08;
+					else if (h.shape <= 50)
+						corel = 0.1;
+					else if (h.shape <= 250)
+						corel = 0.15;
+					else if (h.shape <= 1250)
+						corel = 0.2;
+					else
+						corel = 1;
+					col[0] += l[i].intence * native_powr(gt, h.shape) * corel;
+					col[1] += l[i].intence * native_powr(gt, h.shape) * corel;
+					col[2] += l[i].intence * native_powr(gt, h.shape) * corel;
 				}
 			}
-			
 		}
 		hit_color += col;
 	}
@@ -154,26 +163,44 @@ static void				find_cam_dir(__global t_camera    *cam, const int *iter)
     cam->dir = v_normalize(cam->dir);
 }
 
+static t_vector				reflect_ray(t_vector n, t_vector dir)
+{
+	return (v_mult_d(n, 2 * v_dot(n, dir)) - dir);
+}
+
 static unsigned int		ft_cast_ray(
 								__global t_object	*o,
 								__global t_light	*l,
-								__global t_camera	*cam,
+								t_ray				*r,
 								unsigned int hit_color,
-								t_object *hit_object)
+								t_object *hit_object,
+								int depth)
 {
-    t_ray			ray;
     float			t;
     t_vector		light;
-    
-    ray.dir = cam->dir;
-    ray.orig = cam->pos;
-    if (ft_trace(o , l, cam, &t, hit_object, &ray))
+	int				reflect;
+	unsigned int	local_color;
+	unsigned int	reflect_color;
+	t_ray			tmp;
+	t_object		reflect_object;
+
+	local_color = 0;
+	reflect_color = 0;
+
+    if (ft_trace(o, l, &t, hit_object, r))
     {
-        get_surface_data(&ray, *hit_object, t);
-        light = get_color(o, l, cam, *hit_object, ray, (t_vector){0, 0, 0});
-        hit_color = set_rgb(light);
-    }
-    return (hit_color);
+        get_surface_data(r, *hit_object, t);
+        light = get_color(o, l, *hit_object, *r, (t_vector){0, 0, 0});
+        local_color = set_rgb(light);
+
+		// reflect = hit_object->reflect;
+		// if (depth && reflect)
+		// 	return (local_color);
+		// tmp.dir = reflect_ray(r->n_hit, -r->dir);
+		// tmp.orig = r->p_hit;
+		// reflect_color = ft_cast_ray(o, l, &tmp, 0, &reflect_object, depth - 1);
+	}
+	return (local_color);// * (1 - reflect) + reflect_color * reflect);
 }
 
 unsigned int		ft_renderer(
@@ -187,10 +214,13 @@ unsigned int		ft_renderer(
     int				iter[2];
     unsigned int	z_color;
     t_object		hit_object;
+	t_ray			ray;
 
 	iter[0] = y;
 	iter[1] = x;
     find_cam_dir(cam, iter);
-    z_color = ft_cast_ray(o, l, cam, 0, &hit_object);
+	ray.dir = cam->dir;
+    ray.orig = cam->pos;
+    z_color = ft_cast_ray(o, l, &ray, 0, &hit_object, 1);
     return (z_color);
 }
