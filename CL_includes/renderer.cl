@@ -108,7 +108,7 @@ static t_vector			get_color(__global t_object	*o,
 	while (l[++i].type)
 	{
 		light.dir = v_normalize(l[i].pos - ray.p_hit);
-		light.orig = ray.p_hit + v_mult_d(ray.n_hit, 0.3);
+		light.orig = ray.p_hit + v_mult_d(ray.n_hit, BIAS);
 		lt = v_dot(ray.n_hit, light.dir);
 		f = ft_trace(o, l, &shader_distance, &shader, &light);
 		distance = v_length(l[i].pos - ray.p_hit);
@@ -220,7 +220,7 @@ unsigned int		ft_renderer(
 			return (set_rgb(res));
 		res = v_mult_d(res, (1 - reflect));
 		ray.dir = reflect_ray(ray.n_hit, -ray.dir);
-		ray.orig = ray.p_hit + + v_mult_d(ray.n_hit, 0.3);
+		ray.orig = ray.p_hit + + v_mult_d(ray.n_hit, BIAS);
 		reflect_color = ft_cast_ray(o, l, &ray, 0, &hit_object);
 		res += v_mult_d(res, (1 - reflect)) + v_mult_d(reflect_color, reflect);
 	}

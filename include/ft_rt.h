@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:32:12 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/07 21:35:46 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/07 21:48:56 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # define WIN_W			1280
 # define WIN_H			600
 # define MAX_ITER		10
+# define BIAS			0.3f
 
 void				sdl_hook(t_sdl *sdl);
 void				sdl_loop(t_sdl *sdl);

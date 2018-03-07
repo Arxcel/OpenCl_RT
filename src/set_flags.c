@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 11:01:13 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/07 21:35:24 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/07 21:51:48 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,9 @@ char		*set_flags(const char *path)
 	flags = ft_strjoin(flags, buf);
 	free(to_free);
 	free(buf);
+	to_free = flags;
+	flags = ft_strjoin(flags, " -D BIAS=0.3");
+	free(to_free);
 	to_free = flags;
 	flags = ft_strjoin(flags, " -D INF=999999999999999999999999999999.9");
 	free(to_free);
