@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_rt.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkozlov <vkozlov@student.unit.ua>          +#+  +:+       +#+        */
+/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:32:12 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/07 21:48:56 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/12 14:20:06 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,18 @@
 # define MAX_ITER		10
 # define BIAS			0.3f
 
-void				sdl_hook(t_sdl *sdl);
-void				sdl_loop(t_sdl *sdl);
+typedef struct		s_main
+{
+	t_cl	cl;
+	t_sdl	sdl;
+	t_scene	s;
+}					t_main;
+void				sdl_hook(t_main *m);
+void				sdl_loop(t_main *m);
 char				*set_flags(const char *path);
 void				get_scene(const char *filepath, t_scene *s);
 void				put_error(const char *err_text);
 void				process_value(json_value *value, t_scene *s);
+void				re_draw(t_cl *cl, t_sdl *sdl, t_scene *s);
+void				move_camera(t_scene *s);
 #endif

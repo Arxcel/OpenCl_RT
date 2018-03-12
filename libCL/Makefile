@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vkozlov <vkozlov@student.unit.ua>          +#+  +:+       +#+         #
+#    By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/21 13:49:03 by vkozlov           #+#    #+#              #
-#    Updated: 2018/03/01 12:50:50 by vkozlov          ###   ########.fr        #
+#    Updated: 2018/03/12 13:14:05 by vkozlov          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,6 @@ HEADER = include
 
 SOURCES = cl_create_compile_program.c \
 			cl_create_context.c \
-			cl_create_input.c \
 			cl_create_kernel.c \
 			cl_create_queue.c \
 			cl_err_message.c \
@@ -34,7 +33,8 @@ SOURCES = cl_create_compile_program.c \
 			cl_get_results.c \
 			cl_init.c \
 			cl_set_args.c \
-			cl_set_out_arg.c
+			cl_set_out_arg.c \
+			cl_free_args.c
 
 SRCS = $(addprefix $(DIR_S)/,$(SOURCES))
 

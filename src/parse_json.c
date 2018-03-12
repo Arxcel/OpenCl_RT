@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 11:33:17 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/07 12:16:57 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/12 13:54:32 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -281,6 +281,8 @@ static void		process_scene_c(json_value *value, t_scene *s)
 	x = -1;
 	while (++x < s->c_num - 1)
 		get_camera_info(value->u.array.values[x], &s->camera[x]);
+	s->cam_base.pos = s->camera[x - 1].pos;
+	s->cam_base.rot = s->camera[x - 1].rot;
 	s->camera[x].type = 0;
 }
 

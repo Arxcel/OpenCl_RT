@@ -1,27 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cl_get_results.c                                   :+:      :+:    :+:   */
+/*   cl_free_args.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/09 12:48:00 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/12 13:02:59 by vkozlov          ###   ########.fr       */
+/*   Created: 2018/03/12 13:07:40 by vkozlov           #+#    #+#             */
+/*   Updated: 2018/03/12 14:12:34 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "my_cl.h"
 
-void	cl_get_res(t_cl *cl, size_t size,
-								unsigned int *result, cl_uint arg_index)
+static void		cl_free_arg(cl_mem arg)
 {
-	cl_int			ret;
+	cl_int			res;
 
-	ret = clEnqueueReadBuffer(cl->commands, cl->args[arg_index], CL_TRUE,
-						0, size, result, 0, NULL, NULL);
-	if (ret != CL_SUCCESS)
+	res = clReleaseMemObject(arg);
+	if (res != CL_SUCCESS)
 	{
-		ft_printf("Error while getting the results. Code:[%d]\n", ret);
+		ft_printf("Error while freeing args buffer. Code:[%d]\n", res);
 		exit(1);
+	}
+}
+
+void			cl_free_all_args(size_t args_num, cl_mem *args)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < args_num)
+	{
+		cl_free_arg(args[i]);
+		i++;
 	}
 }

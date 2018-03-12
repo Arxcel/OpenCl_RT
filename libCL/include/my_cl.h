@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_cl.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkozlov <vkozlov@student.unit.ua>          +#+  +:+       +#+        */
+/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/07 17:09:00 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/01 13:02:09 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/12 13:12:57 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@
 #  include "CL/cl.h"
 # endif
 # include <stdio.h>
+# define INDEX_NUM 4
 
 typedef struct			s_cl{
+	size_t				work_dim[2];
 	cl_platform_id		*platforms;
 	char				platform_name[128];
 	cl_device_id		*devices;
@@ -28,8 +30,9 @@ typedef struct			s_cl{
 	cl_command_queue	commands;
 	cl_program			program;
 	cl_kernel			kernel;
-	cl_mem				input_buf;
-	cl_mem				output_buf;
+	cl_mem				args[INDEX_NUM];
+	char				*text;
+	char				*flags;
 }						t_cl;
 typedef struct			s_args
 {
@@ -37,22 +40,24 @@ typedef struct			s_args
 	float				*input_floats;
 }						t_args;
 void					cl_error_msg(const char *errinfo,
-				const void *private_info, size_t cb, void *user_data);
+								const void *private_info,
+								size_t cb, void *user_data);
 void					cl_get_platforms(t_cl *cl);
 void					cl_get_devices(t_cl *cl);
 void					cl_create_context(t_cl *cl);
 void					cl_create_queue(t_cl *cl);
 void					cl_create_kernel(t_cl *cl, const char *kernel_name);
 void					cl_create_program(t_cl *cl, const char *src_dir,
-				const char *program_text);
-void					cl_create_input_buf(t_cl *cl, t_args args, size_t size);
-void					cl_create_res_buf(t_cl *cl, size_t size);
+								const char *program_text);
 void					cl_set_args(t_cl *cl, void *a,
-				size_t arg_size, cl_uint arg_index);
+								size_t arg_size, cl_uint arg_index);
 void					cl_exec_kernel(t_cl *cl,
-				cl_uint size_wd, const size_t *val);
+								cl_uint size_wd, const size_t *val);
 void					cl_init(t_cl *cl);
-void					cl_get_res(t_cl *cl, size_t size, unsigned int *res);
-void					cl_set_out_arg(t_cl *cl, cl_uint arg_index);
+void					cl_get_res(t_cl *cl, size_t size,
+								unsigned int *result, cl_uint arg_index);
+void					cl_set_out_arg(t_cl *cl, size_t size,
+								cl_uint arg_index);
 int						ft_printf(const char *format, ...);
+void					cl_free_all_args(size_t args_num, cl_mem *args);
 #endif

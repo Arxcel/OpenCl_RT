@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   set_flags.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkozlov <vkozlov@student.unit.ua>          +#+  +:+       +#+        */
+/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 11:01:13 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/07 21:51:48 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/12 12:41:11 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_rt.h"
 
-static char	*pair(const char *name, double value)
+static char		*pair(const char *name, double value)
 {
 	char *buf;
 	char *res;
@@ -23,33 +23,27 @@ static char	*pair(const char *name, double value)
 	return (res);
 }
 
-char		*set_flags(const char *path)
+static char		*add_value(char *value, char *base)
 {
-	char *buf;
+	char *to_free;
+
+	to_free = base;
+	base = ft_strjoin(base, value);
+	free(to_free);
+	free(value);
+	return (base);
+}
+
+char			*set_flags(const char *path)
+{
 	char *to_free;
 	char *flags;
 
 	flags = ft_strjoin("-I ", path);
-	buf = pair(" -D IMG_WIDTH=", WIN_W);
-	to_free = flags;
-	flags = ft_strjoin(flags, buf);
-	free(to_free);
-	free(buf);
-	buf = pair(" -D WIN_WIDTH=", WIN_W);
-	to_free = flags;
-	flags = ft_strjoin(flags, buf);
-	free(to_free);
-	free(buf);
-	buf = pair(" -D WIN_HEIGHT=", WIN_H);
-	to_free = flags;
-	flags = ft_strjoin(flags, buf);
-	free(to_free);
-	free(buf);
-	buf = pair(" -D MAX_ITER=", MAX_ITER);
-	to_free = flags;
-	flags = ft_strjoin(flags, buf);
-	free(to_free);
-	free(buf);
+	flags = add_value(pair(" -D IMG_WIDTH=", WIN_W), flags);
+	flags = add_value(pair(" -D WIN_WIDTH=", WIN_W), flags);
+	flags = add_value(pair(" -D WIN_HEIGHT=", WIN_H), flags);
+	flags = add_value(pair(" -D MAX_ITER=", MAX_ITER), flags);
 	to_free = flags;
 	flags = ft_strjoin(flags, " -D BIAS=0.3");
 	free(to_free);

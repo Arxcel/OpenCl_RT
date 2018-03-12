@@ -1,27 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cl_get_results.c                                   :+:      :+:    :+:   */
+/*   move_camera.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/09 12:48:00 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/12 13:02:59 by vkozlov          ###   ########.fr       */
+/*   Created: 2018/03/12 13:20:15 by vkozlov           #+#    #+#             */
+/*   Updated: 2018/03/12 14:20:51 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "my_cl.h"
+#include "ft_rt.h"
 
-void	cl_get_res(t_cl *cl, size_t size,
-								unsigned int *result, cl_uint arg_index)
+void	move_camera(t_scene *s)
 {
-	cl_int			ret;
-
-	ret = clEnqueueReadBuffer(cl->commands, cl->args[arg_index], CL_TRUE,
-						0, size, result, 0, NULL, NULL);
-	if (ret != CL_SUCCESS)
-	{
-		ft_printf("Error while getting the results. Code:[%d]\n", ret);
-		exit(1);
-	}
+	s->camera->pos = s->cam_base.pos + s->cam_trans.pos;
+	s->camera->rot = s->cam_base.rot + s->cam_trans.rot;
 }
