@@ -29,6 +29,12 @@ unsigned int		set_rgb(t_vector c)
 		c[1] = 255;
 	if (c[2] > 255)
 		c[2] = 255;
+	if (c[0] < 0)
+		c[0] = 0;
+	if (c[1] < 0)
+		c[1] = 0;
+	if (c[2] < 0)
+		c[2] = 0;
 	return (((int)c[0] << 16) | ((int)c[1] << 8) | (int)c[2]);
 }
 

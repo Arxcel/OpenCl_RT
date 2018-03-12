@@ -103,21 +103,23 @@ static t_vector			get_color(__global t_object	*o,
 	float			shader_distance;
 	t_vector		glare;
 	float			corel;
+	float			light_intensity;
 
 	i = -1;
 	while (l[++i].type)
 	{
-		light.dir = v_normalize(l[i].pos - ray.p_hit);
+		light.dir = l[i].pos - ray.p_hit;
 		light.orig = ray.p_hit + v_mult_d(ray.n_hit, BIAS);
+		distance = v_length(light.dir);
+		light.dir = v_normalize(light.dir);
 		lt = v_dot(ray.n_hit, light.dir);
 		f = ft_trace(o, l, &shader_distance, &shader, &light);
-		distance = v_length(l[i].pos - ray.p_hit);
+		light_intensity = l[i].intence; 
 		if (f && shader_distance < distance)
-			col = v_mult_d(h.color, 0.101 * l[i].intence);
+			col = v_mult_d(h.color, 0);
 		else
 		{
-			col = v_mult_d(h.color, (lt + 0.101) * l[i].intence) + v_mult_d(h.color, 0.101 * l[i].intence);
-
+			col = v_mult_d(h.color, lt * light_intensity);
 			// Блики
 			if (h.shape > 0)
 			{
@@ -137,9 +139,7 @@ static t_vector			get_color(__global t_object	*o,
 						corel = 0.2;
 					else
 						corel = 1;
-					col[0] += l[i].intence * native_powr(gt, h.shape) * corel;
-					col[1] += l[i].intence * native_powr(gt, h.shape) * corel;
-					col[2] += l[i].intence * native_powr(gt, h.shape) * corel;
+					col += v_mult_d(col, light_intensity * native_powr(gt, h.shape) * corel);
 				}
 			}
 		}

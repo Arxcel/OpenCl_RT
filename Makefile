@@ -6,7 +6,7 @@
 #    By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/21 16:21:44 by vkozlov           #+#    #+#              #
-#    Updated: 2018/03/12 13:30:38 by vkozlov          ###   ########.fr        #
+#    Updated: 2018/03/12 16:01:12 by vkozlov          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,7 +66,7 @@ OBJS = $(addprefix $(DIR_O)/,$(SOURCES:.c=.o))
 all: obj libs $(NAME)
 
 $(NAME): $(OBJS)
-		$(CC) -o $(NAME) $(OBJS) $(FLAGS) $(CFLAGS) -L $(LIBFT) -lft -L $(LIBMMATH) -lmy_math -L $(LIBJSON) -lJSON -L $(LIBCL) -lCL -framework OpenCl $(SDL2_P) $(SDL2_F) $(FSDL2) -L $(LIBFTSDL) -lftsdl
+		$(CC) -o $(NAME) $(OBJS) $(FLAGS) $(CFLAGS) -L $(LIBFT) -lft -L $(LIBMMATH) -lmy_math -L $(LIBJSON) -lJSON -L $(LIBCL) -lCL -framework OpenCl $(SDL2_P) $(SDL2_F) -L $(LIBFTSDL) -lftsdl
 
 		
 
