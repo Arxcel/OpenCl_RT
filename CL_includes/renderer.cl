@@ -47,13 +47,13 @@ int		check_object_type(t_object object, t_ray *ray, float *t)
 {
 	if (object.type == O_SPHERE)
 		return (sphere_cross(object, ray->orig, ray->dir, t));
-	if (object.type == O_CYL)
+	else if (object.type == O_CYL)
 		return (cyl_cross(object, ray->orig, ray->dir, t));
-	if (object.type == O_CON)
+	else if (object.type == O_CON)
 		return (con_cross(object, ray->orig, ray->dir, t));
-	if (object.type == O_PLANE)
+	else if (object.type == O_PLANE)
 		return (plane_cross(&object, ray, t));
-	if (object.type == O_DISK)
+	else if (object.type == O_DISK)
 		return (disk_cross(&object, ray, t));
 	return (0);
 }
@@ -215,11 +215,10 @@ unsigned int		ft_renderer(
 		reflect = hit_object.reflect;
 		if (!reflect)
 			return (set_rgb(res));
-		res = v_mult_d(res, (1 - reflect));
 		ray.dir = reflect_ray(ray.n_hit, -ray.dir);
 		ray.orig = ray.p_hit + + v_mult_d(ray.n_hit, BIAS);
 		reflect_color = ft_cast_ray(o, l, &ray, &hit_object);
-		res += v_mult_d(res, (1 - reflect)) + v_mult_d(reflect_color, reflect);
+		res = v_mult_d(res, (1 - reflect)) + v_mult_d(reflect_color, reflect);
 	}
     return (set_rgb(res));
 }
