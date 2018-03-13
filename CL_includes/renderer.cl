@@ -87,14 +87,13 @@ static int				ft_trace(__global t_object	*o,
 	return (flag);
 }
 
-static t_vector			get_color(__global t_object	*o,
+static float			get_light(__global t_object	*o,
 									__global t_light	*l,
-									t_object h,
-									t_ray ray, t_vector hit_color)
+									t_object h, t_ray ray)
 {
 	float			lt;
 	float			gt;
-	t_vector		col;
+	float			ret_col;
 	t_ray			light;
 	t_object		shader;
 	int				i;
@@ -106,6 +105,7 @@ static t_vector			get_color(__global t_object	*o,
 	float			light_intensity;
 
 	i = -1;
+	ret_col = 0;
 	while (l[++i].type)
 	{
 		light.dir = l[i].pos - ray.p_hit;
@@ -114,12 +114,10 @@ static t_vector			get_color(__global t_object	*o,
 		light.dir = v_normalize(light.dir);
 		lt = v_dot(ray.n_hit, light.dir);
 		f = ft_trace(o, l, &shader_distance, &shader, &light);
-		light_intensity = l[i].intence; 
-		if (f && shader_distance < distance)
-			col = v_mult_d(h.color, 0);
-		else
+		light_intensity = 0; 
+		if (!(f && shader_distance < distance))
 		{
-			col = v_mult_d(h.color, lt * light_intensity);
+			light_intensity = lt * l[i].intence;
 			// Блики
 			if (h.shape > 0)
 			{
@@ -139,13 +137,13 @@ static t_vector			get_color(__global t_object	*o,
 						corel = 0.2;
 					else
 						corel = 1;
-					col += v_mult_d(col, light_intensity * native_powr(gt, h.shape) * corel);
+					light_intensity += light_intensity * native_powr(gt, h.shape) * corel;
 				}
 			}
 		}
-		hit_color += col;
+		ret_col += light_intensity;
 	}
-	return (hit_color);
+	return (ret_col);
 }
 
 static void				find_cam_dir(__global t_camera    *cam, const int *iter)
@@ -172,7 +170,6 @@ static t_vector					ft_cast_ray(
 								__global t_object	*o,
 								__global t_light	*l,
 								t_ray				*r,
-								unsigned int hit_color,
 								t_object *hit_object)
 {
     float			t;
@@ -183,7 +180,7 @@ static t_vector					ft_cast_ray(
     if (ft_trace(o, l, &t, hit_object, r))
     {
         get_surface_data(r, *hit_object, t);
-        light = get_color(o, l, *hit_object, *r, (t_vector){0, 0, 0});
+        light = v_mult_d(hit_object->color, get_light(o, l, *hit_object, *r));
 	}
 	return (light);
 }
@@ -210,7 +207,7 @@ unsigned int		ft_renderer(
     find_cam_dir(cam, iter);
 	ray.dir = cam->dir;
     ray.orig = cam->pos;
-    z_color = ft_cast_ray(o, l, &ray, 0, &hit_object);
+    z_color = ft_cast_ray(o, l, &ray, &hit_object);
 	res = z_color;
 	i = -1;
 	while (++i < MAX_ITER)
@@ -221,7 +218,7 @@ unsigned int		ft_renderer(
 		res = v_mult_d(res, (1 - reflect));
 		ray.dir = reflect_ray(ray.n_hit, -ray.dir);
 		ray.orig = ray.p_hit + + v_mult_d(ray.n_hit, BIAS);
-		reflect_color = ft_cast_ray(o, l, &ray, 0, &hit_object);
+		reflect_color = ft_cast_ray(o, l, &ray, &hit_object);
 		res += v_mult_d(res, (1 - reflect)) + v_mult_d(reflect_color, reflect);
 	}
     return (set_rgb(res));
