@@ -1,13 +1,5 @@
 {
 	"objects": [{
-			"type": "plane",
-			"point": [0, -100, 0],
-			"direction": [0, -1, 0],
-			"color": [0.25, 0.24, 0.84],
-			"shape": 15,
-			"reflect": 0
-		},
-		{
 			"type": "sphere",
 			"color": [0.33, 0.02, 0.02],
 			"point": [-200, 50, -700],
@@ -27,7 +19,9 @@
 		{
 			"type": "triangle",
 			"color": [0.08, 0.08, 0.08],
-			"point": [100, 0, -650],
+			"p1": [100, 0, -650],
+			"p2": [-100, 0, -650],
+			"p3": [100, 0, -850],
 			"radius": 50,
 			"shape": 15,
 			"reflect": 0
@@ -51,6 +45,5 @@
 		"rotation": [0, 0, 0],
 		"position": [0, 0, 0],
 		"field_of_view": 50,
-		"bias": 0.3
 	}]
 }

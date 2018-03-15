@@ -39,7 +39,7 @@ short				disk_cross(t_object *d, t_ray *r, float *t)
 
 short				get_disk_data(t_ray *ray, t_object disk, float t)
 {
-	ray->n_hit = -disk.dir;
+	ray->n_hit = disk.dir;
 	ray->n_hit = v_normalize(ray->n_hit);
 	return (1);
 }

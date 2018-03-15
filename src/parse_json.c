@@ -6,7 +6,7 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 11:33:17 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/15 16:59:16 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/15 17:01:19 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -272,8 +272,6 @@ static void		get_camera_info(json_value *value, t_camera *c)
 			c->pos = get_vector(value->u.object.values[x].value);
 		if (!ft_strcmp(value->u.object.values[x].name, "field_of_view"))
 			c->fov = get_number(value->u.object.values[x].value);
-		if (!ft_strcmp(value->u.object.values[x].name, "bias"))
-			c->bias = get_number(value->u.object.values[x].value);
 		if (!ft_strcmp(value->u.object.values[x].name, "rotation"))
 			c->rot = get_vector(value->u.object.values[x].value);
 	}

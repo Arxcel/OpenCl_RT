@@ -6,7 +6,7 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 22:15:03 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/15 16:59:37 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/15 17:01:02 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ typedef struct		s_camera
 	t_vector		dir;
 	t_vector		rot;
 	float			fov;
-	float			bias;
 }					t_camera;
 
 typedef struct		s_scene
