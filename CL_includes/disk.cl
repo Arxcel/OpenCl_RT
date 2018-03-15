@@ -19,7 +19,7 @@ short				disk_cross(t_object *d, t_ray *r, float *t)
 	t_vector v;
 
 	a = v_dot(d->dir, r->dir);
-	if (a > 0)
+	if (a)
 	{
         v = d->point - r->orig; 
         t0 = v_dot(v, d->dir) / a;
@@ -30,6 +30,7 @@ short				disk_cross(t_object *d, t_ray *r, float *t)
 			if (d->radius * d->radius >= v_dot(v, v))
 			{
 				*t = t0;
+				r->n_hit[0] = a;
 				return (1);
 			}
 		}
@@ -39,7 +40,6 @@ short				disk_cross(t_object *d, t_ray *r, float *t)
 
 short				get_disk_data(t_ray *ray, t_object disk, float t)
 {
-	ray->n_hit = disk.dir;
-	ray->n_hit = v_normalize(ray->n_hit);
+	ray->n_hit = ray->n_hit[0] && ray->n_hit[0] < 0 ? disk.dir : -disk.dir;
 	return (1);
 }

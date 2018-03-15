@@ -90,7 +90,7 @@
 			"color": [0.24, 0.12, 0],
 			"radius": 800,
 			"shape": 2,
-			"reflect": 0.3
+			"reflect": 0.5
 		}
 	],
 	"lights": [{

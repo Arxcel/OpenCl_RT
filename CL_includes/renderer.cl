@@ -12,23 +12,6 @@
 
 #include "ft_rtv1.h"
 
-static t_vector		ft_clamp(t_vector v)
-{
-	if (v[0] > 1)
-		v[0] = 1;
-	else if (v[0] < 0)
-		v[0] = 0;
-	if (v[1] > 1)
-		v[1] = 1;
-	else if (v[1] < 0)
-		v[1] = 0;
-	if (v[2] > 1)
-		v[2] = 1;
-	else if (v[2] < 0)
-		v[2] = 0;
-	return (v);
-}		
-
 void	get_surface_data(t_ray *ray, t_object object, float t)
 {
 	if (object.type == O_SPHERE)
