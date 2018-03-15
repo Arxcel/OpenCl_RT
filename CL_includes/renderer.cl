@@ -41,6 +41,8 @@ void	get_surface_data(t_ray *ray, t_object object, float t)
 		get_plane_data(ray, object, t);
 	else if (object.type == O_DISK)
 		get_disk_data(ray, object, t);
+	else if (object.type == O_TRIANGLE)
+		get_triangle_data(ray, object, t);
 }
 
 int		check_object_type(t_object object, t_ray *ray, float *t)
@@ -55,6 +57,8 @@ int		check_object_type(t_object object, t_ray *ray, float *t)
 		return (plane_cross(&object, ray, t));
 	else if (object.type == O_DISK)
 		return (disk_cross(&object, ray, t));
+	else if (object.type == O_TRIANGLE)
+		return (triangle_cross(&object, ray, t));
 	return (0);
 }
 
@@ -216,7 +220,7 @@ unsigned int		ft_renderer(
 		if (!reflect)
 			return (set_rgb(res));
 		ray.dir = reflect_ray(ray.n_hit, -ray.dir);
-		ray.orig = ray.p_hit + + v_mult_d(ray.n_hit, BIAS);
+		ray.orig = ray.p_hit + v_mult_d(ray.n_hit, BIAS);
 		reflect_color = ft_cast_ray(o, l, &ray, &hit_object);
 		res = v_mult_d(res, (1 - reflect)) + v_mult_d(reflect_color, reflect);
 	}

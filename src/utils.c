@@ -1,39 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tringle.c                                          :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/15 16:24:34 by afarapon          #+#    #+#             */
-/*   Updated: 2018/03/15 16:28:08 by afarapon         ###   ########.fr       */
+/*   Created: 2018/03/15 17:15:31 by afarapon          #+#    #+#             */
+/*   Updated: 2018/03/15 17:18:42 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_rtv1.h"
+#include "ft_rt.h"
 
-short				triangle_cross(t_object *p, t_ray *r, float *t)
+t_vector	v_cross(t_vector a, t_vector b)
 {
-	float a;
-	float t0;
-	t_vector v;
+	t_vector c;
 
-	a = v_dot(p->dir, r->dir);
-	if (a > 0)
-	{
-		v = p->point - r->orig; 
-		t0 = v_dot(v, p->dir) / a;
-		if (t0 >= 0)
-		{
-			*t = t0;
-			return (1); 
-		}
-	}
-	return (0);
-}
-
-short				get_triangle_data(t_ray *ray, t_object triangle, float t)
-{
-	ray->n_hit = triangle.dir;
-	return (1);
+	c[0] = a[1] * b[2] - a[2] * b[1];
+	c[1] = a[2] * b[0] - a[0] * b[2];
+	c[2] = a[0] * b[1] - a[1] * b[0];
+	return (c);
 }

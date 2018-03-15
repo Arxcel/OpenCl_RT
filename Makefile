@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+         #
+#    By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/21 16:21:44 by vkozlov           #+#    #+#              #
-#    Updated: 2018/03/13 17:15:11 by vkozlov          ###   ########.fr        #
+#    Updated: 2018/03/15 17:17:50 by afarapon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,8 @@ SOURCES =   main.c \
 			parse_json.c \
 			error.c \
 			set_flags.c \
-			move_camera.c
+			move_camera.c \
+			utils.c \
 
 SRCS = $(addprefix $(DIR_S)/,$(SOURCES))
 
