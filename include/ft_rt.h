@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:32:12 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/13 17:12:05 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/15 15:58:34 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@
 # define WIN_W			1280
 # define WIN_H			600
 # define MAX_ITER		50
-# define BIAS			0.3f
-
 typedef struct		s_main
 {
 	t_cl	cl;

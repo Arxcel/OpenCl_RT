@@ -19,7 +19,7 @@ short				plane_cross(t_object *p, t_ray *r, float *t)
 	t_vector v;
 
 	a = v_dot(p->dir, r->dir);
-	if (a > 0)
+	if (a != 0)
 	{
         v = p->point - r->orig; 
         t0 = v_dot(v, p->dir) / a;
@@ -35,7 +35,7 @@ short				plane_cross(t_object *p, t_ray *r, float *t)
 short				get_plane_data(t_ray *ray, t_object plane, float t)
 {
 	ray->p_hit = ray->orig + v_mult_d(ray->dir, t);
-	ray->n_hit = -plane.dir;
+	ray->n_hit = plane.dir;
 	ray->n_hit = v_normalize(ray->n_hit);
 	return (1);
 }
