@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_json.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
+/*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 11:33:17 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/12 13:54:32 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/15 16:59:16 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ static int		set_o_type(json_value *value)
 		val = O_CON;
 	else if (!err && !ft_strcmp(value->u.string.ptr, "disk"))
 		val = O_DISK;
+	else if (!err && !ft_strcmp(value->u.string.ptr, "triangle"))
+		val = O_TRIANGLE;
 	else
 		err = 1;
 	if (err)
@@ -196,6 +198,12 @@ static void		get_object_info(json_value *value, t_object *o)
 			o->p = get_number(value->u.object.values[x].value);
 		if (!ft_strcmp(value->u.object.values[x].name, "reflect"))
 			o->reflect = get_number(value->u.object.values[x].value);
+		if (!ft_strcmp(value->u.object.values[x].name, "p1"))
+			o->p1 = get_vector(value->u.object.values[x].value);
+		if (!ft_strcmp(value->u.object.values[x].name, "p2"))
+			o->p2 = get_vector(value->u.object.values[x].value);
+		if (!ft_strcmp(value->u.object.values[x].name, "p3"))
+			o->p3 = get_vector(value->u.object.values[x].value);
 	}
 }
 
