@@ -63,6 +63,7 @@ static int				ft_trace(__global t_object	*o,
 			*t_near = t;
 			z_buf = t;
 			*hit_object = o[i];
+			(*hit_object).angle = ray->n_hit[0] ? ray->n_hit[0] : 0;
 			flag = 1;
 		}
 		i++;

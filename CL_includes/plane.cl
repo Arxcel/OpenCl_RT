@@ -36,6 +36,6 @@ short				plane_cross(t_object *p, t_ray *r, float *t)
 short				get_plane_data(t_ray *ray, t_object plane, float t)
 {
 	ray->p_hit = ray->orig + v_mult_d(ray->dir, t);
-	ray->n_hit = ray->n_hit[0] && ray->n_hit[0] < 0 ? plane.dir : -plane.dir;
+	ray->n_hit = plane.angle && plane.angle <= 0 ? plane.dir : -plane.dir;
 	return (1);
 }

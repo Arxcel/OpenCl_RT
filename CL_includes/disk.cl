@@ -40,6 +40,6 @@ short				disk_cross(t_object *d, t_ray *r, float *t)
 
 short				get_disk_data(t_ray *ray, t_object disk, float t)
 {
-	ray->n_hit = ray->n_hit[0] && ray->n_hit[0] < 0 ? disk.dir : -disk.dir;
+	ray->n_hit = disk.angle && disk.angle <= 0 ? disk.dir : -disk.dir;
 	return (1);
 }
