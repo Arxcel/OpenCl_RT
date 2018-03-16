@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_scene.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 22:15:03 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/15 17:01:02 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/16 11:43:46 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,14 @@ typedef float	t_vector __attribute__((vector_size(sizeof(float)*3)));
 typedef struct		s_object
 {
 	short			type;
+	int				shape;
+	float			radius;
+	float			radius2;
+	float			angle;
+	float			reflect;
 	t_vector		color;
 	t_vector		point;
-	float			radius;
-	float			angle;
 	t_vector		dir;
-	float			p;
-	int				shape;
-	float			reflect;
 	t_vector		p1;
 	t_vector		p2;
 	t_vector		p3;
@@ -44,9 +44,9 @@ typedef struct		s_object
 typedef struct		s_light
 {
 	short			type;
+	float			intence;
 	t_vector		color;
 	t_vector		pos;
-	float			intence;
 }					t_light;
 
 typedef struct		s_cam_transform
@@ -58,10 +58,10 @@ typedef struct		s_cam_transform
 typedef struct		s_camera
 {
 	short			type;
+	float			fov;
 	t_vector		pos;
 	t_vector		dir;
 	t_vector		rot;
-	float			fov;
 }					t_camera;
 
 typedef struct		s_scene

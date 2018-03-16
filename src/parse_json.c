@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_json.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 11:33:17 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/15 18:21:21 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/16 12:04:20 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,13 +201,17 @@ static void		get_object_info(json_value *value, t_object *o)
 		if (!ft_strcmp(value->u.object.values[x].name, "color"))
 			o->color = get_color(value->u.object.values[x].value);
 		if (!ft_strcmp(value->u.object.values[x].name, "radius"))
+		{
 			o->radius = get_number(value->u.object.values[x].value);
+			o->radius2 = o->radius * o->radius;
+		}
 		if (!ft_strcmp(value->u.object.values[x].name, "shape"))
 			o->shape = get_number(value->u.object.values[x].value);
 		if (!ft_strcmp(value->u.object.values[x].name, "angle"))
-			o->angle = get_number(value->u.object.values[x].value);
-		if (!ft_strcmp(value->u.object.values[x].name, "distance"))
-			o->p = get_number(value->u.object.values[x].value);
+		{
+			o->angle = tan(ft_deg2rad(get_number(value->u.object.values[x].value) / 2.0));
+			o->angle = 1 + o->angle * o->angle;
+		}
 		if (!ft_strcmp(value->u.object.values[x].name, "reflect"))
 			o->reflect = get_number(value->u.object.values[x].value);
 		if (!ft_strcmp(value->u.object.values[x].name, "p1"))

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_rt.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:32:12 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/15 17:18:52 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/16 12:02:32 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,5 @@ void				put_error(const char *err_text);
 void				process_value(json_value *value, t_scene *s);
 void				re_draw(t_cl *cl, t_sdl *sdl, t_scene *s);
 void				move_camera(t_scene *s);
-
-t_vector			v_cross(t_vector a, t_vector b);
-
+float				ft_deg2rad(float deg);
 #endif

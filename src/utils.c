@@ -3,21 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 17:15:31 by afarapon          #+#    #+#             */
-/*   Updated: 2018/03/15 17:18:42 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/16 11:54:19 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_rt.h"
 
-t_vector	v_cross(t_vector a, t_vector b)
+float				ft_deg2rad(float deg)
 {
-	t_vector c;
-
-	c[0] = a[1] * b[2] - a[2] * b[1];
-	c[1] = a[2] * b[0] - a[0] * b[2];
-	c[2] = a[0] * b[1] - a[1] * b[0];
-	return (c);
+	return (deg * 3.14 / 180);
 }

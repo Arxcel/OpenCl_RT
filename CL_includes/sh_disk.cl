@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   plane.c                                            :+:      :+:    :+:   */
+/*   disk.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vkozlov <vkozlov@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,30 +12,34 @@
 
 #include "ft_rtv1.h"
 
-short				plane_cross(t_object *p, t_ray *r, float *t)
+short				disk_cross(t_object *d, t_ray *r, float *t)
 {
 	float a;
 	float t0;
 	t_vector v;
 
-	a = v_dot(p->dir, r->dir);
-	if (a != 0)
+	a = v_dot(d->dir, r->dir);
+	if (a)
 	{
-		v = p->point - r->orig; 
-		t0 = v_dot(v, p->dir) / a;
+        v = d->point - r->orig; 
+        t0 = v_dot(v, d->dir) / a;
 		if (t0 >= 0)
 		{
-			r->n_hit[0] = a;
-			*t = t0;
-			return (1); 
+			r->p_hit = r->orig + v_mult_d(r->dir, t0);
+			v = r->p_hit - d->point;
+			if (d->radius2 >= v_dot(v, v))
+			{
+				*t = t0;
+				r->n_hit[0] = a;
+				return (1);
+			}
 		}
-	}
+    }
 	return (0);
 }
 
-short				get_plane_data(t_ray *ray, t_object plane, float t)
+short				get_disk_data(t_ray *ray, t_object disk, float t)
 {
-	ray->p_hit = ray->orig + v_mult_d(ray->dir, t);
-	ray->n_hit = plane.angle && plane.angle <= 0 ? plane.dir : -plane.dir;
+	ray->n_hit = ray->in_figure && ray->in_figure <= 0 ? disk.dir : -disk.dir;
 	return (1);
 }
