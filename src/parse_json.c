@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 11:33:17 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/12 13:54:32 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/16 13:33:59 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ static int		set_o_type(json_value *value)
 		val = O_CON;
 	else if (!err && !ft_strcmp(value->u.string.ptr, "disk"))
 		val = O_DISK;
+	else if (!err && !ft_strcmp(value->u.string.ptr, "triangle"))
+		val = O_TRIANGLE;
 	else
 		err = 1;
 	if (err)
@@ -171,12 +173,24 @@ static t_vector	get_color(json_value *value)
 	return (v);
 }
 
+static void		create_norm(t_object *obj)
+{
+	t_vector a;
+	t_vector b;
+	t_vector c;
+
+	a = obj->p2 - obj->p1;
+	b = obj->p3 - obj->p1;
+	c = v_cross(a, b);
+	obj->dir = v_normalize(c);
+}
+
 static void		get_object_info(json_value *value, t_object *o)
 {
 	unsigned int x;
 
-	x = -1;
-	while (++x < value->u.object.length)
+	x = 0;
+	while (x < value->u.object.length)
 	{
 		if (!ft_strcmp(value->u.object.values[x].name, "type"))
 			o->type = set_o_type(value->u.object.values[x].value);
@@ -187,15 +201,38 @@ static void		get_object_info(json_value *value, t_object *o)
 		if (!ft_strcmp(value->u.object.values[x].name, "color"))
 			o->color = get_color(value->u.object.values[x].value);
 		if (!ft_strcmp(value->u.object.values[x].name, "radius"))
+		{
 			o->radius = get_number(value->u.object.values[x].value);
-		if (!ft_strcmp(value->u.object.values[x].name, "shape"))
-			o->shape = get_number(value->u.object.values[x].value);
+			o->radius2 = o->radius * o->radius;
+		}
+		if (!ft_strcmp(value->u.object.values[x].name, "specular"))
+			o->specular = get_number(value->u.object.values[x].value);
 		if (!ft_strcmp(value->u.object.values[x].name, "angle"))
-			o->angle = get_number(value->u.object.values[x].value);
-		if (!ft_strcmp(value->u.object.values[x].name, "distance"))
-			o->p = get_number(value->u.object.values[x].value);
+		{
+			o->angle = tan(ft_deg2rad(get_number(value->u.object.values[x].value) / 2.0));
+			o->angle = 1 + o->angle * o->angle;
+		}
 		if (!ft_strcmp(value->u.object.values[x].name, "reflect"))
 			o->reflect = get_number(value->u.object.values[x].value);
+		if (!ft_strcmp(value->u.object.values[x].name, "p1"))
+		{
+			o->p1 = get_vector(value->u.object.values[x].value);
+			x++;
+			if (!ft_strcmp(value->u.object.values[x].name, "p2"))
+			{
+				o->p2 = get_vector(value->u.object.values[x].value);
+				x++;
+			}
+			if (!ft_strcmp(value->u.object.values[x].name, "p3"))
+			{
+				o->p3 = get_vector(value->u.object.values[x].value);
+				x++;
+			}
+			if (o->type == O_TRIANGLE)
+				create_norm(o);
+		}
+		else
+			x++;
 	}
 }
 
@@ -264,8 +301,6 @@ static void		get_camera_info(json_value *value, t_camera *c)
 			c->pos = get_vector(value->u.object.values[x].value);
 		if (!ft_strcmp(value->u.object.values[x].name, "field_of_view"))
 			c->fov = get_number(value->u.object.values[x].value);
-		if (!ft_strcmp(value->u.object.values[x].name, "bias"))
-			c->bias = get_number(value->u.object.values[x].value);
 		if (!ft_strcmp(value->u.object.values[x].name, "rotation"))
 			c->rot = get_vector(value->u.object.values[x].value);
 	}

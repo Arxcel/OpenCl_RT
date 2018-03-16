@@ -12,23 +12,6 @@
 
 #include "ft_rtv1.h"
 
-static t_vector		ft_clamp(t_vector v)
-{
-	if (v[0] > 1)
-		v[0] = 1;
-	else if (v[0] < 0)
-		v[0] = 0;
-	if (v[1] > 1)
-		v[1] = 1;
-	else if (v[1] < 0)
-		v[1] = 0;
-	if (v[2] > 1)
-		v[2] = 1;
-	else if (v[2] < 0)
-		v[2] = 0;
-	return (v);
-}		
-
 void	get_surface_data(t_ray *ray, t_object object, float t)
 {
 	if (object.type == O_SPHERE)
@@ -41,20 +24,24 @@ void	get_surface_data(t_ray *ray, t_object object, float t)
 		get_plane_data(ray, object, t);
 	else if (object.type == O_DISK)
 		get_disk_data(ray, object, t);
+	else if (object.type == O_TRIANGLE)
+		get_triangle_data(ray, object, t);
 }
 
 int		check_object_type(t_object object, t_ray *ray, float *t)
 {
 	if (object.type == O_SPHERE)
-		return (sphere_cross(object, ray->orig, ray->dir, t));
+		return (sphere_cross(object, ray, t));
 	else if (object.type == O_CYL)
-		return (cyl_cross(object, ray->orig, ray->dir, t));
+		return (cyl_cross(object, ray, t));
 	else if (object.type == O_CON)
-		return (con_cross(object, ray->orig, ray->dir, t));
+		return (con_cross(object, ray, t));
 	else if (object.type == O_PLANE)
 		return (plane_cross(&object, ray, t));
 	else if (object.type == O_DISK)
 		return (disk_cross(&object, ray, t));
+	else if (object.type == O_TRIANGLE)
+		return (triangle_cross(&object, ray, t));
 	return (0);
 }
 
@@ -80,6 +67,8 @@ static int				ft_trace(__global t_object	*o,
 			*t_near = t;
 			z_buf = t;
 			*hit_object = o[i];
+			if (ray->n_hit[0])
+				ray->in_figure = ray->n_hit[0];
 			flag = 1;
 		}
 		i++;
@@ -115,33 +104,34 @@ static float			get_light(__global t_object	*o,
 		lt = v_dot(ray.n_hit, light.dir);
 		f = ft_trace(o, l, &shader_distance, &shader, &light);
 		light_intensity = 0; 
-		if (!(f && shader_distance < distance))
+		if (!(f && shader_distance < distance && lt > 0))
 		{
 			light_intensity = lt * l[i].intence;
 			// Блики
-			if (h.shape > 0)
+			if (h.specular > 0)
 			{
 				glare = v_mult_d(ray.n_hit, 2 * lt) - light.dir;
 				gt = v_dot(glare, - ray.dir);
 				if (gt > 0)
 				{
-					if (h.shape <= 2)
+					if (h.specular <= 2)
 						corel = 0.04;
-					else if (h.shape <= 10)
+					else if (h.specular <= 10)
 						corel = 0.08;
-					else if (h.shape <= 50)
+					else if (h.specular <= 50)
 						corel = 0.1;
-					else if (h.shape <= 250)
+					else if (h.specular <= 250)
 						corel = 0.15;
-					else if (h.shape <= 1250)
+					else if (h.specular <= 1250)
 						corel = 0.2;
 					else
 						corel = 1;
-					light_intensity += light_intensity * native_powr(gt, h.shape) * corel;
+					light_intensity += light_intensity * native_powr(gt, h.specular) * corel;
 				}
 			}
 		}
-		ret_col += light_intensity;
+		if (v_dot(-ray.dir, ray.n_hit) > 0)
+			ret_col += light_intensity;
 	}
 	return (ret_col);
 }
@@ -216,7 +206,7 @@ unsigned int		ft_renderer(
 		if (!reflect)
 			return (set_rgb(res));
 		ray.dir = reflect_ray(ray.n_hit, -ray.dir);
-		ray.orig = ray.p_hit + + v_mult_d(ray.n_hit, BIAS);
+		ray.orig = ray.p_hit + v_mult_d(ray.n_hit, BIAS);
 		reflect_color = ft_cast_ray(o, l, &ray, &hit_object);
 		res = v_mult_d(res, (1 - reflect)) + v_mult_d(reflect_color, reflect);
 	}

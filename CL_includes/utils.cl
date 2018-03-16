@@ -12,12 +12,9 @@
 
 #include "ft_rtv1.h"
 
-t_vector			get_color_percent(t_vector c)
+float				ft_deg2rad(float deg)
 {
-	t_vector col;
-
-	col = v_div_d(c, 255);
-	return (col);
+	return (deg * 3.14 / 180);
 }
 
 unsigned int		set_rgb(t_vector c)
@@ -38,15 +35,9 @@ unsigned int		set_rgb(t_vector c)
 	return (((int)c[0] << 16) | ((int)c[1] << 8) | (int)c[2]);
 }
 
-float				ft_deg2rad(float deg)
-{
-	return (deg * 3.14 / 180);
-}
-
 short				solve_quadratic(const float *p, float *x0, float *x1)
 {
 	float d;
-	float q;
 
 	d = p[1] * p[1] - 4 * p[0] * p[2];
 	if (d < 0)
@@ -58,9 +49,8 @@ short				solve_quadratic(const float *p, float *x0, float *x1)
 	}
 	else
 	{
-		q = (p[1] > 0) ? -0.5 * (p[1] + sqrt(d)) : -0.5 * (p[1] - sqrt(d));
-		*x0 = q / p[0];
-		*x1 = p[2] / q;
+		*x0 = -0.5 * (p[1] - native_sqrt(d)) / p[0];
+		*x1 = -0.5 * (p[1] + native_sqrt(d)) / p[0];
 	}
 	return (1);
 }

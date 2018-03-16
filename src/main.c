@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:33:57 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/12 14:21:31 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/16 11:51:14 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,17 @@ static char			*get_text(void)
 	char *text;
 
 	text = ft_strdup("\n" \
-		"#include \"ft_rtv1.h\"\n#include \"conus.cl\"\n" \
-		"#include \"disk.cl\"\n#include \"cylinder.cl\"\n" \
+		"#include \"ft_rtv1.h\"\n#include \"sh_conus.cl\"\n" \
+		"#include \"sh_disk.cl\"\n#include \"sh_cylinder.cl\"\n" \
 		"#include \"ft_matrix.cl\"\n#include \"ft_vector.cl\"\n" \
 		"#include \"renderer.cl\"\n#include \"rotation.cl\"\n" \
-		"#include \"sphere.cl\"\n#include \"utils.cl\"\n" \
-		"#include \"plane.cl\"                         \n" \
+		"#include \"sh_sphere.cl\"\n#include \"utils.cl\"\n" \
+		"#include \"sh_plane.cl\"\n#include \"sh_triangle.cl\"\n" \
 		"kernel void kernel_entry (global t_object *object\n" \
 		", global t_light *light , global t_camera *camera\n" \
-		", global unsigned int *img_buf){t_scene scene;   \n" \
+		", global unsigned int *img_buf){\n" \
 		"unsigned int col;int x;int y;x = get_global_id(0);\n" \
-		"y = get_global_id(1);scene.object = (t_object*)object;\n" \
-		"scene.light = (t_light*)light;scene.camera = (t_camera*)camera;\n" \
+		"y = get_global_id(1);\n" \
 		"col =  ft_renderer(object,light,camera,x,y);\n"\
 		"*(img_buf + x + y * 1280) = col;}\n");
 	return (text);

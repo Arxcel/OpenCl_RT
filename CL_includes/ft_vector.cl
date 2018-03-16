@@ -57,3 +57,13 @@ float			v_dot(t_vector v1, t_vector v2)
 	res = v1[0] * v2[0] + v1[1] * v2[1] + v1[2] * v2[2];
 	return (res);
 }
+
+t_vector	v_cross(t_vector a, t_vector b)
+{
+	t_vector c;
+
+	c[0] = a[1] * b[2] - a[2] * b[1];
+	c[1] = a[2] * b[0] - a[0] * b[2];
+	c[2] = a[0] * b[1] - a[1] * b[0];
+	return (c);
+}

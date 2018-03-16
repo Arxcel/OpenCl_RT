@@ -4,13 +4,13 @@
 			"color": [0.8 ,0.1, 0.1],
 			"point": [0, 0, -300],
 			"radius": 100,
-			"shape": 100,
+			"specular": 100,
 			"reflect": 0.3
 		}
 	],
 	"lights": [{
 			"type": "lamp",
-			"position": [500, 0, 500],
+			"position": [5000, 0, 5000],
 			"color": [1, 1, 1],
 			"intensity" : 1
 		}

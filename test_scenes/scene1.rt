@@ -1,18 +1,10 @@
 {
 	"objects": [{
-			"type": "plane",
-			"point": [0, -100, 0],
-			"direction": [0, -1, 0],
-			"color": [0.25, 0.24, 0.84],
-			"shape": 15,
-			"reflect": 0
-		},
-		{
 			"type": "sphere",
 			"color": [0.33, 0.02, 0.02],
 			"point": [-200, 50, -700],
 			"radius": 100,
-			"shape": 15,
+			"specular": 15,
 			"reflect": 0
 		},
 		{
@@ -21,7 +13,16 @@
 			"color": [0.08, 0.32, 0.08],
 			"point": [100, 0, -650],
 			"radius": 50,
-			"shape": 15,
+			"specular": 15,
+			"reflect": 0
+		},
+		{
+			"type": "triangle",
+			"color": [0.8, 0.8, 0.8],
+			"p1": [0, -100, -500],
+			"p2": [200, 200, -600],
+			"p3": [0, 0, -750],
+			"specular": 15,
 			"reflect": 0
 		}
 	],
@@ -40,9 +41,8 @@
 	],
 	"cameras": [{
 		"type": "common",
-		"rotation": [0, 0, 0],
-		"position": [0, 0, 0],
+		"rotation": [-10, 0, 0],
+		"position": [0, 150, 0],
 		"field_of_view": 50,
-		"bias": 0.3
 	}]
 }

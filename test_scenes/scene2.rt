@@ -4,7 +4,7 @@
 			"color": [0.33, 0.02, 0.02],
 			"point": [0, -150, -1000],
 			"radius": 50,
-			"shape": 1300,
+			"specular": 1300,
 			"reflect": 0.9
 		},
 		{
@@ -12,7 +12,7 @@
 			"color": [0.3, 0.3, 0.3],
 			"point": [300, -300, -1700],
 			"radius": 100,
-			"shape": 15,
+			"specular": 15,
 			"reflect": 0
 		},
 		{
@@ -20,7 +20,7 @@
 			"color": [0.3, 0.3, 0.3],
 			"point": [-300, -300, -1700],
 			"radius": 100,
-			"shape": 15,
+			"specular": 15,
 			"reflect": 0
 		},
 		{
@@ -28,7 +28,7 @@
 			"color": [0.3, 0.3, 0.3],
 			"point": [-300, -300, -800],
 			"radius": 100,
-			"shape": 15,
+			"specular": 15,
 			"reflect": 0
 		},
 		{
@@ -36,7 +36,7 @@
 			"color": [0.3, 0.3, 0.3],
 			"point": [300, -300, -800],
 			"radius": 100,
-			"shape": 15,
+			"specular": 15,
 			"reflect": 0
 		},
 		{
@@ -45,7 +45,7 @@
 			"color": [0.3, 0.3, 0.3],
 			"point": [-300, 0, -800],
 			"radius": 50,
-			"shape": 15,
+			"specular": 15,
 			"reflect": 0
 		},
 		{
@@ -54,7 +54,7 @@
 			"color": [0.3, 0.3, 0.3],
 			"point": [300, 0, -800],
 			"radius": 50,
-			"shape": 15,
+			"specular": 15,
 			"reflect": 0
 		},
 		{
@@ -63,7 +63,7 @@
 			"color": [0.3, 0.3, 0.3],
 			"point": [300, 0, -1700],
 			"radius": 50,
-			"shape": 15,
+			"specular": 15,
 			"reflect": 0
 		},
 		{
@@ -72,25 +72,25 @@
 			"color": [0.3, 0.3, 0.3],
 			"point": [-300, 0, -1700],
 			"radius": 50,
-			"shape": 15,
+			"specular": 15,
 			"reflect": 0
 		},
 		{
 			"type": "plane",
 			"point": [0, -300, 0],
-			"direction": [0, -1, 0],
+			"direction": [0, 1, 0],
 			"color": [0.4, 0.4, 0.4],
-			"shape": 15,
+			"specular": 15,
 			"reflect": 0
 		},
 		{
 			"type": "disk",
 			"point": [0, 0, -1800],
-			"direction": [0, 0, -1],
+			"direction": [0, 0, 1],
 			"color": [0.24, 0.12, 0],
 			"radius": 800,
-			"shape": 2,
-			"reflect": 0.3
+			"specular": 2,
+			"reflect": 0.5
 		}
 	],
 	"lights": [{

@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:32:12 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/13 17:12:05 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/16 12:02:32 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@
 # define WIN_W			1280
 # define WIN_H			600
 # define MAX_ITER		50
-# define BIAS			0.3f
 
 typedef struct		s_main
 {
@@ -41,4 +40,5 @@ void				put_error(const char *err_text);
 void				process_value(json_value *value, t_scene *s);
 void				re_draw(t_cl *cl, t_sdl *sdl, t_scene *s);
 void				move_camera(t_scene *s);
+float				ft_deg2rad(float deg);
 #endif

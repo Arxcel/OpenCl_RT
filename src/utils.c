@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vector.h                                        :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/22 22:15:03 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/16 11:21:02 by vkozlov          ###   ########.fr       */
+/*   Created: 2018/03/15 17:15:31 by afarapon          #+#    #+#             */
+/*   Updated: 2018/03/16 11:54:19 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_VECTOR_H
-# define FT_VECTOR_H
+#include "ft_rt.h"
 
-typedef float	t_vector __attribute__((vector_size(sizeof(float)*3)));
-
-float				v_length(t_vector v);
-float				v_dot(t_vector v1, t_vector v2);
-t_vector			v_normalize(t_vector v);
-t_vector			v_mult_d(t_vector v, float d);
-t_vector			v_div_d(t_vector v, float d);
-t_vector            v_cross(t_vector a, t_vector b);
-#endif
+float				ft_deg2rad(float deg)
+{
+	return (deg * 3.14 / 180);
+}
