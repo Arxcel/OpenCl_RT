@@ -108,25 +108,25 @@ static float			get_light(__global t_object	*o,
 		{
 			light_intensity = lt * l[i].intence;
 			// Блики
-			if (h.shape > 0)
+			if (h.specular > 0)
 			{
 				glare = v_mult_d(ray.n_hit, 2 * lt) - light.dir;
 				gt = v_dot(glare, - ray.dir);
 				if (gt > 0)
 				{
-					if (h.shape <= 2)
+					if (h.specular <= 2)
 						corel = 0.04;
-					else if (h.shape <= 10)
+					else if (h.specular <= 10)
 						corel = 0.08;
-					else if (h.shape <= 50)
+					else if (h.specular <= 50)
 						corel = 0.1;
-					else if (h.shape <= 250)
+					else if (h.specular <= 250)
 						corel = 0.15;
-					else if (h.shape <= 1250)
+					else if (h.specular <= 1250)
 						corel = 0.2;
 					else
 						corel = 1;
-					light_intensity += light_intensity * native_powr(gt, h.shape) * corel;
+					light_intensity += light_intensity * native_powr(gt, h.specular) * corel;
 				}
 			}
 		}

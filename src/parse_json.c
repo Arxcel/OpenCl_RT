@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 11:33:17 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/16 12:04:20 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/16 13:33:59 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,8 +205,8 @@ static void		get_object_info(json_value *value, t_object *o)
 			o->radius = get_number(value->u.object.values[x].value);
 			o->radius2 = o->radius * o->radius;
 		}
-		if (!ft_strcmp(value->u.object.values[x].name, "shape"))
-			o->shape = get_number(value->u.object.values[x].value);
+		if (!ft_strcmp(value->u.object.values[x].name, "specular"))
+			o->specular = get_number(value->u.object.values[x].value);
 		if (!ft_strcmp(value->u.object.values[x].name, "angle"))
 		{
 			o->angle = tan(ft_deg2rad(get_number(value->u.object.values[x].value) / 2.0));

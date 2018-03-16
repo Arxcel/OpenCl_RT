@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 22:15:03 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/16 11:43:46 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/16 13:32:45 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef float	t_vector __attribute__((vector_size(sizeof(float)*3)));
 typedef struct		s_object
 {
 	short			type;
-	int				shape;
+	int				specular;
 	float			radius;
 	float			radius2;
 	float			angle;
