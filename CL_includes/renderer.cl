@@ -130,7 +130,8 @@ static float			get_light(__global t_object	*o,
 				}
 			}
 		}
-		ret_col += light_intensity;
+		if (v_dot(-ray.dir, ray.n_hit) > 0)
+			ret_col += light_intensity;
 	}
 	return (ret_col);
 }
