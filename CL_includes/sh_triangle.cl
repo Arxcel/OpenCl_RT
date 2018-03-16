@@ -58,6 +58,6 @@ short				triangle_cross(t_object *p, t_ray *r, float *t)
 short				get_triangle_data(t_ray *ray, t_object triangle, float t)
 {
 	ray->p_hit = ray->orig + v_mult_d(ray->dir, t);
-	ray->n_hit = triangle.angle && triangle.angle <= 0 ? triangle.dir : -triangle.dir;
+	ray->n_hit = ray->in_figure && ray->in_figure <= 0 ? triangle.dir : -triangle.dir;
 	return (1);
 }

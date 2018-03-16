@@ -38,7 +38,6 @@ unsigned int		set_rgb(t_vector c)
 short				solve_quadratic(const float *p, float *x0, float *x1)
 {
 	float d;
-	float q;
 
 	d = p[1] * p[1] - 4 * p[0] * p[2];
 	if (d < 0)
@@ -50,9 +49,8 @@ short				solve_quadratic(const float *p, float *x0, float *x1)
 	}
 	else
 	{
-		q = (p[1] > 0) ? -0.5 * (p[1] + sqrt(d)) : -0.5 * (p[1] - sqrt(d));
-		*x0 = q / p[0];
-		*x1 = p[2] / q;
+		*x0 = -0.5 * (p[1] - native_sqrt(d)) / p[0];
+		*x1 = -0.5 * (p[1] + native_sqrt(d)) / p[0];
 	}
 	return (1);
 }

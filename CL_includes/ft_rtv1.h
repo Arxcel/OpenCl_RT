@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 11:57:16 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/16 11:51:59 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/16 12:55:07 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,18 +43,19 @@ t_vector					ft_rotate(t_vector vector, t_vector angle);
 /*
 **  Check intersections
 */
+short						sphere_cross(t_object sphere, t_ray *r, float *t);
+short						cyl_cross(t_object cyl, t_ray *r, float *t);
+short						con_cross(t_object cyl, t_ray *r, float *t);
+short						plane_cross(t_object *p, t_ray *r, float *t);
+short						disk_cross(t_object *d, t_ray *r, float *t);
+short						triangle_cross(t_object *p, t_ray *r, float *t);
+
 void						get_surface_data(t_ray *ray, t_object object, float t);
 int							check_object_type(t_object object, t_ray *ray, float *t);
-short						sphere_cross(t_object sphere, t_vector orig, t_vector dir, float *t);
 short						get_sphere_data(t_ray *temp, t_object sphere, float t);
-short						cyl_cross(t_object cyl, t_vector orig, t_vector dir, float *t);
 short						get_cyl_data(t_ray *ray, t_object con, float t);
-short						con_cross(t_object cyl, t_vector orig, t_vector dir, float *t);
 short						get_con_data(t_ray *ray, t_object con, float t);
-short						plane_cross(t_object *p, t_ray *r, float *t);
 short						get_plane_data(t_ray *ray, t_object plane, float t);
-short						disk_cross(t_object *d, t_ray *r, float *t);
 short						get_disk_data(t_ray *ray, t_object disk, float t);
-short						triangle_cross(t_object *p, t_ray *r, float *t);
 short						get_triangle_data(t_ray *ray, t_object plane, float t);
 #endif

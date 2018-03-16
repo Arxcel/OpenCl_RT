@@ -12,17 +12,16 @@
 
 #include "ft_rtv1.h"
 
-short				sphere_cross(t_object sphere, t_vector orig,
-								t_vector dir, float *t)
+short				sphere_cross(t_object sphere, t_ray *r, float *t)
 {
 	float		t1;
 	float		t2;
 	t_vector	l;
 	float		params[3];
 
-	l = orig - sphere.point;
-	params[0] = v_dot(dir, dir);
-	params[1] = 2.0 * v_dot(dir, l);
+	l = r->orig - sphere.point;
+	params[0] = v_dot(r->dir, r->dir);
+	params[1] = 2.0 * v_dot(r->dir, l);
 	params[2] = v_dot(l, l) - sphere.radius2;
 	if (!solve_quadratic(params, &t1, &t2))
 		return (0);

@@ -23,7 +23,7 @@ short				disk_cross(t_object *d, t_ray *r, float *t)
 	{
         v = d->point - r->orig; 
         t0 = v_dot(v, d->dir) / a;
-		if (t0 >= 0)
+		if (t0 > 0e-6)
 		{
 			r->p_hit = r->orig + v_mult_d(r->dir, t0);
 			v = r->p_hit - d->point;

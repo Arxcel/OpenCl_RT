@@ -12,17 +12,16 @@
 
 #include "ft_rtv1.h"
 
-short				con_cross(t_object con, t_vector orig,
-							t_vector dir, float *t)
+short				con_cross(t_object con, t_ray *r, float *t)
 {
 	float		t1;
 	float		t2;
 	t_vector	l;
 	float		p[3];
 
-	l = orig - con.point;
-	p[0] = v_dot(dir, dir) - con.angle * v_dot(dir, con.dir) * v_dot(dir, con.dir);
-	p[1] = 2.0 * (v_dot(dir, l) - con.angle * v_dot(dir, con.dir) * v_dot(l, con.dir));
+	l = r->orig - con.point;
+	p[0] = v_dot(r->dir, r->dir) - con.angle * v_dot(r->dir, con.dir) * v_dot(r->dir, con.dir);
+	p[1] = 2.0 * (v_dot(r->dir, l) - con.angle * v_dot(r->dir, con.dir) * v_dot(l, con.dir));
 	p[2] = v_dot(l, l) - con.angle * v_dot(l, con.dir) * v_dot(l, con.dir);
 	if (!solve_quadratic(p, &t1, &t2))
 		return (0);

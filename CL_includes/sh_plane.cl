@@ -19,11 +19,11 @@ short				plane_cross(t_object *p, t_ray *r, float *t)
 	t_vector v;
 
 	a = v_dot(p->dir, r->dir);
-	if (a != 0)
+	if (a)
 	{
 		v = p->point - r->orig; 
 		t0 = v_dot(v, p->dir) / a;
-		if (t0 >= 0)
+		if (t0 > 0e-6)
 		{
 			r->n_hit[0] = a;
 			*t = t0;

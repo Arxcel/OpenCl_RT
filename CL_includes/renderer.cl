@@ -31,11 +31,11 @@ void	get_surface_data(t_ray *ray, t_object object, float t)
 int		check_object_type(t_object object, t_ray *ray, float *t)
 {
 	if (object.type == O_SPHERE)
-		return (sphere_cross(object, ray->orig, ray->dir, t));
+		return (sphere_cross(object, ray, t));
 	else if (object.type == O_CYL)
-		return (cyl_cross(object, ray->orig, ray->dir, t));
+		return (cyl_cross(object, ray, t));
 	else if (object.type == O_CON)
-		return (con_cross(object, ray->orig, ray->dir, t));
+		return (con_cross(object, ray, t));
 	else if (object.type == O_PLANE)
 		return (plane_cross(&object, ray, t));
 	else if (object.type == O_DISK)
@@ -104,7 +104,7 @@ static float			get_light(__global t_object	*o,
 		lt = v_dot(ray.n_hit, light.dir);
 		f = ft_trace(o, l, &shader_distance, &shader, &light);
 		light_intensity = 0; 
-		if (!(f && shader_distance < distance))
+		if (!(f && shader_distance < distance && lt > 0))
 		{
 			light_intensity = lt * l[i].intence;
 			// Блики
