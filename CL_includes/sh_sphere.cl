@@ -20,6 +20,8 @@ short				sphere_cross(t_object sphere, t_ray *r, float *t)
 	float		params[3];
 
 	l = r->orig - sphere.point;
+	if (v_length(l) == sphere.radius)
+		return (0);
 	params[0] = v_dot(r->dir, r->dir);
 	params[1] = 2.0 * v_dot(r->dir, l);
 	params[2] = v_dot(l, l) - sphere.radius2;

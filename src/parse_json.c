@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 11:33:17 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/16 13:33:59 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/16 16:09:48 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,6 +200,8 @@ static void		get_object_info(json_value *value, t_object *o)
 			o->point = get_vector(value->u.object.values[x].value);
 		if (!ft_strcmp(value->u.object.values[x].name, "color"))
 			o->color = get_color(value->u.object.values[x].value);
+		if (!ft_strcmp(value->u.object.values[x].name, "refract"))
+			o->refract = get_number(value->u.object.values[x].value);
 		if (!ft_strcmp(value->u.object.values[x].name, "radius"))
 		{
 			o->radius = get_number(value->u.object.values[x].value);

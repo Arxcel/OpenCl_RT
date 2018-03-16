@@ -78,7 +78,7 @@ static int				ft_trace(__global t_object	*o,
 
 static float			get_light(__global t_object	*o,
 									__global t_light	*l,
-									t_object h, t_ray ray)
+									t_object h, t_ray ray, short *test)
 {
 	float			lt;
 	float			gt;
@@ -131,7 +131,10 @@ static float			get_light(__global t_object	*o,
 			}
 		}
 		if (v_dot(-ray.dir, ray.n_hit) > 0)
+		{
+			*test = 1;
 			ret_col += light_intensity;
+		}
 	}
 	return (ret_col);
 }
@@ -151,10 +154,39 @@ static void				find_cam_dir(__global t_camera    *cam, const int *iter)
     cam->dir = v_normalize(cam->dir);
 }
 
-static t_vector				reflect_ray(t_vector n, t_vector dir)
+static t_ray				reflect_ray(t_vector n, t_vector dir, t_vector p)
 {
-	return (v_mult_d(n, 2 * v_dot(n, dir)) - dir);
+	t_ray r;
+
+	r.dir = dir - v_mult_d(n, 2 * v_dot(n, dir));
+	r.orig = p + v_mult_d(n, BIAS);
+	return (r);
 }
+
+// static t_ray				refract(t_vector n, t_vector dir, t_vector ior)
+// {
+// 	float cosi;
+// 	float etai;
+// 	float etat;
+// 	float eta;
+// 	float k;
+
+// 	cosi = v_dot(dir, n);
+// 	etai = 1;
+// 	etat = ior;
+// 	if (cosi < 0)
+// 	{
+// 		cosi = -cosi;
+// 		eta = etai / etat;
+// 	}
+// 	else 
+// 	{
+// 		n = -n;
+// 		eta = etat / etai; 
+// 	}
+// 	k = 1 - eta * eta * (1 - cosi * cosi);
+//     return (k < 0 ? 0 : eta * I + (eta * cosi - native_sqrt(k)) * n); 
+// }
 
 static t_vector					ft_cast_ray(
 								__global t_object	*o,
@@ -163,14 +195,16 @@ static t_vector					ft_cast_ray(
 								t_object *hit_object)
 {
     float			t;
+	short			test;
     t_vector		light;
 
+	test = 0;
 	hit_object->reflect = 0;
 	light = (t_vector){0, 0, 0};
     if (ft_trace(o, l, &t, hit_object, r))
     {
         get_surface_data(r, *hit_object, t);
-        light = v_mult_d(hit_object->color, get_light(o, l, *hit_object, *r));
+        light = v_mult_d(hit_object->color, get_light(o, l, *hit_object, *r, &test));
 	}
 	return (light);
 }
@@ -184,31 +218,32 @@ unsigned int		ft_renderer(
 )
 {
     int				iter[2];
-    t_vector		z_color;
 	t_vector		reflect_color;
 	t_vector		res;
     t_object		hit_object;
 	t_ray			ray;
 	float			reflect;
+	float			refract;
 	int				i;
 
 	iter[0] = y;
 	iter[1] = x;
     find_cam_dir(cam, iter);
+	reflect_color = (t_vector){0,0,0};
 	ray.dir = cam->dir;
     ray.orig = cam->pos;
-    z_color = ft_cast_ray(o, l, &ray, &hit_object);
-	res = z_color;
-	i = -1;
-	while (++i < MAX_ITER)
-	{
-		reflect = hit_object.reflect;
-		if (!reflect)
-			return (set_rgb(res));
-		ray.dir = reflect_ray(ray.n_hit, -ray.dir);
-		ray.orig = ray.p_hit + v_mult_d(ray.n_hit, BIAS);
-		reflect_color = ft_cast_ray(o, l, &ray, &hit_object);
-		res = v_mult_d(res, (1 - reflect)) + v_mult_d(reflect_color, reflect);
-	}
+	res = ft_cast_ray(o, l, &ray, &hit_object);
+	// i = -1;
+	// while (++i < MAX_ITER)
+	// {
+	// 	reflect = hit_object.reflect;
+	// 	refract = hit_object.refract;
+	// 	if (reflect)
+	// 	{
+	// 		ray = reflect_ray(ray.n_hit, ray.dir, ray.p_hit);
+	// 		reflect_color = ft_cast_ray(o, l, &ray, &hit_object);
+	// 		res += v_mult_d(res, (1 - reflect)) + v_mult_d(reflect_color, reflect);
+	// 	}
+	// }
     return (set_rgb(res));
 }

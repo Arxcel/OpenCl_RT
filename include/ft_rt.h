@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:32:12 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/16 12:02:32 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/16 17:30:12 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include "ft_scene.h"
 # define WIN_W			1280
 # define WIN_H			600
-# define MAX_ITER		50
+# define MAX_ITER		1
 
 typedef struct		s_main
 {
