@@ -160,13 +160,13 @@
 			"type": "lamp",
 			"position": [799, 300, 400],
 			"color": [1, 1, 1],
-			"intensity" : 1
+			"intensity" : 0.2
 		},
 		{
 			"type": "lamp",
 			"position": [-300, 300, 500],
 			"color": [1, 1, 1],
-			"intensity" : 1
+			"intensity" : 0.2
 		}
 	],
 	"cameras": [{

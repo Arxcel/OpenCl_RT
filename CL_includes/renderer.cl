@@ -78,7 +78,7 @@ static int				ft_trace(__global t_object	*o,
 
 static float			get_light(__global t_object	*o,
 									__global t_light	*l,
-									t_object h, t_ray ray, short *test)
+									t_object h, t_ray ray)
 {
 	float			lt;
 	float			gt;
@@ -111,7 +111,7 @@ static float			get_light(__global t_object	*o,
 			if (h.specular > 0)
 			{
 				glare = v_mult_d(ray.n_hit, 2 * lt) - light.dir;
-				gt = v_dot(glare, - ray.dir);
+				gt = v_dot(glare, -ray.dir);
 				if (gt > 0)
 				{
 					if (h.specular <= 2)
@@ -131,36 +131,15 @@ static float			get_light(__global t_object	*o,
 			}
 		}
 		if (v_dot(-ray.dir, ray.n_hit) > 0)
-		{
-			*test = 1;
 			ret_col += light_intensity;
-		}
 	}
 	return (ret_col);
 }
 
-static void				find_cam_dir(__global t_camera    *cam, const int *iter)
+static void				reflect_ray(t_ray *r)//t_vector n, t_vector dir, t_vector p)
 {
-    float scale;
-    float x;
-    float y;
-
-    scale = native_tan(ft_deg2rad(cam->fov * 0.5));
-    x = (2 * (iter[1] + 0.5) / (float)IMG_WIDTH - 1) *
-    (IMG_WIDTH / (float)WIN_HEIGHT) * scale;
-    y = (1 - 2 * (iter[0] + 0.5) / (float)WIN_HEIGHT) * scale;
-    cam->dir = (t_vector){x, y, -1};
-    cam->dir = ft_rotate(cam->dir, cam->rot);
-    cam->dir = v_normalize(cam->dir);
-}
-
-static t_ray				reflect_ray(t_vector n, t_vector dir, t_vector p)
-{
-	t_ray r;
-
-	r.dir = dir - v_mult_d(n, 2 * v_dot(n, dir));
-	r.orig = p + v_mult_d(n, BIAS);
-	return (r);
+	r->dir = r->dir - v_mult_d(r->n_hit, 2 * v_dot(r->n_hit, r->dir));
+	r->orig = r->p_hit + v_mult_d(r->n_hit, BIAS);
 }
 
 // static t_ray				refract(t_vector n, t_vector dir, t_vector ior)
@@ -188,62 +167,69 @@ static t_ray				reflect_ray(t_vector n, t_vector dir, t_vector p)
 //     return (k < 0 ? 0 : eta * I + (eta * cosi - native_sqrt(k)) * n); 
 // }
 
-static t_vector					ft_cast_ray(
-								__global t_object	*o,
-								__global t_light	*l,
-								t_ray				*r,
-								t_object *hit_object)
+static t_vector		ft_cast_ray(
+						__global t_object	*o,
+						__global t_light	*l,
+						t_ray				*r,
+						t_object *hit_object)
 {
-    float			t;
-	short			test;
-    t_vector		light;
+	float			t;
+	int				i;
+	t_vector		light;
+	float			reflect;
+	t_vector		reflect_color;
 
-	test = 0;
-	hit_object->reflect = 0;
 	light = (t_vector){0, 0, 0};
-    if (ft_trace(o, l, &t, hit_object, r))
-    {
-        get_surface_data(r, *hit_object, t);
-        light = v_mult_d(hit_object->color, get_light(o, l, *hit_object, *r, &test));
+	i = -1;
+	while (++i < MAX_ITER)
+	{
+	    if (!ft_trace(o, l, &t, hit_object, r))
+			return ((t_vector){0, 0, 0});
+		get_surface_data(r, *hit_object, t);
+		r->n_hit = v_dot(r->n_hit, r->dir) < 0 ? r->n_hit : -r->n_hit;
+		light += v_mult_d(hit_object->color, get_light(o, l, *hit_object, *r));
+		reflect = hit_object->reflect;
+		if (!reflect)
+			continue ;
+		reflect_ray(r);
+		reflect_color = v_mult_d(hit_object->color, get_light(o, l, *hit_object, *r));
+		light += v_mult_d(light, (1 - reflect)) + v_mult_d(reflect_color, reflect);
 	}
 	return (light);
 }
 
-unsigned int		ft_renderer(
-        __global t_object	*o,
-        __global t_light	*l,
-        __global t_camera	*cam,
-        int					x,
-        int					y
-)
+static t_ray			find_cam_dir(__global t_camera    *cam, const int *iter)
+{
+	float scale;
+	float x;
+	float y;
+	t_ray ray;
+
+	scale = native_tan(ft_deg2rad(cam->fov * 0.5));
+	x = (2 * (iter[1] + 0.5) / (float)IMG_WIDTH - 1) * (IMG_WIDTH / (float)WIN_HEIGHT) * scale;
+	y = (1 - 2 * (iter[0] + 0.5) / (float)WIN_HEIGHT) * scale;
+	cam->dir = (t_vector){x, y, -1};
+	cam->dir = ft_rotate(cam->dir, cam->rot);
+	ray.dir = v_normalize(cam->dir);
+	ray.orig = cam->pos;
+	return (ray);
+}
+
+unsigned int	ft_renderer(
+				__global t_object	*o,
+				__global t_light	*l,
+				__global t_camera	*cam,
+				int					x,
+				int					y)
 {
     int				iter[2];
-	t_vector		reflect_color;
 	t_vector		res;
     t_object		hit_object;
 	t_ray			ray;
-	float			reflect;
-	float			refract;
-	int				i;
 
 	iter[0] = y;
 	iter[1] = x;
-    find_cam_dir(cam, iter);
-	reflect_color = (t_vector){0,0,0};
-	ray.dir = cam->dir;
-    ray.orig = cam->pos;
+    ray = find_cam_dir(cam, iter);
 	res = ft_cast_ray(o, l, &ray, &hit_object);
-	// i = -1;
-	// while (++i < MAX_ITER)
-	// {
-	// 	reflect = hit_object.reflect;
-	// 	refract = hit_object.refract;
-	// 	if (reflect)
-	// 	{
-	// 		ray = reflect_ray(ray.n_hit, ray.dir, ray.p_hit);
-	// 		reflect_color = ft_cast_ray(o, l, &ray, &hit_object);
-	// 		res += v_mult_d(res, (1 - reflect)) + v_mult_d(reflect_color, reflect);
-	// 	}
-	// }
     return (set_rgb(res));
 }
