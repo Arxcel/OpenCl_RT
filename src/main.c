@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:33:57 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/16 11:51:14 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/17 17:18:51 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,12 @@ static char			*get_text(void)
 		"kernel void kernel_entry (global t_object *object\n" \
 		", global t_light *light , global t_camera *camera\n" \
 		", global unsigned int *img_buf){\n" \
+		" size_t img_w = get_global_size(0);\n" \
+		" size_t img_h = get_global_size(1);\n" \
 		"unsigned int col;int x;int y;x = get_global_id(0);\n" \
 		"y = get_global_id(1);\n" \
-		"col =  ft_renderer(object,light,camera,x,y);\n"\
-		"*(img_buf + x + y * 1280) = col;}\n");
+		"col =  ft_renderer(object,light,camera,x,y,img_w,img_h);\n"\
+		"*(img_buf + x + y * img_w) = col;}\n");
 	return (text);
 }
 
