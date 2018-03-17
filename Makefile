@@ -59,6 +59,7 @@ SOURCES =   main.c \
 			set_flags.c \
 			move_camera.c \
 			utils.c \
+			ui.c \
 
 SRCS = $(addprefix $(DIR_S)/,$(SOURCES))
 
