@@ -74,6 +74,7 @@ int					main(int ac, char **av)
 	m.sdl.win_h = WIN_H;
 	start = clock();
 	sdl_init(&m.sdl);
+	SDL_SetWindowMinimumSize(m.sdl.win, 800, 600);
 	if (ac != 2)
 		put_error("Wrong number of arguments.");
 	get_scene(av[1], &m.s);
