@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_vector.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
+/*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 22:08:22 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/16 12:02:20 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/17 18:55:17 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,11 @@ t_vector		v_cross(t_vector a, t_vector b)
 	c[1] = a[2] * b[0] - a[0] * b[2];
 	c[2] = a[0] * b[1] - a[1] * b[0];
 	return (c);
+}
+
+short				v_is_eq(t_vector v1, t_vector v2)
+{
+	if (v1[0] != v2[0] || v1[1] != v2[1] || v1[2] != v2[2])
+		return (0);
+	return (1);
 }

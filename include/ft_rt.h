@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_rt.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkozlov <vkozlov@student.unit.ua>          +#+  +:+       +#+        */
+/*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:32:12 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/17 02:01:22 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/17 18:52:34 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,5 @@ void				process_value(json_value *value, t_scene *s);
 void				re_draw(t_cl *cl, t_sdl *sdl, t_scene *s);
 void				move_camera(t_scene *s);
 float				ft_deg2rad(float deg);
+void			create_triangle_norm(t_object *obj);
 #endif

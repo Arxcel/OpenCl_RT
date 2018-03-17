@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_json.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
+/*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 11:33:17 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/16 16:09:48 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/17 18:54:33 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,24 +173,12 @@ static t_vector	get_color(json_value *value)
 	return (v);
 }
 
-static void		create_norm(t_object *obj)
-{
-	t_vector a;
-	t_vector b;
-	t_vector c;
-
-	a = obj->p2 - obj->p1;
-	b = obj->p3 - obj->p1;
-	c = v_cross(a, b);
-	obj->dir = v_normalize(c);
-}
-
 static void		get_object_info(json_value *value, t_object *o)
 {
 	unsigned int x;
 
-	x = 0;
-	while (x < value->u.object.length)
+	x = -1;
+	while (++x < value->u.object.length)
 	{
 		if (!ft_strcmp(value->u.object.values[x].name, "type"))
 			o->type = set_o_type(value->u.object.values[x].value);
@@ -217,24 +205,15 @@ static void		get_object_info(json_value *value, t_object *o)
 		if (!ft_strcmp(value->u.object.values[x].name, "reflect"))
 			o->reflect = get_number(value->u.object.values[x].value);
 		if (!ft_strcmp(value->u.object.values[x].name, "p1"))
-		{
 			o->p1 = get_vector(value->u.object.values[x].value);
-			x++;
-			if (!ft_strcmp(value->u.object.values[x].name, "p2"))
-			{
-				o->p2 = get_vector(value->u.object.values[x].value);
-				x++;
-			}
-			if (!ft_strcmp(value->u.object.values[x].name, "p3"))
-			{
-				o->p3 = get_vector(value->u.object.values[x].value);
-				x++;
-			}
-			if (o->type == O_TRIANGLE)
-				create_norm(o);
-		}
-		else
-			x++;
+		if (!ft_strcmp(value->u.object.values[x].name, "p2"))
+			o->p2 = get_vector(value->u.object.values[x].value);
+		if (!ft_strcmp(value->u.object.values[x].name, "p3"))
+			o->p3 = get_vector(value->u.object.values[x].value);
+		if (!ft_strcmp(value->u.object.values[x].name, "max"))
+			o->max = get_number(value->u.object.values[x].value);
+		if (!ft_strcmp(value->u.object.values[x].name, "min"))
+			o->min = get_number(value->u.object.values[x].value);
 	}
 }
 
@@ -247,7 +226,11 @@ static void		process_scene_o(json_value *value, t_scene *s)
 	ft_bzero(s->object, sizeof(s->object));
 	x = -1;
 	while (++x < s->o_num - 1)
+	{
 		get_object_info(value->u.array.values[x], &s->object[x]);
+		if (s->object[x].type == O_TRIANGLE)
+			create_triangle_norm(&s->object[x]);
+	}
 	s->object[x].type = 0;
 }
 

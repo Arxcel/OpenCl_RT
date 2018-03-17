@@ -4,23 +4,24 @@
 			"color": [0.33, 0.02, 0.02],
 			"point": [-200, 50, -700],
 			"radius": 100,
-			"specular": 15,
+			"specular": 1300,
 			"reflect": 0
 		},
 		{
 			"type": "cylinder",
 			"direction": [0, 1, 0],
 			"color": [0.08, 0.32, 0.08],
-			"point": [100, 0, -650],
+			"point": [100, 20, -650],
 			"radius": 50,
-			"specular": 15,
+			"max": 50,
+			"specular": 1300,
 			"reflect": 0
 		},
 		{
-			"type": "triangle",
+			"type": "plane",
 			"color": [0.8, 0.8, 0.8],
-			"p1": [0, -100, -500],
-			"p2": [200, 200, -600],
+			"point": [0, 0, -500],
+			"direction": [0, 1, 0],
 			"p3": [0, 0, -750],
 			"specular": 15,
 			"reflect": 0
@@ -42,7 +43,7 @@
 	"cameras": [{
 		"type": "common",
 		"rotation": [-10, 0, 0],
-		"position": [0, 150, 0],
+		"position": [0, 150, -350],
 		"field_of_view": 50,
 	}]
 }
