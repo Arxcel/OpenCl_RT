@@ -5,7 +5,7 @@
 			"point": [0, 0, -300],
 			"radius": 100,
 			"specular": 100,
-			"reflect": 0.3
+			"reflect": 0
 		}
 	],
 	"lights": [{

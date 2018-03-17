@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 18:01:54 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/12 14:09:38 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/16 17:07:58 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,24 @@ void				sdl_hook(t_main *m)
 	{
 		if (m->sdl.e.type == SDL_QUIT)
 			m->sdl.running = 0;
+		else if (m->sdl.e.type == SDL_WINDOWEVENT)
+		{
+			if (m->sdl.e.window.event == SDL_WINDOWEVENT_RESIZED)
+			{
+				m->sdl.win_w = m->sdl.e.window.data1;
+				m->sdl.win_h = m->sdl.e.window.data2;
+				m->cl.work_dim[0] = m->sdl.win_w;
+				m->cl.work_dim[1] = m->sdl.win_h;
+				ft_memdel((void**)&m->sdl.img.pixels);
+				m->sdl.img = sdl_create_image(m->sdl.win_w, m->sdl.win_h);
+				SDL_DestroyTexture(m->sdl.texture);
+				m->sdl.texture = SDL_CreateTexture(m->sdl.ren,
+								SDL_PIXELFORMAT_ARGB8888,
+								SDL_TEXTUREACCESS_STATIC,
+								m->sdl.win_w, m->sdl.win_h);
+				m->sdl.changes = 1;
+			}
+		}
 		else if (m->sdl.e.type == SDL_KEYDOWN)
 			key_down(m->sdl.e.key.keysym.sym, m);
 	}
