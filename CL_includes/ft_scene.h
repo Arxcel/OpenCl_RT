@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_scene.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vkozlov <vkozlov@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 22:15:03 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/17 18:50:47 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/17 20:47:31 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,9 @@ typedef struct		s_object
 	float			refract;
 	float			min;
 	float			max;
+	t_vector		free1;
+	t_vector		free2;
+	t_vector		free3;
 	t_vector		color;
 	t_vector		point;
 	t_vector		dir;
@@ -49,6 +52,7 @@ typedef struct		s_light
 	float			intence;
 	t_vector		color;
 	t_vector		pos;
+	t_vector		free1;
 }					t_light;
 
 typedef struct		s_camera

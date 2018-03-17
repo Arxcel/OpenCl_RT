@@ -76,66 +76,6 @@ static int				ft_trace(__global t_object	*o,
 	return (flag);
 }
 
-static float			get_light(__global t_object	*o,
-									__global t_light	*l,
-									t_object h, t_ray ray)
-{
-	float			lt;
-	float			gt;
-	float			ret_col;
-	t_ray			light;
-	t_object		shader;
-	int				i;
-	float			distance;
-	int				f;
-	float			shader_distance;
-	t_vector		glare;
-	float			corel;
-	float			light_intensity;
-
-	i = -1;
-	ret_col = 0;
-	while (l[++i].type)
-	{
-		light.dir = l[i].pos - ray.p_hit;
-		light.orig = ray.p_hit + v_mult_d(ray.n_hit, BIAS);
-		distance = v_length(light.dir);
-		light.dir = v_normalize(light.dir);
-		lt = v_dot(ray.n_hit, light.dir);
-		f = ft_trace(o, l, &shader_distance, &shader, &light);
-		light_intensity = 0; 
-		if (!(f && shader_distance < distance && lt > 0))
-		{
-			light_intensity = lt * l[i].intence;
-			// Блики
-			// if (h.specular > 0)
-			// {
-			// 	glare = v_mult_d(ray.n_hit, 2 * lt) - light.dir;
-			// 	gt = v_dot(glare, -ray.dir);
-			// 	if (gt > 0)
-			// 	{
-			// 		if (h.specular <= 2)
-			// 			corel = 0.04;
-			// 		else if (h.specular <= 10)
-			// 			corel = 0.08;
-			// 		else if (h.specular <= 50)
-			// 			corel = 0.1;
-			// 		else if (h.specular <= 250)
-			// 			corel = 0.15;
-			// 		else if (h.specular <= 1250)
-			// 			corel = 0.2;
-			// 		else
-			// 			corel = 1;
-			// 		light_intensity += light_intensity * native_powr(gt, h.specular) * corel;
-			// 	}
-			// }
-		}
-		if (v_dot(-ray.dir, ray.n_hit) > 0)
-			ret_col += light_intensity;
-	}
-	return (ret_col);
-}
-
 static void			reflect_ray(t_ray *r)
 {
 	r->dir = v_normalize(r->dir - v_mult_d(r->n_hit, 2 * v_dot(r->n_hit, r->dir)));
@@ -192,32 +132,38 @@ static t_vector		ft_cast_ray(
 	primary_color = (t_vector){0, 0, 0};
 	while (++i < MAX_ITER)
 	{
-	    if (!ft_trace(o, l, &t, hit_object, r))
+		//Check if we hit something
+		if (!ft_trace(o, l, &t, hit_object, r))
 		{
 			point_color = (t_vector){0, 0, 0};
 			break ;
 		}
+		//Get the data of the hit fugure
 		get_surface_data(r, *hit_object, t);
 		r->n_hit = v_dot(r->n_hit, r->dir) < 0 ? r->n_hit : -r->n_hit;
+		//Get the figure color
 		if (is_primary)
 		{
-			primary_color = v_mult_d(hit_object->color, get_light(o, l, *hit_object, *r));
+			primary_color = v_mult_d(hit_object->color, calc_light(o, l, *hit_object, *r));
 			prime_reflect = hit_object->reflect;
 			is_primary = 0;
 		}
+		//Calculate the reflected ray and go to another iteration
 		if (hit_object->reflect)
 		{
 			reflect_ray(r);
 			continue ;
 		}
+		//Calculate the refracted ray and go to another iteration
 		else if (hit_object->refract)
 		{
 			refract_ray(r, hit_object->refract);
 			continue ;
 		}
+		//Get the final color (after all reflections/refractions)
 		else
 		{
-			point_color = v_mult_d(hit_object->color, get_light(o, l, *hit_object, *r));
+			point_color = v_mult_d(hit_object->color, calc_light(o, l, *hit_object, *r));
 			break ;
 		}
 	}

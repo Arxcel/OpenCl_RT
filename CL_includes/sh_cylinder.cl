@@ -63,13 +63,9 @@ short				cyl_cross(t_object cyl, t_ray *r, float *t)
 short				get_cyl_data(t_ray *ray, t_object cyl, float t)
 {
 	float m;
-	float add;
 
 	m = v_dot(ray->dir, cyl.dir) * t + v_dot(ray->orig - cyl.point, cyl.dir);
 	ray->p_hit = ray->orig + v_mult_d(ray->dir, t);
 	ray->n_hit = v_normalize(ray->p_hit - cyl.point - v_mult_d(cyl.dir, m));
-	// add = v_dot(ray->dir, ray->n_hit);
-	// if (add > 0)
-	// 	ray->n_hit = -ray->n_hit;
 	return (1);
 }
