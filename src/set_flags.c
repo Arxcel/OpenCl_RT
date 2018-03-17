@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_flags.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 11:01:13 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/15 17:23:11 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/17 17:19:32 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,6 @@ char			*set_flags(const char *path)
 	char *flags;
 
 	flags = ft_strjoin("-I ", path);
-	flags = add_value(pair(" -D IMG_WIDTH=", WIN_W), flags);
-	flags = add_value(pair(" -D WIN_WIDTH=", WIN_W), flags);
-	flags = add_value(pair(" -D WIN_HEIGHT=", WIN_H), flags);
 	flags = add_value(pair(" -D MAX_ITER=", MAX_ITER), flags);
 	to_free = flags;
 	flags = ft_strjoin(flags, " -D BIAS=0.3");

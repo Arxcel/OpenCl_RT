@@ -4,8 +4,9 @@
 			"color": [0.33, 0.02, 0.02],
 			"point": [0, -20, -650],
 			"radius": 100,
-			"specular": 15,
-			"reflect": 0
+			"specular": 300,
+			"reflect": 0,
+			"refract": 0.5
 		},
 		{
 			"type": "cylinder",

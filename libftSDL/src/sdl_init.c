@@ -18,7 +18,8 @@ void				sdl_init(t_sdl *sdl)
 		MSG(SDL_GetError());
 	if (!(sdl->win = SDL_CreateWindow("My SDL", SDL_WINDOWPOS_UNDEFINED,
 								SDL_WINDOWPOS_UNDEFINED, sdl->win_w,
-								sdl->win_h, SDL_WINDOW_SHOWN)))
+								sdl->win_h, SDL_WINDOW_SHOWN
+									| SDL_WINDOW_RESIZABLE)))
 		MSG(SDL_GetError());
 	if (!(sdl->ren = SDL_CreateRenderer(sdl->win, -1,
 					SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC)))

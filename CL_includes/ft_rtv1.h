@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 11:57:16 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/16 12:55:07 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/17 17:16:23 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ unsigned int		ft_renderer(
 		global t_object	*o,
 		global t_light	*l,
 		global t_camera *cam,
-		int x, int y);
+		int x, int y, size_t img_w, size_t img_h);
 t_vector					ft_rotate(t_vector vector, t_vector angle);
 /*
 **  Check intersections

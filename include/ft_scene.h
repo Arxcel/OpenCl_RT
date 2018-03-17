@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 22:15:03 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/16 13:32:45 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/16 16:07:50 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct		s_object
 	float			radius2;
 	float			angle;
 	float			reflect;
+	float			refract;
 	t_vector		color;
 	t_vector		point;
 	t_vector		dir;
