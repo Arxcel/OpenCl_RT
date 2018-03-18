@@ -6,7 +6,7 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:32:12 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/18 14:48:57 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/18 17:13:03 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,19 @@
 # include "ft_sdl.h"
 # include "ft_libftu.h"
 # include "ft_scene.h"
-# define WIN_W			1280
-# define WIN_H			600
+# include "ft_ui.h"
+# define WIN_W			1600
+# define WIN_H			900
 # define MAX_ITER		5
 
 typedef struct		s_main
 {
+	t_ui	ui;
 	t_cl	cl;
 	t_sdl	sdl;
 	t_scene	s;
 }					t_main;
+
 void				sdl_hook(t_main *m);
 void				sdl_loop(t_main *m);
 char				*set_flags(const char *path);
@@ -43,4 +46,12 @@ void				move_camera(t_scene *s);
 float				ft_deg2rad(float deg);
 void				create_triangle_norm(t_object *obj);
 void				create_conus(t_object *obj);
+
+/*
+** anestor
+*/
+
+void				window_resized_event(t_main *m);
+void				render_scene_and_ui(t_main *m);
+
 #endif

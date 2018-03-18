@@ -6,7 +6,7 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:33:57 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/18 16:56:11 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/18 17:08:44 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ int					main(int ac, char **av)
 	m.sdl.win_w = WIN_W;
 	m.sdl.win_h = WIN_H;
 	sdl_init(&m.sdl);
+	ui_textures_init(&m.ui, &m.sdl);
 	SDL_SetWindowMinimumSize(m.sdl.win, 800, 600);
 	if (ac != 2)
 		put_error("Wrong number of arguments.");

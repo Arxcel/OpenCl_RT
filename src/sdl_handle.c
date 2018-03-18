@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sdl_handle.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
+/*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 18:01:54 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/16 17:07:58 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/18 17:12:12 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,7 @@ void				sdl_loop(t_main *m)
 		sdl_hook(m);
 		if (m->sdl.changes)
 		{
-			re_draw(&m->cl, &m->sdl, &m->s);
-			sdl_put_image(&m->sdl);
+			render_scene_and_ui(m);
 			m->sdl.changes = 0;
 		}
 	}
@@ -85,20 +84,7 @@ void				sdl_hook(t_main *m)
 		else if (m->sdl.e.type == SDL_WINDOWEVENT)
 		{
 			if (m->sdl.e.window.event == SDL_WINDOWEVENT_RESIZED)
-			{
-				m->sdl.win_w = m->sdl.e.window.data1;
-				m->sdl.win_h = m->sdl.e.window.data2;
-				m->cl.work_dim[0] = m->sdl.win_w;
-				m->cl.work_dim[1] = m->sdl.win_h;
-				ft_memdel((void**)&m->sdl.img.pixels);
-				m->sdl.img = sdl_create_image(m->sdl.win_w, m->sdl.win_h);
-				SDL_DestroyTexture(m->sdl.texture);
-				m->sdl.texture = SDL_CreateTexture(m->sdl.ren,
-								SDL_PIXELFORMAT_ARGB8888,
-								SDL_TEXTUREACCESS_STATIC,
-								m->sdl.win_w, m->sdl.win_h);
-				m->sdl.changes = 1;
-			}
+				window_resized_event(m);
 		}
 		else if (m->sdl.e.type == SDL_KEYDOWN)
 			key_down(m->sdl.e.key.keysym.sym, m);
