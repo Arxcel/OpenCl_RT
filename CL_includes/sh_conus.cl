@@ -83,6 +83,6 @@ short		get_con_data(t_ray *ray, t_object con, float t)
 	x = ray->orig - con.point;
 	ray->p_hit = ray->orig + v_mult_d(ray->dir, t);
 	m = v_dot(ray->dir, con.dir) * t + v_dot(x, con.dir);
-	ray->n_hit = v_normalize(ray->p_hit - con.point - v_mult_d(v_mult_d(con.dir, m), (1 + (con.angle * con.angle))));
+	ray->n_hit = v_normalize(ray->p_hit - con.point - v_mult_d(v_mult_d(con.dir, m), (1 + con.angle * con.angle)));
 	return (1);
 }
