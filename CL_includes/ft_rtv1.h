@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 11:57:16 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/18 16:46:59 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/18 17:29:05 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 
 typedef struct				s_ray
 {
-	float					in_figure;
 	t_vector				p_hit;
 	t_vector				n_hit;
 	t_vector				dir;
