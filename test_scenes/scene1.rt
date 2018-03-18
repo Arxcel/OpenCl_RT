@@ -12,6 +12,7 @@
 			"point": [0, 0, -550],
 			"direction": [0, 1, 0],
 			"angle" : 50,
+			"max": 130,
 			"color": [0.9, 0.9, 0.4],
 			"specular": 1500,
 			"reflect": 0
