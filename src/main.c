@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:33:57 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/18 12:57:58 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/18 15:17:25 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,27 +63,18 @@ void				re_draw(t_cl *cl, t_sdl *sdl, t_scene *s)
 
 int					main(int ac, char **av)
 {
-	clock_t	start;
 	t_main	m;
-	clock_t	stop;
-	float	elapsed;
 
 	m.cl.work_dim[0] = WIN_W;
 	m.cl.work_dim[1] = WIN_H;
 	m.sdl.win_w = WIN_W;
 	m.sdl.win_h = WIN_H;
-	// printf("object: %lu\nlight: %lu\ncamera: %lu\n", sizeof(t_object), sizeof(t_light), sizeof(t_camera));
-	// put_error("All is ok.");
-	start = clock();
 	sdl_init(&m.sdl);
 	SDL_SetWindowMinimumSize(m.sdl.win, 800, 600);
 	if (ac != 2)
 		put_error("Wrong number of arguments.");
 	get_scene(av[1], &m.s);
 	draw(&m.cl, &m.sdl, &m.s);
-	stop = clock();
-	elapsed = (float)(stop - start) / CLOCKS_PER_SEC;
-	printf("\nTime elapsed: %.5f\n", elapsed);
 	sdl_put_image(&m.sdl);
 	sdl_loop(&m);
 	return (0);

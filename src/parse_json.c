@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_json.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 11:33:17 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/18 14:48:32 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/18 15:13:10 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,10 +191,7 @@ static void		get_object_info(json_value *value, t_object *o)
 		if (!ft_strcmp(value->u.object.values[x].name, "refract"))
 			o->refract = get_number(value->u.object.values[x].value);
 		if (!ft_strcmp(value->u.object.values[x].name, "radius"))
-		{
 			o->radius = get_number(value->u.object.values[x].value);
-			o->radius2 = o->radius * o->radius;
-		}
 		if (!ft_strcmp(value->u.object.values[x].name, "specular"))
 			o->specular = get_number(value->u.object.values[x].value);
 		if (!ft_strcmp(value->u.object.values[x].name, "angle"))
