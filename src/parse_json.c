@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_json.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
+/*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 11:33:17 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/18 16:57:46 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/18 17:08:50 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ static int		set_o_type(json_value *value)
 		val = O_DISK;
 	else if (!err && !ft_strcmp(value->u.string.ptr, "triangle"))
 		val = O_TRIANGLE;
+	else if (!err && !ft_strcmp(value->u.string.ptr, "paraboloid"))
+		val = O_PARABOLOID;
 	else
 		err = 1;
 	if (err)

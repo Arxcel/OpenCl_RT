@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_rt.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
+/*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:32:12 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/18 16:48:08 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/18 17:13:03 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # include "ft_libftu.h"
 # include "ft_scene.h"
 # include "ft_ui.h"
-# define WIN_W			1280
-# define WIN_H			600
+# define WIN_W			1600
+# define WIN_H			900
 # define MAX_ITER		5
 
 typedef struct		s_main
