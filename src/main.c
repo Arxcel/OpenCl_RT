@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:33:57 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/18 15:17:25 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/18 15:50:21 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void				re_draw(t_cl *cl, t_sdl *sdl, t_scene *s)
 	cl_exec_kernel(cl, 2, cl->work_dim);
 	cl_get_res(cl, (size_t)sdl->img.w *
 				sdl->img.h * sizeof(unsigned int), sdl->img.pixels, 3);
+	printf("OpenCl Execution time is: %0.3f milliseconds \n", cl_get_exec_time(cl));
 	cl_free_all_args(4, cl->args);
 }
 

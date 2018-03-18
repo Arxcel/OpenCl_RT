@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cl_create_queue.c                                  :+:      :+:    :+:   */
+/*   cl_get_exec_time.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/07 17:50:00 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/18 15:46:39 by vkozlov          ###   ########.fr       */
+/*   Created: 2018/03/18 15:49:18 by vkozlov           #+#    #+#             */
+/*   Updated: 2018/03/18 15:54:00 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "my_cl.h"
 
-void	cl_create_queue(t_cl *cl)
+double	cl_get_exec_time(t_cl *cl)
 {
-	cl_int							res;
-	cl_command_queue_properties		c_properties;
+	cl_ulong    time_start;
+	cl_ulong    time_end;
 
-	c_properties = CL_QUEUE_PROFILING_ENABLE;
-	cl->commands = clCreateCommandQueue(cl->context, cl->devices[0],
-										c_properties, &res);
-	if (res != CL_SUCCESS)
-	{
-		ft_printf("Error while creating the command queue. Code:[%d]\n", res);
-		exit(1);
-	}
+	clGetEventProfilingInfo(cl->e, CL_PROFILING_COMMAND_START,
+									sizeof(time_start), &time_start, NULL);
+	clGetEventProfilingInfo(cl->e, CL_PROFILING_COMMAND_END,
+										sizeof(time_end), &time_end, NULL);
+	return ((time_end - time_start) / 1000000.0);
 }
