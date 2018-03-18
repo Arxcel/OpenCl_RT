@@ -15,7 +15,7 @@
 void				sdl_put_image(t_sdl *sdl)
 {
 	SDL_UpdateTexture(sdl->texture, NULL,
-		sdl->img.pixels, sdl->win_w * sizeof(unsigned int));
+		sdl->img.pixels, sdl->img.w * sizeof(unsigned int)); //changed!!!
 	sdl_clear_image(&sdl->img);
 	SDL_RenderCopy(sdl->ren, sdl->texture, NULL, NULL);
 	SDL_RenderPresent(sdl->ren);
