@@ -25,7 +25,7 @@ short				cyl_cross(t_object cyl, t_ray *r, float *t)
 	l = r->orig - cyl.point;
 	params[0] = v_dot(r->dir, r->dir) - v_dot(r->dir, cyl.dir) * v_dot(r->dir, cyl.dir);
 	params[1] = 2.0 * (v_dot(r->dir, l) - v_dot(r->dir, cyl.dir) * v_dot(l, cyl.dir));
-	params[2] = v_dot(l, l) - cyl.radius2 - v_dot(l, cyl.dir) * v_dot(l, cyl.dir);
+	params[2] = v_dot(l, l) - cyl.radius * cyl.radius - v_dot(l, cyl.dir) * v_dot(l, cyl.dir);
 	if (!solve_quadratic(params, &t2, &t1))
 		return (0);
 	m1 = v_dot(r->dir, cyl.dir) * t1 + v_dot(l, cyl.dir);

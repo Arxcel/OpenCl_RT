@@ -6,7 +6,7 @@
 #    By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/21 13:49:03 by vkozlov           #+#    #+#              #
-#    Updated: 2018/03/12 13:14:05 by vkozlov          ###   ########.fr        #
+#    Updated: 2018/03/18 15:51:46 by vkozlov          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,8 @@ SOURCES = cl_create_compile_program.c \
 			cl_init.c \
 			cl_set_args.c \
 			cl_set_out_arg.c \
-			cl_free_args.c
+			cl_free_args.c \
+			cl_get_exec_time.c
 
 SRCS = $(addprefix $(DIR_S)/,$(SOURCES))
 

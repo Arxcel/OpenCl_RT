@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cl_execute_kernel.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkozlov <vkozlov@student.unit.ua>          +#+  +:+       +#+        */
+/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/07 20:56:00 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/04 22:41:08 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/18 15:47:31 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,13 @@ void		cl_exec_kernel(t_cl *cl, cl_uint size_wd,
 		i++;
 	}
 	res = clEnqueueNDRangeKernel(cl->commands, cl->kernel, work_dim, NULL,
-								global_work_size, NULL, 0, 0, NULL);
+								global_work_size, NULL, 0, 0, &cl->e);
 	if (res != CL_SUCCESS)
 	{
 		ft_printf("Error while executing the kernel. Code:[%d]\n", res);
 		exit(1);
 	}
+	clWaitForEvents(1, &cl->e);
 	clFinish(cl->commands);
 	free(global_work_size);
 }

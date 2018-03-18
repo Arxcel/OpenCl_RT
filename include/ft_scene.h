@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_scene.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkozlov <vkozlov@student.unit.ua>          +#+  +:+       +#+        */
+/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 22:15:03 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/17 20:47:03 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/18 15:14:08 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,11 @@ typedef struct		s_object
 	short			type;
 	int				specular;
 	float			radius;
-	float			radius2;
 	float			angle;
 	float			reflect;
 	float			refract;
 	float			min;
 	float			max;
-	t_vector		free1;
-	t_vector		free2;
-	t_vector		free3;
 	t_vector		color;
 	t_vector		point;
 	t_vector		dir;
@@ -53,7 +49,6 @@ typedef struct		s_light
 	float			intence;
 	t_vector		color;
 	t_vector		pos;
-	t_vector		free1;
 }					t_light;
 
 typedef struct		s_cam_transform

@@ -27,7 +27,7 @@ short				disk_cross(t_object *d, t_ray *r, float *t)
 		{
 			r->p_hit = r->orig + v_mult_d(r->dir, t0);
 			v = r->p_hit - d->point;
-			if (d->radius2 >= v_dot(v, v))
+			if (d->radius * d->radius >= v_dot(v, v))
 			{
 				*t = t0;
 				r->n_hit[0] = a;
