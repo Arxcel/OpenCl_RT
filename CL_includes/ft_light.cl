@@ -13,16 +13,14 @@
 
 #include "ft_rtv1.h"
 
-static t_ray			point_light(t_vector p_hit, t_vector l_pos, t_vector n, float *light_intensity)
+static t_ray			point_light(t_vector p_hit, t_vector l_pos, t_vector n, float *light_intensity, float *d)
 {
 	t_ray	light;
-	float	d;
 	
 	light.dir = p_hit - l_pos;
 	light.orig = p_hit + v_mult_d(n, BIAS);
-	d = v_length(light.dir);
+	*d = v_length(light.dir);
 	light.dir = -v_normalize(light.dir);
-    // *light_intensity /= (4.0 * 3.14 * d * d);
 	return (light);
 }
 
@@ -72,21 +70,16 @@ float					calc_light(__global t_object	*o,
 	while (l[++i].type)
 	{
 		light_intensity += l[i].intence;
-		light = point_light(ray.p_hit, l[i].pos, ray.n_hit, &light_intensity);
+		light = point_light(ray.p_hit, l[i].pos, ray.n_hit, &light_intensity, &distance);
 		vis = !ft_trace(o, l, &shader_distance, &shader, &(light));
-		// lp = normalize();
+		if (shader_distance > distance)
+			vis = 1;
 		lt = v_dot(ray.n_hit, light.dir);
-		// lt = lt < 0 ? 0 : lt;
-		// shader_distance < distance)
-		// lt = v_dot(ray.n_hit, light.dir) > 0 ? v_dot(ray.n_hit, light.dir) : v_dot(-ray.n_hit, light.dir);
 		if (lt > 0)
 		{
+			light_intensity = lt * l[i].intence;
 			if (h.specular > 0)
-					light_intensity += get_shiness(lt, h.specular, light_intensity, ray, light);
-			if (shader_distance < distance)
-			{
-				light_intensity = lt * l[i].intence;
-			}
+				light_intensity += get_shiness(lt, h.specular, light_intensity, ray, light);
 			ret_col += vis * light_intensity * lt;
 		}
 	}
