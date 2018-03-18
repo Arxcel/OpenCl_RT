@@ -6,7 +6,7 @@
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 16:41:28 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/15 22:29:02 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/18 15:39:11 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,67 +14,19 @@
 
 void	render_scene_and_ui(t_main *m)
 {
-	t_img	tmp;
-
+	SDL_RenderCopy(m->sdl.ren, m->ui.back.bg.textr, NULL, &m->ui.back.bg.rect);
 	re_draw(&m->cl, &m->sdl, &m->s);
-	SDL_UpdateTexture(m->sdl.texture, &m->ui.scene_rect,
+	SDL_UpdateTexture(m->sdl.texture, NULL,
 			m->sdl.img.pixels, m->sdl.img.w * sizeof(unsigned int));
 	sdl_clear_image(&m->sdl.img);
-	SDL_RenderCopy(m->sdl.ren, m->sdl.texture, NULL, NULL);	
-
-	SDL_Texture *texture_test_2 = SDL_CreateTexture(m->sdl.ren,
-								SDL_PIXELFORMAT_ARGB8888,
-								SDL_TEXTUREACCESS_STATIC,
-								m->sdl.win_w, m->sdl.win_h);
-	tmp = sdl_create_image(m->sdl.win_w, m->sdl.win_h);
-//	ft_memset(tmp.pixels, 50, m->sdl.win_w * m->sdl.win_h * sizeof(unsigned int));
-//	SDL_UpdateTexture(m->sdl.texture, &m->ui.frame_rect,	
-//			tmp.pixels, m->sdl.win_w * sizeof(unsigned int));
-//	ft_memdel((void **)&tmp.pixels);
-
-	t_xy	i;
-	i.y = 0;
-	while (i.y != m->sdl.win_h)
-	{
-		i.x = 0;
-		while (i.x != m->sdl.win_w)
-		{
-			if (!(i.y > 100 && i.x > 100 && i.y < m->sdl.win_h - 100 && i.x < m->sdl.win_w - 100))
-				sdl_pixel_put(&tmp, i.x, i.y, 0x000000FF);
-			i.x++;
-		}
-		i.y++;
-	}
-	//SDL_UpdateTexture(m->sdl.texture, &m->ui.frame_rect,
-	//		tmp.pixels, m->sdl.win_w * sizeof(unsigned int));
-	SDL_UpdateTexture(texture_test_2, &m->ui.frame_rect,
-			tmp.pixels, m->sdl.win_w * sizeof(unsigned int));
-	ft_memdel((void **)&tmp.pixels);
-
-	SDL_Surface *img_test = IMG_Load("test.png");
-	SDL_Texture *texture_test = SDL_CreateTextureFromSurface(m->sdl.ren, img_test);
-	SDL_RenderCopy(m->sdl.ren, texture_test, NULL, NULL);
-
-	//SDL_RenderCopy(m->sdl.ren, texture_test_2, NULL, NULL);
-	//SDL_RenderCopy(m->sdl.ren, m->sdl.texture, NULL, NULL);
+	SDL_RenderCopy(m->sdl.ren, m->sdl.texture, NULL, &m->ui.scene_place);
+	SDL_RenderCopy(m->sdl.ren, m->ui.back.l_frm.textr, NULL, &m->ui.back.l_frm.rect);
+	SDL_RenderCopy(m->sdl.ren, m->ui.back.r_frm.textr, NULL, &m->ui.back.r_frm.rect);
+	ui_render_corners(&m->ui, &m->sdl, m->ui.scene_place);
+	ui_render_corners(&m->ui, &m->sdl, m->ui.back.l_frm.rect);
+	ui_render_corners(&m->ui, &m->sdl, m->ui.back.r_frm.rect);
+	ui_render_lines(&m->ui, &m->sdl);
 	SDL_RenderPresent(m->sdl.ren);
-}
-
-void	test_draw_square(t_img *img, int x, int y, int color)
-{
-	t_xy	i;
-
-	i.y = 0;
-	while (i.y != y)
-	{
-		i.x = 0;
-		while (i.x != x)
-		{
-			sdl_pixel_put(img, i.x, i.y, color);
-			i.x++;
-		}
-		i.y++;
-	}
 }
 
 void	sdl_recreate_img(t_img *img, size_t w, size_t h)
@@ -95,32 +47,117 @@ void	window_resized_event(t_main *m)
 	m->sdl.texture = SDL_CreateTexture(m->sdl.ren,
 								SDL_PIXELFORMAT_ARGB8888,
 								SDL_TEXTUREACCESS_STATIC,
-								m->sdl.win_w,
-								m->sdl.win_h);
+								m->sdl.win_w - R_SCENE_W_TRIM,
+								m->sdl.win_h - R_SCENE_H_TRIM);
 	ui_rect_params(&m->ui, &m->sdl);
 	m->sdl.changes = 1;
 }
 
 void	ui_rect_params(t_ui *ui, t_sdl *sdl)
 {
-	ui->frame_rect.x = 0;
-	ui->frame_rect.y = 0;
-	ui->frame_rect.h = sdl->win_h;
-	ui->frame_rect.w = sdl->win_w;
-	ui->scene_rect.x = R_SCENE_X;
-	ui->scene_rect.y = R_SCENE_Y;
-	ui->scene_rect.h = sdl->img.h;
-	ui->scene_rect.w = sdl->img.w;
+	ui->scene_place = sdl_rect(R_SCENE_X, R_SCENE_Y, sdl->img.h, sdl->img.w);
+	ui->back.bg.rect = sdl_rect(0, 0, sdl->win_h, sdl->win_w);
+	ui->back.l_frm.rect = sdl_rect(5, R_SCENE_Y,
+				sdl->win_h - R_SCENE_Y - 5, L_FRAME_W);
+	ui->back.r_frm.rect = sdl_rect(sdl->win_w - R_FRAME_W - 5, R_SCENE_Y,
+				sdl->win_h - R_SCENE_Y - 5, R_FRAME_W);
 }
+
+static void	ui_corner_rect_params(t_ui *ui, SDL_Rect place)
+{
+	ui->back.lt_cor.rect =
+		sdl_rect(place.x, place.y, CRN_SZ, CRN_SZ);
+	ui->back.lb_cor.rect =
+		sdl_rect(place.x, place.y + place.h - CRN_SZ, CRN_SZ, CRN_SZ);
+	ui->back.rt_cor.rect =
+		sdl_rect(place.x + place.w - CRN_SZ, place.y, CRN_SZ, CRN_SZ);
+	ui->back.rb_cor.rect =
+		sdl_rect(place.x + place.w - CRN_SZ, place.y + place.h - CRN_SZ,
+														CRN_SZ, CRN_SZ);
+}
+
+void	ui_render_corners(t_ui *ui, t_sdl *sdl, SDL_Rect place)
+{
+	ui_corner_rect_params(ui, place);
+	SDL_RenderCopy(sdl->ren, ui->back.lt_cor.textr,
+							NULL, &ui->back.lt_cor.rect);
+	SDL_RenderCopy(sdl->ren, ui->back.lb_cor.textr,
+							NULL, &ui->back.lb_cor.rect);
+	SDL_RenderCopy(sdl->ren, ui->back.rt_cor.textr,
+							NULL, &ui->back.rt_cor.rect);
+	SDL_RenderCopy(sdl->ren, ui->back.rb_cor.textr,
+							NULL, &ui->back.rb_cor.rect);
+}
+
+static void ui_lines_rect_params(t_ui *ui, t_sdl *sdl)
+{
+	ui->back.bl_dot.rect =
+		sdl_rect(L_FRAME_X + 5, L_FRAME_Y + 45, 1, L_FRAME_W - 10);
+	ui->back.lg_dot.rect =
+		sdl_rect(sdl->win_w - R_FRAME_W, L_FRAME_Y + 45, 1, R_FRAME_W - 10);
+	ui->back.co_dot.rect =
+		sdl_rect(5, R_SCENE_Y - 5, 1, sdl->win_w - 10);
+}
+
+void	ui_render_lines(t_ui *ui, t_sdl *sdl)
+{
+	ui_lines_rect_params(ui, sdl);
+	SDL_RenderCopy(sdl->ren, ui->back.bl_dot.textr,
+							NULL, &ui->back.bl_dot.rect);
+	SDL_RenderCopy(sdl->ren, ui->back.lg_dot.textr,
+							NULL, &ui->back.lg_dot.rect);
+	SDL_RenderCopy(sdl->ren, ui->back.co_dot.textr,
+							NULL, &ui->back.co_dot.rect);
+}
+
 /*
 ** move to libftSDL
 */
 
-void	sdl_put_image_rect(t_sdl *sdl, t_img *img, SDL_Rect *src, SDL_Rect *dst)
+SDL_Rect	sdl_rect(int x, int y, int h, int w)
 {
-	SDL_UpdateTexture(sdl->texture, NULL,
-			img->pixels, img->w * sizeof(unsigned int));
-	sdl_clear_image(img);
-	SDL_RenderCopy(sdl->ren, sdl->texture, src, dst);
-	//SDL_RenderPresent(sdl->ren);
+	SDL_Rect	tmp;
+
+	tmp.x = x;
+	tmp.y = y;
+	tmp.h = h;
+	tmp.w = w;
+	return (tmp);
+}
+
+SDL_Texture	*sdl_texture_from_file(char *filename, SDL_Renderer *renderer)
+{
+	SDL_Surface *surface;
+	SDL_Texture	*tmp;
+
+	surface = IMG_Load(filename);
+	tmp = SDL_CreateTextureFromSurface(renderer, surface);
+	SDL_FreeSurface(surface);
+	return (tmp);
+}
+
+void	ui_textures_init(t_ui *ui, t_sdl *sdl)
+{
+	ui->back.bg.textr =
+		sdl_texture_from_file("textures/background.png", sdl->ren);
+	ui->back.l_frm.textr =
+		sdl_texture_from_file("textures/left_frame.png", sdl->ren);
+	ui->back.r_frm.textr =
+		sdl_texture_from_file("textures/right_frame.png", sdl->ren);
+	ui->back.lt_cor.textr =
+		sdl_texture_from_file("textures/left_top_corner.png", sdl->ren);
+	ui->back.lb_cor.textr =
+		sdl_texture_from_file("textures/left_bot_corner.png", sdl->ren);
+	ui->back.rt_cor.textr =
+		sdl_texture_from_file("textures/right_top_corner.png", sdl->ren);
+	ui->back.rb_cor.textr =
+		sdl_texture_from_file("textures/right_bot_corner.png", sdl->ren);
+	ui->back.bl_dot.textr =
+		sdl_texture_from_file("textures/black_dot.png", sdl->ren);
+	ui->back.dg_dot.textr =
+		sdl_texture_from_file("textures/dark_grey_dot.png", sdl->ren);
+	ui->back.lg_dot.textr =
+		sdl_texture_from_file("textures/light_grey_dot.png", sdl->ren);
+	ui->back.co_dot.textr =
+		sdl_texture_from_file("textures/contrast_dot.png", sdl->ren);
 }

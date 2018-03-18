@@ -6,7 +6,7 @@
 #    By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/21 16:21:44 by vkozlov           #+#    #+#              #
-#    Updated: 2018/03/17 14:19:12 by vkozlov          ###   ########.fr        #
+#    Updated: 2018/03/18 13:53:02 by anestor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,12 @@ NAME = rt
 FLAGS = -Wall -Wextra -Werror -flto -O3
 
 IDIR = ./include
+
+EXTENSIONS = $(addprefix $(IDIR)/,$(EXT))
+
+EXT =		ft_ui.h \
+			ft_rt.h \
+			ft_scene.h \
 
 CFLAGS = -I$(IDIR) \
 		 -I./libft/include \
@@ -67,7 +73,7 @@ OBJS = $(addprefix $(DIR_O)/,$(SOURCES:.c=.o))
 
 all: obj libs $(NAME)
 
-$(NAME): $(OBJS)
+$(NAME): $(OBJS) $(EXTENSIONS)
 		$(CC) -o $(NAME) $(OBJS) $(FLAGS) $(CFLAGS) -L $(LIBFT) -lft -L $(LIBMMATH) -lmy_math -L $(LIBJSON) -lJSON -L $(LIBCL) -lCL -framework OpenCl $(SDL2_P) $(SDL2_F) -L $(LIBFTSDL) -lftsdl
 
 		
@@ -82,7 +88,7 @@ libs:
 obj:
 	mkdir -p obj
 
-$(DIR_O)/%.o: $(DIR_S)/%.c $(DEPS)
+$(DIR_O)/%.o: $(DIR_S)/%.c $(DEPS) $(EXTENSIONS)
 		$(CC) -c -o $@ $< $(FLAGS) $(CFLAGS)
 
 norme:
