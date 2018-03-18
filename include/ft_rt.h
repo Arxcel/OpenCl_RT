@@ -51,6 +51,7 @@ void				create_conus(t_object *obj);
 ** anestor
 */
 
+void				ui_and_sdl_init(t_main *m);
 void				window_resized_event(t_main *m);
 void				render_scene_and_ui(t_main *m);
 

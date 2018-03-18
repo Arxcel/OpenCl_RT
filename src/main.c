@@ -67,18 +67,12 @@ int					main(int ac, char **av)
 {
 	t_main	m;
 
-	m.cl.work_dim[0] = WIN_W;
-	m.cl.work_dim[1] = WIN_H;
-	m.sdl.win_w = WIN_W;
-	m.sdl.win_h = WIN_H;
-	sdl_init(&m.sdl);
-	ui_textures_init(&m.ui, &m.sdl);
-	SDL_SetWindowMinimumSize(m.sdl.win, 800, 600);
+	ui_and_sdl_init(&m);
 	if (ac != 2)
 		put_error("Wrong number of arguments.");
 	get_scene(av[1], &m.s);
 	draw(&m.cl, &m.sdl, &m.s);
-	sdl_put_image(&m.sdl);
+	render_scene_and_ui(&m);
 	sdl_loop(&m);
 	return (0);
 }
