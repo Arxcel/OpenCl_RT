@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/07 17:09:00 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/12 13:12:57 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/18 15:52:17 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct			s_cl{
 	cl_program			program;
 	cl_kernel			kernel;
 	cl_mem				args[INDEX_NUM];
+	cl_event			e;
 	char				*text;
 	char				*flags;
 }						t_cl;
@@ -60,4 +61,5 @@ void					cl_set_out_arg(t_cl *cl, size_t size,
 								cl_uint arg_index);
 int						ft_printf(const char *format, ...);
 void					cl_free_all_args(size_t args_num, cl_mem *args);
+double					cl_get_exec_time(t_cl *cl);
 #endif
