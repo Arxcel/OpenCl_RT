@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_rtv1.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkozlov <vkozlov@student.unit.ua>          +#+  +:+       +#+        */
+/*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 11:57:16 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/17 21:40:36 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/18 16:36:22 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,6 @@ short						get_con_data(t_ray *ray, t_object con, float t);
 short						get_plane_data(t_ray *ray, t_object plane, float t);
 short						get_disk_data(t_ray *ray, t_object disk, float t);
 short						get_triangle_data(t_ray *ray, t_object plane, float t);
+short						par_cross(t_object sh, t_ray *ray, float *t);
+short						get_par_data(t_ray *ray, t_object sh, float t);
 #endif

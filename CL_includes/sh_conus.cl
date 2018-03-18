@@ -31,7 +31,7 @@ short			con_cross(t_object con, t_ray *r, float *t)
 	m2 = v_dot(r->dir, con.dir) * t2 + v_dot(r->orig - con.point, con.dir);
 	if ((t1 < 0 && t2 < 0) || (t1 == t2))
 		return (0);
-	if (con.max > 0)
+	if (con.max > 0 || con.min < 0)
 	{
 		if (t1 > 0 && t2 < 0 && m1 >= con.min && m1 <= con.max)
 		{
