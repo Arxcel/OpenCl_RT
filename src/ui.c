@@ -35,6 +35,25 @@ void	sdl_recreate_img(t_img *img, size_t w, size_t h)
 	*img = sdl_create_image(w, h);
 }
 
+void	ui_and_sdl_init(t_main *m)
+{
+	m->cl.work_dim[0] = WIN_W - R_SCENE_W_TRIM;
+	m->cl.work_dim[1] = WIN_H - R_SCENE_H_TRIM;
+	m->sdl.win_w = WIN_W;
+	m->sdl.win_h = WIN_H;
+	sdl_init(&m->sdl);
+	sdl_recreate_img(&m->sdl.img, m->sdl.win_w - R_SCENE_W_TRIM, m->sdl.win_h - R_SCENE_H_TRIM);
+	SDL_DestroyTexture(m->sdl.texture);
+	m->sdl.texture = SDL_CreateTexture(m->sdl.ren,
+								SDL_PIXELFORMAT_ARGB8888,
+								SDL_TEXTUREACCESS_STATIC,
+								m->sdl.win_w - R_SCENE_W_TRIM,
+								m->sdl.win_h - R_SCENE_H_TRIM);
+	ui_rect_params(&m->ui, &m->sdl);
+	ui_textures_init(&m->ui, &m->sdl);
+	SDL_SetWindowMinimumSize(m->sdl.win, 800, 600);
+}
+
 void	window_resized_event(t_main *m)
 {
 	m->sdl.win_w = m->sdl.e.window.data1;
