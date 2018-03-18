@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:32:12 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/18 16:48:08 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/18 22:52:23 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,17 @@
 # include "ft_libftu.h"
 # include "ft_scene.h"
 # include "ft_ui.h"
+# include "tinyfiledialogs.h"
 # define WIN_W			1280
 # define WIN_H			600
 # define MAX_ITER		5
 
 typedef struct		s_main
 {
+	t_scene	s;
 	t_ui	ui;
 	t_cl	cl;
 	t_sdl	sdl;
-	t_scene	s;
 }					t_main;
 
 void				sdl_hook(t_main *m);
@@ -47,10 +48,17 @@ float				ft_deg2rad(float deg);
 void				create_triangle_norm(t_object *obj);
 void				create_conus(t_object *obj);
 
+void				delete_scene(t_scene *s);
+
 /*
 ** anestor
 */
 
+
+void				mouse_down(int x, int y, t_main *m);
+void				mouse_up(int x, int y, t_main *m);
+void				export_file(t_main *m);
+void				open_file(t_main *m);
 void				ui_and_sdl_init(t_main *m);
 void				window_resized_event(t_main *m);
 void				render_scene_and_ui(t_main *m);
