@@ -64,24 +64,31 @@ float					calc_light(__global t_object	*o,
 	float			light_intensity;
 	t_object		shader;
 	t_ray			light;
+	t_vector		lp;
 
 	i = -1;
 	ret_col = 0;
+	light_intensity = 0.0;
 	while (l[++i].type)
 	{
-		light_intensity = l[i].intence;
+		light_intensity += l[i].intence;
 		light = point_light(ray.p_hit, l[i].pos, ray.n_hit, &light_intensity);
 		vis = !ft_trace(o, l, &shader_distance, &shader, &(light));
+		// lp = normalize();
 		lt = v_dot(ray.n_hit, light.dir);
 		// lt = lt < 0 ? 0 : lt;
 		// shader_distance < distance)
 		// lt = v_dot(ray.n_hit, light.dir) > 0 ? v_dot(ray.n_hit, light.dir) : v_dot(-ray.n_hit, light.dir);
-		// if (lt < 0)
-		// 	continue ;
-		// light_intensity = lt * l[i].intence;
-		// if (h.specular > 0)
-		// 	light_intensity += get_shiness(lt, h.specular, light_intensity, ray, light);
-		ret_col += vis * light_intensity * lt;
+		if (lt > 0)
+		{
+			if (h.specular > 0)
+					light_intensity += get_shiness(lt, h.specular, light_intensity, ray, light);
+			if (shader_distance < distance)
+			{
+				light_intensity = lt * l[i].intence;
+			}
+			ret_col += vis * light_intensity * lt;
+		}
 	}
 	return (ret_col);
 }

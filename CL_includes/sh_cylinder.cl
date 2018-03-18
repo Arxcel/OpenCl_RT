@@ -34,30 +34,46 @@ short				cyl_cross(t_object cyl, t_ray *r, float *t)
 		return (0);
 	if (cyl.max > 0)
 	{
-		if (t2 < 0 && m1 > 0 && m1 < cyl.max)
+		if (t1 > 0 && t2 < 0 && m1 > 0 && m1 < cyl.max)
+		{
 			*t = t1;
-		else if (t1 < 0 && m2 > 0 && m2 < cyl.max)
+			return (1);
+		}
+		else if (t2 > 0 && t1 < 0 && m2 > 0 && m2 < cyl.max)
+		{
 			*t = t2;
+			return (1);
+		}
 		else if (t1 > 0 && t2 > 0)
 		{
 			if (m1 > 0 && m1 < cyl.max)
+			{
 				*t = t1;
+				return (1);
+			}
 			else if (m2 > 0 && m2 < cyl.max)
+			{
 				*t = t2;
-			else
-				return (0);
+				return (1);
+			}
 		}
 	}
-	else
+	else if (t1 > 0 && t2 > 0)
 	{
-		if (t1 > 0 && t2 < 0)
-			*t = t1;
-		else if (t1 < 0 && t2 > 0)
-			*t = t2;
-		else
-			*t = t1 < t2 ? t1 : t2;
+		*t = t1 < t2 ? t1 : t2;
+		return (1);
 	}
-	return (1);
+	else if (t1 > 0 && t2 < 0)
+	{
+		*t = t1;
+		return (1);
+	}
+	else if (t2 > 0 && t1 < 0)
+	{
+		*t = t2;
+		return (1);
+	}
+	return (0);
 }
 
 short				get_cyl_data(t_ray *ray, t_object cyl, float t)
@@ -67,5 +83,7 @@ short				get_cyl_data(t_ray *ray, t_object cyl, float t)
 	m = v_dot(ray->dir, cyl.dir) * t + v_dot(ray->orig - cyl.point, cyl.dir);
 	ray->p_hit = ray->orig + v_mult_d(ray->dir, t);
 	ray->n_hit = v_normalize(ray->p_hit - cyl.point - v_mult_d(cyl.dir, m));
+	if (v_dot(ray->n_hit, ray->dir) > 0)
+		ray->n_hit = v_mult_d(ray->n_hit, -1.0);
 	return (1);
 }

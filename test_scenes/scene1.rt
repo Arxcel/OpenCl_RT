@@ -8,13 +8,12 @@
 			"reflect": 0
 		},
 		{
-			"type": "cylinder",
+			"type": "conus",
+			"point": [0, 0, -550],
 			"direction": [0, 1, 0],
-			"color": [0.08, 0.5, 0.1],
-			"point": [100, 20, -650],
-			"radius": 50,
-			"max": 50,
-			"specular": 1300,
+			"angle" : 50,
+			"color": [0.9, 0.9, 0.4],
+			"specular": 1500,
 			"reflect": 0
 		},
 		{
