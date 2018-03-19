@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+         #
+#    By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/21 16:21:44 by vkozlov           #+#    #+#              #
-#    Updated: 2018/03/18 16:49:40 by vkozlov          ###   ########.fr        #
+#    Updated: 2018/03/19 16:15:11 by afarapon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,7 +66,8 @@ SOURCES =   main.c \
 			move_camera.c \
 			utils.c \
 			validate_objects.c \
-			ui.c
+			ui.c \
+			img_filters.c \
 
 SRCS = $(addprefix $(DIR_S)/,$(SOURCES))
 

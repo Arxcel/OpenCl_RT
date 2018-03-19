@@ -6,7 +6,7 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 13:37:03 by afarapon          #+#    #+#             */
-/*   Updated: 2018/03/19 16:10:02 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/19 18:43:37 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,42 +81,34 @@
 // 	}
 // }
 
-unsigned int				set_sepia(unsigned int in)
+static unsigned int		set_sepia(unsigned int in)
 {
 	t_color		col;
 	t_color		res;
 
 	col.col = in;
-	res.rgba.red = (col.rgba.red * 0.393) + (col.rgba.green * 0.769) + (col.rgba.blue * 0.189);
-	res.rgba.green = (col.rgba.red * 0.349) + (col.rgba.green * 0.686) + (col.rgba.blue * 0.168);
-	res.rgba.blue = (col.rgba.red * 0.272) + (col.rgba.green * 0.534) + (col.rgba.blue * 0.131);
+	res.argb.blue = (col.argb.red * 0.393) + (col.argb.green * 0.769) + (col.argb.blue * 0.189);
+	res.argb.green = (col.argb.red * 0.349) + (col.argb.green * 0.686) + (col.argb.blue * 0.168);
+	res.argb.red = (col.argb.red * 0.272) + (col.argb.green * 0.534) + (col.argb.blue * 0.131);
 	return (res.col);
 }
 
-static void			set_sepia(t_main *main)
+static void				set_sepia2(t_main *main)
 {
-	int				i;
-	int				j;
+	size_t			i;
+	size_t			j;
 
-
-
-
-
-	i = -1;
+	j = -1;
 	while (++j < main->sdl.img.h && (i = -1))
-	{
 		while (++i < main->sdl.img.w)
-		{
-			
-		}
-	}
-
+			main->sdl.img.pixels[j * main->sdl.img.w + i] =
+			set_sepia(main->sdl.img.pixels[j * main->sdl.img.w + i]);
 }
 
 void				set_filter(t_main *main)
 {
 	if (main->after_effect == AE_SEPIA)
-		set_sepia(main);
+		set_sepia2(main);
 	// else if (main->after_effect == AE_TOON)
 	// 	set_toon(main);
 	// else if (main->after_effect == AE_M_BLUR)

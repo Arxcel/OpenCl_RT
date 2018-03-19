@@ -6,7 +6,7 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:32:12 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/19 14:11:15 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/19 18:06:14 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ typedef struct		s_main
 	t_ui	ui;
 	t_cl	cl;
 	t_sdl	sdl;
+		short	after_effect;
 	t_scene	s;
-	short	after_effect;
 }					t_main;
 
 typedef struct		s_rgb
@@ -52,7 +52,7 @@ typedef struct		s_rgb
 typedef union		u_color
 {
 	unsigned int	col;
-	struct s_rgb	rgba;
+	struct s_rgb	argb;
 }					t_color;
 
 void				sdl_hook(t_main *m);
@@ -74,5 +74,6 @@ void				create_conus(t_object *obj);
 void				ui_and_sdl_init(t_main *m);
 void				window_resized_event(t_main *m);
 void				render_scene_and_ui(t_main *m);
+void				set_filter(t_main *main);
 
 #endif

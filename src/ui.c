@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ui.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
+/*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 16:41:28 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/18 15:39:11 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/19 16:21:20 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	render_scene_and_ui(t_main *m)
 {
 	SDL_RenderCopy(m->sdl.ren, m->ui.back.bg.textr, NULL, &m->ui.back.bg.rect);
 	re_draw(&m->cl, &m->sdl, &m->s);
+	set_filter(m);
 	SDL_UpdateTexture(m->sdl.texture, NULL,
 			m->sdl.img.pixels, m->sdl.img.w * sizeof(unsigned int));
 	sdl_clear_image(&m->sdl.img);
@@ -41,6 +42,7 @@ void	ui_and_sdl_init(t_main *m)
 	m->cl.work_dim[1] = WIN_H - R_SCENE_H_TRIM;
 	m->sdl.win_w = WIN_W;
 	m->sdl.win_h = WIN_H;
+	m->after_effect = AE_SEPIA;
 	sdl_init(&m->sdl);
 	sdl_recreate_img(&m->sdl.img, m->sdl.win_w - R_SCENE_W_TRIM, m->sdl.win_h - R_SCENE_H_TRIM);
 	SDL_DestroyTexture(m->sdl.texture);
