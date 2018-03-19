@@ -110,6 +110,17 @@ static void			refract_ray(t_ray *r, float refract_index)
 	r->orig = r->p_hit + v_mult_d(r->n_hit, BIAS);
 }
 
+static t_vector			set_mask(t_vector target, t_vector mask)
+{
+	t_vector res;
+
+	res[0] = mask[0] * target[0];
+	res[1] = mask[1] * target[1];
+	res[2] = mask[2] * target[2];
+
+	return (res);
+}
+
 static t_vector		ft_cast_ray(
 						__global t_object	*o,
 						__global t_light	*l,
@@ -118,58 +129,29 @@ static t_vector		ft_cast_ray(
 {
 	float			t;
 	int				i;
-	t_vector		primary_color;
-	t_vector		point_color;
-	t_vector		refract_color;
+	float			mask;
+	t_vector		object_color;
 	t_vector		res_color;
 	float			prime_reflect;
 	float			prime_refract;
 	short			is_primary;
 
 	i = -1;
-	is_primary = 1;
-	prime_reflect = 0;
-	prime_refract = 0;
-	point_color = (t_vector){0, 0, 0};
-	primary_color = (t_vector){0, 0, 0};
+	res_color = (t_vector){0, 0, 0};
+	mask = 1.0;
 	while (++i < MAX_ITER)
 	{
-		//Check if we hit something
 		if (!ft_trace(o, l, &t, hit_object, r))
-		{
-			point_color = (t_vector){0, 0, 0};
-			break ;
-		}
-		//Get the data of the hit fugure
+			return (res_color);
 		get_surface_data(r, *hit_object, t);
 		r->n_hit = v_dot(r->n_hit, r->dir) < 0 ? r->n_hit : -r->n_hit;
-		//Get the figure color
-		if (is_primary)
-		{
-			primary_color = v_mult_d(hit_object->color, calc_light(o, l, *hit_object, *r));
-			prime_reflect = hit_object->reflect;
-			is_primary = 0;
-		}
-		//Calculate the reflected ray and go to another iteration
-		if (hit_object->reflect)
-		{
-			reflect_ray(r);
-			continue ;
-		}
-		//Calculate the refracted ray and go to another iteration
-		else if (hit_object->refract)
-		{
-			// refract_ray(r, hit_object->refract);
-			continue ;
-		}
-		//Get the final color (after all reflections/refractions)
-		else
-		{
-			point_color = v_mult_d(hit_object->color, calc_light(o, l, *hit_object, *r));
+		object_color = v_mult_d(hit_object->color, calc_light(o, l, *hit_object, *r));
+		res_color += v_mult_d(object_color, (1.0 - hit_object->reflect) * mask);
+		mask *= hit_object->reflect;
+		reflect_ray(r);
+		if (mask < 0.05f)
 			break ;
-		}
 	}
-	res_color = v_mult_d(primary_color, 1 - prime_reflect) + v_mult_d(point_color, prime_reflect);
 	return (res_color);
 }
 
