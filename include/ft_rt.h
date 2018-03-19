@@ -6,7 +6,7 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:32:12 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/19 18:06:14 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/19 19:24:16 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@
 # include "ft_libftu.h"
 # include "ft_scene.h"
 # include "ft_ui.h"
-# define WIN_W			1600
-# define WIN_H			900
-# define MAX_ITER		10
+# define WIN_W			1280
+# define WIN_H			600
+# define MAX_ITER		5
 # define AE_SEPIA		1
 # define AE_TOON		2
 # define AE_M_BLUR		3
@@ -34,10 +34,11 @@
 
 typedef struct		s_main
 {
+	t_scene	s;
 	t_ui	ui;
 	t_cl	cl;
 	t_sdl	sdl;
-		short	after_effect;
+	short	after_effect;
 	t_scene	s;
 }					t_main;
 
@@ -66,14 +67,32 @@ void				move_camera(t_scene *s);
 float				ft_deg2rad(float deg);
 void				create_triangle_norm(t_object *obj);
 void				create_conus(t_object *obj);
+void				delete_scene(t_scene *s);
 
 /*
-** anestor
+** open export save
+*/
+
+void				export_file(t_main *m);
+void				open_file(t_main *m);
+void				save_file(t_main *m);
+void				save_as_file(t_main *m);
+
+/*
+** mouse hooks
+*/
+
+void				mouse_down(int x, int y, t_main *m);
+void				mouse_up(int x, int y, t_main *m);
+
+/*
+** ui and render
 */
 
 void				ui_and_sdl_init(t_main *m);
 void				window_resized_event(t_main *m);
 void				render_scene_and_ui(t_main *m);
 void				set_filter(t_main *main);
+//int					xy_in_rect(int x, int y, SDL_Rect rect);
 
 #endif

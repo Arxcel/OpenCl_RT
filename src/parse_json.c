@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_json.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 11:33:17 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/18 17:08:50 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/19 17:22:14 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -362,4 +362,11 @@ void			get_scene(const char *filename, t_scene *s)
 	process_value(value, s);
 	json_value_free(value);
 	free(file_str);
+}
+
+void	delete_scene(t_scene *s)
+{
+	ft_memdel((void **)&s->object);
+	ft_memdel((void **)&s->camera);
+	ft_memdel((void **)&s->light);
 }
