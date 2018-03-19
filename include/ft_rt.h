@@ -6,7 +6,7 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:32:12 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/19 19:24:16 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/19 19:28:48 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include "ft_libftu.h"
 # include "ft_scene.h"
 # include "ft_ui.h"
+# include "tinyfiledialogs.h"
 # define WIN_W			1280
 # define WIN_H			600
 # define MAX_ITER		5
@@ -39,7 +40,7 @@ typedef struct		s_main
 	t_cl	cl;
 	t_sdl	sdl;
 	short	after_effect;
-	t_scene	s;
+	// t_scene	s;
 }					t_main;
 
 typedef struct		s_rgb

@@ -6,7 +6,7 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 16:41:28 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/19 19:24:34 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/19 19:42:26 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ void	ui_and_sdl_init(t_main *m)
 	m->cl.work_dim[1] = WIN_H - R_SCENE_H_TRIM;
 	m->sdl.win_w = WIN_W;
 	m->sdl.win_h = WIN_H;
-	m->after_effect = AE_SEPIA;
 	sdl_init(&m->sdl);
 	sdl_recreate_img(&m->sdl.img, m->sdl.win_w - R_SCENE_W_TRIM,
 									m->sdl.win_h - R_SCENE_H_TRIM);

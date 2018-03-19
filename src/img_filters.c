@@ -6,14 +6,14 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 13:37:03 by afarapon          #+#    #+#             */
-/*   Updated: 2018/03/19 19:16:21 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/19 19:39:53 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_rt.h"
 
-static void			set_smooth(t_main *main)
-{
+// static void			set_smooth(t_main *main)
+// {
 	// unsigned int	*input_pixels = main->sdl.img.pixels;
 	// unsigned int	*output_pixels = (unsigned int*)malloc(sizeof(int) * main->sdl.img.h * main->sdl.img.w);
 
@@ -79,17 +79,30 @@ static void			set_smooth(t_main *main)
 	// 		outputBytes[3 * (width * y + x) + 2] = (byte)bSum;
 	// 	}
 	// }
+// }
+
+static unsigned char	clamp_rgb(int color)
+{
+	if (color > 255)
+		color = 255;
+	else if (color < 0)
+		color = 0;
+	return (color);
 }
 
 static unsigned int		set_sepia(unsigned int in)
 {
 	t_color		col;
 	t_color		res;
+	int			tmp;
 
 	col.col = in;
-	res.argb.blue = (col.argb.red * 0.393) + (col.argb.green * 0.769) + (col.argb.blue * 0.189);
-	res.argb.green = (col.argb.red * 0.349) + (col.argb.green * 0.686) + (col.argb.blue * 0.168);
-	res.argb.red = (col.argb.red * 0.272) + (col.argb.green * 0.534) + (col.argb.blue * 0.131);
+	tmp = (col.argb.red * 0.393) + (col.argb.green * 0.769) + (col.argb.blue * 0.189);
+	res.argb.red = clamp_rgb(tmp);
+	tmp = (col.argb.red * 0.349) + (col.argb.green * 0.686) + (col.argb.blue * 0.168);
+	res.argb.green = clamp_rgb(tmp);
+	tmp = (col.argb.red * 0.272) + (col.argb.green * 0.534) + (col.argb.blue * 0.131);
+	res.argb.blue = clamp_rgb(tmp);
 	return (res.col);
 }
 

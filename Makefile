@@ -2,7 +2,9 @@ CC = clang
 
 NAME = rt
 
-FLAGS = -Wall -Wextra -Werror -flto -O3
+KEYS = -Wall -Wextra -Werror
+
+FLAGS =  -flto -O3
 
 IDIR = ./include
 

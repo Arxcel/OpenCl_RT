@@ -6,7 +6,7 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 18:01:54 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/19 19:24:28 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/19 19:45:31 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,11 @@ static void			key_down(int key, t_main *m)
 	else if (key == SDLK_z)
 	{
 		open_file(m);
+	}
+	else if (key == SDLK_KP_1)
+	{
+		m->after_effect = m->after_effect > 0 ? 0 : AE_SEPIA;
+		m->sdl.changes = 1;
 	}
 }
 
