@@ -6,7 +6,7 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 13:37:03 by afarapon          #+#    #+#             */
-/*   Updated: 2018/03/19 14:17:44 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/19 16:10:02 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,9 @@ static void			set_sepia(t_main *main)
 	while (++j < main->sdl.img.h && (i = -1))
 	{
 		while (++i < main->sdl.img.w)
+		{
 			
+		}
 	}
 
 }
