@@ -78,17 +78,10 @@ static int				ft_trace(__global t_object	*o,
 	return (flag);
 }
 
-static void			reflect_ray(t_ray *r)
+static t_vector			reflect_ray(const t_ray *r)
 {
-	r->dir = v_normalize(r->dir - v_mult_d(r->n_hit, 2 * v_dot(r->n_hit, r->dir)));
-	r->orig = r->p_hit + v_mult_d(r->n_hit, BIAS);
+	return (v_normalize(r->dir - v_mult_d(r->n_hit, 2 * v_dot(r->n_hit, r->dir))));
 }
-
-// static t_vector			reflect_ray(const t_ray *r)
-// {
-// 	return (v_normalize(r->dir - v_mult_d(r->n_hit, 2 * v_dot(r->n_hit, r->dir))));
-// }
-
 
 static t_vector			refract_ray(t_ray *r, float refract_index)
 {
@@ -156,103 +149,72 @@ static float	fresnel(t_vector dit, t_vector norm, float ior)
 	return (kr);
 }
 
-static t_vector		ft_cast_ray(
+static t_vector			ft_cast_ray(
 						__global t_object	*o,
 						__global t_light	*l,
 						t_ray				*r,
 						t_object *hit_object)
 {
-	int				i;
-	float			t;
-	float			mask;
-	t_vector		object_color;
-	t_vector		res_color;
+	int			depth;
+	t_vector	reflection_color;
+	t_vector	refraction_color;
+	t_vector	object_color;
+	t_vector	hit_color;
+	float		mask;
+	float		t;
+	float		kr;
+	t_vector	bias;
 
-
-	i = -1;
-	res_color = (t_vector){0, 0, 0};
-	mask = 1.0;
-	while (++i < MAX_ITER)
+	depth = 0;
+	mask = 1;
+	hit_color = (t_vector){0,0,0}; 
+	while (depth < MAX_ITER)
 	{
-		if (mask < 0.1f || !ft_trace(o, l, &t, hit_object, r))
+		if (!ft_trace(o, l, &t, hit_object, r))
 			break ;
 		get_surface_data(r, *hit_object, t);
-		r->n_hit = v_dot(r->n_hit, r->dir) < 0 ? r->n_hit : -r->n_hit;
+				r->n_hit = v_dot(r->n_hit, r->dir) < 0 ? r->n_hit : -r->n_hit;
+		bias = v_mult_d(r->n_hit, BIAS);
+		int outside;
+		outside = v_dot(r->dir, r->n_hit) < 0 ? 1 : 0;
 		object_color = v_mult_d(hit_object->color, calc_light(o, l, *hit_object, *r));
-		res_color += v_mult_d(object_color, (1.0 - hit_object->reflect) * mask);
-		mask *= hit_object->reflect;
-		reflect_ray(r);
+		if (!hit_object->reflect && !hit_object->refract)
+		{
+			hit_color += v_mult_d(hit_object->color, mask * calc_light(o, l, *hit_object, *r));
+			break ;
+		}
+		else if (hit_object->refract)
+		{	
+			reflection_color = (t_vector){0, 0, 0};
+			refraction_color = (t_vector){0, 0, 0};
+			kr = fresnel(r->dir, r->n_hit, hit_object->refract);
+			if (kr < 1)
+			{
+				r->dir = refract_ray(r, hit_object->refract);
+				r->orig = outside ? r->p_hit - bias : r->p_hit + bias;
+				refraction_color = hit_color;
+				depth++;
+				continue ;
+			}
+			r->dir = reflect_ray(r);
+			r->orig = outside ? r->p_hit + bias : r->p_hit - bias;
+			reflection_color += v_mult_d(hit_color, (1.0 - hit_object->reflect) * mask);
+			mask *= hit_object->reflect;
+			depth++;
+			continue ;
+			hit_color += v_mult_d(reflection_color, kr) + v_mult_d(refraction_color, (1 - kr)); 
+		}
+		else if (hit_object->reflect && !hit_object->refract)
+		{
+			r->dir = reflect_ray(r);
+			r->orig = outside ? r->p_hit + bias : r->p_hit - bias;
+			hit_color += v_mult_d(object_color, (1.0 - hit_object->reflect) * mask);
+			mask *= hit_object->reflect;
+			depth++;
+		}
 	}
-	return (res_color);
-}
-
-// static t_vector			ft_cast_ray(
-// 						__global t_object	*o,
-// 						__global t_light	*l,
-// 						t_ray				*r,
-// 						t_object *hit_object)
-// {
-// 	int			depth;
-// 	t_vector	reflection_color;
-// 	t_vector	refraction_color;
-// 	t_vector	object_color;
-// 	float		mask;
-// 	float		t;
-// 	depth = 0;
-// 	mask = 1;
-// 	start:
-//     if (depth > MAX_ITER)
-// 		return (t_vector){0, 0, 0};
-//     t_vector hitColor = (t_vector){0,0,0}; 
-//     if (ft_trace(o, l, &t, hit_object, r))
-// 	{
-// 		get_surface_data(r, *hit_object, t);
-// 		t_vector bias;
-// 		bias = v_mult_d(r->n_hit, BIAS);
-// 		int outside;
-// 		outside = v_dot(r->dir, r->n_hit) < 0 ? 1 : 0;
-// 		// if (!hit_object->reflect && !hit_object->refract)
-// 		// {
-//             hitColor = v_mult_d(hit_object->color, mask * calc_light(o, l, *hit_object, *r));
-// 		// }
-// 		if (hit_object->reflect && !hit_object->refract)
-//         {
-// 			object_color = v_mult_d(hit_object->color, calc_light(o, l, *hit_object, *r));
-// 			r->dir = reflect_ray(r);
-// 			r->orig = outside ? r->p_hit + bias : r->p_hit - bias;
-// 			hitColor += v_mult_d(hitColor, (1.0 - hit_object->reflect) * mask);
-// 			mask *= hit_object->reflect;
-// 			depth = depth + 1;
-// 			goto start;
-// 		}
-// 		else if (hit_object->reflect && hit_object->refract)
-// 		{
-// 			reflection_color = (t_vector){0, 0, 0};
-// 			refraction_color = (t_vector){0, 0, 0};
-// 			float kr;
-// 			kr = fresnel(r->dir, r->n_hit, hit_object->refract);
-// 			if (kr < 1)
-// 			{
-// 				r->dir = refract_ray(r, hit_object->refract);
-// 				r->orig = outside ? r->p_hit - bias : r->p_hit + bias;
-// 				refraction_color = hitColor;
-// 				depth = depth + 1;
-// 				goto start;
-// 			}
-// 			r->dir = reflect_ray(r);
-// 			r->orig = outside ? r->p_hit + bias : r->p_hit - bias;
-// 			reflection_color += hitColor;
-// 			depth = depth + 1;
-// 			goto start;
-// 			hitColor += v_mult_d(reflection_color, kr) + v_mult_d(refraction_color, (1 - kr)); 
-// 		}
-//     }
-//     else
-// 	{
-//         hitColor = (t_vector){0, 0, 0};
-//     }
-//     return (hitColor); 
-// } 
+    return (hit_color); 
+} 
 
 static t_ray			find_cam_dir(__global t_camera    *cam, const int *iter, size_t i_w, size_t i_h)
 {
