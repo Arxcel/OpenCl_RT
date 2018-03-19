@@ -183,7 +183,7 @@ static t_vector			ft_cast_ray(
 			hit_color += v_mult_d(hit_object->color, mask * calc_light(o, l, *hit_object, *r));
 			break ;
 		}
-		else if (hit_object->reflect && hit_object->refract)
+		else if (hit_object->refract)
 		{	
 			reflection_color = (t_vector){0, 0, 0};
 			refraction_color = (t_vector){0, 0, 0};

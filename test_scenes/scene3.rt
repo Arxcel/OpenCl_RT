@@ -5,7 +5,7 @@
 			"point": [0, 10, -650],
 			"radius": 100,
 			"specular": 5000,
-			"reflect": 0.2,
+			"reflect": 0,
 			"refract": 2
 		},
 		{
@@ -14,7 +14,7 @@
 			"point": [0, -20, -1050],
 			"radius": 50,
 			"specular": 300,
-			"reflect": 0.2,
+			"reflect": 0.3,
 			"refract": 2
 		},
 		{
@@ -27,12 +27,21 @@
 		},
 		{
 			"type": "plane",
+			"point": [0, -300, 0],
+			"direction": [0, 1, 0],
+			"color": [0.7, 0, 0],
+			"specular": 15,
+			"reflect": 0,
+			"refract": 0
+		},
+		{
+			"type": "plane",
 			"point": [0, -100, 0],
 			"direction": [0, 1, 0],
 			"color": [0.2, 0.22, 0.85],
 			"specular": 15,
-			"reflect": 0,
-			"refract": 0
+			"reflect": 0.2,
+			"refract": 0.6
 		}
 	],
 	"lights": [{
