@@ -6,7 +6,7 @@
 #    By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/21 16:21:44 by vkozlov           #+#    #+#              #
-#    Updated: 2018/03/19 14:14:21 by anestor          ###   ########.fr        #
+#    Updated: 2018/03/19 15:54:26 by anestor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ CFLAGS = -I$(IDIR) \
 		 -I./libftSDL/include \
 		 -I./libJson/include \
 		 -I./libmy_math/include \
-		 -I./libtfd \
+		 -I./libTFD \
 
 LIBFT = libft
 
@@ -44,7 +44,7 @@ LIBFTSDL = libftSDL
 
 LIBMMATH = libmy_math
 
-LIBTFD = libtfd
+LIBTFD = libTFD
 
 SDL2_F		= -framework SDL2 -framework SDL2_image  -F ./libSDL/
 
