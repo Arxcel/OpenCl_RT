@@ -5,7 +5,7 @@
 			"point": [0, 10, -650],
 			"radius": 100,
 			"specular": 5000,
-			"reflect": 1,
+			"reflect": 0.2,
 			"refract": 2
 		},
 		{
@@ -14,8 +14,8 @@
 			"point": [0, -20, -1050],
 			"radius": 50,
 			"specular": 300,
-			"reflect": 0,
-			"refract": 0
+			"reflect": 0.2,
+			"refract": 2
 		},
 		{
 			"type": "plane",
