@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sdl_init.c                                         :+:      :+:    :+:   */
+/*   sdl_rinit.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkozlov <vkozlov@student.unit.ua>          +#+  +:+       +#+        */
+/*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/21 18:42:04 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/20 00:17:07 by anestor          ###   ########.fr       */
+/*   Created: 2018/03/20 00:23:34 by anestor           #+#    #+#             */
+/*   Updated: 2018/03/20 00:33:14 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_sdl.h"
+#include "ft_rt.h"
 #ifndef RETINA
 
-void				sdl_init(t_sdl *sdl)
+void				sdl_rinit(t_sdl *sdl)
 {
 	if (SDL_Init(SDL_INIT_EVERYTHING))
 		MSG(SDL_GetError());
@@ -40,14 +40,14 @@ void				sdl_init(t_sdl *sdl)
 #endif
 #ifdef RETINA
 
-void				sdl_init(t_sdl *sdl)
+void				sdl_rinit(t_sdl *sdl)
 {
 	if (SDL_Init(SDL_INIT_EVERYTHING))
 		MSG(SDL_GetError());
 	if (!(sdl->win = SDL_CreateWindow("My SDL", SDL_WINDOWPOS_UNDEFINED,
 								SDL_WINDOWPOS_UNDEFINED, sdl->win_w,
 								sdl->win_h, SDL_WINDOW_SHOWN
-					 | SDL_WINDOW_ALLOW_HIGHDPI))
+					| SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI)))
 		MSG(SDL_GetError());
 	if (!(sdl->ren = SDL_CreateRenderer(sdl->win, -1,
 					SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC)))

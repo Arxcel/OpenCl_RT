@@ -6,7 +6,7 @@
 #    By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/21 16:21:44 by vkozlov           #+#    #+#              #
-#    Updated: 2018/03/19 18:53:55 by anestor          ###   ########.fr        #
+#    Updated: 2018/03/20 00:30:57 by anestor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,6 +74,7 @@ SOURCES =   main.c \
 			open_export_save.c \
 			ui_buttons_init.c \
 			sdl_sub.c \
+			sdl_rinit.c \
 
 SRCS = $(addprefix $(DIR_S)/,$(SOURCES))
 
@@ -82,7 +83,7 @@ OBJS = $(addprefix $(DIR_O)/,$(SOURCES:.c=.o))
 all: obj libs $(NAME)
 
 $(NAME): $(OBJS) $(EXTENSIONS)
-		$(CC) -o $(NAME) $(OBJS) $(FLAGS) $(CFLAGS) -L $(LIBFT) -lft $(LIBTFD)/libtfd.a -L $(LIBMMATH) -lmy_math -L $(LIBJSON) -lJSON -L $(LIBCL) -lCL -framework OpenCl $(SDL2_P) $(SDL2_F) -L $(LIBFTSDL) -lftsdl
+		$(CC) -o $(NAME) $(OBJS) $(FLAGS) $(RETINA_MACRO) $(CFLAGS) -L $(LIBFT) -lft $(LIBTFD)/libtfd.a -L $(LIBMMATH) -lmy_math -L $(LIBJSON) -lJSON -L $(LIBCL) -lCL -framework OpenCl $(SDL2_P) $(SDL2_F) -L $(LIBFTSDL) -lftsdl
 
 		
 
@@ -98,7 +99,12 @@ obj:
 	mkdir -p obj
 
 $(DIR_O)/%.o: $(DIR_S)/%.c $(DEPS) $(EXTENSIONS)
-		$(CC) -c -o $@ $< $(FLAGS) $(CFLAGS)
+		$(CC) -c -o $@ $< $(FLAGS) $(CFLAGS) $(RETINA_MACRO)
+
+retina: set_macro obj libs $(NAME)
+
+set_macro:
+	$(eval RETINA_MACRO = -DRETINA)
 
 norme:
 		make norme -C $(LIBFT)
@@ -130,6 +136,8 @@ fclean: clean
 		make fclean -C $(LIBTFD)
 
 re: fclean all
+
+reretina: fclean retina
 
 .PHONY: all, obj, norme, clean, fclean, re
 .NOTPARALLEL:  all, obj, norme, clean, fclean, re

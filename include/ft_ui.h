@@ -6,11 +6,17 @@
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 16:37:12 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/19 19:12:29 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/20 00:26:50 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_UI_H
+# ifdef RETINA
+#  define RTN 2
+# endif
+# ifndef RETINA
+#  define RTN 1
+# endif
 # define FT_UI_H
 # define BG_ITEMS 12
 # define BTNS 11

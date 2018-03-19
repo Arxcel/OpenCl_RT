@@ -6,7 +6,7 @@
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 16:41:28 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/19 19:12:28 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/20 00:38:05 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	ui_and_sdl_init(t_main *m)
 	m->cl.work_dim[1] = WIN_H - R_SCENE_H_TRIM;
 	m->sdl.win_w = WIN_W;
 	m->sdl.win_h = WIN_H;
-	sdl_init(&m->sdl);
+	sdl_rinit(&m->sdl);
 	sdl_recreate_img(&m->sdl.img, m->sdl.win_w - R_SCENE_W_TRIM,
 									m->sdl.win_h - R_SCENE_H_TRIM);
 	SDL_DestroyTexture(m->sdl.texture);
