@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 11:57:16 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/18 16:46:59 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/18 17:36:48 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 
 typedef struct				s_ray
 {
-	float					in_figure;
 	t_vector				p_hit;
 	t_vector				n_hit;
 	t_vector				dir;
@@ -62,4 +61,6 @@ short						get_con_data(t_ray *ray, t_object con, float t);
 short						get_plane_data(t_ray *ray, t_object plane, float t);
 short						get_disk_data(t_ray *ray, t_object disk, float t);
 short						get_triangle_data(t_ray *ray, t_object plane, float t);
+short						par_cross(t_object sh, t_ray *ray, float *t);
+short						get_par_data(t_ray *ray, t_object sh, float t);
 #endif
