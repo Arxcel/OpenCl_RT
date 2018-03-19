@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 11:33:17 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/18 16:57:46 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/19 16:07:10 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ static int		set_o_type(json_value *value)
 		val = O_DISK;
 	else if (!err && !ft_strcmp(value->u.string.ptr, "triangle"))
 		val = O_TRIANGLE;
+	else if (!err && !ft_strcmp(value->u.string.ptr, "paraboloid"))
+		val = O_PARABOLOID;
 	else
 		err = 1;
 	if (err)
@@ -360,4 +362,24 @@ void			get_scene(const char *filename, t_scene *s)
 	process_value(value, s);
 	json_value_free(value);
 	free(file_str);
+}
+
+void	delete_scene(t_scene *s)
+{
+	ft_memdel((void **)&s->object);
+	ft_memdel((void **)&s->camera);
+	ft_memdel((void **)&s->light);
+	/*
+	int		i;
+
+	i = 0;
+	while (i != s->o_num)
+		free(&s->object[i++]);
+	i = 0;
+	while (i != s->l_num)
+		free(&s->camera[i++]);
+	i = 0;
+	while (i != s->c_num)
+		free(&s->light[i++]);
+		*/
 }

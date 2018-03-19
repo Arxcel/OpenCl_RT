@@ -62,7 +62,6 @@ float					calc_light(__global t_object	*o,
 	float			light_intensity;
 	t_object		shader;
 	t_ray			light;
-	t_vector		lp;
 
 	i = -1;
 	ret_col = 0;

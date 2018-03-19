@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 18:01:54 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/18 17:05:24 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/19 16:07:30 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,10 @@ static void			key_down(int key, t_main *m)
 		rot_camera(key, m);
 		m->sdl.changes = 1;
 	}
+	else if (key == SDLK_z)
+	{
+		open_file(m);
+	}
 }
 
 void				sdl_loop(t_main *m)
@@ -88,5 +92,9 @@ void				sdl_hook(t_main *m)
 		}
 		else if (m->sdl.e.type == SDL_KEYDOWN)
 			key_down(m->sdl.e.key.keysym.sym, m);
+		else if (m->sdl.e.type == SDL_MOUSEBUTTONDOWN)
+			mouse_down(m->sdl.e.button.x, m->sdl.e.button.y, m);
+		else if (m->sdl.e.type == SDL_MOUSEBUTTONUP)
+			mouse_up(m->sdl.e.button.x, m->sdl.e.button.y, m);
 	}
 }
