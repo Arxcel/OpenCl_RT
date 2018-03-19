@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:32:12 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/18 22:52:23 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/19 15:32:14 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,20 +47,31 @@ void				move_camera(t_scene *s);
 float				ft_deg2rad(float deg);
 void				create_triangle_norm(t_object *obj);
 void				create_conus(t_object *obj);
-
 void				delete_scene(t_scene *s);
 
 /*
-** anestor
+** open export save
 */
 
+void				export_file(t_main *m);
+void				open_file(t_main *m);
+void				save_file(t_main *m);
+void				save_as_file(t_main *m);
+
+/*
+** mouse hooks
+*/
 
 void				mouse_down(int x, int y, t_main *m);
 void				mouse_up(int x, int y, t_main *m);
-void				export_file(t_main *m);
-void				open_file(t_main *m);
+
+/*
+** ui and render
+*/
+
 void				ui_and_sdl_init(t_main *m);
 void				window_resized_event(t_main *m);
 void				render_scene_and_ui(t_main *m);
+//int					xy_in_rect(int x, int y, SDL_Rect rect);
 
 #endif
