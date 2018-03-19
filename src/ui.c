@@ -6,13 +6,13 @@
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 16:41:28 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/19 18:01:34 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/19 19:12:28 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_rt.h"
 
-static void	render_background(t_main *m)
+static void	pre_render_background(t_main *m)
 {
 	SDL_RenderCopy(m->sdl.ren, m->ui.bg[LEFT_FRAME].textr,
 						NULL, &m->ui.bg[LEFT_FRAME].rect);
@@ -26,26 +26,31 @@ static void	render_background(t_main *m)
 	ui_render_lines(&m->ui, &m->sdl);
 }
 
-static void render_buttons(t_main *m)
+static void pre_render_buttons(t_main *m)
 {
-	SDL_RenderCopy(m->sdl.ren, (m->ui.btn[OPEN].status == 1)
-				? m->ui.btn[OPEN].on : m->ui.btn[OPEN].off,
-							NULL, &m->ui.btn[OPEN].rect);
-	SDL_RenderCopy(m->sdl.ren, (m->ui.btn[SAVE].status == 1)
-				? m->ui.btn[SAVE].on : m->ui.btn[SAVE].off,
-							NULL, &m->ui.btn[SAVE].rect);
-	SDL_RenderCopy(m->sdl.ren, (m->ui.btn[SAVE_AS].status == 1)
-				? m->ui.btn[SAVE_AS].on : m->ui.btn[SAVE_AS].off,
-							NULL, &m->ui.btn[SAVE_AS].rect);
-	SDL_RenderCopy(m->sdl.ren, (m->ui.btn[EXPORT].status == 1)
-				? m->ui.btn[EXPORT].on : m->ui.btn[EXPORT].off,
-							NULL, &m->ui.btn[EXPORT].rect);
+	int		i;
+
+	i = 0;
+	while (i != BTNS)
+	{
+		if (m->ui.btn[i].status == 1)
+		{
+			SDL_RenderCopy(m->sdl.ren, m->ui.btn[i].on,
+								NULL, &m->ui.btn[i].rect);
+		}
+		else
+		{
+			SDL_RenderCopy(m->sdl.ren, m->ui.btn[i].off,
+								NULL, &m->ui.btn[i].rect);
+		}
+		i++;
+	}
 }
 
 void	render_scene_and_ui(t_main *m)
 {
 	ui_bg_rect_params(&m->ui, &m->sdl);
-	ui_btn_rect_params(&m->ui, &m->sdl);
+	ui_btn_rect_params(&m->ui);
 	SDL_RenderCopy(m->sdl.ren, m->ui.bg[BACKGROUND].textr,
 						NULL, &m->ui.bg[BACKGROUND].rect);
 	re_draw(&m->cl, &m->sdl, &m->s);
@@ -53,8 +58,8 @@ void	render_scene_and_ui(t_main *m)
 			m->sdl.img.pixels, m->sdl.img.w * sizeof(unsigned int));
 	sdl_clear_image(&m->sdl.img);
 	SDL_RenderCopy(m->sdl.ren, m->sdl.texture, NULL, &m->ui.scene_place);
-	render_background(m);
-	render_buttons(m);
+	pre_render_background(m);
+	pre_render_buttons(m);
 	SDL_RenderPresent(m->sdl.ren);
 }
 
@@ -97,17 +102,19 @@ void	window_resized_event(t_main *m)
 	m->sdl.changes = 1;
 }
 
-void	ui_btn_rect_params(t_ui *ui, t_sdl *sdl)
+void	ui_btn_rect_params(t_ui *ui)
 {
-	ui->btn[OPEN].rect =
-		sdl_rect(BTN_ROW1_X, BTN_ROW1_Y, BTN_SIZE, BTN_SIZE);
-	ui->btn[SAVE].rect =
-		sdl_rect(BTN_ROW1_X * 2 + BTN_SIZE / 1.8, BTN_ROW1_Y, BTN_SIZE, BTN_SIZE);
-	ui->btn[SAVE_AS].rect =
-		sdl_rect(BTN_ROW1_X * 3 + BTN_SIZE / 1.8 * 2, BTN_ROW1_Y, BTN_SIZE, BTN_SIZE);
-	ui->btn[EXPORT].rect =
-		sdl_rect(BTN_ROW1_X * 4 + BTN_SIZE / 1.8 * 3, BTN_ROW1_Y, BTN_SIZE, BTN_SIZE);
-	(void)sdl;
+	int		i;
+	int		k;
+
+	i = 0;
+	k = BTN_ROW1_X;
+	while (i != BTNS)
+	{
+		ui->btn[i].rect = sdl_rect(k, BTN_ROW1_Y, BTN_SIZE, BTN_SIZE);
+		k += BTN_ROW1_X + BTN_SIZE / 1.8;
+		i++;
+	}
 }
 
 void	ui_bg_rect_params(t_ui *ui, t_sdl *sdl)

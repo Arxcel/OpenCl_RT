@@ -6,7 +6,7 @@
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 16:37:12 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/19 17:41:49 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/19 19:12:29 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ enum			e_btns
 void			ui_buttons_init(t_ui *ui, t_sdl *sdl);
 void			ui_textures_init(t_ui *ui, t_sdl *sdl);
 void			ui_bg_rect_params(t_ui *ui, t_sdl *sdl);
-void			ui_btn_rect_params(t_ui *ui, t_sdl *sdl);
+void			ui_btn_rect_params(t_ui *ui);
 void			ui_render_corners(t_ui *ui, t_sdl *sdl, SDL_Rect place);
 void			ui_render_lines(t_ui *ui, t_sdl *sdl);
 
@@ -101,7 +101,6 @@ void			ui_render_lines(t_ui *ui, t_sdl *sdl);
 SDL_Rect		sdl_rect(int x, int y, int h, int w);
 SDL_Texture		*sdl_texture_from_file(char *filename, SDL_Renderer *renderer);
 void			sdl_recreate_img(t_img *img, size_t w, size_t h);
-
 int				xy_in_rect(int x, int y, SDL_Rect rect);
 
 #endif
