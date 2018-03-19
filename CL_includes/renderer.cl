@@ -159,7 +159,7 @@ static t_vector		ft_cast_ray(
 		//Calculate the refracted ray and go to another iteration
 		else if (hit_object->refract)
 		{
-			// refract_ray(r, hit_object->refract);
+			refract_ray(r, hit_object->refract);
 			continue ;
 		}
 		//Get the final color (after all reflections/refractions)

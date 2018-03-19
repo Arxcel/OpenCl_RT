@@ -6,7 +6,7 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:32:12 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/18 17:13:03 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/18 18:24:16 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # include "ft_ui.h"
 # define WIN_W			1600
 # define WIN_H			900
-# define MAX_ITER		5
+# define MAX_ITER		10000
 
 typedef struct		s_main
 {
