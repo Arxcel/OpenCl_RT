@@ -2,20 +2,18 @@
 	"objects": [{
 			"type": "sphere",
 			"color": [0.33, 0.02, 0.02],
-			"point": [0, -20, -650],
+			"point": [0, 10, -650],
 			"radius": 100,
-			"specular": 300,
+			"specular": 5000,
 			"reflect": 0,
-			"refract": 0.5
+			"refract": 5
 		},
 		{
-			"type": "cylinder",
-			"direction": [1, 0.5, 0],
-			"color": [0.1, 0.3, 0.1],
-			"point": [-150, 0, -800],
-			"radius": 60,
-			"specular": 15,
-			"reflect": 0
+			"type": "sphere",
+			"color": [0.33, 0.02, 0.02],
+			"point": [0, -20, -1050],
+			"radius": 50,
+			"specular": 300
 		},
 		{
 			"type": "plane",
@@ -27,26 +25,30 @@
 		},
 		{
 			"type": "plane",
+			"point": [0, -300, 0],
+			"direction": [0, 1, 0],
+			"color": [0.7, 0, 0],
+			"specular": 15,
+			"reflect": 0,
+			"refract": 0
+		},
+		{
+			"type": "plane",
 			"point": [0, -100, 0],
 			"direction": [0, 1, 0],
 			"color": [0.2, 0.22, 0.85],
-			"specular": 15,
-			"reflect": 0
-		},
-		{
-			"type": "conus",
-			"point": [150, 0, -800],
-			"direction": [-1, 1, 0],
-			"angle" : 70,
-			"radius": 100,
-			"color": [0.9, 0.9, 0.4],
-			"specular": 15,
-			"reflect": 0
+			"specular": 15
 		}
 	],
 	"lights": [{
 			"type": "lamp",
 			"position": [100, 1000, 1000],
+			"color": [1, 1, 1],
+			"intensity" : 1
+		},
+		{
+			"type": "lamp",
+			"position": [-100, 200, 0],
 			"color": [1, 1, 1],
 			"intensity" : 1
 		}

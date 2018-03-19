@@ -5,6 +5,14 @@
 			"point": [0, -150, -1000],
 			"radius": 50,
 			"specular": 1300,
+			"reflect": 0.3
+		},
+		{
+			"type": "sphere",
+			"color": [0.33, 0.02, 0.02],
+			"point": [0, -150, -2000],
+			"radius": 50,
+			"specular": 1300,
 			"reflect": 1
 		},
 		{
@@ -90,7 +98,7 @@
 			"color": [0.24, 0.12, 0],
 			"radius": 800,
 			"specular": 2,
-			"reflect": 0.2
+			"reflect": 1
 		}
 	],
 	"lights": [{
@@ -102,6 +110,12 @@
 		{
 			"type": "lamp",
 			"position": [-600, 900, 500],
+			"color": [1, 1, 1],
+			"intensity" : 1
+		},
+		{
+			"type": "lamp",
+			"position": [100, 0, -1100],
 			"color": [1, 1, 1],
 			"intensity" : 1
 		}

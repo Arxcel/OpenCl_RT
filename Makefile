@@ -1,22 +1,18 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2018/02/21 16:21:44 by vkozlov           #+#    #+#              #
-#    Updated: 2018/03/17 18:52:47 by afarapon         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 CC = clang
 
 NAME = rt
 
-FLAGS = -Wall -Wextra -Werror -flto -O3
+KEYS = -Wall -Wextra -Werror
+
+FLAGS =  -flto -O3
 
 IDIR = ./include
+
+EXTENSIONS = $(addprefix $(IDIR)/,$(EXT))
+
+EXT =		ft_ui.h \
+			ft_rt.h \
+			ft_scene.h \
 
 CFLAGS = -I$(IDIR) \
 		 -I./libft/include \
@@ -26,7 +22,7 @@ CFLAGS = -I$(IDIR) \
 		 -I./libftSDL/include \
 		 -I./libJson/include \
 		 -I./libmy_math/include \
-
+		 -I./libTFD \
 
 LIBFT = libft
 
@@ -37,6 +33,8 @@ LIBJSON = libJson
 LIBFTSDL = libftSDL
 
 LIBMMATH = libmy_math
+
+LIBTFD = libTFD
 
 SDL2_F		= -framework SDL2 -framework SDL2_image  -F ./libSDL/
 
@@ -60,6 +58,13 @@ SOURCES =   main.c \
 			move_camera.c \
 			utils.c \
 			validate_objects.c \
+			ui.c \
+			img_filters.c \
+			mouse_hooks.c \
+			ui_render_lines_and_corners.c \
+			open_export_save.c \
+			ui_buttons_init.c \
+			sdl_sub.c \
 
 SRCS = $(addprefix $(DIR_S)/,$(SOURCES))
 
@@ -67,8 +72,8 @@ OBJS = $(addprefix $(DIR_O)/,$(SOURCES:.c=.o))
 
 all: obj libs $(NAME)
 
-$(NAME): $(OBJS)
-		$(CC) -o $(NAME) $(OBJS) $(FLAGS) $(CFLAGS) -L $(LIBFT) -lft -L $(LIBMMATH) -lmy_math -L $(LIBJSON) -lJSON -L $(LIBCL) -lCL -framework OpenCl $(SDL2_P) $(SDL2_F) -L $(LIBFTSDL) -lftsdl
+$(NAME): $(OBJS) $(EXTENSIONS)
+		$(CC) -o $(NAME) $(OBJS) $(FLAGS) $(CFLAGS) -L $(LIBFT) -lft $(LIBTFD)/libtfd.a -L $(LIBMMATH) -lmy_math -L $(LIBJSON) -lJSON -L $(LIBCL) -lCL -framework OpenCl $(SDL2_P) $(SDL2_F) -L $(LIBFTSDL) -lftsdl
 
 		
 
@@ -78,11 +83,12 @@ libs:
 	make -C $(LIBMMATH)
 	make -C $(LIBCL)
 	make -C $(LIBFTSDL)
+	make -C $(LIBTFD)
 
 obj:
 	mkdir -p obj
 
-$(DIR_O)/%.o: $(DIR_S)/%.c $(DEPS)
+$(DIR_O)/%.o: $(DIR_S)/%.c $(DEPS) $(EXTENSIONS)
 		$(CC) -c -o $@ $< $(FLAGS) $(CFLAGS)
 
 norme:
@@ -102,6 +108,7 @@ clean:
 		make clean -C $(LIBFTSDL)
 		make clean -C $(LIBJSON)
 		make clean -C $(LIBMMATH)
+		make clean -C $(LIBTFD)
 		rm -rf $(DIR_O)
 
 fclean: clean
@@ -111,6 +118,7 @@ fclean: clean
 		make fclean -C $(LIBFTSDL)
 		make fclean -C $(LIBJSON)
 		make fclean -C $(LIBMMATH)
+		make fclean -C $(LIBTFD)
 
 re: fclean all
 

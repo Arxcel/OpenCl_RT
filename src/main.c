@@ -6,23 +6,24 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:33:57 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/17 17:18:51 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/19 16:07:11 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_rt.h"
 
+
 static char			*get_text(void)
 {
 	char *text;
-
 	text = ft_strdup("\n" \
 		"#include \"ft_rtv1.h\"\n#include \"sh_conus.cl\"\n" \
 		"#include \"sh_disk.cl\"\n#include \"sh_cylinder.cl\"\n" \
 		"#include \"ft_matrix.cl\"\n#include \"ft_vector.cl\"\n" \
 		"#include \"renderer.cl\"\n#include \"rotation.cl\"\n" \
-		"#include \"sh_sphere.cl\"\n#include \"utils.cl\"\n" \
+		"#include \"sh_sphere.cl\"\n#include \"utils.cl\"\n#include \"ft_light.cl\" \n" \
 		"#include \"sh_plane.cl\"\n#include \"sh_triangle.cl\"\n" \
+		"#include \"sh_paraboloid.cl\"\n" \
 		"kernel void kernel_entry (global t_object *object\n" \
 		", global t_light *light , global t_camera *camera\n" \
 		", global unsigned int *img_buf){\n" \
@@ -58,31 +59,20 @@ void				re_draw(t_cl *cl, t_sdl *sdl, t_scene *s)
 	cl_exec_kernel(cl, 2, cl->work_dim);
 	cl_get_res(cl, (size_t)sdl->img.w *
 				sdl->img.h * sizeof(unsigned int), sdl->img.pixels, 3);
+	printf("OpenCl Execution time is: %0.3f milliseconds \n", cl_get_exec_time(cl));
 	cl_free_all_args(4, cl->args);
 }
 
 int					main(int ac, char **av)
 {
-	clock_t	start;
 	t_main	m;
-	clock_t	stop;
-	float	elapsed;
 
-	m.cl.work_dim[0] = WIN_W;
-	m.cl.work_dim[1] = WIN_H;
-	m.sdl.win_w = WIN_W;
-	m.sdl.win_h = WIN_H;
-	start = clock();
-	sdl_init(&m.sdl);
-	SDL_SetWindowMinimumSize(m.sdl.win, 800, 600);
+	ui_and_sdl_init(&m);
 	if (ac != 2)
 		put_error("Wrong number of arguments.");
 	get_scene(av[1], &m.s);
 	draw(&m.cl, &m.sdl, &m.s);
-	stop = clock();
-	elapsed = (float)(stop - start) / CLOCKS_PER_SEC;
-	printf("\nTime elapsed: %.5f\n", elapsed);
-	sdl_put_image(&m.sdl);
+	render_scene_and_ui(&m);
 	sdl_loop(&m);
 	return (0);
 }

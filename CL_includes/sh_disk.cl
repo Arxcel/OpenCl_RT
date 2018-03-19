@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   disk.c                                             :+:      :+:    :+:   */
+/*   sh_disk.cl                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vkozlov <vkozlov@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -27,10 +27,9 @@ short				disk_cross(t_object *d, t_ray *r, float *t)
 		{
 			r->p_hit = r->orig + v_mult_d(r->dir, t0);
 			v = r->p_hit - d->point;
-			if (d->radius2 >= v_dot(v, v))
+			if (d->radius * d->radius >= v_dot(v, v))
 			{
 				*t = t0;
-				r->n_hit[0] = a;
 				return (1);
 			}
 		}
@@ -40,6 +39,6 @@ short				disk_cross(t_object *d, t_ray *r, float *t)
 
 short				get_disk_data(t_ray *ray, t_object disk, float t)
 {
-	ray->n_hit = ray->in_figure && ray->in_figure <= 0 ? disk.dir : -disk.dir;
+	ray->n_hit = disk.dir;
 	return (1);
 }

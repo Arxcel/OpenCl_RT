@@ -47,7 +47,6 @@ short				triangle_cross(t_object *p, t_ray *r, float *t)
 		{
 			if (!is_in_zone(r->orig + v_mult_d(r->dir, t0), p))
 				return (0);
-			r->n_hit[0] = a;
 			*t = t0;
 			return (1);
 		}
@@ -58,6 +57,6 @@ short				triangle_cross(t_object *p, t_ray *r, float *t)
 short				get_triangle_data(t_ray *ray, t_object triangle, float t)
 {
 	ray->p_hit = ray->orig + v_mult_d(ray->dir, t);
-	ray->n_hit = ray->in_figure && ray->in_figure <= 0 ? triangle.dir : -triangle.dir;
+	ray->n_hit = triangle.dir;
 	return (1);
 }

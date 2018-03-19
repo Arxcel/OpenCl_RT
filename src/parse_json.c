@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_json.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 11:33:17 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/17 18:54:33 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/19 17:22:14 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ static int		set_o_type(json_value *value)
 		val = O_DISK;
 	else if (!err && !ft_strcmp(value->u.string.ptr, "triangle"))
 		val = O_TRIANGLE;
+	else if (!err && !ft_strcmp(value->u.string.ptr, "paraboloid"))
+		val = O_PARABOLOID;
 	else
 		err = 1;
 	if (err)
@@ -191,17 +193,11 @@ static void		get_object_info(json_value *value, t_object *o)
 		if (!ft_strcmp(value->u.object.values[x].name, "refract"))
 			o->refract = get_number(value->u.object.values[x].value);
 		if (!ft_strcmp(value->u.object.values[x].name, "radius"))
-		{
 			o->radius = get_number(value->u.object.values[x].value);
-			o->radius2 = o->radius * o->radius;
-		}
 		if (!ft_strcmp(value->u.object.values[x].name, "specular"))
 			o->specular = get_number(value->u.object.values[x].value);
 		if (!ft_strcmp(value->u.object.values[x].name, "angle"))
-		{
-			o->angle = tan(ft_deg2rad(get_number(value->u.object.values[x].value) / 2.0));
-			o->angle = 1 + o->angle * o->angle;
-		}
+			o->angle = get_number(value->u.object.values[x].value);
 		if (!ft_strcmp(value->u.object.values[x].name, "reflect"))
 			o->reflect = get_number(value->u.object.values[x].value);
 		if (!ft_strcmp(value->u.object.values[x].name, "p1"))
@@ -225,13 +221,14 @@ static void		process_scene_o(json_value *value, t_scene *s)
 	s->object = (t_object*)ft_memalloc(sizeof(t_object) * s->o_num);
 	ft_bzero(s->object, sizeof(s->object));
 	x = -1;
-	while (++x < s->o_num - 1)
+	while (++x < (s->o_num - 1))
 	{
 		get_object_info(value->u.array.values[x], &s->object[x]);
 		if (s->object[x].type == O_TRIANGLE)
 			create_triangle_norm(&s->object[x]);
+		else if (s->object[x].type == O_CON)
+			create_conus(&s->object[x]);
 	}
-	s->object[x].type = 0;
 }
 
 static void		get_light_info(json_value *value, t_light *l)
@@ -266,7 +263,6 @@ static void		process_scene_l(json_value *value, t_scene *s)
 	x = -1;
 	while (++x < s->l_num - 1)
 		get_light_info(value->u.array.values[x], &s->light[x]);
-	s->light[x].type = 0;
 }
 
 static void		get_camera_info(json_value *value, t_camera *c)
@@ -303,7 +299,6 @@ static void		process_scene_c(json_value *value, t_scene *s)
 		get_camera_info(value->u.array.values[x], &s->camera[x]);
 	s->cam_base.pos = s->camera[x - 1].pos;
 	s->cam_base.rot = s->camera[x - 1].rot;
-	s->camera[x].type = 0;
 }
 
 static void		process_object(json_value *value, t_scene *s)
@@ -367,4 +362,11 @@ void			get_scene(const char *filename, t_scene *s)
 	process_value(value, s);
 	json_value_free(value);
 	free(file_str);
+}
+
+void	delete_scene(t_scene *s)
+{
+	ft_memdel((void **)&s->object);
+	ft_memdel((void **)&s->camera);
+	ft_memdel((void **)&s->light);
 }
