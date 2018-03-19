@@ -6,14 +6,14 @@
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 16:37:12 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/19 15:50:59 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/19 17:41:49 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_UI_H
 # define FT_UI_H
 # define BG_ITEMS 12
-# define BTNS 4
+# define BTNS 11
 # define R_SCENE_X 218
 # define R_SCENE_Y 85
 # define R_SCENE_H_TRIM 90
@@ -77,7 +77,14 @@ enum			e_btns
 	OPEN = 0,
 	SAVE = 1,
 	SAVE_AS = 2,
-	EXPORT = 3
+	EXPORT = 3,
+	BTN_PLANE = 4,
+	BTN_SPHERE = 5,
+	BTN_CYLINDER = 6,
+	BTN_CONUS = 7,
+	BTN_DISK = 8,
+	BTN_TRIANGLE = 9,
+	BTN_PARABOLOID = 10
 };
 
 void			ui_buttons_init(t_ui *ui, t_sdl *sdl);

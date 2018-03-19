@@ -6,7 +6,7 @@
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 14:10:10 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/19 15:50:57 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/19 17:31:08 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	open_file(t_main *m)
 	if (open == NULL)
 		return ;
 	delete_scene(&m->s);
+	ft_memset(&m->s.cam_trans.pos, 0, sizeof(t_vector));
+	ft_memset(&m->s.cam_trans.rot, 0, sizeof(t_vector));
 	get_scene(open, &m->s);
 	re_draw(&m->cl, &m->sdl, &m->s);
 	render_scene_and_ui(m);

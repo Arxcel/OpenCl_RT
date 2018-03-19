@@ -6,7 +6,7 @@
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 16:41:28 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/19 15:50:55 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/19 18:01:34 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static void	render_background(t_main *m)
 {
-	SDL_RenderCopy(m->sdl.ren, m->sdl.texture, NULL, &m->ui.scene_place);
 	SDL_RenderCopy(m->sdl.ren, m->ui.bg[LEFT_FRAME].textr,
 						NULL, &m->ui.bg[LEFT_FRAME].rect);
 	SDL_RenderCopy(m->sdl.ren, m->ui.bg[RIGHT_FRAME].textr,
@@ -53,15 +52,10 @@ void	render_scene_and_ui(t_main *m)
 	SDL_UpdateTexture(m->sdl.texture, NULL,
 			m->sdl.img.pixels, m->sdl.img.w * sizeof(unsigned int));
 	sdl_clear_image(&m->sdl.img);
+	SDL_RenderCopy(m->sdl.ren, m->sdl.texture, NULL, &m->ui.scene_place);
 	render_background(m);
 	render_buttons(m);
 	SDL_RenderPresent(m->sdl.ren);
-}
-
-void	sdl_recreate_img(t_img *img, size_t w, size_t h)
-{
-	ft_memdel((void**)&img->pixels);
-	*img = sdl_create_image(w, h);
 }
 
 void	ui_and_sdl_init(t_main *m)
@@ -128,32 +122,6 @@ void	ui_bg_rect_params(t_ui *ui, t_sdl *sdl)
 				5, LOGO_H, LOGO_W);
 }
 
-/*
-** move to libftSDL
-*/
-
-SDL_Rect	sdl_rect(int x, int y, int h, int w)
-{
-	SDL_Rect	tmp;
-
-	tmp.x = x;
-	tmp.y = y;
-	tmp.h = h;
-	tmp.w = w;
-	return (tmp);
-}
-
-SDL_Texture	*sdl_texture_from_file(char *filename, SDL_Renderer *renderer)
-{
-	SDL_Surface *surface;
-	SDL_Texture	*tmp;
-
-	surface = IMG_Load(filename);
-	tmp = SDL_CreateTextureFromSurface(renderer, surface);
-	SDL_FreeSurface(surface);
-	return (tmp);
-}
-
 void	ui_textures_init(t_ui *ui, t_sdl *sdl)
 {
 	ui->bg[BACKGROUND].textr =
@@ -180,32 +148,4 @@ void	ui_textures_init(t_ui *ui, t_sdl *sdl)
 		sdl_texture_from_file("textures/contrast_dot.png", sdl->ren);
 	ui->bg[LOGO].textr =
 		sdl_texture_from_file("textures/logo_small.png", sdl->ren);
-}
-
-void	ui_buttons_init(t_ui *ui, t_sdl *sdl)
-{
-	ui->btn[OPEN].on = 
-		sdl_texture_from_file("textures/btns/open_on.png", sdl->ren);
-	ui->btn[OPEN].off = 
-		sdl_texture_from_file("textures/btns/open_off.png", sdl->ren);
-	ui->btn[SAVE].on = 
-		sdl_texture_from_file("textures/btns/save_on.png", sdl->ren);
-	ui->btn[SAVE].off = 
-		sdl_texture_from_file("textures/btns/save_off.png", sdl->ren);
-	ui->btn[SAVE_AS].on = 
-		sdl_texture_from_file("textures/btns/save_as_on.png", sdl->ren);
-	ui->btn[SAVE_AS].off = 
-		sdl_texture_from_file("textures/btns/save_as_off.png", sdl->ren);
-	ui->btn[EXPORT].on = 
-		sdl_texture_from_file("textures/btns/export_on.png", sdl->ren);
-	ui->btn[EXPORT].off = 
-		sdl_texture_from_file("textures/btns/export_off.png", sdl->ren);
-}
-
-int		xy_in_rect(int x, int y, SDL_Rect rect)
-{
-	if (x >= rect.x && y >= rect.y &&
-			x <= rect.x + rect.w && y <= rect.y + rect.h)
-		return (1);
-	return (0);
 }
