@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_rtv1.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 11:57:16 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/18 17:08:29 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/18 17:36:48 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 
 typedef struct				s_ray
 {
-	float					in_figure;
 	t_vector				p_hit;
 	t_vector				n_hit;
 	t_vector				dir;

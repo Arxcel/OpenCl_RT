@@ -13,7 +13,7 @@
 			"point": [0, 50, -1000],
 			"radius": 40,
 			"specular": 1300,
-			"reflect": 0.99
+			"reflect": 0.6
 		},
 		{
 			"type": "paraboloid",
@@ -22,7 +22,7 @@
 			"radius" : 5,
 			"color": [0.9, 0.9, 0.4],
 			"max": 100,
-			"specular": 1200,
+			"specular": 500,
 			"reflect": 1
 		},
 		{
@@ -63,15 +63,7 @@
 			"point": [-600, 0, -500],
 			"direction": [1, 0, 0],
 			"specular": 15,
-			"reflect": 0
-		},
-		{
-			"type": "plane",
-			"color": [0.8, 0.8, 0.08],
-			"point": [600, 0, -500],
-			"direction": [-1, 0, 0],
-			"specular": 1500,
-			"reflect": 0.9
+			"reflect": 0.6
 		}
 	],
 	"lights": [{
@@ -83,12 +75,6 @@
 		{
 			"type": "lamp",
 			"position": [-500, 5000, 3000],
-			"color": [1, 1, 1],
-			"intensity" : 1
-		},
-		{
-			"type": "lamp",
-			"position": [0, 300, -550],
 			"color": [1, 1, 1],
 			"intensity" : 1
 		}

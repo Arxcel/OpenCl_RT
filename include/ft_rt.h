@@ -6,7 +6,7 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:32:12 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/18 18:24:16 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/19 14:11:15 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,12 @@
 # include "ft_ui.h"
 # define WIN_W			1600
 # define WIN_H			900
-# define MAX_ITER		10000
+# define MAX_ITER		10
+# define AE_SEPIA		1
+# define AE_TOON		2
+# define AE_M_BLUR		3
+# define AE_STEREO		4
+# define AE_SMOOTH		5
 
 typedef struct		s_main
 {
@@ -33,7 +38,22 @@ typedef struct		s_main
 	t_cl	cl;
 	t_sdl	sdl;
 	t_scene	s;
+	short	after_effect;
 }					t_main;
+
+typedef struct		s_rgb
+{
+	unsigned char	blue;
+	unsigned char	green;
+	unsigned char	red;
+	unsigned char	alpha;
+}					t_rgb;
+
+typedef union		u_color
+{
+	unsigned int	col;
+	struct s_rgb	rgba;
+}					t_color;
 
 void				sdl_hook(t_main *m);
 void				sdl_loop(t_main *m);
