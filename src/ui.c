@@ -6,15 +6,14 @@
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 16:41:28 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/19 15:50:55 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/19 19:12:28 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_rt.h"
 
-static void	render_background(t_main *m)
+static void	pre_render_background(t_main *m)
 {
-	SDL_RenderCopy(m->sdl.ren, m->sdl.texture, NULL, &m->ui.scene_place);
 	SDL_RenderCopy(m->sdl.ren, m->ui.bg[LEFT_FRAME].textr,
 						NULL, &m->ui.bg[LEFT_FRAME].rect);
 	SDL_RenderCopy(m->sdl.ren, m->ui.bg[RIGHT_FRAME].textr,
@@ -27,41 +26,41 @@ static void	render_background(t_main *m)
 	ui_render_lines(&m->ui, &m->sdl);
 }
 
-static void render_buttons(t_main *m)
+static void pre_render_buttons(t_main *m)
 {
-	SDL_RenderCopy(m->sdl.ren, (m->ui.btn[OPEN].status == 1)
-				? m->ui.btn[OPEN].on : m->ui.btn[OPEN].off,
-							NULL, &m->ui.btn[OPEN].rect);
-	SDL_RenderCopy(m->sdl.ren, (m->ui.btn[SAVE].status == 1)
-				? m->ui.btn[SAVE].on : m->ui.btn[SAVE].off,
-							NULL, &m->ui.btn[SAVE].rect);
-	SDL_RenderCopy(m->sdl.ren, (m->ui.btn[SAVE_AS].status == 1)
-				? m->ui.btn[SAVE_AS].on : m->ui.btn[SAVE_AS].off,
-							NULL, &m->ui.btn[SAVE_AS].rect);
-	SDL_RenderCopy(m->sdl.ren, (m->ui.btn[EXPORT].status == 1)
-				? m->ui.btn[EXPORT].on : m->ui.btn[EXPORT].off,
-							NULL, &m->ui.btn[EXPORT].rect);
+	int		i;
+
+	i = 0;
+	while (i != BTNS)
+	{
+		if (m->ui.btn[i].status == 1)
+		{
+			SDL_RenderCopy(m->sdl.ren, m->ui.btn[i].on,
+								NULL, &m->ui.btn[i].rect);
+		}
+		else
+		{
+			SDL_RenderCopy(m->sdl.ren, m->ui.btn[i].off,
+								NULL, &m->ui.btn[i].rect);
+		}
+		i++;
+	}
 }
 
 void	render_scene_and_ui(t_main *m)
 {
 	ui_bg_rect_params(&m->ui, &m->sdl);
-	ui_btn_rect_params(&m->ui, &m->sdl);
+	ui_btn_rect_params(&m->ui);
 	SDL_RenderCopy(m->sdl.ren, m->ui.bg[BACKGROUND].textr,
 						NULL, &m->ui.bg[BACKGROUND].rect);
 	re_draw(&m->cl, &m->sdl, &m->s);
 	SDL_UpdateTexture(m->sdl.texture, NULL,
 			m->sdl.img.pixels, m->sdl.img.w * sizeof(unsigned int));
 	sdl_clear_image(&m->sdl.img);
-	render_background(m);
-	render_buttons(m);
+	SDL_RenderCopy(m->sdl.ren, m->sdl.texture, NULL, &m->ui.scene_place);
+	pre_render_background(m);
+	pre_render_buttons(m);
 	SDL_RenderPresent(m->sdl.ren);
-}
-
-void	sdl_recreate_img(t_img *img, size_t w, size_t h)
-{
-	ft_memdel((void**)&img->pixels);
-	*img = sdl_create_image(w, h);
 }
 
 void	ui_and_sdl_init(t_main *m)
@@ -103,17 +102,19 @@ void	window_resized_event(t_main *m)
 	m->sdl.changes = 1;
 }
 
-void	ui_btn_rect_params(t_ui *ui, t_sdl *sdl)
+void	ui_btn_rect_params(t_ui *ui)
 {
-	ui->btn[OPEN].rect =
-		sdl_rect(BTN_ROW1_X, BTN_ROW1_Y, BTN_SIZE, BTN_SIZE);
-	ui->btn[SAVE].rect =
-		sdl_rect(BTN_ROW1_X * 2 + BTN_SIZE / 1.8, BTN_ROW1_Y, BTN_SIZE, BTN_SIZE);
-	ui->btn[SAVE_AS].rect =
-		sdl_rect(BTN_ROW1_X * 3 + BTN_SIZE / 1.8 * 2, BTN_ROW1_Y, BTN_SIZE, BTN_SIZE);
-	ui->btn[EXPORT].rect =
-		sdl_rect(BTN_ROW1_X * 4 + BTN_SIZE / 1.8 * 3, BTN_ROW1_Y, BTN_SIZE, BTN_SIZE);
-	(void)sdl;
+	int		i;
+	int		k;
+
+	i = 0;
+	k = BTN_ROW1_X;
+	while (i != BTNS)
+	{
+		ui->btn[i].rect = sdl_rect(k, BTN_ROW1_Y, BTN_SIZE, BTN_SIZE);
+		k += BTN_ROW1_X + BTN_SIZE / 1.8;
+		i++;
+	}
 }
 
 void	ui_bg_rect_params(t_ui *ui, t_sdl *sdl)
@@ -126,32 +127,6 @@ void	ui_bg_rect_params(t_ui *ui, t_sdl *sdl)
 				R_SCENE_Y, sdl->win_h - R_SCENE_Y - 5, R_FRAME_W);
 	ui->bg[LOGO].rect = sdl_rect(sdl->win_w - (LOGO_W + 10),
 				5, LOGO_H, LOGO_W);
-}
-
-/*
-** move to libftSDL
-*/
-
-SDL_Rect	sdl_rect(int x, int y, int h, int w)
-{
-	SDL_Rect	tmp;
-
-	tmp.x = x;
-	tmp.y = y;
-	tmp.h = h;
-	tmp.w = w;
-	return (tmp);
-}
-
-SDL_Texture	*sdl_texture_from_file(char *filename, SDL_Renderer *renderer)
-{
-	SDL_Surface *surface;
-	SDL_Texture	*tmp;
-
-	surface = IMG_Load(filename);
-	tmp = SDL_CreateTextureFromSurface(renderer, surface);
-	SDL_FreeSurface(surface);
-	return (tmp);
 }
 
 void	ui_textures_init(t_ui *ui, t_sdl *sdl)
@@ -180,32 +155,4 @@ void	ui_textures_init(t_ui *ui, t_sdl *sdl)
 		sdl_texture_from_file("textures/contrast_dot.png", sdl->ren);
 	ui->bg[LOGO].textr =
 		sdl_texture_from_file("textures/logo_small.png", sdl->ren);
-}
-
-void	ui_buttons_init(t_ui *ui, t_sdl *sdl)
-{
-	ui->btn[OPEN].on = 
-		sdl_texture_from_file("textures/btns/open_on.png", sdl->ren);
-	ui->btn[OPEN].off = 
-		sdl_texture_from_file("textures/btns/open_off.png", sdl->ren);
-	ui->btn[SAVE].on = 
-		sdl_texture_from_file("textures/btns/save_on.png", sdl->ren);
-	ui->btn[SAVE].off = 
-		sdl_texture_from_file("textures/btns/save_off.png", sdl->ren);
-	ui->btn[SAVE_AS].on = 
-		sdl_texture_from_file("textures/btns/save_as_on.png", sdl->ren);
-	ui->btn[SAVE_AS].off = 
-		sdl_texture_from_file("textures/btns/save_as_off.png", sdl->ren);
-	ui->btn[EXPORT].on = 
-		sdl_texture_from_file("textures/btns/export_on.png", sdl->ren);
-	ui->btn[EXPORT].off = 
-		sdl_texture_from_file("textures/btns/export_off.png", sdl->ren);
-}
-
-int		xy_in_rect(int x, int y, SDL_Rect rect)
-{
-	if (x >= rect.x && y >= rect.y &&
-			x <= rect.x + rect.w && y <= rect.y + rect.h)
-		return (1);
-	return (0);
 }

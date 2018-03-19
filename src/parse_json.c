@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 11:33:17 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/19 16:07:10 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/19 17:22:14 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -369,17 +369,4 @@ void	delete_scene(t_scene *s)
 	ft_memdel((void **)&s->object);
 	ft_memdel((void **)&s->camera);
 	ft_memdel((void **)&s->light);
-	/*
-	int		i;
-
-	i = 0;
-	while (i != s->o_num)
-		free(&s->object[i++]);
-	i = 0;
-	while (i != s->l_num)
-		free(&s->camera[i++]);
-	i = 0;
-	while (i != s->c_num)
-		free(&s->light[i++]);
-		*/
 }

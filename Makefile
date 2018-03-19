@@ -6,7 +6,7 @@
 #    By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/21 16:21:44 by vkozlov           #+#    #+#              #
-#    Updated: 2018/03/19 15:54:26 by anestor          ###   ########.fr        #
+#    Updated: 2018/03/19 18:53:55 by anestor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,6 +72,8 @@ SOURCES =   main.c \
 			mouse_hooks.c \
 			ui_render_lines_and_corners.c \
 			open_export_save.c \
+			ui_buttons_init.c \
+			sdl_sub.c \
 
 SRCS = $(addprefix $(DIR_S)/,$(SOURCES))
 
