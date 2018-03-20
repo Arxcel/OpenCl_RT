@@ -83,7 +83,7 @@ short				get_cyl_data(t_ray *ray, t_object cyl, float t)
 	m = v_dot(ray->dir, cyl.dir) * t + v_dot(ray->orig - cyl.pos1, cyl.dir);
 	ray->p_hit = ray->orig + v_mult_d(ray->dir, t);
 	ray->n_hit = v_normalize(ray->p_hit - cyl.pos1 - v_mult_d(cyl.dir, m));
-	if (v_dot(ray->n_hit, ray->dir) > 0)
-		ray->n_hit = v_mult_d(ray->n_hit, -1.0);
+	ray->texY = ray->n_hit[0] * 0.5;
+	ray->texX = ray->n_hit[1] * 0.5;
 	return (1);
 }

@@ -130,5 +130,5 @@ float					calc_light(__global t_object	*o,
 	{
 		pattern = get_pattern(ray);
 	}
-	return (ret_col * pattern);
+	return (ret_col * 0.5 + ret_col * pattern * 0.5);
 }
