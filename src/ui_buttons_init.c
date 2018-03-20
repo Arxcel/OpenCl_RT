@@ -6,7 +6,7 @@
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 17:50:08 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/19 17:53:22 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/20 14:48:15 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,45 +32,69 @@ static void	ui_file_buttons_init(t_ui *ui, t_sdl *sdl)
 		sdl_texture_from_file("textures/btns/export_off.png", sdl->ren);
 }
 
-static void	ui_create_elem_buttons_init_1(t_ui *ui, t_sdl *sdl)
+static void	ui_buttons_init_1(t_ui *ui, t_sdl *sdl)
 {
 	ui->btn[BTN_PLANE].on =
-		sdl_texture_from_file("textures/btns/open_on.png", sdl->ren);
+		sdl_texture_from_file("textures/btns/plane_on.png", sdl->ren);
 	ui->btn[BTN_PLANE].off =
-		sdl_texture_from_file("textures/btns/open_off.png", sdl->ren);
+		sdl_texture_from_file("textures/btns/plane_off.png", sdl->ren);
 	ui->btn[BTN_SPHERE].on =
-		sdl_texture_from_file("textures/btns/open_on.png", sdl->ren);
+		sdl_texture_from_file("textures/btns/sphere_on.png", sdl->ren);
 	ui->btn[BTN_SPHERE].off =
-		sdl_texture_from_file("textures/btns/open_off.png", sdl->ren);
+		sdl_texture_from_file("textures/btns/sphere_off.png", sdl->ren);
 	ui->btn[BTN_CYLINDER].on =
-		sdl_texture_from_file("textures/btns/open_on.png", sdl->ren);
+		sdl_texture_from_file("textures/btns/cylinder_on.png", sdl->ren);
 	ui->btn[BTN_CYLINDER].off =
-		sdl_texture_from_file("textures/btns/open_off.png", sdl->ren);
+		sdl_texture_from_file("textures/btns/cylinder_off.png", sdl->ren);
 	ui->btn[BTN_CONUS].on =
-		sdl_texture_from_file("textures/btns/open_on.png", sdl->ren);
+		sdl_texture_from_file("textures/btns/cone_on.png", sdl->ren);
 	ui->btn[BTN_CONUS].off =
-		sdl_texture_from_file("textures/btns/open_off.png", sdl->ren);
+		sdl_texture_from_file("textures/btns/cone_off.png", sdl->ren);
 	ui->btn[BTN_DISK].on =
-		sdl_texture_from_file("textures/btns/open_on.png", sdl->ren);
+		sdl_texture_from_file("textures/btns/disk_on.png", sdl->ren);
 	ui->btn[BTN_DISK].off =
-		sdl_texture_from_file("textures/btns/open_off.png", sdl->ren);
+		sdl_texture_from_file("textures/btns/disk_off.png", sdl->ren);
 	ui->btn[BTN_TRIANGLE].on =
-		sdl_texture_from_file("textures/btns/open_on.png", sdl->ren);
+		sdl_texture_from_file("textures/btns/triangle_on.png", sdl->ren);
 	ui->btn[BTN_TRIANGLE].off =
-		sdl_texture_from_file("textures/btns/open_off.png", sdl->ren);
+		sdl_texture_from_file("textures/btns/triangle_off.png", sdl->ren);
 }
 
-static void	ui_create_elem_buttons_init_2(t_ui *ui, t_sdl *sdl)
+static void	ui_buttons_init_2(t_ui *ui, t_sdl *sdl)
 {
 	ui->btn[BTN_PARABOLOID].on =
-		sdl_texture_from_file("textures/btns/open_on.png", sdl->ren);
+		sdl_texture_from_file("textures/btns/paraboloid_on.png", sdl->ren);
 	ui->btn[BTN_PARABOLOID].off =
-		sdl_texture_from_file("textures/btns/open_off.png", sdl->ren);
+		sdl_texture_from_file("textures/btns/paraboloid_off.png", sdl->ren);
+	ui->btn[PREV_CAM].on =
+		sdl_texture_from_file("textures/btns/prev_cam_on.png", sdl->ren);
+	ui->btn[PREV_CAM].off =
+		sdl_texture_from_file("textures/btns/prev_cam_off.png", sdl->ren);
+	ui->btn[NEXT_CAM].on =
+		sdl_texture_from_file("textures/btns/next_cam_on.png", sdl->ren);
+	ui->btn[NEXT_CAM].off =
+		sdl_texture_from_file("textures/btns/next_cam_off.png", sdl->ren);
+	ui->btn[BTN_CAM].on =
+		sdl_texture_from_file("textures/btns/new_cam_on.png", sdl->ren);
+	ui->btn[BTN_CAM].off =
+		sdl_texture_from_file("textures/btns/new_cam_off.png", sdl->ren);
+	ui->btn[BTN_LIGHT1].on =
+		sdl_texture_from_file("textures/btns/new_light1_on.png", sdl->ren);
+	ui->btn[BTN_LIGHT1].off =
+		sdl_texture_from_file("textures/btns/new_light1_off.png", sdl->ren);
+	ui->btn[BTN_LIGHT2].on =
+		sdl_texture_from_file("textures/btns/new_light2_on.png", sdl->ren);
+	ui->btn[BTN_LIGHT2].off =
+		sdl_texture_from_file("textures/btns/new_light2_off.png", sdl->ren);
+	ui->btn[BTN_LIGHT3].on =
+		sdl_texture_from_file("textures/btns/new_light3_on.png", sdl->ren);
+	ui->btn[BTN_LIGHT3].off =
+		sdl_texture_from_file("textures/btns/new_light3_off.png", sdl->ren);		
 }
 
 void		ui_buttons_init(t_ui *ui, t_sdl *sdl)
 {
 	ui_file_buttons_init(ui, sdl);
-	ui_create_elem_buttons_init_1(ui, sdl);
-	ui_create_elem_buttons_init_2(ui, sdl);
+	ui_buttons_init_1(ui, sdl);
+	ui_buttons_init_2(ui, sdl);
 }
