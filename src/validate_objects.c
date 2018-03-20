@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_objects.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/17 18:52:10 by afarapon          #+#    #+#             */
-/*   Updated: 2018/03/18 14:54:54 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/20 09:10:34 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ void			create_triangle_norm(t_object *obj)
 	t_vector b;
 	t_vector c;
 
-	if(v_is_eq(obj->p1, obj->p2) || v_is_eq(obj->p1, obj->p3) ||
-		v_is_eq(obj->p3, obj->p2))
+	if(v_is_eq(obj->pos1, obj->pos2) || v_is_eq(obj->pos1, obj->pos3) ||
+		v_is_eq(obj->pos3, obj->pos2))
 		put_error("Not valid triangle");
-	a = obj->p2 - obj->p1;
-	b = obj->p3 - obj->p1;
+	a = obj->pos2 - obj->pos1;
+	b = obj->pos3 - obj->pos1;
 	c = v_cross(a, b);
 	obj->dir = v_normalize(c);
 }

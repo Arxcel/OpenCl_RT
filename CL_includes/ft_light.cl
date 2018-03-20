@@ -73,6 +73,8 @@ float					calc_light(__global t_object	*o,
 		vis = !ft_trace(o, l, &shader_distance, &shader, &(light));
 		if (shader_distance > distance)
 			vis = 1;
+		if (shader.refract)
+			vis = shader.refract;
 		lt = v_dot(ray.n_hit, light.dir);
 		if (lt > 0)
 		{

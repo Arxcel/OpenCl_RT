@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 11:33:17 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/19 17:22:14 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/20 09:35:59 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,10 +186,12 @@ static void		get_object_info(json_value *value, t_object *o)
 			o->type = set_o_type(value->u.object.values[x].value);
 		if (!ft_strcmp(value->u.object.values[x].name, "direction"))
 			o->dir = get_n_vector(value->u.object.values[x].value);
-		if (!ft_strcmp(value->u.object.values[x].name, "point"))
-			o->point = get_vector(value->u.object.values[x].value);
+		if (!ft_strcmp(value->u.object.values[x].name, "pos1"))
+			o->pos1 = get_vector(value->u.object.values[x].value);
 		if (!ft_strcmp(value->u.object.values[x].name, "color"))
 			o->color = get_color(value->u.object.values[x].value);
+		if (!ft_strcmp(value->u.object.values[x].name, "ior"))
+			o->ior = get_number(value->u.object.values[x].value);
 		if (!ft_strcmp(value->u.object.values[x].name, "refract"))
 			o->refract = get_number(value->u.object.values[x].value);
 		if (!ft_strcmp(value->u.object.values[x].name, "radius"))
@@ -200,12 +202,12 @@ static void		get_object_info(json_value *value, t_object *o)
 			o->angle = get_number(value->u.object.values[x].value);
 		if (!ft_strcmp(value->u.object.values[x].name, "reflect"))
 			o->reflect = get_number(value->u.object.values[x].value);
-		if (!ft_strcmp(value->u.object.values[x].name, "p1"))
-			o->p1 = get_vector(value->u.object.values[x].value);
-		if (!ft_strcmp(value->u.object.values[x].name, "p2"))
-			o->p2 = get_vector(value->u.object.values[x].value);
-		if (!ft_strcmp(value->u.object.values[x].name, "p3"))
-			o->p3 = get_vector(value->u.object.values[x].value);
+		if (!ft_strcmp(value->u.object.values[x].name, "pos1"))
+			o->pos1 = get_vector(value->u.object.values[x].value);
+		if (!ft_strcmp(value->u.object.values[x].name, "pos2"))
+			o->pos2 = get_vector(value->u.object.values[x].value);
+		if (!ft_strcmp(value->u.object.values[x].name, "pos3"))
+			o->pos3 = get_vector(value->u.object.values[x].value);
 		if (!ft_strcmp(value->u.object.values[x].name, "max"))
 			o->max = get_number(value->u.object.values[x].value);
 		if (!ft_strcmp(value->u.object.values[x].name, "min"))
