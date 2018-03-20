@@ -13,7 +13,18 @@
 
 #include "ft_rtv1.h"
 
-static t_ray			point_light(t_vector p_hit, t_vector l_pos, t_vector n, float *light_intensity, float *d)
+static t_ray			dir_light(t_vector p_hit, t_vector l_dir, t_vector n, float *d)
+{
+	t_ray	light;
+	
+	light.dir = l_dir;
+	light.orig = p_hit + v_mult_d(n, BIAS);
+	*d = INFINITY;
+	light.dir = -v_normalize(light.dir);
+	return (light);
+}
+
+static t_ray			point_light(t_vector p_hit, t_vector l_pos, t_vector n, float *d)
 {
 	t_ray	light;
 	
@@ -69,13 +80,11 @@ float					calc_light(__global t_object	*o,
 	shader.refract = 0;
 	while (l[++i].type)
 	{
-		light_intensity += l[i].intence;
-		light = point_light(ray.p_hit, l[i].pos, ray.n_hit, &light_intensity, &distance);
-		vis = ft_trace(o, l, &shader_distance, &shader, &(light)) ? 0 : 1;
-		if (shader_distance > distance || shader.refract)
-			vis = 1;
-		if (shader.refract)
-			vis = shader.refract;
+		// vis = ft_trace(o, l, &shader_distance, &shader, &(light)) ? 0 : 1;
+		// if (shader_distance > distance || shader.refract)
+		// 	vis = 1;
+		// if (shader.refract)
+		// 	vis = shader.refract;
 		lt = v_dot(ray.n_hit, light.dir);
 		if (lt > 0 && shader.refract)
 		{
@@ -84,12 +93,35 @@ float					calc_light(__global t_object	*o,
 				light_intensity += get_shiness(lt, h.specular, light_intensity, ray, light);
 			ret_col += vis * light_intensity * lt;
 		} 
+
+		if (l[i].type == L_AMBIENT)
+			ret_col += l[i].intence;
 		else
 		{
-			light_intensity = lt * l[i].intence;
-			if (h.specular > 0)
-				light_intensity += get_shiness(lt, h.specular, light_intensity, ray, light);
-			ret_col += vis * light_intensity * lt;
+			if (l[i].type == L_DIR)
+				light = dir_light(ray.p_hit, l[i].pos, ray.n_hit, &distance);
+			else
+				light = point_light(ray.p_hit, l[i].pos, ray.n_hit, &distance);
+			vis = ft_trace(o, l, &shader_distance, &shader, &(light)) ? 0 : 1;
+			if (shader_distance > distance || (l[i].type == L_DIR && vis) || shader.refract)
+				vis = 1;
+			if (shader.refract)
+				vis = shader.refract;
+			lt = v_dot(ray.n_hit, light.dir);
+			if (lt > 0 && shader.refract)
+			{
+				light_intensity = lt * l[i].intence * shader.refract;
+				if (h.specular > 0)
+					light_intensity += get_shiness(lt, h.specular, light_intensity, ray, light);
+				ret_col += vis * light_intensity * lt;
+			} 
+			else if (lt > 0)
+			{
+				light_intensity = lt * l[i].intence;
+				if (h.specular > 0)
+					light_intensity += get_shiness(lt, h.specular, light_intensity, ray, light);
+				ret_col += vis * light_intensity * lt;
+			}
 		}
 	}
 	return (ret_col);
