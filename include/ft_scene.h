@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_scene.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 22:15:03 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/18 17:08:36 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/20 14:45:08 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,9 @@
 # define O_DISK		5
 # define O_TRIANGLE	6
 # define O_PARABOLOID 7
-# define L_SUN		1
+# define L_DIR		1
 # define L_LAMP		2
 # define L_AMBIENT	3
-# define L_AREA		4
 
 typedef float	t_vector __attribute__((vector_size(sizeof(float)*3)));
 
@@ -34,14 +33,14 @@ typedef struct		s_object
 	float			angle;
 	float			reflect;
 	float			refract;
+	float			ior;
 	float			min;
 	float			max;
 	t_vector		color;
-	t_vector		point;
 	t_vector		dir;
-	t_vector		p1;
-	t_vector		p2;
-	t_vector		p3;
+	t_vector		pos1;
+	t_vector		pos2;
+	t_vector		pos3;
 }					t_object;
 
 typedef struct		s_light

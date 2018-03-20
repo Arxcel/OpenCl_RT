@@ -6,7 +6,7 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 16:41:28 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/19 19:42:26 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/20 17:19:48 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	ui_and_sdl_init(t_main *m)
 	m->cl.work_dim[1] = WIN_H - R_SCENE_H_TRIM;
 	m->sdl.win_w = WIN_W;
 	m->sdl.win_h = WIN_H;
-	sdl_init(&m->sdl);
+	sdl_rinit(&m->sdl);
 	sdl_recreate_img(&m->sdl.img, m->sdl.win_w - R_SCENE_W_TRIM,
 									m->sdl.win_h - R_SCENE_H_TRIM);
 	SDL_DestroyTexture(m->sdl.texture);
@@ -106,15 +106,24 @@ void	window_resized_event(t_main *m)
 void	ui_btn_rect_params(t_ui *ui)
 {
 	int		i;
-	int		k;
+	int		x;
+	int		y;
 
 	i = 0;
-	k = BTN_ROW1_X;
+	x = BTN_ROW1_X;
+	y = BTN_ROW1_Y;
 	while (i != BTNS)
 	{
-		ui->btn[i].rect = sdl_rect(k, BTN_ROW1_Y, BTN_SIZE, BTN_SIZE);
-		k += BTN_ROW1_X + BTN_SIZE / 1.8;
+		ui->btn[i].rect = sdl_rect(x, y, BTN_SIZE, BTN_SIZE);
+		x += BTN_ROW1_X + BTN_SIZE;
 		i++;
+		if (i == 4 || i == 13 || i == 14)
+			x += 15;
+		if (i == 6)
+		{
+			y += BTN_ROW1_Y + BTN_SIZE;
+			x = BTN_ROW1_X;
+		}
 	}
 }
 
@@ -155,5 +164,5 @@ void	ui_textures_init(t_ui *ui, t_sdl *sdl)
 	ui->bg[CO_DOT].textr =
 		sdl_texture_from_file("textures/contrast_dot.png", sdl->ren);
 	ui->bg[LOGO].textr =
-		sdl_texture_from_file("textures/logo_small.png", sdl->ren);
+		sdl_texture_from_file("textures/logo.png", sdl->ren);
 }

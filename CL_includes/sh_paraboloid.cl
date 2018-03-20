@@ -22,7 +22,7 @@ short				par_cross(t_object sh, t_ray *ray, float *t)
 	float		m1;
 	float		m2;
 
-	x = ray->orig - sh.point;
+	x = ray->orig - sh.pos1;
 	params[0] = v_dot(ray->dir, ray->dir) - v_dot(ray->dir, sh.dir) * v_dot(ray->dir, sh.dir);
 
 	params[1] = 2 * (v_dot(x, ray->dir) - v_dot(ray->dir, sh.dir) * (v_dot(x, sh.dir) + 2 * sh.radius));
@@ -81,8 +81,8 @@ short				get_par_data(t_ray *ray, t_object sh, float t)
 {
 	float m;
 
-	m = v_dot(ray->dir, sh.dir) * t + v_dot(ray->orig - sh.point, sh.dir);
+	m = v_dot(ray->dir, sh.dir) * t + v_dot(ray->orig - sh.pos1, sh.dir);
 	ray->p_hit = ray->orig + v_mult_d(ray->dir, t);
-	ray->n_hit = v_normalize(ray->p_hit - sh.point - v_mult_d(sh.dir, m + sh.radius));
+	ray->n_hit = v_normalize(ray->p_hit - sh.pos1 - v_mult_d(sh.dir, m + sh.radius));
 	return (1);
 }

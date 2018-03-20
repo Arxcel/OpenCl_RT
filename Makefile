@@ -67,6 +67,7 @@ SOURCES =   main.c \
 			open_export_save.c \
 			ui_buttons_init.c \
 			sdl_sub.c \
+			sdl_rinit.c \
 
 SRCS = $(addprefix $(DIR_S)/,$(SOURCES))
 

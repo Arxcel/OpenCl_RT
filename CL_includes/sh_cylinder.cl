@@ -22,7 +22,7 @@ short				cyl_cross(t_object cyl, t_ray *r, float *t)
 	float		m1;
 	float		m2;
 
-	l = r->orig - cyl.point;
+	l = r->orig - cyl.pos1;
 	params[0] = v_dot(r->dir, r->dir) - v_dot(r->dir, cyl.dir) * v_dot(r->dir, cyl.dir);
 	params[1] = 2.0 * (v_dot(r->dir, l) - v_dot(r->dir, cyl.dir) * v_dot(l, cyl.dir));
 	params[2] = v_dot(l, l) - cyl.radius * cyl.radius - v_dot(l, cyl.dir) * v_dot(l, cyl.dir);
@@ -80,9 +80,9 @@ short				get_cyl_data(t_ray *ray, t_object cyl, float t)
 {
 	float m;
 
-	m = v_dot(ray->dir, cyl.dir) * t + v_dot(ray->orig - cyl.point, cyl.dir);
+	m = v_dot(ray->dir, cyl.dir) * t + v_dot(ray->orig - cyl.pos1, cyl.dir);
 	ray->p_hit = ray->orig + v_mult_d(ray->dir, t);
-	ray->n_hit = v_normalize(ray->p_hit - cyl.point - v_mult_d(cyl.dir, m));
+	ray->n_hit = v_normalize(ray->p_hit - cyl.pos1 - v_mult_d(cyl.dir, m));
 	if (v_dot(ray->n_hit, ray->dir) > 0)
 		ray->n_hit = v_mult_d(ray->n_hit, -1.0);
 	return (1);

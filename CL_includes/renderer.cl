@@ -160,14 +160,18 @@ static t_vector			ft_cast_ray(
 	t_vector	refraction_color;
 	t_vector	object_color;
 	t_vector	hit_color;
-	float		mask;
+	float		mask_reflection;
+	float		mask_refraction;
 	float		t;
 	float		kr;
 	t_vector	bias;
 
 	depth = 0;
-	mask = 1;
+	mask_reflection = 1;
+	mask_refraction = 1;
 	hit_color = (t_vector){0,0,0}; 
+	reflection_color = (t_vector){0, 0, 0};
+	refraction_color = (t_vector){0, 0, 0};
 	while (depth < MAX_ITER)
 	{
 		if (!ft_trace(o, l, &t, hit_object, r))
@@ -180,36 +184,34 @@ static t_vector			ft_cast_ray(
 		object_color = v_mult_d(hit_object->color, calc_light(o, l, *hit_object, *r));
 		if (!hit_object->reflect && !hit_object->refract)
 		{
-			hit_color += v_mult_d(hit_object->color, mask * calc_light(o, l, *hit_object, *r));
+			hit_color += v_mult_d(hit_object->color, mask_refraction * mask_reflection * calc_light(o, l, *hit_object, *r));
 			break ;
 		}
 		else if (hit_object->refract)
 		{	
-			reflection_color = (t_vector){0, 0, 0};
-			refraction_color = (t_vector){0, 0, 0};
-			kr = fresnel(r->dir, r->n_hit, hit_object->refract);
+			kr = fresnel(r->dir, r->n_hit, hit_object->ior);
 			if (kr < 1)
 			{
-				r->dir = refract_ray(r, hit_object->refract);
+				r->dir = refract_ray(r, hit_object->ior);
 				r->orig = outside ? r->p_hit - bias : r->p_hit + bias;
-				refraction_color = hit_color;
+				hit_color += v_mult_d(object_color, (1.0 - hit_object->refract) * mask_refraction * (1 - kr));
+				mask_refraction *= hit_object->refract;
 				depth++;
 				continue ;
 			}
 			r->dir = reflect_ray(r);
 			r->orig = outside ? r->p_hit + bias : r->p_hit - bias;
-			reflection_color += v_mult_d(hit_color, (1.0 - hit_object->reflect) * mask);
-			mask *= hit_object->reflect;
+			hit_color += v_mult_d(object_color, (1.0 - hit_object->reflect) * mask_reflection * kr);
+			mask_reflection *= hit_object->reflect;
 			depth++;
 			continue ;
-			hit_color += v_mult_d(reflection_color, kr) + v_mult_d(refraction_color, (1 - kr)); 
 		}
 		else if (hit_object->reflect && !hit_object->refract)
 		{
 			r->dir = reflect_ray(r);
 			r->orig = outside ? r->p_hit + bias : r->p_hit - bias;
-			hit_color += v_mult_d(object_color, (1.0 - hit_object->reflect) * mask);
-			mask *= hit_object->reflect;
+			hit_color += v_mult_d(object_color, (1.0 - hit_object->reflect) * mask_reflection * mask_refraction);
+			mask_reflection *= hit_object->reflect;
 			depth++;
 		}
 	}

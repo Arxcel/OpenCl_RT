@@ -6,7 +6,7 @@
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 17:56:20 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/19 17:57:54 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/20 00:25:48 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ SDL_Rect	sdl_rect(int x, int y, int h, int w)
 {
 	SDL_Rect	tmp;
 
-	tmp.x = x;
-	tmp.y = y;
-	tmp.h = h;
-	tmp.w = w;
+	tmp.x = x * RTN;
+	tmp.y = y * RTN;
+	tmp.h = h * RTN;
+	tmp.w = w * RTN;
 	return (tmp);
 }
 
@@ -42,6 +42,8 @@ SDL_Texture	*sdl_texture_from_file(char *filename, SDL_Renderer *renderer)
 
 int		xy_in_rect(int x, int y, SDL_Rect rect)
 {
+	x = x * RTN;
+	y = y * RTN;
 	if (x >= rect.x && y >= rect.y &&
 			x <= rect.x + rect.w && y <= rect.y + rect.h)
 		return (1);

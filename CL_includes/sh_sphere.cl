@@ -19,7 +19,7 @@ short				sphere_cross(t_object sphere, t_ray *r, float *t)
 	t_vector	l;
 	float		params[3];
 
-	l = r->orig - sphere.point;
+	l = r->orig - sphere.pos1;
 	if (v_length(l) == sphere.radius)
 		return (0);
 	params[0] = v_dot(r->dir, r->dir);
@@ -41,6 +41,6 @@ short				sphere_cross(t_object sphere, t_ray *r, float *t)
 short				get_sphere_data(t_ray *ray, t_object sphere, float t)
 {
 	ray->p_hit = ray->orig + v_mult_d(ray->dir, t);
-	ray->n_hit = v_normalize(ray->p_hit - sphere.point);
+	ray->n_hit = v_normalize(ray->p_hit - sphere.pos1);
 	return (1);
 }
