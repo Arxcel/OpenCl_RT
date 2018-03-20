@@ -6,7 +6,7 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:32:12 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/20 17:19:40 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/20 19:40:29 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,13 @@ void				render_scene_and_ui(t_main *m);
 
 unsigned char		clamp_rgb(int color);
 void				set_filter(t_main *main);
-unsigned int		set_smooth(t_main *main, size_t x, size_t y);
+unsigned int		set_smooth(t_main *main, size_t x, size_t y, unsigned int *in);
 unsigned int		set_sepia(unsigned int in);
+unsigned int		**get_matrix(t_main *main, size_t x, size_t y,
+	unsigned int *in);
+unsigned int		ae_calc_matrix(unsigned int **m,
+		unsigned int coef);
+void				free_matrix(unsigned int **m);
+t_rgb				get_color_rgb(int col);
 
 #endif

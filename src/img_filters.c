@@ -6,7 +6,7 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 13:37:03 by afarapon          #+#    #+#             */
-/*   Updated: 2018/03/20 17:14:44 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/20 20:39:00 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,18 @@
 
 unsigned char	clamp_rgb(int color)
 {
+	unsigned char	res;
+
 	if (color > 255)
-		color = 255;
+		res = 255;
 	else if (color < 0)
-		color = 0;
-	return (color);
+		res = 0;
+	else
+		res = color;
+	return (res);
 }
 
-static t_rgb			get_color_rgb(int col)
+t_rgb			get_color_rgb(int col)
 {
 	t_color			res;
 
@@ -31,12 +35,10 @@ static t_rgb			get_color_rgb(int col)
 
 static unsigned int	use_filter(t_main *main, size_t x, size_t y)
 {
-	unsigned int	out;
-
 	if (main->after_effect & AE_SEPIA)
 		return (set_sepia(main->sdl.img.pixels[y * main->sdl.img.w + x]));
 	if (main->after_effect & AE_SMOOTH)
-		return (set_smooth(main, x, y));
+		return (set_smooth(main, x, y, main->sdl.img.pixels));
 	return (main->sdl.img.pixels[y * main->sdl.img.w + x]);
 }
 

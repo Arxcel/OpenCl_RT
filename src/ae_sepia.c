@@ -6,7 +6,7 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 17:14:14 by afarapon          #+#    #+#             */
-/*   Updated: 2018/03/20 17:14:47 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/20 19:21:59 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,17 @@ unsigned int			set_sepia(unsigned int in)
 		(col.argb.blue * 0.131);
 	res.argb.blue = clamp_rgb(tmp);
 	return (res.col);
+}
+
+void					free_matrix(unsigned int **m)
+{
+	int		i;
+
+	i = 0;
+	while (i < 3)
+	{
+		free(m[i]);
+		i++;
+	}
+	free(m);
 }
