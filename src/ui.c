@@ -6,7 +6,7 @@
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 16:41:28 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/20 00:38:05 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/20 14:53:10 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,15 +105,24 @@ void	window_resized_event(t_main *m)
 void	ui_btn_rect_params(t_ui *ui)
 {
 	int		i;
-	int		k;
+	int		x;
+	int		y;
 
 	i = 0;
-	k = BTN_ROW1_X;
+	x = BTN_ROW1_X;
+	y = BTN_ROW1_Y;
 	while (i != BTNS)
 	{
-		ui->btn[i].rect = sdl_rect(k, BTN_ROW1_Y, BTN_SIZE, BTN_SIZE);
-		k += BTN_ROW1_X + BTN_SIZE / 1.8;
+		ui->btn[i].rect = sdl_rect(x, y, BTN_SIZE, BTN_SIZE);
+		x += BTN_ROW1_X + BTN_SIZE;
 		i++;
+		if (i == 4 || i == 13 || i == 14)
+			x += 15;
+		if (i == 6)
+		{
+			y += BTN_ROW1_Y + BTN_SIZE;
+			x = BTN_ROW1_X;
+		}
 	}
 }
 
@@ -154,5 +163,5 @@ void	ui_textures_init(t_ui *ui, t_sdl *sdl)
 	ui->bg[CO_DOT].textr =
 		sdl_texture_from_file("textures/contrast_dot.png", sdl->ren);
 	ui->bg[LOGO].textr =
-		sdl_texture_from_file("textures/logo_small.png", sdl->ren);
+		sdl_texture_from_file("textures/logo.png", sdl->ren);
 }

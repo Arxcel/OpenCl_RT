@@ -6,7 +6,7 @@
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 16:37:12 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/20 00:26:50 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/20 15:08:48 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,19 @@
 # endif
 # define FT_UI_H
 # define BG_ITEMS 12
-# define BTNS 11
+# define BTNS 17
 # define R_SCENE_X 218
-# define R_SCENE_Y 85
-# define R_SCENE_H_TRIM 90
+# define R_SCENE_Y 95
+# define R_SCENE_H_TRIM 100
 # define R_SCENE_W_TRIM 400
 # define L_FRAME_X 5
-# define L_FRAME_Y 85
+# define L_FRAME_Y 95
 # define L_FRAME_W 208
 # define R_FRAME_W 172
-# define CRN_SZ 6
-# define BTN_ROW1_Y 10
-# define BTN_ROW1_X 5
-# define BTN_SIZE 70
+# define CRN_SZ 18
+# define BTN_ROW1_Y 5
+# define BTN_ROW1_X 3
+# define BTN_SIZE 40
 # define LOGO_H 67
 # define LOGO_W 130
 
@@ -84,13 +84,19 @@ enum			e_btns
 	SAVE = 1,
 	SAVE_AS = 2,
 	EXPORT = 3,
-	BTN_PLANE = 4,
-	BTN_SPHERE = 5,
-	BTN_CYLINDER = 6,
-	BTN_CONUS = 7,
-	BTN_DISK = 8,
-	BTN_TRIANGLE = 9,
-	BTN_PARABOLOID = 10
+	PREV_CAM = 4,
+	NEXT_CAM = 5,
+	BTN_PLANE = 6,
+	BTN_SPHERE = 7,
+	BTN_CYLINDER = 8,
+	BTN_CONUS = 9,
+	BTN_DISK = 10,
+	BTN_TRIANGLE = 11,
+	BTN_PARABOLOID = 12,
+	BTN_CAM = 13,
+	BTN_LIGHT1 = 14,
+	BTN_LIGHT2 = 15,
+	BTN_LIGHT3 = 16
 };
 
 void			ui_buttons_init(t_ui *ui, t_sdl *sdl);
