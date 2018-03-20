@@ -6,11 +6,7 @@
 /*   By: pprivalo <pprivalo@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 11:33:17 by vkozlov           #+#    #+#             */
-<<<<<<< Updated upstream
-/*   Updated: 2018/03/19 17:22:14 by anestor          ###   ########.fr       */
-=======
-/*   Updated: 2018/03/20 10:34:57 by pprivalo         ###   ########.fr       */
->>>>>>> Stashed changes
+/*   Updated: 2018/03/20 10:47:31 by pprivalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
