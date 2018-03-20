@@ -101,7 +101,8 @@
 			"reflect": 1
 		}
 	],
-	"lights": [{
+	"lights": [
+		{
 			"type": "lamp",
 			"position": [1000, 1000, 10],
 			"color": [1, 1, 1],
@@ -117,6 +118,10 @@
 			"type": "lamp",
 			"position": [100, 0, -1100],
 			"color": [1, 1, 1],
+			"intensity" : 1
+		},
+		{
+			"type": "ambient",
 			"intensity" : 1
 		}
 	],

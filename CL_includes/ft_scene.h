@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_scene.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pprivalo <pprivalo@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 22:15:03 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/18 17:08:32 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/20 10:39:13 by pprivalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,9 @@
 # define O_DISK		5
 # define O_TRIANGLE	6
 # define O_PARABOLOID 7
-# define L_SUN		1
+# define L_DIR		1
 # define L_LAMP		2
 # define L_AMBIENT	3
-# define L_AREA		4
 
 typedef struct		s_object
 {

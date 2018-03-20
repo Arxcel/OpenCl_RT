@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parse_json.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pprivalo <pprivalo@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 11:33:17 by vkozlov           #+#    #+#             */
+<<<<<<< Updated upstream
 /*   Updated: 2018/03/19 17:22:14 by anestor          ###   ########.fr       */
+=======
+/*   Updated: 2018/03/20 10:34:57 by pprivalo         ###   ########.fr       */
+>>>>>>> Stashed changes
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +83,8 @@ static int		set_l_type(json_value *value)
 		err = 1;
 	if (!err && !ft_strcmp(value->u.string.ptr, "lamp"))
 		val = L_LAMP;
+	else if (!err && !ft_strcmp(value->u.string.ptr, "ambient"))
+		val = L_AMBIENT;
 	else
 		err = 1;
 	if (err)
