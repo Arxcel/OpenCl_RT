@@ -15,7 +15,7 @@
 			"color": [0.9, 0.9, 0.4],
 			"max": 100,
 			"specular": 500,
-			"reflect": 1
+			"reflect": 0.6
 		},
 		{
 			"type": "plane",

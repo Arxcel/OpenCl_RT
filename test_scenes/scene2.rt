@@ -5,7 +5,7 @@
 			"pos1": [0, -150, -1000],
 			"radius": 50,
 			"specular": 1300,
-			"reflect": 0.3
+			"reflect": 0.1
 		},
 		{
 			"type": "sphere",
@@ -98,7 +98,17 @@
 			"color": [0.24, 0.12, 0],
 			"radius": 800,
 			"specular": 2,
-			"reflect": 0.7		}
+			"reflect": 0.8
+		},
+		{
+			"type": "disk",
+			"pos1": [0, 0, 1800],
+			"direction": [0, 0, -1],
+			"color": [0.24, 0.12, 0],
+			"radius": 800,
+			"specular": 2,
+			"reflect": 0.8
+			}
 	],
 	"lights": [{
 			"type": "lamp",

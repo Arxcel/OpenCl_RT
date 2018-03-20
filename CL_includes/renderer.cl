@@ -194,14 +194,14 @@ static t_vector			ft_cast_ray(
 			{
 				r->dir = refract_ray(r, hit_object->ior);
 				r->orig = outside ? r->p_hit - bias : r->p_hit + bias;
-				refraction_color += v_mult_d(hit_color, (1.0 - hit_object->refract) * mask_refraction * (1 - kr));
+				hit_color += v_mult_d(object_color, (1.0 - hit_object->refract) * mask_refraction * (1 - kr));
 				mask_refraction *= hit_object->refract;
 				depth++;
 				continue ;
 			}
 			r->dir = reflect_ray(r);
 			r->orig = outside ? r->p_hit + bias : r->p_hit - bias;
-			reflection_color += v_mult_d(hit_color, (1.0 - hit_object->reflect) * mask_reflection * kr);
+			hit_color += v_mult_d(object_color, (1.0 - hit_object->reflect) * mask_reflection * kr);
 			mask_reflection *= hit_object->reflect;
 			depth++;
 			continue ;
@@ -213,10 +213,6 @@ static t_vector			ft_cast_ray(
 			hit_color += v_mult_d(object_color, (1.0 - hit_object->reflect) * mask_reflection * mask_refraction);
 			mask_reflection *= hit_object->reflect;
 			depth++;
-		}
-		else
-		{
-			break ;
 		}
 	}
     return (hit_color); 

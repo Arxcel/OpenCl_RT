@@ -5,9 +5,9 @@
 			"pos1": [0, 10, -650],
 			"radius": 100,
 			"specular": 5000,
-			"reflect": 0,
-			"ior": 1.1,
-			"refract": 1
+			"reflect": 1,
+			"ior": 1,
+			"refract": 0.9
 		},
 		{
 			"type": "sphere",
@@ -15,7 +15,7 @@
 			"pos1": [0, -20, -1050],
 			"radius": 50,
 			"specular": 300,
-			"reflect": 0.8,
+			"reflect": 1,
 		},
 		{
 			"type": "plane",
