@@ -101,7 +101,12 @@
 			"reflect": 1
 		}
 	],
-	"lights": [
+	"lights": [{
+			"type": "dir",
+			"position": [-10, -10, 0],
+			"color": [1, 1, 1],
+			"intensity" : 1
+		},
 		{
 			"type": "lamp",
 			"position": [1000, 1000, 10],
@@ -122,7 +127,7 @@
 		},
 		{
 			"type": "ambient",
-			"intensity" : 1
+			"intensity" : 0
 		}
 	],
 	"cameras": [{

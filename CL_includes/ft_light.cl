@@ -88,7 +88,7 @@ float					calc_light(__global t_object	*o,
 			else
 				light = point_light(ray.p_hit, l[i].pos, ray.n_hit, &distance);
 			vis = !ft_trace(o, l, &shader_distance, &shader, &(light));
-			if (shader_distance > distance)
+			if (shader_distance > distance || (l[i].type == L_DIR && vis))
 				vis = 1;
 			lt = v_dot(ray.n_hit, light.dir);
 			if (lt > 0)
