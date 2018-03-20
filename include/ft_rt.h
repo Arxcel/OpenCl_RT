@@ -6,7 +6,7 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:32:12 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/19 19:28:48 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/20 17:16:24 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@
 # define WIN_W			1280
 # define WIN_H			600
 # define MAX_ITER		5
-# define AE_SEPIA		1
-# define AE_TOON		2
-# define AE_M_BLUR		3
-# define AE_STEREO		4
-# define AE_SMOOTH		5
+# define AE_SEPIA		0x1
+# define AE_TOON		0x2
+# define AE_M_BLUR		0x4
+# define AE_SMOOTH		0x8
+# define AE_OTHER		0x10
 
 typedef struct		s_main
 {
@@ -93,7 +93,15 @@ void				mouse_up(int x, int y, t_main *m);
 void				ui_and_sdl_init(t_main *m);
 void				window_resized_event(t_main *m);
 void				render_scene_and_ui(t_main *m);
-void				set_filter(t_main *main);
 //int					xy_in_rect(int x, int y, SDL_Rect rect);
+
+/*
+** image after effect
+*/
+
+unsigned char		clamp_rgb(int color);
+void				set_filter(t_main *main);
+unsigned int		set_smooth(t_main *main, size_t x, size_t y);
+unsigned int		set_sepia(unsigned int in);
 
 #endif

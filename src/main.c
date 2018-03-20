@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
+/*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:33:57 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/19 16:07:11 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/20 13:00:35 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ int					main(int ac, char **av)
 {
 	t_main	m;
 
+	ft_bzero(&m, sizeof(t_main));
 	ui_and_sdl_init(&m);
 	if (ac != 2)
 		put_error("Wrong number of arguments.");

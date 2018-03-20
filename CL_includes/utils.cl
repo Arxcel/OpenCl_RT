@@ -17,15 +17,6 @@ float				ft_deg2rad(float deg)
 	return (deg * 3.14 / 180);
 }
 
-t_vector			set_sepia(t_vector in)
-{
-	t_vector		res;
-	res[0] = (in[0] * 0.393) + (in[1] * 0.769) + (in[2] * 0.189);
-	res[1] = (in[0] * 0.349) + (in[1] * 0.686) + (in[2] * 0.168);
-	res[2] = (in[0] * 0.272) + (in[1] * 0.534) + (in[2] * 0.131);
-	return (res);
-}
-
 unsigned int		set_rgb(t_vector c)
 {
 	c = v_mult_d(c, 255);

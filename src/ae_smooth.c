@@ -1,18 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ae_smooth.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/15 17:15:31 by afarapon          #+#    #+#             */
-/*   Updated: 2018/03/20 13:01:23 by afarapon         ###   ########.fr       */
+/*   Created: 2018/03/20 17:12:46 by afarapon          #+#    #+#             */
+/*   Updated: 2018/03/20 17:16:40 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_rt.h"
 
-float				ft_deg2rad(float deg)
+
+unsigned int			set_smooth(t_main *main, size_t x, size_t y)
 {
-	return (deg * M_PI / 180);
+	unsigned int		m[3][3];
+
+	return (0);
 }

@@ -60,6 +60,8 @@ SOURCES =   main.c \
 			validate_objects.c \
 			ui.c \
 			img_filters.c \
+			ae_smooth.c \
+			ae_sepia.c \
 			mouse_hooks.c \
 			ui_render_lines_and_corners.c \
 			open_export_save.c \

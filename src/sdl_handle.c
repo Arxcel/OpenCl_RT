@@ -6,7 +6,7 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 18:01:54 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/19 19:45:31 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/20 16:52:32 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,27 @@ static void			key_down(int key, t_main *m)
 	}
 	else if (key == SDLK_KP_1)
 	{
-		m->after_effect = m->after_effect > 0 ? 0 : AE_SEPIA;
+		m->after_effect ^= AE_SEPIA;
+		m->sdl.changes = 1;
+	}
+	else if (key == SDLK_KP_2)
+	{
+		m->after_effect ^= AE_TOON;
+		m->sdl.changes = 1;
+	}
+	else if (key == SDLK_KP_3)
+	{
+		m->after_effect ^= AE_M_BLUR;
+		m->sdl.changes = 1;
+	}
+	else if (key == SDLK_KP_4)
+	{
+		m->after_effect ^= AE_SMOOTH;
+		m->sdl.changes = 1;
+	}
+	else if (key == SDLK_KP_5)
+	{
+		m->after_effect ^= AE_OTHER;
 		m->sdl.changes = 1;
 	}
 }
