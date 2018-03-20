@@ -6,18 +6,13 @@
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 16:37:12 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/20 15:08:48 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/20 16:54:57 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_UI_H
-# ifdef RETINA
-#  define RTN 2
-# endif
-# ifndef RETINA
-#  define RTN 1
-# endif
 # define FT_UI_H
+# define RTN 2
 # define BG_ITEMS 12
 # define BTNS 17
 # define R_SCENE_X 218
@@ -28,7 +23,7 @@
 # define L_FRAME_Y 95
 # define L_FRAME_W 208
 # define R_FRAME_W 172
-# define CRN_SZ 18
+# define CRN_SZ 6
 # define BTN_ROW1_Y 5
 # define BTN_ROW1_X 3
 # define BTN_SIZE 40

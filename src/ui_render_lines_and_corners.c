@@ -6,7 +6,7 @@
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 14:07:35 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/20 15:04:25 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/20 16:54:56 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,16 @@
 static void	ui_corner_rect_params(t_ui *ui, SDL_Rect place)
 {
 	ui->bg[LT_CORNER].rect =
-		sdl_rect(place.x, place.y, CRN_SZ, CRN_SZ);
+		sdl_rect(place.x / RTN, place.y / RTN, CRN_SZ, CRN_SZ);
 	ui->bg[LB_CORNER].rect =
-		sdl_rect(place.x, place.y + place.h - CRN_SZ, CRN_SZ, CRN_SZ);
+		sdl_rect(place.x / RTN, (place.y + place.h) / RTN - CRN_SZ,
+				CRN_SZ, CRN_SZ);
 	ui->bg[RT_CORNER].rect =
-		sdl_rect(place.x + place.w - CRN_SZ, place.y, CRN_SZ, CRN_SZ);
+		sdl_rect((place.x + place.w) / RTN - CRN_SZ, place.y / RTN,
+				CRN_SZ, CRN_SZ);
 	ui->bg[RB_CORNER].rect =
-		sdl_rect(place.x + place.w - CRN_SZ, place.y + place.h - CRN_SZ,
-														CRN_SZ, CRN_SZ);
+		sdl_rect((place.x + place.w) / RTN - CRN_SZ,
+				(place.y + place.h) / RTN - CRN_SZ, CRN_SZ, CRN_SZ);
 }
 
 void		ui_render_corners(t_ui *ui, t_sdl *sdl, SDL_Rect place)

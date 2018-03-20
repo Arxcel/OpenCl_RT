@@ -21,14 +21,14 @@ short			con_cross(t_object con, t_ray *r, float *t)
 	float		m1;
 	float		m2;
 
-	x = r->orig - con.point;
+	x = r->orig - con.pos1;
 	p[0] = v_dot(r->dir, r->dir) - (1 + con.angle * con.angle) * v_dot(r->dir, con.dir) * v_dot(r->dir, con.dir);
 	p[1] = 2 * (v_dot(r->dir, x) - (1 + con.angle * con.angle) * v_dot(r->dir, con.dir) * v_dot(x, con.dir));
 	p[2] = v_dot(x, x) - (1 + con.angle * con.angle) * v_dot(x, con.dir) * v_dot(x, con.dir);
 	if (!solve_quadratic(p, &t2, &t1))
 		return (0);
-	m1 = v_dot(r->dir, con.dir) * t1 + v_dot(r->orig - con.point, con.dir);
-	m2 = v_dot(r->dir, con.dir) * t2 + v_dot(r->orig - con.point, con.dir);
+	m1 = v_dot(r->dir, con.dir) * t1 + v_dot(r->orig - con.pos1, con.dir);
+	m2 = v_dot(r->dir, con.dir) * t2 + v_dot(r->orig - con.pos1, con.dir);
 	if ((t1 < 0 && t2 < 0) || (t1 == t2))
 		return (0);
 	if (con.max > 0 || con.min < 0)
@@ -80,9 +80,9 @@ short		get_con_data(t_ray *ray, t_object con, float t)
 	float		m;
 	t_vector	x;
 
-	x = ray->orig - con.point;
+	x = ray->orig - con.pos1;
 	ray->p_hit = ray->orig + v_mult_d(ray->dir, t);
 	m = v_dot(ray->dir, con.dir) * t + v_dot(x, con.dir);
-	ray->n_hit = v_normalize(ray->p_hit - con.point - v_mult_d(v_mult_d(con.dir, m), (1 + con.angle * con.angle)));
+	ray->n_hit = v_normalize(ray->p_hit - con.pos1 - v_mult_d(v_mult_d(con.dir, m), (1 + con.angle * con.angle)));
 	return (1);
 }
