@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 18:01:54 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/19 16:07:30 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/20 17:32:13 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,6 @@ static void			key_down(int key, t_main *m)
 	{
 		rot_camera(key, m);
 		m->sdl.changes = 1;
-	}
-	else if (key == SDLK_z)
-	{
-		open_file(m);
 	}
 }
 

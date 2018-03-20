@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 18:38:51 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/12 13:47:29 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/20 19:53:00 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FT_SDL_H
 # include "SDL.h"
 # include "SDL_image.h"
+# include "SDL_ttf.h"
 # define MSG(x)	ft_killer(x)
 
 typedef struct		s_img

@@ -6,7 +6,7 @@
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 16:37:12 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/20 16:54:57 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/20 19:50:01 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # define RTN 2
 # define BG_ITEMS 12
 # define BTNS 17
+# define SLDRS 1
 # define R_SCENE_X 218
 # define R_SCENE_Y 95
 # define R_SCENE_H_TRIM 100
@@ -24,9 +25,11 @@
 # define L_FRAME_W 208
 # define R_FRAME_W 172
 # define CRN_SZ 6
+# define SCRL_SZ 12
 # define BTN_ROW1_Y 5
 # define BTN_ROW1_X 3
 # define BTN_SIZE 40
+# define RBTN_H 50
 # define LOGO_H 67
 # define LOGO_W 130
 
@@ -50,12 +53,35 @@ typedef struct	s_ui_btn
 	int			status;
 }				t_ui_btn;
 
+typedef struct	s_ui_rbtn
+{
+	SDL_Rect	rect;
+	t_ui_bg		a;
+	t_ui_bg		b;
+	t_ui_bg		c;
+	int			status;
+}				t_ui_rbtn;
+
+typedef struct	s_ui_sldr
+{
+	t_ui_bg		r1;
+	t_ui_bg		r2;
+	t_ui_bg		line;
+}				t_ui_sldr;
+
 typedef	struct	s_ui
 {
 	SDL_Rect	scene_place;
 	t_ui_bg		bg[BG_ITEMS];
 	t_ui_btn	btn[BTNS];
+	t_ui_rbtn	rbtn;
+	t_ui_sldr	sldr[SLDRS];
 }				t_ui;
+
+enum			e_sldr
+{
+	L_SCROLL = 0
+};
 
 enum			e_bg
 {
@@ -94,10 +120,13 @@ enum			e_btns
 	BTN_LIGHT3 = 16
 };
 
+void			ui_sliders_init(t_ui *ui, t_sdl *sdl);
 void			ui_buttons_init(t_ui *ui, t_sdl *sdl);
 void			ui_textures_init(t_ui *ui, t_sdl *sdl);
+void			ui_sliders_rect_params(t_ui *ui, t_sdl *sdl);
 void			ui_bg_rect_params(t_ui *ui, t_sdl *sdl);
 void			ui_btn_rect_params(t_ui *ui);
+void			ui_rbtn_rect_params(t_ui *ui);
 void			ui_render_corners(t_ui *ui, t_sdl *sdl, SDL_Rect place);
 void			ui_render_lines(t_ui *ui, t_sdl *sdl);
 

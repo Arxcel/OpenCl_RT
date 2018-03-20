@@ -6,7 +6,7 @@
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 14:07:35 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/20 16:54:56 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/20 19:03:29 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ void		ui_render_corners(t_ui *ui, t_sdl *sdl, SDL_Rect place)
 
 static void	ui_lines_rect_params(t_ui *ui, t_sdl *sdl)
 {
-	ui->bg[BL_DOT].rect =
-		sdl_rect(L_FRAME_X + 5, L_FRAME_Y + 45, 1, L_FRAME_W - 10);
+//	ui->bg[BL_DOT].rect =
+//		sdl_rect(L_FRAME_X + 5, L_FRAME_Y + 45, 1, L_FRAME_W - 10);
 	ui->bg[LG_DOT].rect =
 		sdl_rect(sdl->win_w - R_FRAME_W, L_FRAME_Y + 45, 1, R_FRAME_W - 10);
 	ui->bg[DG_DOT].rect =

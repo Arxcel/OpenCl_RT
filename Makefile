@@ -6,7 +6,7 @@
 #    By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/21 16:21:44 by vkozlov           #+#    #+#              #
-#    Updated: 2018/03/20 16:47:39 by anestor          ###   ########.fr        #
+#    Updated: 2018/03/20 19:58:33 by anestor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ CFLAGS = -I$(IDIR) \
 		 -I./libCL/include \
 		 -I./libSDL/SDL2.framework/Headers/ \
 		 -I./libSDL/SDL2_image.framework/Headers/ \
+		 -I./libSDL/SDL2_ttf.framework/Headers/ \
 		 -I./libftSDL/include \
 		 -I./libJson/include \
 		 -I./libmy_math/include \
@@ -46,7 +47,7 @@ LIBMMATH = libmy_math
 
 LIBTFD = libTFD
 
-SDL2_F		= -framework SDL2 -framework SDL2_image  -F ./libSDL/
+SDL2_F		= -framework SDL2 -framework SDL2_image -framework SDL2_ttf -F ./libSDL/
 
 SDL2_P		= -rpath @loader_path/libSDL/
 

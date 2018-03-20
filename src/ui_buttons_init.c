@@ -6,7 +6,7 @@
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 17:50:08 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/20 14:48:15 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/20 18:48:15 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,9 +92,20 @@ static void	ui_buttons_init_2(t_ui *ui, t_sdl *sdl)
 		sdl_texture_from_file("textures/btns/new_light3_off.png", sdl->ren);		
 }
 
+static void	ui_rbutton_init(t_ui *ui, t_sdl *sdl)
+{
+	ui->rbtn.a.textr =
+		sdl_texture_from_file("textures/dark_grey_dot.png", sdl->ren);
+	ui->rbtn.b.textr =
+		sdl_texture_from_file("textures/light_grey_dot.png", sdl->ren);
+	ui->rbtn.c.textr =
+		sdl_texture_from_file("textures/contrast_dot.png", sdl->ren);
+}
+
 void		ui_buttons_init(t_ui *ui, t_sdl *sdl)
 {
 	ui_file_buttons_init(ui, sdl);
 	ui_buttons_init_1(ui, sdl);
 	ui_buttons_init_2(ui, sdl);
+	ui_rbutton_init(ui, sdl);
 }

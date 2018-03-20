@@ -6,7 +6,7 @@
 #    By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/21 18:38:09 by vkozlov           #+#    #+#              #
-#    Updated: 2018/02/23 16:40:58 by vkozlov          ###   ########.fr        #
+#    Updated: 2018/03/20 19:56:39 by anestor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,8 @@ HEADER = include
 
 HEADERS = -I include \
 		  -I../libSDL/SDL2.framework/Headers \
-		  -I../libSDL/SDL2_image.framework/Headers
+		  -I../libSDL/SDL2_image.framework/Headers \
+		  -I../libSDL/SDL2_ttf.framework/Headers \
 
 SOURCES = sdl_clear_image.c \
 			ft_killer.c \
