@@ -13,7 +13,18 @@
 
 #include "ft_rtv1.h"
 
-static t_ray			point_light(t_vector p_hit, t_vector l_pos, t_vector n, float *light_intensity, float *d)
+static t_ray			dir_light(t_vector p_hit, t_vector l_dir, t_vector n, float *d)
+{
+	t_ray	light;
+	
+	light.dir = l_dir;
+	light.orig = p_hit + v_mult_d(n, BIAS);
+	*d = INFINITY;
+	light.dir = -v_normalize(light.dir);
+	return (light);
+}
+
+static t_ray			point_light(t_vector p_hit, t_vector l_pos, t_vector n, float *d)
 {
 	t_ray	light;
 	
@@ -72,8 +83,10 @@ float					calc_light(__global t_object	*o,
 			ret_col += l[i].intence;
 		else
 		{
-			// light_intensity += l[i].intence;
-			light = point_light(ray.p_hit, l[i].pos, ray.n_hit, &light_intensity, &distance);
+			if (l[i].type == L_DIR)
+				light = dir_light(ray.p_hit, l[i].pos, ray.n_hit, &distance);
+			else
+				light = point_light(ray.p_hit, l[i].pos, ray.n_hit, &distance);
 			vis = !ft_trace(o, l, &shader_distance, &shader, &(light));
 			if (shader_distance > distance)
 				vis = 1;

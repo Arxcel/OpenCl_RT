@@ -6,7 +6,7 @@
 /*   By: pprivalo <pprivalo@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 11:33:17 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/20 10:47:31 by pprivalo         ###   ########.fr       */
+/*   Updated: 2018/03/20 11:21:20 by pprivalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ static int		set_l_type(json_value *value)
 		val = L_LAMP;
 	else if (!err && !ft_strcmp(value->u.string.ptr, "ambient"))
 		val = L_AMBIENT;
+	else if (!err && !ft_strcmp(value->u.string.ptr, "dir"))
+		val = L_DIR;
 	else
 		err = 1;
 	if (err)
