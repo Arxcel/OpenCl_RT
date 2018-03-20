@@ -60,6 +60,11 @@ static float			get_shiness(float lambertian, float specular, float light_intensi
 	return (light_intensity * native_powr(c_gt, specular) * corel);
 }
 
+static float get_pattern(t_ray ray)
+{
+	return (((ray.texX * 8.0 - (int)(ray.texX * 8.0)) > 0.5) ^ ((ray.texY * 8.0 - (int)(ray.texY * 8.0)) > 0.5));
+}
+
 float					calc_light(__global t_object	*o,
 									__global t_light	*l,
 									t_object h, t_ray ray)
@@ -73,18 +78,15 @@ float					calc_light(__global t_object	*o,
 	float			light_intensity;
 	t_object		shader;
 	t_ray			light;
+	float			pattern;
 
 	i = -1;
 	ret_col = 0;
 	light_intensity = 0.0;
 	shader.refract = 0;
+	pattern = 1;
 	while (l[++i].type)
 	{
-		// vis = ft_trace(o, l, &shader_distance, &shader, &(light)) ? 0 : 1;
-		// if (shader_distance > distance || shader.refract)
-		// 	vis = 1;
-		// if (shader.refract)
-		// 	vis = shader.refract;
 		lt = v_dot(ray.n_hit, light.dir);
 		if (lt > 0 && shader.refract)
 		{
@@ -124,5 +126,9 @@ float					calc_light(__global t_object	*o,
 			}
 		}
 	}
-	return (ret_col);
+	if (h.permutation_id)
+	{
+		pattern = get_pattern(ray);
+	}
+	return (ret_col * pattern);
 }

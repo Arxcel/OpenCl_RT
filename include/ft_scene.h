@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 22:15:03 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/20 14:45:08 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/20 15:53:39 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,11 @@ typedef float	t_vector __attribute__((vector_size(sizeof(float)*3)));
 
 typedef struct		s_object
 {
-	short			type;
-	int				specular;
+	t_vector		color;
+	t_vector		dir;
+	t_vector		pos1;
+	t_vector		pos2;
+	t_vector		pos3;
 	float			radius;
 	float			angle;
 	float			reflect;
@@ -36,11 +39,10 @@ typedef struct		s_object
 	float			ior;
 	float			min;
 	float			max;
-	t_vector		color;
-	t_vector		dir;
-	t_vector		pos1;
-	t_vector		pos2;
-	t_vector		pos3;
+	short			type;
+	short			specular;
+	short			permutation_id;
+	short			texture_id;
 }					t_object;
 
 typedef struct		s_light

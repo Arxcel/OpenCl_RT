@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 11:57:16 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/18 17:36:48 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/20 17:01:33 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,14 @@
 # include "ft_vector.h"
 # include "ft_matrix.h"
 # include "ft_scene.h"
+# ifndef M_PI
+#  define M_PI 3.14159265359f
+# endif
 
 typedef struct				s_ray
 {
+	float					texX;
+	float					texY;
 	t_vector				p_hit;
 	t_vector				n_hit;
 	t_vector				dir;

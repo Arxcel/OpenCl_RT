@@ -42,5 +42,7 @@ short				get_sphere_data(t_ray *ray, t_object sphere, float t)
 {
 	ray->p_hit = ray->orig + v_mult_d(ray->dir, t);
 	ray->n_hit = v_normalize(ray->p_hit - sphere.pos1);
+	ray->texY = (1 + atan2(ray->n_hit[2], ray->n_hit[0]) / M_PI) * 0.5;
+	ray->texX = acos(ray->n_hit[1]) / M_PI; 
 	return (1);
 }

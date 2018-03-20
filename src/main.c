@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:33:57 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/19 16:07:11 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/20 15:54:13 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,12 @@ void				re_draw(t_cl *cl, t_sdl *sdl, t_scene *s)
 int					main(int ac, char **av)
 {
 	t_main	m;
+	// t_object test;
 
+	// printf("%lu\n", sizeof(test));
+	// printf("%lu\n", sizeof(test.type) + sizeof(test.specular) +sizeof(test.radius) +sizeof(test.angle) +sizeof(test.reflect) +sizeof(test.refract) +sizeof(test.ior) +sizeof(test.min) +sizeof(test.max) +sizeof(test.color) +sizeof(test.dir) +sizeof(test.pos1) +sizeof(test.pos2) + sizeof(test.pos3) + sizeof(test.permutation_id)+ sizeof(test.texture_id));
+	// printf("%lu\n", sizeof(t_object));
+	// put_error("All is ok.");
 	ui_and_sdl_init(&m);
 	if (ac != 2)
 		put_error("Wrong number of arguments.");

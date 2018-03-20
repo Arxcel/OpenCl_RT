@@ -5,7 +5,8 @@
 			"pos1": [0, -150, -1000],
 			"radius": 50,
 			"specular": 1300,
-			"reflect": 0.1
+			"reflect": 0.1,
+			"pattern": 1
 		},
 		{
 			"type": "sphere",
