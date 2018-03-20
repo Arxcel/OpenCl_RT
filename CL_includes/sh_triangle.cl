@@ -12,21 +12,21 @@
 
 #include "ft_rtv1.h"
 
-static short		is_in_zone(t_vector point, t_object *p)
+static short		is_in_zone(t_vector p1, t_object *p)
 {
 	t_vector	c0;
 	t_vector	e0;
 
-	e0 = p->p2 - p->p1;
-	c0 = point - p->p1;
+	e0 = p->pos2 - p->pos1;
+	c0 = p1 - p->pos1;
 	if (v_dot(p->dir, v_cross(e0, c0)) < 0)
 		return (0);
-	e0 = p->p3 - p->p2;
-	c0 = point - p->p2;
+	e0 = p->pos3 - p->pos2;
+	c0 = p1 - p->pos2;
 	if (v_dot(p->dir, v_cross(e0, c0)) < 0)
 		return (0);
-	e0 = p->p1 - p->p3;
-	c0 = point - p->p3;
+	e0 = p->pos1 - p->pos3;
+	c0 = p1 - p->pos3;
 	if (v_dot(p->dir, v_cross(e0, c0)) < 0)
 		return (0);
 	return (1);
@@ -41,7 +41,7 @@ short				triangle_cross(t_object *p, t_ray *r, float *t)
 	a = v_dot(p->dir, r->dir);
 	if (a)
 	{
-		v = p->p3 - r->orig; 
+		v = p->pos3 - r->orig; 
 		t0 = v_dot(v, p->dir) / a;
 		if (t0 >= 0)
 		{
