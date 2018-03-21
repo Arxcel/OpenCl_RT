@@ -6,34 +6,11 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 14:10:10 by anestor           #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2018/03/20 23:36:15 by anestor          ###   ########.fr       */
-=======
 /*   Updated: 2018/03/19 19:55:44 by afarapon         ###   ########.fr       */
->>>>>>> e833463f55d8fc930f31728351bb389c05014a89
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_rt.h"
-
-void	window_name(char *path, t_main *m)
-{
-	int		i;
-	int		k;
-	char	*name;
-
-	i = 0;
-	k = 0;
-	while (path[i])
-	{
-		if (path[i] == '/')
-			k = i + 1;
-		i++;
-	}
-	name = ft_strjoin(&path[k], " - RT");
-	SDL_SetWindowTitle(m->sdl.win, name);
-	ft_memdel((void **)&name);
-}
 
 void	open_file(t_main *m)
 {
@@ -47,7 +24,6 @@ void	open_file(t_main *m)
 	ft_memset(&m->s.cam_trans.pos, 0, sizeof(t_vector));
 	ft_memset(&m->s.cam_trans.rot, 0, sizeof(t_vector));
 	get_scene(open, &m->s);
-	window_name((char *)open, m);
 	re_draw(&m->cl, &m->sdl, &m->s);
 	render_scene_and_ui(m);
 }

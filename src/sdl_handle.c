@@ -6,11 +6,7 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 18:01:54 by vkozlov           #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2018/03/20 17:32:13 by anestor          ###   ########.fr       */
-=======
 /*   Updated: 2018/03/21 16:29:28 by afarapon         ###   ########.fr       */
->>>>>>> e833463f55d8fc930f31728351bb389c05014a89
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +60,6 @@ static void			key_down(int key, t_main *m)
 		rot_camera(key, m);
 		m->sdl.changes = 1;
 	}
-<<<<<<< HEAD
-=======
 	else if (key == SDLK_z)
 	{
 		open_file(m);
@@ -106,7 +100,6 @@ static void			key_down(int key, t_main *m)
 		m->after_effect ^= AE_SHARPNESS;
 		m->sdl.changes = 1;
 	}
->>>>>>> e833463f55d8fc930f31728351bb389c05014a89
 }
 
 void				sdl_loop(t_main *m)

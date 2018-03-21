@@ -6,11 +6,12 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:33:57 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/21 22:37:48 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/21 18:30:11 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_rt.h"
+
 
 static char			*get_text(void)
 {
@@ -77,7 +78,6 @@ int					main(int ac, char **av)
 	if (ac != 2)
 		put_error("Wrong number of arguments.");
 	get_scene(av[1], &m.s);
-	window_name(av[1], &m);
 	draw(&m.cl, &m.sdl, &m.s);
 	render_scene_and_ui(&m);
 	sdl_loop(&m);

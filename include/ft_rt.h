@@ -6,11 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:32:12 by vkozlov           #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2018/03/20 23:35:47 by anestor          ###   ########.fr       */
-=======
 /*   Updated: 2018/03/21 18:29:43 by vkozlov          ###   ########.fr       */
->>>>>>> e833463f55d8fc930f31728351bb389c05014a89
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +91,6 @@ void				mouse_up(int x, int y, t_main *m);
 ** ui and render
 */
 
-void				window_name(char *path, t_main *m);
 void				sdl_rinit(t_sdl *sdl);
 void				ui_and_sdl_init(t_main *m);
 void				window_resized_event(t_main *m);
