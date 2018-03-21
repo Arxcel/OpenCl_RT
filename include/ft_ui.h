@@ -6,7 +6,7 @@
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 16:37:12 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/20 23:08:01 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/21 23:47:13 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,9 @@ typedef struct	s_ui_sldr
 	t_ui_bg		r1;
 	t_ui_bg		r2;
 	t_ui_bg		line;
+	t_ui_bg		b_r;
+	t_ui_bg		b_line;
+	int			perc;
 }				t_ui_sldr;
 
 typedef	struct	s_ui
@@ -124,7 +127,7 @@ enum			e_btns
 void			ui_sliders_init(t_ui *ui, t_sdl *sdl);
 void			ui_buttons_init(t_ui *ui, t_sdl *sdl);
 void			ui_textures_init(t_ui *ui, t_sdl *sdl);
-void			ui_sliders_rect_params(t_ui *ui, t_sdl *sdl);
+void			ui_sliders_rect_params(t_ui *ui, t_sdl *sdl, t_scene *s);
 void			ui_bg_rect_params(t_ui *ui, t_sdl *sdl);
 void			ui_btn_rect_params(t_ui *ui);
 void			ui_rbtn_rect_params(t_ui *ui);

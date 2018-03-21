@@ -6,7 +6,7 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 16:41:28 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/21 23:17:58 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/22 00:11:03 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void		sdl_put_text(char *text, int x, int y, t_sdl *sdl)
 	rect.h = surface->h;
 	rect.x = x;
 	rect.y = y;
+	printf("rect.h %d\n", rect.h);
 	texture = SDL_CreateTextureFromSurface(sdl->ren, surface);
 	SDL_RenderCopy(sdl->ren, texture, NULL, &rect);
 	SDL_FreeSurface(surface);
@@ -96,6 +97,10 @@ static void	pre_render_rbutton(t_main *m)
 
 static void	pre_render_sliders(t_main *m)
 {
+	SDL_RenderCopy(m->sdl.ren, m->ui.sldr[L_SCROLL].b_r.textr,
+								NULL, &m->ui.sldr[L_SCROLL].b_r.rect);
+	SDL_RenderCopy(m->sdl.ren, m->ui.sldr[L_SCROLL].b_line.textr,
+								NULL, &m->ui.sldr[L_SCROLL].b_line.rect);
 	SDL_RenderCopy(m->sdl.ren, m->ui.sldr[L_SCROLL].r1.textr,
 								NULL, &m->ui.sldr[L_SCROLL].r1.rect);
 	SDL_RenderCopy(m->sdl.ren, m->ui.sldr[L_SCROLL].r2.textr,
@@ -109,7 +114,7 @@ void	render_scene_and_ui(t_main *m)
 	ui_bg_rect_params(&m->ui, &m->sdl);
 	ui_btn_rect_params(&m->ui);
 	ui_rbtn_rect_params(&m->ui);
-	ui_sliders_rect_params(&m->ui, &m->sdl);
+	ui_sliders_rect_params(&m->ui, &m->sdl, &m->s);
 	SDL_RenderCopy(m->sdl.ren, m->ui.bg[BACKGROUND].textr,
 						NULL, &m->ui.bg[BACKGROUND].rect);
 	re_draw(&m->cl, &m->sdl, &m->s);
@@ -169,19 +174,30 @@ void	window_resized_event(t_main *m)
 	m->sdl.changes = 1;
 }
 
-void	ui_sliders_rect_params(t_ui *ui, t_sdl *sdl)
+void	ui_sliders_rect_params(t_ui *ui, t_sdl *sdl, t_scene *s)
 {
 	int		y;
 	int		l;
+	int		l2;
+	int		l3;
 
 	y = R_SCENE_Y + RBTN_H + 5;
 	l = sdl->win_h - R_SCENE_H_TRIM - RBTN_H - 5 - SCRL_SZ;
+	l2 = s->o_num  * 30;
+	l3 = l;
+	if (l2 > l)
+		l = (double)((double)(l - l % 30) / l2) * l;
+	printf("l: %d\n", l);
 	ui->sldr[L_SCROLL].r1.rect =
 		sdl_rect(L_FRAME_W - SCRL_SZ / 2 - 1, y, SCRL_SZ, SCRL_SZ);
 	ui->sldr[L_SCROLL].r2.rect =
 		sdl_rect(L_FRAME_W - SCRL_SZ / 2 - 1, y + l, SCRL_SZ, SCRL_SZ);
 	ui->sldr[L_SCROLL].line.rect =
 		sdl_rect(L_FRAME_W - SCRL_SZ / 2 - 1, y + SCRL_SZ / 2, l, SCRL_SZ);
+	ui->sldr[L_SCROLL].b_r.rect =
+		sdl_rect(L_FRAME_W - SCRL_SZ / 2 - 1, y + l3, SCRL_SZ, SCRL_SZ);
+	ui->sldr[L_SCROLL].b_line.rect =
+		sdl_rect(L_FRAME_W - SCRL_SZ / 2 - 1, y + SCRL_SZ / 2, l3, SCRL_SZ);
 }
 
 void	ui_rbtn_rect_params(t_ui *ui)
@@ -268,4 +284,8 @@ void	ui_sliders_init(t_ui *ui, t_sdl *sdl)
 		sdl_texture_from_file("textures/contrast_disk.png", sdl->ren);
 	ui->sldr[L_SCROLL].line.textr = 
 		sdl_texture_from_file("textures/contrast_dot.png", sdl->ren);
+	ui->sldr[L_SCROLL].b_r.textr = 
+		sdl_texture_from_file("textures/black_disk.png", sdl->ren);
+	ui->sldr[L_SCROLL].b_line.textr = 
+		sdl_texture_from_file("textures/black_dot.png", sdl->ren);
 }
