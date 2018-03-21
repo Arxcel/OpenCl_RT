@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_export_save.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
+/*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 14:10:10 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/19 17:31:08 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/19 19:55:44 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	export_file(t_main *m)
 	if (export == NULL)
 		return ;
 	re_draw(&m->cl, &m->sdl, &m->s);
+	set_filter(m);
 	surface = SDL_CreateRGBSurface(0, m->sdl.img.w, m->sdl.img.h,
 															32, 0, 0, 0, 0);
 	ft_memcpy(surface->pixels, m->sdl.img.pixels, surface->h * surface->pitch);

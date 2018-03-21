@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 22:15:03 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/21 14:52:06 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/21 18:21:53 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # define L_LAMP		2
 # define L_AMBIENT	3
 # define L_AREA		4
+# define T_CHECK	2
 
 typedef struct		s_object
 {
@@ -40,10 +41,10 @@ typedef struct		s_object
 	float			ior;		// {0:float_max}
 	float			min;		// {float_min:float_max}
 	float			max;		// {float_min:float_max}
+	short			t_scale;	// {short_min:short_max}
 	short			type;		// {short_min:short_max}
 	short			specular;	// {short_min:short_max}
 	short			t_id;		// {short_min:short_max}
-	short			t_scale;	// {short_min:short_max}
 	short			is_neg;		// {short_min:short_max}
 }					t_object;
 

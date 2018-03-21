@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_sdl.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
+/*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 18:38:51 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/12 13:47:29 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/19 14:07:18 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct		s_sdl
 	int				running;
 	int				changes;
 }					t_sdl;
+
 void				sdl_init(t_sdl *sdl);
 t_img				sdl_create_image(size_t w, size_t h);
 void				sdl_clear_image(t_img *img);

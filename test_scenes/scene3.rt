@@ -12,7 +12,7 @@
 		{
 			"type": "sphere",
 			"color": [0.33, 0.02, 0.02],
-			"pos1": [0, -20, -1050],
+			"pos1": [0, 10, -650],
 			"radius": 50,
 			"specular": 300,
 			"reflect": 1,
@@ -47,6 +47,12 @@
 	"lights": [{
 			"type": "lamp",
 			"position": [100, 1000, 1000],
+			"color": [1, 1, 1],
+			"intensity" : 1
+		},
+		{
+			"type": "lamp",
+			"position": [-100, 200, 300],
 			"color": [1, 1, 1],
 			"intensity" : 1
 		}
