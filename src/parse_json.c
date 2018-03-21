@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 11:33:17 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/21 18:21:14 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/21 18:27:19 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -257,6 +257,8 @@ static void		process_scene_o(json_value *value, t_scene *s)
 	{
 		get_object_info(value->u.array.values[x], &s->object[x]);
 		if (s->object[x].type == O_TRIANGLE)
+			create_triangle_norm(&s->object[x]);
+		if (s->object[x].type == O_SQUARE)
 			create_triangle_norm(&s->object[x]);
 		else if (s->object[x].type == O_CON)
 			create_conus(&s->object[x]);

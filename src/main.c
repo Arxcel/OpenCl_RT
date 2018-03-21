@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:33:57 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/21 14:48:42 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/21 18:27:06 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ static char			*get_text(void)
 		"#include \"renderer.cl\"\n#include \"rotation.cl\"\n" \
 		"#include \"sh_sphere.cl\"\n#include \"utils.cl\"\n#include \"ft_light.cl\" \n" \
 		"#include \"sh_plane.cl\"\n#include \"sh_triangle.cl\"\n" \
-		"#include \"sh_paraboloid.cl\"\n#include \"patterns_textures.cl\"\n" \
+		"#include \"patterns_textures.cl\"\n" \
+		"#include \"sh_paraboloid.cl\"\n#include \"sh_square.cl\"\n" \
 		"kernel void kernel_entry (global t_object *object\n" \
 		", global t_light *light , global t_camera *camera\n" \
 		", global unsigned int *img_buf){\n" \
