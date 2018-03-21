@@ -28,6 +28,8 @@ void	get_surface_data(t_ray *ray, t_object object, float t)
 		get_triangle_data(ray, object, t);
 	else if (object.type == O_PARABOLOID)
 		get_par_data(ray, object, t);
+	else if (object.type == O_SQUARE)
+		get_square_data(ray, object, t);
 }
 
 int		check_object_type(t_object object, t_ray *ray, float *t)
@@ -46,6 +48,8 @@ int		check_object_type(t_object object, t_ray *ray, float *t)
 		return (triangle_cross(&object, ray, t));
 	else if (object.type == O_PARABOLOID)
 		return (par_cross(object, ray, t));
+	else if (object.type == O_SQUARE)
+		return (square_cross(&object, ray, t));
 	return (0);
 }
 

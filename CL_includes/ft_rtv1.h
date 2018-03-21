@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_rtv1.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pprivalo <pprivalo@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 11:57:16 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/18 17:36:48 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/21 15:32:14 by pprivalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ short						con_cross(t_object cyl, t_ray *r, float *t);
 short						plane_cross(t_object *p, t_ray *r, float *t);
 short						disk_cross(t_object *d, t_ray *r, float *t);
 short						triangle_cross(t_object *p, t_ray *r, float *t);
+short						square_cross(t_object *p, t_ray *r, float *t);
+short						par_cross(t_object sh, t_ray *ray, float *t);
 
 void						get_surface_data(t_ray *ray, t_object object, float t);
 int							check_object_type(t_object object, t_ray *ray, float *t);
@@ -61,6 +63,6 @@ short						get_con_data(t_ray *ray, t_object con, float t);
 short						get_plane_data(t_ray *ray, t_object plane, float t);
 short						get_disk_data(t_ray *ray, t_object disk, float t);
 short						get_triangle_data(t_ray *ray, t_object plane, float t);
-short						par_cross(t_object sh, t_ray *ray, float *t);
 short						get_par_data(t_ray *ray, t_object sh, float t);
+short						get_square_data(t_ray *ray, t_object square, float t);
 #endif
