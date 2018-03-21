@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 22:15:03 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/21 17:33:41 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/21 18:21:53 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # define L_LAMP		2
 # define L_AMBIENT	3
 # define L_AREA		4
+# define T_CHECK	2
 
 typedef struct		s_object
 {

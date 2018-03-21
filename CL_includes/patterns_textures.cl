@@ -28,7 +28,7 @@ static float get_pattern2(t_ray *r, t_object *o)
 
 t_vector			get_object_color(t_object *o, t_ray *r)
 {
-    if (o->t_id)
+    if (o->t_id == T_CHECK)
 	    return (v_mult_d(o->color, 0.5 * get_pattern2(r, o)) + v_mult_d(o->color, 0.5));
     else
         return (o->color);
