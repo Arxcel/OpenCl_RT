@@ -6,13 +6,13 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 17:14:14 by afarapon          #+#    #+#             */
-/*   Updated: 2018/03/20 19:21:59 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/21 11:25:23 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_rt.h"
 
-unsigned int			set_sepia(unsigned int in)
+static unsigned int		set_sepia_pixel(unsigned int in)
 {
 	t_color		col;
 	t_color		res;
@@ -42,4 +42,18 @@ void					free_matrix(unsigned int **m)
 		i++;
 	}
 	free(m);
+}
+
+void					set_sepia(t_main *main, unsigned int *out)
+{
+	size_t			size;
+	size_t			i;
+
+	i = 0;
+	size = main->sdl.img.h * main->sdl.img.w;
+	while (i < size)
+	{
+		out[i] = set_sepia_pixel(out[i]);
+		i++;
+	}
 }

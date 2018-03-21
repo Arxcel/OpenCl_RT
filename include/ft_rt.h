@@ -6,7 +6,7 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:32:12 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/20 19:40:29 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/21 12:47:34 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 # define AE_TOON		0x2
 # define AE_M_BLUR		0x4
 # define AE_SMOOTH		0x8
-# define AE_OTHER		0x10
+# define AE_CONTR		0x10
 
 typedef struct		s_main
 {
@@ -40,7 +40,7 @@ typedef struct		s_main
 	t_cl	cl;
 	t_sdl	sdl;
 	short	after_effect;
-	// t_scene	s;
+	short	coeficient;
 }					t_main;
 
 typedef struct		s_rgb
@@ -103,12 +103,14 @@ void				render_scene_and_ui(t_main *m);
 unsigned char		clamp_rgb(int color);
 void				set_filter(t_main *main);
 unsigned int		set_smooth(t_main *main, size_t x, size_t y, unsigned int *in);
-unsigned int		set_sepia(unsigned int in);
+void				set_sepia(t_main *main, unsigned int *out);
 unsigned int		**get_matrix(t_main *main, size_t x, size_t y,
 	unsigned int *in);
 unsigned int		ae_calc_matrix(unsigned int **m,
 		unsigned int coef);
 void				free_matrix(unsigned int **m);
 t_rgb				get_color_rgb(int col);
+void				set_contrast(t_main *main, unsigned int *out);
+void				set_blur(t_main *main, unsigned int **in_out, size_t count);
 
 #endif

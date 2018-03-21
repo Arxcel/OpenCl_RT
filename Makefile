@@ -64,6 +64,8 @@ SOURCES =   main.c \
 			ae_sepia.c \
 			ae_get_matrix.c \
 			ae_matrix_mult_rgb.c \
+			ae_contrast.c \
+			ae_blur.c \
 			mouse_hooks.c \
 			ui_render_lines_and_corners.c \
 			open_export_save.c \
@@ -79,6 +81,7 @@ all: obj libs $(NAME)
 
 $(NAME): $(OBJS) $(EXTENSIONS)
 		$(CC) -g -o $(NAME) $(OBJS) $(FLAGS) $(CFLAGS) -L $(LIBFT) -lft $(LIBTFD)/libtfd.a -L $(LIBMMATH) -lmy_math -L $(LIBJSON) -lJSON -L $(LIBCL) -lCL -framework OpenCl $(SDL2_P) $(SDL2_F) -L $(LIBFTSDL) -lftsdl -fsanitize=address
+		# $(CC) -o $(NAME) $(OBJS) $(FLAGS) $(CFLAGS) -L $(LIBFT) -lft $(LIBTFD)/libtfd.a -L $(LIBMMATH) -lmy_math -L $(LIBJSON) -lJSON -L $(LIBCL) -lCL -framework OpenCl $(SDL2_P) $(SDL2_F) -L $(LIBFTSDL) -lftsdl
 
 		
 
