@@ -6,7 +6,7 @@
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 16:37:12 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/20 19:50:01 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/20 23:08:01 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define FT_UI_H
 # define RTN 2
 # define BG_ITEMS 12
-# define BTNS 17
+# define BTNS 18
 # define SLDRS 1
 # define R_SCENE_X 218
 # define R_SCENE_Y 95
@@ -29,7 +29,7 @@
 # define BTN_ROW1_Y 5
 # define BTN_ROW1_X 3
 # define BTN_SIZE 40
-# define RBTN_H 50
+# define RBTN_H 45
 # define LOGO_H 67
 # define LOGO_W 130
 
@@ -107,17 +107,18 @@ enum			e_btns
 	EXPORT = 3,
 	PREV_CAM = 4,
 	NEXT_CAM = 5,
-	BTN_PLANE = 6,
-	BTN_SPHERE = 7,
-	BTN_CYLINDER = 8,
-	BTN_CONUS = 9,
-	BTN_DISK = 10,
-	BTN_TRIANGLE = 11,
-	BTN_PARABOLOID = 12,
-	BTN_CAM = 13,
-	BTN_LIGHT1 = 14,
-	BTN_LIGHT2 = 15,
-	BTN_LIGHT3 = 16
+	BTN_CUBE = 6,
+	BTN_PLANE = 7,
+	BTN_SPHERE = 8,
+	BTN_CYLINDER = 9,
+	BTN_CONUS = 10,
+	BTN_DISK = 11,
+	BTN_TRIANGLE = 12,
+	BTN_PARABOLOID = 13,
+	BTN_CAM = 14,
+	BTN_LIGHT1 = 15,
+	BTN_LIGHT2 = 16,
+	BTN_LIGHT3 = 17
 };
 
 void			ui_sliders_init(t_ui *ui, t_sdl *sdl);

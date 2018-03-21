@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:33:57 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/19 16:07:11 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/20 23:36:47 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ int					main(int ac, char **av)
 	if (ac != 2)
 		put_error("Wrong number of arguments.");
 	get_scene(av[1], &m.s);
+	window_name(av[1], &m);
 	draw(&m.cl, &m.sdl, &m.s);
 	render_scene_and_ui(&m);
 	sdl_loop(&m);

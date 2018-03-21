@@ -6,7 +6,7 @@
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 16:41:28 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/20 20:59:21 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/20 23:35:07 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,7 +209,7 @@ void	ui_btn_rect_params(t_ui *ui)
 		ui->btn[i].rect = sdl_rect(x, y, BTN_SIZE, BTN_SIZE);
 		x += BTN_ROW1_X + BTN_SIZE;
 		i++;
-		if (i == 4 || i == 13 || i == 14)
+		if (i == 4 || i == 14 || i == 15)
 			x += 15;
 		if (i == 6)
 		{
@@ -262,9 +262,9 @@ void	ui_textures_init(t_ui *ui, t_sdl *sdl)
 void	ui_sliders_init(t_ui *ui, t_sdl *sdl)
 {
 	ui->sldr[L_SCROLL].r1.textr = 
-		sdl_texture_from_file("textures/contrast_dot.png", sdl->ren);
+		sdl_texture_from_file("textures/contrast_disk.png", sdl->ren);
 	ui->sldr[L_SCROLL].r2.textr = 
-		sdl_texture_from_file("textures/contrast_dot.png", sdl->ren);
+		sdl_texture_from_file("textures/contrast_disk.png", sdl->ren);
 	ui->sldr[L_SCROLL].line.textr = 
 		sdl_texture_from_file("textures/contrast_dot.png", sdl->ren);
 }
