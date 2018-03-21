@@ -13,6 +13,18 @@
 
 #include "ft_rtv1.h"
 
+static short			is_in_area(t_light l, t_ray light)
+{
+	float	v_cos;
+
+	v_cos = v_dot(light.dir, -l.dir);
+	v_cos /= v_length(light.dir) * v_length(-l.dir);
+	if (v_cos < fabs(cos(ft_deg2rad(l.ang / 2))))
+		return (0);
+	else
+		return (1);
+}
+
 static t_ray			dir_light(t_vector p_hit, t_vector l_dir, t_vector n, float *d)
 {
 	t_ray	light;
@@ -73,6 +85,7 @@ float					calc_light(__global t_object	*o,
 	float			light_intensity;
 	t_object		shader;
 	t_ray			light;
+	t_ray			ray_shader;
 
 	i = -1;
 	ret_col = 0;
@@ -87,18 +100,19 @@ float					calc_light(__global t_object	*o,
 			if (h.specular > 0)
 				light_intensity += get_shiness(lt, h.specular, light_intensity, r, light);
 			ret_col += vis * light_intensity * lt;
-		} 
-
+		}
 		if (l[i].type == L_AMBIENT)
 			ret_col += l[i].intence;
 		else
 		{
-			if (l[i].type == L_DIR)
+			if (l[i].type == L_PAR)
 				light = dir_light(r->p_hit, l[i].pos, r->n_hit, &distance);
 			else
 				light = point_light(r->p_hit, l[i].pos, r->n_hit, &distance);
 			vis = ft_trace(o, l, &shader_distance, &shader, &(light)) ? 0 : 1;
-			if (shader_distance > distance || (l[i].type == L_DIR && vis) || shader.refract)
+			if (l[i].type == L_AREA && !is_in_area(l[i], light))
+				continue ;
+			if (shader_distance > distance || (l[i].type == L_PAR && vis) || shader.refract)
 				vis = 1;
 			if (shader.refract)
 				vis = shader.refract;

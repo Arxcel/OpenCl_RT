@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 11:33:17 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/21 14:49:19 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/21 14:51:26 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ static int		set_o_type(json_value *value)
 		val = O_TRIANGLE;
 	else if (!err && !ft_strcmp(value->u.string.ptr, "paraboloid"))
 		val = O_PARABOLOID;
+	else if (!err && !ft_strcmp(value->u.string.ptr, "square"))
+		val = O_SQUARE;
 	else
 		err = 1;
 	if (err)
@@ -81,8 +83,10 @@ static int		set_l_type(json_value *value)
 		val = L_LAMP;
 	else if (!err && !ft_strcmp(value->u.string.ptr, "ambient"))
 		val = L_AMBIENT;
-	else if (!err && !ft_strcmp(value->u.string.ptr, "dir"))
-		val = L_DIR;
+	else if (!err && !ft_strcmp(value->u.string.ptr, "parallel"))
+		val = L_PAR;
+	else if (!err && !ft_strcmp(value->u.string.ptr, "area"))
+		val = L_AREA;
 	else
 		err = 1;
 	if (err)
@@ -254,6 +258,10 @@ static void		get_light_info(json_value *value, t_light *l)
 			l->type = set_l_type(value->u.object.values[x].value);
 		if (!ft_strcmp(value->u.object.values[x].name, "position"))
 			l->pos = get_vector(value->u.object.values[x].value);
+		if (!ft_strcmp(value->u.object.values[x].name, "direction"))
+			l->dir = get_vector(value->u.object.values[x].value);
+		if (!ft_strcmp(value->u.object.values[x].name, "angle"))
+			l->ang = get_number(value->u.object.values[x].value);
 		if (!ft_strcmp(value->u.object.values[x].name, "color"))
 			l->color = get_color(value->u.object.values[x].value);
 		if (!ft_strcmp(value->u.object.values[x].name, "intensity"))
