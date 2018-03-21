@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 11:33:17 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/21 14:51:26 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/21 15:08:35 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -222,6 +222,8 @@ static void		get_object_info(json_value *value, t_object *o)
 			o->min = get_number(value->u.object.values[x].value);
 		if (!ft_strcmp(value->u.object.values[x].name, "pattern"))
 			o->t_id = get_number(value->u.object.values[x].value);
+		if (!ft_strcmp(value->u.object.values[x].name, "pattern_scale"))
+			o->t_scale = get_number(value->u.object.values[x].value);
 	}
 }
 

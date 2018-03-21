@@ -187,6 +187,14 @@ static t_vector			ft_cast_ray(
 			hit_color += v_mult_d(object_color, mask_refraction * mask_reflection);
 			break ;
 		}
+		else if (hit_object->reflect && !hit_object->refract)
+		{
+			r->dir = reflect_ray(r);
+			r->orig = outside ? r->p_hit + bias : r->p_hit - bias;
+			hit_color += v_mult_d(object_color, (1.0 - hit_object->reflect) * mask_reflection * mask_refraction);
+			mask_reflection *= hit_object->reflect;
+			depth++;
+		}
 		else if (hit_object->refract)
 		{	
 			kr = fresnel(r->dir, r->n_hit, hit_object->ior);
@@ -205,14 +213,6 @@ static t_vector			ft_cast_ray(
 			mask_reflection *= hit_object->reflect;
 			depth++;
 			continue ;
-		}
-		else if (hit_object->reflect && !hit_object->refract)
-		{
-			r->dir = reflect_ray(r);
-			r->orig = outside ? r->p_hit + bias : r->p_hit - bias;
-			hit_color += v_mult_d(object_color, (1.0 - hit_object->reflect) * mask_reflection * mask_refraction);
-			mask_reflection *= hit_object->reflect;
-			depth++;
 		}
 	}
     return (hit_color); 

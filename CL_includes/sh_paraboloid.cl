@@ -84,5 +84,20 @@ short				get_par_data(t_ray *ray, t_object sh, float t)
 	m = v_dot(ray->dir, sh.dir) * t + v_dot(ray->orig - sh.pos1, sh.dir);
 	ray->p_hit = ray->orig + v_mult_d(ray->dir, t);
 	ray->n_hit = v_normalize(ray->p_hit - sh.pos1 - v_mult_d(sh.dir, m + sh.radius));
+	if (!sh.dir[0] && !sh.dir[1])
+	{
+		ray->tex[0] = (1 + atan2(ray->n_hit[1], ray->n_hit[0]) / M_PI) * 0.5;
+		ray->tex[1] = ray->p_hit[2];
+	}
+	else if (!sh.dir[0] && !sh.dir[2])
+	{
+		ray->tex[0] = (1 + atan2(ray->n_hit[2], ray->n_hit[0]) / M_PI) * 0.5;
+		ray->tex[1] = ray->p_hit[1];
+	}
+	else
+	{
+		ray->tex[0] = (1 + atan2(ray->n_hit[1], ray->n_hit[0]) / M_PI) * 0.5;
+		ray->tex[1] = ray->p_hit[2];
+	}
 	return (1);
 }
