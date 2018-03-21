@@ -6,51 +6,77 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 17:12:46 by afarapon          #+#    #+#             */
-/*   Updated: 2018/03/21 10:03:45 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/21 16:39:28 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_rt.h"
 
-static unsigned int		multiple_rgb(unsigned int col, float coef)
+static unsigned int			get_b_red(size_t x, size_t y, unsigned int *in, size_t w)
 {
-	t_color		tmp;
+	t_color		result;
 
-	tmp.col = col;
-	tmp.argb.red = (unsigned char)(tmp.argb.red * coef);
-	tmp.argb.green = (unsigned char)(tmp.argb.green * coef);
-	tmp.argb.blue = (unsigned char)(tmp.argb.blue * coef);
-	return (tmp.col);
+	result.col = 0;
+	result.col += clamp_rgb(get_color_rgb(in[x - 1 + (y - 1) * w]).red * 0.5);
+	result.col += clamp_rgb(get_color_rgb(in[x + (y - 1) * w]).red * 0.75);
+	result.col += clamp_rgb(get_color_rgb(in[x + 1 + (y - 1) * w]).red * 0.5);
+
+	result.col += clamp_rgb(get_color_rgb(in[x - 1 + y * w]).red * 0.75);
+	result.col += clamp_rgb(get_color_rgb(in[x + y * w]).red);
+	result.col += clamp_rgb(get_color_rgb(in[x + 1 + y * w]).red * 0.75);
+
+	result.col += clamp_rgb(get_color_rgb(in[x - 1 + (y + 1) * w]).red * 0.5);
+	result.col += clamp_rgb(get_color_rgb(in[x + (y + 1) * w]).red * 0.75);
+	result.col += clamp_rgb(get_color_rgb(in[x + 1 + (y + 1) * w]).red * 0.5);
+	return (result.col / 6);
 }
 
-unsigned int			rgb_mult(unsigned int col, float coef)
+static unsigned int			get_b_green(size_t x, size_t y, unsigned int *in, size_t w)
 {
-	t_color			tmp;
+	t_color		result;
 
-	tmp.col = col;
-	tmp.argb.red = tmp.argb.red * coef;
-	tmp.argb.green = tmp.argb.green * coef;
-	tmp.argb.blue = tmp.argb.blue * coef;
-	return (tmp.col);
+	result.col = 0;
+	result.col += clamp_rgb(get_color_rgb(in[x - 1 + (y - 1) * w]).green * 0.5);
+	result.col += clamp_rgb(get_color_rgb(in[x + (y - 1) * w]).green * 0.75);
+	result.col += clamp_rgb(get_color_rgb(in[x + 1 + (y - 1) * w]).green * 0.5);
+
+	result.col += clamp_rgb(get_color_rgb(in[x - 1 + y * w]).green * 0.75);
+	result.col += clamp_rgb(get_color_rgb(in[x + y * w]).green);
+	result.col += clamp_rgb(get_color_rgb(in[x + 1 + y * w]).green * 0.75);
+
+	result.col += clamp_rgb(get_color_rgb(in[x - 1 + (y + 1) * w]).green * 0.5);
+	result.col += clamp_rgb(get_color_rgb(in[x + (y + 1) * w]).green * 0.75);
+	result.col += clamp_rgb(get_color_rgb(in[x + 1 + (y + 1) * w]).green * 0.5);
+	return (result.col / 6);
 }
 
-static void				smoth_matrix(unsigned int **m)
+static unsigned int			get_b_blue(size_t x, size_t y, unsigned int *in, size_t w)
 {
-	m[0][0] = rgb_mult(m[0][0], 0.5);
-	m[0][1] = rgb_mult(m[0][1], 0.75);
-	m[0][2] = rgb_mult(m[0][2], 0.5);
-	m[1][0] = rgb_mult(m[1][0], 0.75);
-	m[1][2] = rgb_mult(m[1][2], 0.75);
-	m[2][0] = rgb_mult(m[2][0], 0.5);
-	m[2][1] = rgb_mult(m[2][1], 0.75);
-	m[2][2] = rgb_mult(m[2][2], 0.5);
+	t_color		result;
+
+	result.col = 0;
+	result.col += clamp_rgb(get_color_rgb(in[x - 1 + (y - 1) * w]).blue * 0.5);
+	result.col += clamp_rgb(get_color_rgb(in[x + (y - 1) * w]).blue * 0.75);
+	result.col += clamp_rgb(get_color_rgb(in[x + 1 + (y - 1) * w]).blue * 0.5);
+
+	result.col += clamp_rgb(get_color_rgb(in[x - 1 + y * w]).blue * 0.75);
+	result.col += clamp_rgb(get_color_rgb(in[x + y * w]).blue);
+	result.col += clamp_rgb(get_color_rgb(in[x + 1 + y * w]).blue * 0.75);
+
+	result.col += clamp_rgb(get_color_rgb(in[x - 1 + (y + 1) * w]).blue * 0.5);
+	result.col += clamp_rgb(get_color_rgb(in[x + (y + 1) * w]).blue * 0.75);
+	result.col += clamp_rgb(get_color_rgb(in[x + 1 + (y + 1) * w]).blue * 0.5);
+	return (result.col / 6);
 }
 
 unsigned int			set_smooth(t_main *main, size_t x, size_t y, unsigned int *in)
 {
-	unsigned int		**m;
+	t_color		tmp;
+	size_t		w;
 
-	m = get_matrix(main, x, y, in);
-	smoth_matrix(m);
-	return (ae_calc_matrix(m, 6));
+	w = main->sdl.img.w;
+	tmp.argb.red = clamp_rgb(get_b_red(x, y, in, main->sdl.img.w));
+	tmp.argb.green = clamp_rgb(get_b_green(x, y, in, main->sdl.img.w));
+	tmp.argb.blue = clamp_rgb(get_b_blue(x, y, in, main->sdl.img.w));
+	return (tmp.col);
 }

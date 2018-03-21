@@ -6,7 +6,7 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:32:12 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/21 12:47:34 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/21 16:45:00 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # define AE_M_BLUR		0x4
 # define AE_SMOOTH		0x8
 # define AE_CONTR		0x10
+# define AE_SHARPNESS	0x20
 
 typedef struct		s_main
 {
@@ -112,5 +113,9 @@ void				free_matrix(unsigned int **m);
 t_rgb				get_color_rgb(int col);
 void				set_contrast(t_main *main, unsigned int *out);
 void				set_blur(t_main *main, unsigned int **in_out, size_t count);
+void				ae_test_blur(t_main *main, unsigned int **in, size_t size);
+unsigned int		set_test_blur(t_main *main, unsigned int *in, size_t x, size_t y);
+unsigned int		set_sharpness(t_main *main, size_t x, size_t y, unsigned int *in);
+void				ae_sharpness(t_main *main, unsigned int **in_out, size_t count);
 
 #endif

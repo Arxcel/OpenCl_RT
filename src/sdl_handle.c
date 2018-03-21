@@ -6,7 +6,7 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 18:01:54 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/21 12:21:02 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/21 16:29:28 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,12 @@ static void			key_down(int key, t_main *m)
 	{
 		m->coeficient = key == SDLK_KP_PLUS ? m->coeficient + 1 : m->coeficient - 1;
 		if (m->after_effect & AE_CONTR)
-			m->sdl.changes = 1;
+			m->sdl.changes++;
+	}
+	else if (key == SDLK_KP_6)
+	{
+		m->after_effect ^= AE_SHARPNESS;
+		m->sdl.changes = 1;
 	}
 }
 

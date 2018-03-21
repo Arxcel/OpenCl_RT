@@ -6,7 +6,7 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 13:37:03 by afarapon          #+#    #+#             */
-/*   Updated: 2018/03/21 12:54:54 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/21 17:06:41 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,15 @@ static unsigned int		*use_filters(t_main *main, unsigned int **out)
 	if (main->after_effect & AE_SMOOTH)
 		set_blur(main, out, 1);
 	if (main->after_effect & AE_M_BLUR)
-		set_blur(main, out, 3);
+		set_blur(main, out, 10);
 	if (main->after_effect & AE_CONTR)
 		set_contrast(main, *out);
 	if (main->after_effect & AE_SEPIA)
 		set_sepia(main, *out);
+	if (main->after_effect & AE_TOON)
+		ae_test_blur(main, out, 5);
+	if (main->after_effect & AE_SHARPNESS)
+		ae_sharpness(main, out, 1);
 	return (*out);
 }
 
