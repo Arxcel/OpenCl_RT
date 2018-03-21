@@ -54,3 +54,15 @@ short				solve_quadratic(const float *p, float *x0, float *x1)
 	}
 	return (1);
 }
+
+t_matrix33			v_rot2(double angle)
+{
+	t_matrix33	a;
+	double		an;
+
+	an = angle;
+	a.r[0] = (t_mrow3){cos(an), -sin(an), 0};
+	a.r[1] = (t_mrow3){sin(an), cos(an), 0};
+	a.r[2] = (t_mrow3){0, 0, 1};
+	return (a);
+}
