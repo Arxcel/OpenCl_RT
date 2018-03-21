@@ -31,7 +31,7 @@ short				par_cross(t_object sh, t_ray *ray, float *t)
 		return (0);
 	m1 = v_dot(ray->dir, sh.dir) * t1 + v_dot(x, sh.dir);
 	m2 = v_dot(ray->dir, sh.dir) * t2 + v_dot(x, sh.dir);
-	if ((t1 < 0 && t2 < 0) || (t1 == t2))
+	if ((t1 <= 0 && t2 <= 0) || (t1 == t2))
 		return (0);
 	if (sh.max > 0)
 	{
@@ -47,12 +47,12 @@ short				par_cross(t_object sh, t_ray *ray, float *t)
 		}
 		else if (t1 > 0 && t2 > 0)
 		{
-			if (m1 > 0 && m1 < sh.max)
+			if (t1 > 0 && m1 > 0 && m1 < sh.max)
 			{
 				*t = t1;
 				return (1);
 			}
-			else if (m2 > 0 && m2 < sh.max)
+			else if (t2 > 0 && m2 > 0 && m2 < sh.max)
 			{
 				*t = t2;
 				return (1);

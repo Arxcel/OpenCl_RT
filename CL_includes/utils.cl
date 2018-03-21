@@ -20,6 +20,7 @@ float				ft_deg2rad(float deg)
 unsigned int		set_rgb(t_vector c)
 {
 	c = v_mult_d(c, 255);
+	// c = set_sepia(c);
 	if (c[0] > 255)
 		c[0] = 255;
 	if (c[1] > 255)

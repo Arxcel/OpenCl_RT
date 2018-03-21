@@ -250,15 +250,14 @@ unsigned int		ft_renderer(
 		global t_camera *cam,
 		int x, int y, size_t img_w, size_t img_h)
 {
-    int				iter[2];
+	int				iter[2];
 	t_vector		res;
-    t_object		hit_object;
+	t_object		hit_object;
 	t_ray			ray;
 
 	iter[0] = y;
 	iter[1] = x;
-
     ray = find_cam_dir(cam, iter, img_w, img_h);
 	res = ft_cast_ray(o, l, &ray, &hit_object);
-    return (set_rgb(res));
+	return (set_rgb(res));
 }

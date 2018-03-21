@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
+/*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 17:15:31 by afarapon          #+#    #+#             */
-/*   Updated: 2018/03/16 11:54:19 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/20 13:01:23 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 float				ft_deg2rad(float deg)
 {
-	return (deg * 3.14 / 180);
+	return (deg * M_PI / 180);
 }
