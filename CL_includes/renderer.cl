@@ -28,6 +28,8 @@ void	get_surface_data(t_ray *ray, t_object object, float t)
 		get_triangle_data(ray, object, t);
 	else if (object.type == O_PARABOLOID)
 		get_par_data(ray, object, t);
+	else if (object.type == O_SQUARE)
+		get_square_data(ray, object, t);
 }
 
 int		check_object_type(t_object object, t_ray *ray, float *t)
@@ -46,6 +48,8 @@ int		check_object_type(t_object object, t_ray *ray, float *t)
 		return (triangle_cross(&object, ray, t));
 	else if (object.type == O_PARABOLOID)
 		return (par_cross(object, ray, t));
+	else if (object.type == O_SQUARE)
+		return (square_cross(&object, ray, t));
 	return (0);
 }
 
@@ -181,11 +185,19 @@ static t_vector			ft_cast_ray(
 		bias = v_mult_d(r->n_hit, BIAS);
 		int outside;
 		outside = v_dot(r->dir, r->n_hit) < 0 ? 1 : 0;
-		object_color = v_mult_d(hit_object->color, calc_light(o, l, *hit_object, *r));
-		if (!hit_object->reflect && !hit_object->refract)
+		object_color = v_mult_d(get_object_color(hit_object, r), calc_light(o, l, *hit_object, r));
+		if ((!hit_object->reflect && !hit_object->refract))
 		{
-			hit_color += v_mult_d(hit_object->color, mask_refraction * mask_reflection * calc_light(o, l, *hit_object, *r));
+			hit_color += v_mult_d(object_color, mask_refraction * mask_reflection);
 			break ;
+		}
+		else if (hit_object->reflect && !hit_object->refract)
+		{
+			r->dir = reflect_ray(r);
+			r->orig = outside ? r->p_hit + bias : r->p_hit - bias;
+			hit_color += v_mult_d(object_color, (1.0 - hit_object->reflect) * mask_reflection * mask_refraction);
+			mask_reflection *= hit_object->reflect;
+			depth++;
 		}
 		else if (hit_object->refract)
 		{	
@@ -205,14 +217,6 @@ static t_vector			ft_cast_ray(
 			mask_reflection *= hit_object->reflect;
 			depth++;
 			continue ;
-		}
-		else if (hit_object->reflect && !hit_object->refract)
-		{
-			r->dir = reflect_ray(r);
-			r->orig = outside ? r->p_hit + bias : r->p_hit - bias;
-			hit_color += v_mult_d(object_color, (1.0 - hit_object->reflect) * mask_reflection * mask_refraction);
-			mask_reflection *= hit_object->reflect;
-			depth++;
 		}
 	}
     return (hit_color); 
@@ -235,20 +239,25 @@ static t_ray			find_cam_dir(__global t_camera    *cam, const int *iter, size_t i
 	return (ray);
 }
 
+// static float get_pattern(t_ray ray)
+// {
+// 	return ((sin(ray.texY) > 0) ^ (sin(ray.texX) > 0));
+// }
+
 unsigned int		ft_renderer(
 		global t_object	*o,
 		global t_light	*l,
 		global t_camera *cam,
 		int x, int y, size_t img_w, size_t img_h)
 {
-    int				iter[2];
+	int				iter[2];
 	t_vector		res;
-    t_object		hit_object;
+	t_object		hit_object;
 	t_ray			ray;
 
 	iter[0] = y;
 	iter[1] = x;
     ray = find_cam_dir(cam, iter, img_w, img_h);
 	res = ft_cast_ray(o, l, &ray, &hit_object);
-    return (set_rgb(res));
+	return (set_rgb(res));
 }

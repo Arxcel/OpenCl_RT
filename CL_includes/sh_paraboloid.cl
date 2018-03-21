@@ -31,7 +31,7 @@ short				par_cross(t_object sh, t_ray *ray, float *t)
 		return (0);
 	m1 = v_dot(ray->dir, sh.dir) * t1 + v_dot(x, sh.dir);
 	m2 = v_dot(ray->dir, sh.dir) * t2 + v_dot(x, sh.dir);
-	if ((t1 < 0 && t2 < 0) || (t1 == t2))
+	if ((t1 <= 0 && t2 <= 0) || (t1 == t2))
 		return (0);
 	if (sh.max > 0)
 	{
@@ -47,12 +47,12 @@ short				par_cross(t_object sh, t_ray *ray, float *t)
 		}
 		else if (t1 > 0 && t2 > 0)
 		{
-			if (m1 > 0 && m1 < sh.max)
+			if (t1 > 0 && m1 > 0 && m1 < sh.max)
 			{
 				*t = t1;
 				return (1);
 			}
-			else if (m2 > 0 && m2 < sh.max)
+			else if (t2 > 0 && m2 > 0 && m2 < sh.max)
 			{
 				*t = t2;
 				return (1);
@@ -84,5 +84,20 @@ short				get_par_data(t_ray *ray, t_object sh, float t)
 	m = v_dot(ray->dir, sh.dir) * t + v_dot(ray->orig - sh.pos1, sh.dir);
 	ray->p_hit = ray->orig + v_mult_d(ray->dir, t);
 	ray->n_hit = v_normalize(ray->p_hit - sh.pos1 - v_mult_d(sh.dir, m + sh.radius));
+	if (!sh.dir[0] && !sh.dir[1])
+	{
+		ray->tex[0] = (1 + atan2(ray->n_hit[1], ray->n_hit[0]) / M_PI) * 0.5;
+		ray->tex[1] = ray->p_hit[2];
+	}
+	else if (!sh.dir[0] && !sh.dir[2])
+	{
+		ray->tex[0] = (1 + atan2(ray->n_hit[2], ray->n_hit[0]) / M_PI) * 0.5;
+		ray->tex[1] = ray->p_hit[1];
+	}
+	else
+	{
+		ray->tex[0] = (1 + atan2(ray->n_hit[1], ray->n_hit[0]) / M_PI) * 0.5;
+		ray->tex[1] = ray->p_hit[2];
+	}
 	return (1);
 }

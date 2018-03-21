@@ -6,7 +6,7 @@
 #    By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/21 16:21:44 by vkozlov           #+#    #+#              #
-#    Updated: 2018/03/20 19:58:33 by anestor          ###   ########.fr        #
+#    Updated: 2018/03/21 22:38:31 by anestor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,9 @@ CC = clang
 
 NAME = rt
 
-FLAGS = -Wall -Wextra -Werror -flto -O3
+KEYS = -Wall -Wextra -Werror
+
+FLAGS =  -flto -O3
 
 IDIR = ./include
 
@@ -70,6 +72,17 @@ SOURCES =   main.c \
 			utils.c \
 			validate_objects.c \
 			ui.c \
+			img_filters.c \
+			ae_smooth.c \
+			ae_sepia.c \
+			ae_get_matrix.c \
+			ae_matrix_mult_rgb.c \
+			ae_contrast.c \
+			ae_blur.c \
+			ae_test_blur.c \
+			ae_get_all_rgb.c \
+			ae_sharpness.c \
+			ae_set_sharpness.c \
 			mouse_hooks.c \
 			ui_render_lines_and_corners.c \
 			open_export_save.c \
@@ -84,6 +97,7 @@ OBJS = $(addprefix $(DIR_O)/,$(SOURCES:.c=.o))
 all: obj libs $(NAME)
 
 $(NAME): $(OBJS) $(EXTENSIONS)
+		# $(CC) -g -o $(NAME) $(OBJS) $(FLAGS) $(CFLAGS) -L $(LIBFT) -lft $(LIBTFD)/libtfd.a -L $(LIBMMATH) -lmy_math -L $(LIBJSON) -lJSON -L $(LIBCL) -lCL -framework OpenCl $(SDL2_P) $(SDL2_F) -L $(LIBFTSDL) -lftsdl -fsanitize=address
 		$(CC) -o $(NAME) $(OBJS) $(FLAGS) $(CFLAGS) -L $(LIBFT) -lft $(LIBTFD)/libtfd.a -L $(LIBMMATH) -lmy_math -L $(LIBJSON) -lJSON -L $(LIBCL) -lCL -framework OpenCl $(SDL2_P) $(SDL2_F) -L $(LIBFTSDL) -lftsdl
 
 		

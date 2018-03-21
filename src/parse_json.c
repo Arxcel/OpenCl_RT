@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 11:33:17 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/20 14:45:20 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/21 18:27:19 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ static int		set_o_type(json_value *value)
 		val = O_TRIANGLE;
 	else if (!err && !ft_strcmp(value->u.string.ptr, "paraboloid"))
 		val = O_PARABOLOID;
+	else if (!err && !ft_strcmp(value->u.string.ptr, "square"))
+		val = O_SQUARE;
 	else
 		err = 1;
 	if (err)
@@ -81,12 +83,32 @@ static int		set_l_type(json_value *value)
 		val = L_LAMP;
 	else if (!err && !ft_strcmp(value->u.string.ptr, "ambient"))
 		val = L_AMBIENT;
-	else if (!err && !ft_strcmp(value->u.string.ptr, "dir"))
-		val = L_DIR;
+	else if (!err && !ft_strcmp(value->u.string.ptr, "parallel"))
+		val = L_PAR;
+	else if (!err && !ft_strcmp(value->u.string.ptr, "area"))
+		val = L_AREA;
 	else
 		err = 1;
 	if (err)
 		put_error("Not valid light type");
+	return (val);
+}
+
+static int		set_t_type(json_value *value)
+{
+	int err;
+	int val;
+
+	err = 0;
+	val = -1;
+	if (value->type != json_string)
+		err = 1;
+	if (!err && !ft_strcmp(value->u.string.ptr, "chessboard"))
+		val = T_CHECK;
+	else
+		err = 1;
+	if (err)
+		put_error("Not valid texture type.");
 	return (val);
 }
 
@@ -216,6 +238,10 @@ static void		get_object_info(json_value *value, t_object *o)
 			o->max = get_number(value->u.object.values[x].value);
 		if (!ft_strcmp(value->u.object.values[x].name, "min"))
 			o->min = get_number(value->u.object.values[x].value);
+		if (!ft_strcmp(value->u.object.values[x].name, "pattern"))
+			o->t_id = set_t_type(value->u.object.values[x].value);
+		if (!ft_strcmp(value->u.object.values[x].name, "pattern_scale"))
+			o->t_scale = get_number(value->u.object.values[x].value);
 	}
 }
 
@@ -231,6 +257,8 @@ static void		process_scene_o(json_value *value, t_scene *s)
 	{
 		get_object_info(value->u.array.values[x], &s->object[x]);
 		if (s->object[x].type == O_TRIANGLE)
+			create_triangle_norm(&s->object[x]);
+		if (s->object[x].type == O_SQUARE)
 			create_triangle_norm(&s->object[x]);
 		else if (s->object[x].type == O_CON)
 			create_conus(&s->object[x]);
@@ -252,6 +280,10 @@ static void		get_light_info(json_value *value, t_light *l)
 			l->type = set_l_type(value->u.object.values[x].value);
 		if (!ft_strcmp(value->u.object.values[x].name, "position"))
 			l->pos = get_vector(value->u.object.values[x].value);
+		if (!ft_strcmp(value->u.object.values[x].name, "direction"))
+			l->dir = get_vector(value->u.object.values[x].value);
+		if (!ft_strcmp(value->u.object.values[x].name, "angle"))
+			l->ang = get_number(value->u.object.values[x].value);
 		if (!ft_strcmp(value->u.object.values[x].name, "color"))
 			l->color = get_color(value->u.object.values[x].value);
 		if (!ft_strcmp(value->u.object.values[x].name, "intensity"))

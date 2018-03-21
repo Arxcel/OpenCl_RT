@@ -36,5 +36,15 @@ short				get_plane_data(t_ray *ray, t_object plane, float t)
 {
 	ray->p_hit = ray->orig + v_mult_d(ray->dir, t);
 	ray->n_hit = plane.dir;
+	if (!ray->n_hit[0] && !ray->n_hit[1])
+	{
+		ray->tex[0] = ray->p_hit[0];
+		ray->tex[1] = ray->p_hit[1];
+	}
+	else
+	{
+		ray->tex[0] = ray->p_hit[0];
+		ray->tex[1] = ray->p_hit[2];
+	}
 	return (1);
 }

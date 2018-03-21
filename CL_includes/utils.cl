@@ -20,6 +20,7 @@ float				ft_deg2rad(float deg)
 unsigned int		set_rgb(t_vector c)
 {
 	c = v_mult_d(c, 255);
+	// c = set_sepia(c);
 	if (c[0] > 255)
 		c[0] = 255;
 	if (c[1] > 255)
@@ -53,4 +54,16 @@ short				solve_quadratic(const float *p, float *x0, float *x1)
 		*x1 = -0.5 * (p[1] + native_sqrt(d)) / p[0];
 	}
 	return (1);
+}
+
+t_matrix33			v_rot2(double angle)
+{
+	t_matrix33	a;
+	double		an;
+
+	an = angle;
+	a.r[0] = (t_mrow3){cos(an), -sin(an), 0};
+	a.r[1] = (t_mrow3){sin(an), cos(an), 0};
+	a.r[2] = (t_mrow3){0, 0, 1};
+	return (a);
 }
