@@ -36,7 +36,7 @@ short				get_plane_data(t_ray *ray, t_object plane, float t)
 {
 	ray->p_hit = ray->orig + v_mult_d(ray->dir, t);
 	ray->n_hit = plane.dir;
-	ray->texY = ray->n_hit[0] * 0.5;//(1 + atan2(ray->n_hit[2], ray->n_hit[0]) / M_PI) * 0.5;
-	ray->texX = ray->n_hit[1];//acos(ray->n_hit[1]) / M_PI; 
+	ray->tex[0] = ray->p_hit[0];
+	ray->tex[1] = ray->p_hit[2];
 	return (1);
 }

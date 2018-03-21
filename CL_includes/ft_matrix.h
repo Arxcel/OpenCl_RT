@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_matrix.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 22:34:23 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/15 17:48:29 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/21 13:10:51 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include "ft_rtv1.h"
 
 typedef float	t_mrow __attribute__((vector_size(sizeof(float)*4)));
+typedef double	t_mrow3 __attribute__((vector_size(sizeof(double)*3)));
 
 typedef struct	s_matrix
 {
@@ -27,4 +28,13 @@ t_vector		m_mult_v(t_matrix m, t_vector v);
 t_vector		m_mult_p(t_matrix m, t_vector v);
 t_vector		v_cross(t_vector a, t_vector b);
 
+typedef struct	s_matrix33
+{
+	t_mrow3		r[3];
+}				t_matrix33;
+
+t_matrix33		m_mult_m33(t_matrix33 a, t_matrix33 b);
+t_matrix33		m_transpose33(t_matrix33 a);
+t_vector2		m_mult_v33(t_matrix33 m, t_vector2 v);
+t_vector2		m_mult_p33(t_matrix33 m, t_vector2 v);
 #endif

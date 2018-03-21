@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 11:33:17 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/20 16:54:10 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/21 14:49:19 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,7 +217,7 @@ static void		get_object_info(json_value *value, t_object *o)
 		if (!ft_strcmp(value->u.object.values[x].name, "min"))
 			o->min = get_number(value->u.object.values[x].value);
 		if (!ft_strcmp(value->u.object.values[x].name, "pattern"))
-			o->permutation_id = get_number(value->u.object.values[x].value);
+			o->t_id = get_number(value->u.object.values[x].value);
 	}
 }
 
