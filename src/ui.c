@@ -6,41 +6,12 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 16:41:28 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/22 17:23:04 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/22 19:56:13 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_rt.h"
-/*
-void		sdl_put_text(char *text, int x, int y, t_sdl *sdl)
-{
-	SDL_Texture	*texture;
-	SDL_Surface	*surface;
-	TTF_Font	*font;
-	SDL_Color	color;
-	SDL_Rect	rect;
 
-	TTF_Init();
-	font = TTF_OpenFont("open-sans/OpenSans-Regular.ttf", 40);
-	color.r = 30;
-	color.g = 30;
-	color.b = 30;
-	if (font == NULL)
-		return ;
-	surface = TTF_RenderText_Solid(font, text, color);
-	rect.w = surface->w;
-	rect.h = surface->h;
-	rect.x = x;
-	rect.y = y;
-	printf("rect.h %d\n", rect.h);
-	texture = SDL_CreateTextureFromSurface(sdl->ren, surface);
-	SDL_RenderCopy(sdl->ren, texture, NULL, &rect);
-	SDL_FreeSurface(surface);
-	SDL_DestroyTexture(texture);
-	TTF_CloseFont(font);
-	TTF_Quit();
-}
-*/
 void	render_scene_and_ui(t_main *m)
 {
 	m->ui.scene_place = sdl_rect(R_SCENE_X, R_SCENE_Y,
@@ -48,7 +19,6 @@ void	render_scene_and_ui(t_main *m)
 	m->ui.bg[BACKGROUND].rect = sdl_rect(0, 0, m->sdl.win_h, m->sdl.win_w);
 	SDL_RenderCopy(m->sdl.ren, m->ui.bg[BACKGROUND].textr,
 						NULL, &m->ui.bg[BACKGROUND].rect);
-	set_filter(m);
 	SDL_UpdateTexture(m->sdl.texture, NULL,
 			m->sdl.img.pixels, m->sdl.img.w * sizeof(unsigned int));
 	//sdl_clear_image(&m->sdl.img);
@@ -58,10 +28,6 @@ void	render_scene_and_ui(t_main *m)
 	render_copy_rbutton(m);
 	render_copy_scroll(m);
 	render_copy_list(m);
-//	for (int i = 0; i != m->s.o_num; i++)
-//	{
-//		sdl_put_text(ft_strjoin("elem #", ft_itoa(i + 1)), 50, 310 + i * 60, &m->sdl);
-//	}
 	SDL_RenderPresent(m->sdl.ren);
 }
 

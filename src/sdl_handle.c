@@ -6,7 +6,7 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 18:01:54 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/22 15:17:30 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/22 19:41:24 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ void				sdl_loop(t_main *m)
 		if (m->sdl.changes)
 		{
 			re_draw(&m->cl, &m->sdl, &m->s);
+			set_filter(m);
 			render_scene_and_ui(m);
 			m->sdl.changes = 0;
 		}

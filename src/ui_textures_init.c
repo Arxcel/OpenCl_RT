@@ -6,7 +6,7 @@
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/22 14:02:44 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/22 16:36:32 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/22 19:56:18 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	ui_textures_init(t_ui *ui, t_sdl *sdl)
 
 void	ui_scroll_init(t_ui *ui, t_sdl *sdl)
 {
+	//ft_memset(&ui->scroll, 0, sizeof(t_ui_scrl));
 	ui->scroll.r1.textr =
 		sdl_texture_from_file("textures/contrast_disk.png", sdl->ren);
 	ui->scroll.r2.textr = ui->scroll.r1.textr;
