@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 11:33:17 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/21 18:27:19 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/22 13:19:16 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,12 @@ static int		set_t_type(json_value *value)
 		err = 1;
 	if (!err && !ft_strcmp(value->u.string.ptr, "chessboard"))
 		val = T_CHECK;
+	else if (!err && !ft_strcmp(value->u.string.ptr, "gradient-1"))
+		val = T_GRAD1;
+	else if (!err && !ft_strcmp(value->u.string.ptr, "gradient-2"))
+		val = T_GRAD2;
+	else if (!err && !ft_strcmp(value->u.string.ptr, "circle"))
+		val = T_CIRC;
 	else
 		err = 1;
 	if (err)
