@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 11:33:17 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/22 13:19:16 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/22 16:29:45 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,8 @@ static int		set_t_type(json_value *value)
 		val = T_GRAD2;
 	else if (!err && !ft_strcmp(value->u.string.ptr, "circle"))
 		val = T_CIRC;
+	else if (!err && !ft_strcmp(value->u.string.ptr, "brick"))
+		val = T_BRICK;
 	else
 		err = 1;
 	if (err)

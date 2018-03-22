@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 22:15:03 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/22 13:19:27 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/22 16:29:38 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define T_GRAD1		3
 # define T_GRAD2		4
 # define T_CIRC			5
-
+# define T_BRICK		6
 
 
 typedef struct		s_object

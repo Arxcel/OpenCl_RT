@@ -158,8 +158,8 @@ static t_vector			ft_cast_ray(
 						__global t_light	*l,
 						t_ray				*r,
 						t_object *hit_object,
-						unsigned int *seed1,
-						unsigned int *seed2)
+						float x,
+						float y)
 {
 	int			depth;
 	t_vector	reflection_color;
@@ -187,7 +187,7 @@ static t_vector			ft_cast_ray(
 		bias = v_mult_d(r->n_hit, BIAS);
 		int outside;
 		outside = v_dot(r->dir, r->n_hit) < 0 ? 1 : 0;
-		object_color = v_mult_d(get_object_color(hit_object, r, seed1, seed2), calc_light(o, l, *hit_object, r));
+		object_color = v_mult_d(get_object_color(hit_object, r, x, y), calc_light(o, l, *hit_object, r));
 		if ((!hit_object->reflect && !hit_object->refract))
 		{
 			hit_color += v_mult_d(object_color, mask_refraction * mask_reflection);
@@ -224,7 +224,7 @@ static t_vector			ft_cast_ray(
     return (hit_color); 
 } 
 
-static t_ray			find_cam_dir(__global t_camera    *cam, const unsigned int *iter, size_t i_w, size_t i_h)
+static t_ray			find_cam_dir(__global t_camera    *cam, float *iter, size_t i_w, size_t i_h)
 {
 	float scale;
 	float x;
@@ -238,6 +238,8 @@ static t_ray			find_cam_dir(__global t_camera    *cam, const unsigned int *iter,
 	cam->dir = ft_rotate(cam->dir, cam->rot);
 	ray.dir = v_normalize(cam->dir);
 	ray.orig = cam->pos;
+	iter[0] = 128.0 * (float)iter[0] / i_w;	
+	iter[1] = 72.0 * (float)iter[1] / i_h;	
 	return (ray);
 }
 
@@ -247,7 +249,7 @@ unsigned int		ft_renderer(
 		global t_camera *cam,
 		int x, int y, size_t img_w, size_t img_h)
 {
-	unsigned int	iter[2];
+	float			iter[2];
 	t_vector		res;
 	t_object		hit_object;
 	t_ray			ray;
@@ -255,6 +257,6 @@ unsigned int		ft_renderer(
 	iter[0] = y;
 	iter[1] = x;
     ray = find_cam_dir(cam, iter, img_w, img_h);
-	res = ft_cast_ray(o, l, &ray, &hit_object, &iter[0], &iter[1]);
+	res = ft_cast_ray(o, l, &ray, &hit_object, iter[0], iter[1]);
 	return (set_rgb(res));
 }

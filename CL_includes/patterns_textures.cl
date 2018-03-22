@@ -105,7 +105,50 @@ static float get_pattern5(t_ray *r, t_object *o)
 	return (pattern > 0 ? pattern : -pattern);
 }
 
-t_vector			get_object_color(t_object *o, t_ray *r, unsigned int *seed1, unsigned int *seed2)
+static float get_pattern6(t_ray *r, t_object *o) // , float x, float y
+{
+    float   scale;
+    float   scaleX;
+    float   scaleY;
+    float   texX;
+    float   texY;
+    int     tx;
+    int     ty;
+    int     oddity;
+    int     edge;
+
+    scale = (float)o->t_scale;
+    if (!scale)
+        scale = 1.0;
+    if (o->type == O_PLANE || o->type == O_DISK || o->type == O_TRIANGLE)
+    {
+        scaleX = scale * 0.02;
+        scaleY = scale * 0.02;
+    }
+    else if (o->type == O_SPHERE)
+    {
+        scaleX = scale * 15;
+        scaleY = scale * 15;
+    }
+    else if (o->type == O_CYL || o->type == O_PARABOLOID || o->type == O_CON)
+    {
+        scaleX = 10;
+        scaleY = 0.05;
+    }
+    texX =  r->tex[0] * scaleX;
+    texY =  r->tex[1] * scaleY;
+    tx = (int)(texX);
+    ty = (int)(texY);
+    oddity = (tx & 0x1) == (ty & 0x1);
+    texX = texX - tx;
+    texY = texY - ty;
+    texX = texX < 0 ? -texX : texX;
+    texY = texY < 0 ? -texY : texY;
+    edge = ((texX < 0.1) && oddity) || (texY < 0.1);
+	return (edge ? 0 : 1);
+}
+
+t_vector			get_object_color(t_object *o, t_ray *r, float x, float y)
 {
     float pattern;
 
@@ -118,5 +161,7 @@ t_vector			get_object_color(t_object *o, t_ray *r, unsigned int *seed1, unsigned
         pattern = get_pattern4(r, o);
     else if (o->t_id == T_CIRC)
         pattern = get_pattern5(r, o);
+    else if (o->t_id == T_BRICK)
+        pattern = get_pattern6(r, o);
     return (v_mult_d(o->color, 0.5 * pattern) + v_mult_d(o->color, 0.5));
 }
