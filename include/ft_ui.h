@@ -6,7 +6,7 @@
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 16:37:12 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/22 19:56:39 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/22 20:40:54 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,14 +117,14 @@ enum			e_btns
 	EXPORT = 3,
 	PREV_CAM = 4,
 	NEXT_CAM = 5,
-	BTN_CUBE = 6,
-	BTN_PLANE = 7,
-	BTN_SPHERE = 8,
-	BTN_CYLINDER = 9,
-	BTN_CONUS = 10,
-	BTN_DISK = 11,
+	BTN_SPHERE = 6,
+	BTN_CYLINDER = 7,
+	BTN_CONUS = 8,
+	BTN_PARABOLOID = 9,
+	BTN_DISK = 10,
+	BTN_PLANE = 11,
 	BTN_TRIANGLE = 12,
-	BTN_PARABOLOID = 13,
+	BTN_CUBE = 13,
 	BTN_CAM = 14,
 	BTN_LIGHT1 = 15,
 	BTN_LIGHT2 = 16,

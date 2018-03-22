@@ -6,7 +6,7 @@
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/22 16:57:48 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/22 19:42:50 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/22 21:06:38 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,32 @@ void		sdl_put_text(char *text, int x, int y, t_sdl *sdl)
 	TTF_CloseFont(font);
 	TTF_Quit();
 }
+/*
+static void	make_and_put_text(t_main *m, int i)
+{
+	SDL_Texture	*texture;
+	SDL_Surface	*surface;
+	TTF_Font	*font;
+	SDL_Color	color;
+	SDL_Rect	rect;
 
+	TTF_Init();
+	font = TTF_OpenFont("open-sans/OpenSans-Regular.ttf", 40);
+	color.r = 30;
+	color.g = 30;
+	color.b = 30;
+	if (font == NULL)
+		return ;
+	surface = TTF_RenderText_Solid(font, text, color);
+	rect = sdl_rect(x, y, surface->h, surface->w);
+	texture = SDL_CreateTextureFromSurface(sdl->ren, surface);
+	SDL_RenderCopy(sdl->ren, texture, NULL, &rect);
+	SDL_FreeSurface(surface);
+	SDL_DestroyTexture(texture);
+	TTF_CloseFont(font);
+	TTF_Quit();
+}
+*/
 void		render_copy_list(t_main *m)
 {
 	int		i;
@@ -56,7 +81,7 @@ void		render_copy_list(t_main *m)
 	i = k;
 	while (i != m->ui.scroll.visible_steps + k)
 	{
-		sdl_put_text(ft_strjoin("elem #", ft_itoa(i + 1)), 50, 320 + (i - k) * 60, &m->sdl);
+	//	sdl_put_text(ft_strjoin("elem #", ft_itoa(i + 1)), 50, 320 + (i - k) * 60, &m->sdl);
 		i++;
 	}
 }
