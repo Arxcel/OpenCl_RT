@@ -6,7 +6,7 @@
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 16:37:12 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/22 16:58:33 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/22 18:32:35 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,16 @@ typedef struct	s_ui_scrl
 	t_ui_bg		b_r2;
 	t_ui_bg		b_line;
 	int			steps;
-	int			line_steps;
+	int			visible_steps;
+	int			possible_steps;
 	int			first_step;
 }				t_ui_scrl;
+
+typedef struct	s_ui_lst
+{
+	SDL_Rect	rect;
+	int			n;
+}				t_ui_lst;
 
 typedef	struct	s_ui
 {
@@ -83,6 +90,7 @@ typedef	struct	s_ui
 	t_ui_btn	btn[BTNS];
 	t_ui_rbtn	rbtn;
 	t_ui_scrl	scroll;
+	t_ui_lst	list;
 }				t_ui;
 
 enum			e_bg

@@ -6,12 +6,12 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 16:41:28 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/22 16:57:30 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/22 17:23:04 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_rt.h"
-
+/*
 void		sdl_put_text(char *text, int x, int y, t_sdl *sdl)
 {
 	SDL_Texture	*texture;
@@ -40,7 +40,7 @@ void		sdl_put_text(char *text, int x, int y, t_sdl *sdl)
 	TTF_CloseFont(font);
 	TTF_Quit();
 }
-
+*/
 void	render_scene_and_ui(t_main *m)
 {
 	m->ui.scene_place = sdl_rect(R_SCENE_X, R_SCENE_Y,
@@ -58,10 +58,10 @@ void	render_scene_and_ui(t_main *m)
 	render_copy_rbutton(m);
 	render_copy_scroll(m);
 	render_copy_list(m);
-	for (int i = 0; i != m->s.o_num; i++)
-	{
-		sdl_put_text(ft_strjoin("elem #", ft_itoa(i + 1)), 50, 310 + i * 60, &m->sdl);
-	}
+//	for (int i = 0; i != m->s.o_num; i++)
+//	{
+//		sdl_put_text(ft_strjoin("elem #", ft_itoa(i + 1)), 50, 310 + i * 60, &m->sdl);
+//	}
 	SDL_RenderPresent(m->sdl.ren);
 }
 

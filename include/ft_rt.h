@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:32:12 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/22 16:58:54 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/22 18:54:27 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void				mouse_up(int x, int y, t_main *m);
 */
 
 void				render_copy_background(t_main *m);
-void 				render_copy_buttons(t_main *m);
+void				render_copy_buttons(t_main *m);
 void				render_copy_rbutton(t_main *m);
 void				render_copy_scroll(t_main *m);
 void				render_copy_list(t_main *m);

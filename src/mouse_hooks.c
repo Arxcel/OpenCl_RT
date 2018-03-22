@@ -6,7 +6,7 @@
 /*   By: pprivalo <pprivalo@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/18 22:50:56 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/22 16:56:12 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/22 17:47:45 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,9 @@ static void		scroll_move(int x, int y, t_main *m)
 																/ L_TEXT_H;
 	if (m->ui.scroll.first_step < 0)
 		m->ui.scroll.first_step = 0;
-	if (m->ui.scroll.first_step > m->ui.scroll.steps - m->ui.scroll.line_steps)
-		m->ui.scroll.first_step = m->ui.scroll.steps - m->ui.scroll.line_steps;
+	if (m->ui.scroll.first_step > m->ui.scroll.steps - m->ui.scroll.possible_steps)
+		m->ui.scroll.first_step = m->ui.scroll.steps - m->ui.scroll.possible_steps;
+	printf("steps %d possible %d\n", m->ui.scroll.steps, m->ui.scroll.possible_steps);
 	render_scene_and_ui(m);
 }
 
