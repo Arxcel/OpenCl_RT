@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_cl.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/07 17:09:00 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/20 14:05:11 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/18 15:52:17 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,11 @@ typedef struct			s_cl{
 	char				*text;
 	char				*flags;
 }						t_cl;
-
 typedef struct			s_args
 {
 	int					number_of_values;
 	float				*input_floats;
 }						t_args;
-
 void					cl_error_msg(const char *errinfo,
 								const void *private_info,
 								size_t cb, void *user_data);
@@ -64,5 +62,4 @@ void					cl_set_out_arg(t_cl *cl, size_t size,
 int						ft_printf(const char *format, ...);
 void					cl_free_all_args(size_t args_num, cl_mem *args);
 double					cl_get_exec_time(t_cl *cl);
-
 #endif

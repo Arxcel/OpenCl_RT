@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/07 17:50:00 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/21 23:02:27 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/18 15:46:39 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	cl_create_queue(t_cl *cl)
 	cl_command_queue_properties		c_properties;
 
 	c_properties = CL_QUEUE_PROFILING_ENABLE;
-	cl->commands = clCreateCommandQueue(cl->context, cl->devices[1],
+	cl->commands = clCreateCommandQueue(cl->context, cl->devices[0],
 										c_properties, &res);
 	if (res != CL_SUCCESS)
 	{

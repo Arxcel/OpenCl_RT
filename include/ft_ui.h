@@ -6,7 +6,7 @@
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 16:37:12 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/21 23:47:13 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/22 16:58:33 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # define RBTN_H 45
 # define LOGO_H 67
 # define LOGO_W 130
+# define L_TEXT_H 30
 
 typedef struct	s_xy
 {
@@ -62,15 +63,18 @@ typedef struct	s_ui_rbtn
 	int			status;
 }				t_ui_rbtn;
 
-typedef struct	s_ui_sldr
+typedef struct	s_ui_scrl
 {
 	t_ui_bg		r1;
 	t_ui_bg		r2;
 	t_ui_bg		line;
-	t_ui_bg		b_r;
+	t_ui_bg		b_r1;
+	t_ui_bg		b_r2;
 	t_ui_bg		b_line;
-	int			perc;
-}				t_ui_sldr;
+	int			steps;
+	int			line_steps;
+	int			first_step;
+}				t_ui_scrl;
 
 typedef	struct	s_ui
 {
@@ -78,13 +82,8 @@ typedef	struct	s_ui
 	t_ui_bg		bg[BG_ITEMS];
 	t_ui_btn	btn[BTNS];
 	t_ui_rbtn	rbtn;
-	t_ui_sldr	sldr[SLDRS];
+	t_ui_scrl	scroll;
 }				t_ui;
-
-enum			e_sldr
-{
-	L_SCROLL = 0
-};
 
 enum			e_bg
 {
@@ -124,13 +123,10 @@ enum			e_btns
 	BTN_LIGHT3 = 17
 };
 
-void			ui_sliders_init(t_ui *ui, t_sdl *sdl);
+void			ui_scroll_init(t_ui *ui, t_sdl *sdl);
 void			ui_buttons_init(t_ui *ui, t_sdl *sdl);
 void			ui_textures_init(t_ui *ui, t_sdl *sdl);
-void			ui_sliders_rect_params(t_ui *ui, t_sdl *sdl, t_scene *s);
-void			ui_bg_rect_params(t_ui *ui, t_sdl *sdl);
-void			ui_btn_rect_params(t_ui *ui);
-void			ui_rbtn_rect_params(t_ui *ui);
+
 void			ui_render_corners(t_ui *ui, t_sdl *sdl, SDL_Rect place);
 void			ui_render_lines(t_ui *ui, t_sdl *sdl);
 

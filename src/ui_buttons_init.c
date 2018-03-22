@@ -6,7 +6,7 @@
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 17:50:08 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/20 23:08:04 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/22 14:20:22 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ static void	ui_buttons_init_3(t_ui *ui, t_sdl *sdl)
 	ui->btn[BTN_LIGHT3].on =
 		sdl_texture_from_file("textures/btns/new_light3_on.png", sdl->ren);
 	ui->btn[BTN_LIGHT3].off =
-		sdl_texture_from_file("textures/btns/new_light3_off.png", sdl->ren);		
+		sdl_texture_from_file("textures/btns/new_light3_off.png", sdl->ren);
 }
 
 static void	ui_rbutton_init(t_ui *ui, t_sdl *sdl)
