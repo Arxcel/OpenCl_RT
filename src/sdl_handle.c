@@ -6,7 +6,7 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 18:01:54 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/21 16:29:28 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/22 17:37:24 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,42 +64,11 @@ static void			key_down(int key, t_main *m)
 	{
 		open_file(m);
 	}
-	else if (key == SDLK_KP_1)
-	{
-		m->after_effect ^= AE_SEPIA;
-		m->sdl.changes = 1;
-	}
-	else if (key == SDLK_KP_2)
-	{
-		m->after_effect ^= AE_TOON;
-		m->sdl.changes = 1;
-	}
-	else if (key == SDLK_KP_3)
-	{
-		m->after_effect ^= AE_M_BLUR;
-		m->sdl.changes = 1;
-	}
-	else if (key == SDLK_KP_4)
-	{
-		m->after_effect ^= AE_SMOOTH;
-		m->sdl.changes = 1;
-	}
-	else if (key == SDLK_KP_5)
-	{
-		m->after_effect ^= AE_CONTR;
-		m->sdl.changes = 1;
-	}
-	else if (key == SDLK_KP_PLUS || key == SDLK_KP_MINUS)
-	{
-		m->coeficient = key == SDLK_KP_PLUS ? m->coeficient + 1 : m->coeficient - 1;
-		if (m->after_effect & AE_CONTR)
-			m->sdl.changes++;
-	}
-	else if (key == SDLK_KP_6)
-	{
-		m->after_effect ^= AE_SHARPNESS;
-		m->sdl.changes = 1;
-	}
+	else if (key == SDLK_KP_1 || key == SDLK_KP_2 || key == SDLK_KP_3 ||
+		key == SDLK_KP_4 || key == SDLK_KP_5 || key == SDLK_KP_6 ||
+		key == SDLK_KP_PLUS || key == SDLK_KP_MINUS || key == SDLK_KP_MULTIPLY
+			|| key == SDLK_KP_0)
+		filter_key(key, m);
 }
 
 void				sdl_loop(t_main *m)

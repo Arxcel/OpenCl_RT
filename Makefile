@@ -4,7 +4,7 @@ NAME = rt
 
 KEYS = -Wall -Wextra -Werror
 
-FLAGS =  -flto -O3
+FLAGS = -flto -O3
 
 IDIR = ./include
 
@@ -23,6 +23,7 @@ CFLAGS = -I$(IDIR) \
 		 -I./libJson/include \
 		 -I./libmy_math/include \
 		 -I./libTFD \
+		 -I./libAE/includes \
 
 LIBFT = libft
 
@@ -35,6 +36,8 @@ LIBFTSDL = libftSDL
 LIBMMATH = libmy_math
 
 LIBTFD = libTFD
+
+LIBAE = libAE
 
 SDL2_F		= -framework SDL2 -framework SDL2_image  -F ./libSDL/
 
@@ -59,17 +62,6 @@ SOURCES =   main.c \
 			utils.c \
 			validate_objects.c \
 			ui.c \
-			img_filters.c \
-			ae_smooth.c \
-			ae_sepia.c \
-			ae_get_matrix.c \
-			ae_matrix_mult_rgb.c \
-			ae_contrast.c \
-			ae_blur.c \
-			ae_test_blur.c \
-			ae_get_all_rgb.c \
-			ae_sharpness.c \
-			ae_set_sharpness.c \
 			mouse_hooks.c \
 			ui_render_lines_and_corners.c \
 			open_export_save.c \
@@ -81,11 +73,11 @@ SRCS = $(addprefix $(DIR_S)/,$(SOURCES))
 
 OBJS = $(addprefix $(DIR_O)/,$(SOURCES:.c=.o))
 
-all: obj libs $(NAME)
+all: obj $(NAME)
 
 $(NAME): $(OBJS) $(EXTENSIONS)
-		# $(CC) -g -o $(NAME) $(OBJS) $(FLAGS) $(CFLAGS) -L $(LIBFT) -lft $(LIBTFD)/libtfd.a -L $(LIBMMATH) -lmy_math -L $(LIBJSON) -lJSON -L $(LIBCL) -lCL -framework OpenCl $(SDL2_P) $(SDL2_F) -L $(LIBFTSDL) -lftsdl -fsanitize=address
-		$(CC) -o $(NAME) $(OBJS) $(FLAGS) $(CFLAGS) -L $(LIBFT) -lft $(LIBTFD)/libtfd.a -L $(LIBMMATH) -lmy_math -L $(LIBJSON) -lJSON -L $(LIBCL) -lCL -framework OpenCl $(SDL2_P) $(SDL2_F) -L $(LIBFTSDL) -lftsdl
+		make libs
+		$(CC) -o $(NAME) $(OBJS) $(FLAGS) $(CFLAGS) -L $(LIBFT) -lft $(LIBTFD)/libtfd.a -L $(LIBMMATH) -lmy_math -L $(LIBJSON) -lJSON -L $(LIBCL) -lCL -framework OpenCl $(SDL2_P) $(SDL2_F) -L $(LIBFTSDL) -lftsdl -L $(LIBAE) -lae
 
 		
 
@@ -96,6 +88,7 @@ libs:
 	make -C $(LIBCL)
 	make -C $(LIBFTSDL)
 	make -C $(LIBTFD)
+	make -C $(LIBAE)
 
 obj:
 	mkdir -p obj
@@ -121,6 +114,7 @@ clean:
 		make clean -C $(LIBJSON)
 		make clean -C $(LIBMMATH)
 		make clean -C $(LIBTFD)
+		make clean -C $(LIBAE)
 		rm -rf $(DIR_O)
 
 fclean: clean
@@ -131,6 +125,7 @@ fclean: clean
 		make fclean -C $(LIBJSON)
 		make fclean -C $(LIBMMATH)
 		make fclean -C $(LIBTFD)
+		make fclean -C $(LIBAE)
 
 re: fclean all
 

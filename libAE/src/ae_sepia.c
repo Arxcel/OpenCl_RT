@@ -6,11 +6,11 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/20 17:14:14 by afarapon          #+#    #+#             */
-/*   Updated: 2018/03/21 11:25:23 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/22 14:40:06 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_rt.h"
+#include "lib_ae.h"
 
 static unsigned int		set_sepia_pixel(unsigned int in)
 {
@@ -31,29 +31,17 @@ static unsigned int		set_sepia_pixel(unsigned int in)
 	return (res.col);
 }
 
-void					free_matrix(unsigned int **m)
-{
-	int		i;
-
-	i = 0;
-	while (i < 3)
-	{
-		free(m[i]);
-		i++;
-	}
-	free(m);
-}
-
-void					set_sepia(t_main *main, unsigned int *out)
+void					set_sepia(t_ae *ae, unsigned int **out, size_t count)
 {
 	size_t			size;
 	size_t			i;
 
 	i = 0;
-	size = main->sdl.img.h * main->sdl.img.w;
+	(void)count;
+	size = *ae->h * *ae->w;
 	while (i < size)
 	{
-		out[i] = set_sepia_pixel(out[i]);
+		(*out)[i] = set_sepia_pixel((*out)[i]);
 		i++;
 	}
 }

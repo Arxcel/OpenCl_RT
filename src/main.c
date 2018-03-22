@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
+/*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:33:57 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/21 18:30:11 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/22 12:56:15 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ void				re_draw(t_cl *cl, t_sdl *sdl, t_scene *s)
 
 int					main(int ac, char **av)
 {
-	t_main	m;
-	t_object test;
+	t_main			m;
+	t_object		test;
 
 	printf("%lu\n", sizeof(test));
 	printf("%lu\n", sizeof(test.type) + sizeof(test.specular) +sizeof(test.radius) +sizeof(test.angle) +sizeof(test.reflect) +sizeof(test.refract) +sizeof(test.ior) +sizeof(test.min) +sizeof(test.max) +sizeof(test.color) +sizeof(test.dir) +sizeof(test.pos1) +sizeof(test.pos2) + sizeof(test.pos3) + sizeof(short) * 3);
@@ -75,6 +75,7 @@ int					main(int ac, char **av)
 	// put_error("All is ok.");
 	ft_bzero(&m, sizeof(t_main));
 	ui_and_sdl_init(&m);
+	make_dependencies(&m);
 	if (ac != 2)
 		put_error("Wrong number of arguments.");
 	get_scene(av[1], &m.s);
