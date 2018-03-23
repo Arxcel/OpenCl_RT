@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/07 17:38:00 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/23 00:38:12 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/23 02:44:20 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	cl_get_devices(t_cl *cl)
 	cl_uint		num_devices;
 	cl_int		res;
 
-	max_devices = 3;
+	max_devices = 1;
 	cl->devices = (cl_device_id*)malloc(max_devices * sizeof(cl_device_id));
 	res = clGetDeviceIDs(cl->platforms[0], CL_DEVICE_TYPE_GPU, max_devices,
 						cl->devices, &num_devices);
@@ -32,5 +32,5 @@ void	cl_get_devices(t_cl *cl)
 			exit(1);
 		}
 	}
-	clGetDeviceInfo(cl->devices[1], CL_DEVICE_NAME, 128, cl->device_name, NULL);
+	clGetDeviceInfo(cl->devices[0], CL_DEVICE_NAME, 128, cl->device_name, NULL);
 }
