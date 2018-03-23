@@ -5,6 +5,7 @@ static float get_pattern2(t_ray *r, t_object *o)
     float scaleX;
     float scaleY;
 
+    r->tex = m_mult_v33(v_rot2(o->tex_angle), r->tex);
     scale = (float)o->t_scale;
     if (!scale)
         scale = 1.0;
@@ -32,6 +33,7 @@ static float get_pattern3(t_ray *r, t_object *o)
     float scaleX;
     float scaleY;
 
+    r->tex = m_mult_v33(v_rot2(o->tex_angle), r->tex);
     scale = (float)o->t_scale;
     if (!scale)
         scale = 1.0;
@@ -60,6 +62,7 @@ static float get_pattern4(t_ray *r, t_object *o)
     float scaleX;
     float scaleY;
 
+    r->tex = m_mult_v33(v_rot2(o->tex_angle), r->tex);
     scale = (float)o->t_scale;
     if (!scale)
         scale = 1.0;
@@ -86,6 +89,7 @@ static float get_pattern5(t_ray *r, t_object *o)
     float   scale;
     float   pattern;
 
+    r->tex = m_mult_v33(v_rot2(o->tex_angle), r->tex);
     scale = (float)o->t_scale;
     if (!scale)
         scale = 1.0;
@@ -117,6 +121,7 @@ static float get_pattern6(t_ray *r, t_object *o) // , float x, float y
     int     oddity;
     int     edge;
 
+    r->tex = m_mult_v33(v_rot2(o->tex_angle), r->tex);
     scale = (float)o->t_scale;
     if (!scale)
         scale = 1.0;
@@ -156,6 +161,7 @@ static t_vector     get_custom(t_ray *r, t_object *o, global unsigned int *tex1)
     int     texX;
     int     texY;
 
+    r->tex = m_mult_v33(v_rot2(o->tex_angle), r->tex);
     scale = (float)o->t_scale;
     if (!scale)
         scale = 1.0;

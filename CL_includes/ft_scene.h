@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 22:15:03 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/23 14:24:00 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/23 15:14:58 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ typedef struct		s_object
 	short			specular;	// {short_min:short_max}
 	short			t_id;		// {short_min:short_max}
 	short			is_neg;		// {short_min:short_max}
+	short			tex_angle;
 }					t_object;
 
 typedef struct		s_light

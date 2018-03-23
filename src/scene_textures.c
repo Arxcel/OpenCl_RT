@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/23 11:39:56 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/23 14:19:17 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/23 15:05:14 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ static void				load_texture(unsigned int *pixels, const char *path)
 	size = 256 * 256;
 	k = 0;
 	sur = IMG_Load(path);
+	if (!sur || sur->w != 256 || sur->h != 256)
+		put_error("The standart texture was deleted or changed.");
 	while (++i < size)
 	{
 		pixels[i] = get_col_by_i(sur->pixels, k);

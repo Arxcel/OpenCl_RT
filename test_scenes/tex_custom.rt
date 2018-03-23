@@ -110,7 +110,8 @@
 			"color": [0.4, 0.4, 0.4],
 			"specular": 15,
             "pattern":  "custom-2",
-			"pattern_scale": 25
+			"pattern_scale": 25,
+			"tex_angle": -80
 		}
 	],
 	"lights": [{
