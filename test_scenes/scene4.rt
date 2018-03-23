@@ -1,5 +1,6 @@
 {
-	"objects": [{
+	"objects": [
+		{
 			"type": "sphere",
 			"color": [0.33, 0.02, 0.02],
 			"pos1": [0, -200, -1000],
@@ -156,7 +157,8 @@
 			"reflect": 0.4
 		}
 	],
-	"lights": [{
+	"lights": [
+	{
 			"type": "lamp",
 			"position": [799, 300, 400],
 			"color": [1, 1, 1],
@@ -173,7 +175,8 @@
 			"intensity": 0.1
 		}
 	],
-	"cameras": [{
+	"cameras": [
+	{
 		"type": "common",
 		"rotation": [0, 0, 0],
 		"position": [0, 0, 300],
