@@ -5,7 +5,7 @@ static float get_pattern2(t_ray *r, t_object *o)
     float scaleX;
     float scaleY;
 
-    scale = (float)o->t_scale;
+    scale = (float)o->tex_scale;
     if (!scale)
         scale = 1.0;
     if (o->type == O_PLANE || o->type == O_DISK || o->type == O_TRIANGLE)
@@ -32,7 +32,7 @@ static float get_pattern3(t_ray *r, t_object *o)
     float scaleX;
     float scaleY;
 
-    scale = (float)o->t_scale;
+    scale = (float)o->tex_scale;
     if (!scale)
         scale = 1.0;
     if (o->type == O_PLANE || o->type == O_DISK || o->type == O_TRIANGLE)
@@ -60,7 +60,7 @@ static float get_pattern4(t_ray *r, t_object *o)
     float scaleX;
     float scaleY;
 
-    scale = (float)o->t_scale;
+    scale = (float)o->tex_scale;
     if (!scale)
         scale = 1.0;
     if (o->type == O_PLANE || o->type == O_DISK || o->type == O_TRIANGLE)
@@ -86,7 +86,7 @@ static float get_pattern5(t_ray *r, t_object *o)
     float   scale;
     float   pattern;
 
-    scale = (float)o->t_scale;
+    scale = (float)o->tex_scale;
     if (!scale)
         scale = 1.0;
     if (o->type == O_PLANE || o->type == O_DISK || o->type == O_TRIANGLE)
@@ -117,7 +117,7 @@ static float get_pattern6(t_ray *r, t_object *o) // , float x, float y
     int     oddity;
     int     edge;
 
-    scale = (float)o->t_scale;
+    scale = (float)o->tex_scale;
     if (!scale)
         scale = 1.0;
     if (o->type == O_PLANE || o->type == O_DISK || o->type == O_TRIANGLE)
@@ -153,15 +153,15 @@ t_vector			get_object_color(t_object *o, t_ray *r, float x, float y)
     float pattern;
 
     pattern = 0;
-    if (o->t_id == T_CHECK)
+    if (o->tex_id == T_CHECK)
 	    pattern = get_pattern2(r, o);
-    else if (o->t_id == T_GRAD1)
+    else if (o->tex_id == T_GRAD1)
         pattern = get_pattern3(r, o);
-    else if (o->t_id == T_GRAD2)
+    else if (o->tex_id == T_GRAD2)
         pattern = get_pattern4(r, o);
-    else if (o->t_id == T_CIRC)
+    else if (o->tex_id == T_CIRC)
         pattern = get_pattern5(r, o);
-    else if (o->t_id == T_BRICK)
+    else if (o->tex_id == T_BRICK)
         pattern = get_pattern6(r, o);
     return (v_mult_d(o->color, 0.5 * pattern) + v_mult_d(o->color, 0.5));
 }

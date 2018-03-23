@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_rtv1.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
+/*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 11:57:16 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/22 16:04:41 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/23 13:58:22 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,5 @@ short						get_triangle_data(t_ray *ray, t_object plane, float t);
 short						get_par_data(t_ray *ray, t_object sh, float t);
 t_vector					get_object_color(t_object *o, t_ray *r, float x, float y);
 short						get_square_data(t_ray *ray, t_object square, float t);
+
 #endif

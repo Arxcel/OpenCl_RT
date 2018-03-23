@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_export_save.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
+/*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 14:10:10 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/23 11:18:07 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/23 12:34:08 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,8 +148,8 @@ static void	save_function(int fd, t_main *m)
 		dprintf(fd, "\t\t\t\"ior\": %f,\n", m->s.object[i].ior);
 		dprintf(fd, "\t\t\t\"min\": %f,\n", m->s.object[i].min);
 		dprintf(fd, "\t\t\t\"max\": %f,\n", m->s.object[i].max);
-	//	dprintf(fd, "\t\t\t\"pattern_scale\": %d,\n", m->s.object[i].t_scale);
-	//	dprintf(fd, "\t\t\t\"pattern\": %d,\n", m->s.object[i].t_id);
+	//	dprintf(fd, "\t\t\t\"pattern_scale\": %d,\n", m->s.object[i].tex_scale);
+	//	dprintf(fd, "\t\t\t\"pattern\": %d,\n", m->s.object[i].tex_id);
 		dprintf(fd, "\t\t},\n");
 		i++;
 	}
