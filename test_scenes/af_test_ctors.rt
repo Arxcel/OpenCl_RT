@@ -1,0 +1,47 @@
+{
+	"objects": [
+		{
+			"type": "square",
+		},
+		{
+			"type": "plane",
+		},
+		{
+			"type": "triangle",
+		},
+		{
+			"type": "sphere",
+		},
+		{
+			"type": "cylinder",
+		},
+		{
+			"type": "conus",
+		},
+		{
+			"type": "paraboloid",
+		},
+		{
+			"type": "disk",
+		}
+	],
+	"lights": [
+		{
+			"type": "lamp",
+			"position": [0, 3, 0],
+			"color": [1, 1, 1],
+			"intensity" : 1
+		},
+		{
+			"type": "ambient",
+			"intensity": 0.5
+		}
+	],
+	"cameras": [{
+		"type": "common",
+		"rotation": [0, 0, 0],
+		"position": [0, 1, 4],
+		"field_of_view": 50,
+		"bias": 0.3
+	}]
+}

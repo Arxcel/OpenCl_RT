@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_cl.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/07 17:09:00 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/20 14:05:11 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/23 14:13:48 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #  include "CL/cl.h"
 # endif
 # include <stdio.h>
-# define INDEX_NUM 4
+# define INDEX_NUM 8
 
 typedef struct			s_cl{
 	size_t				work_dim[2];
@@ -62,7 +62,7 @@ void					cl_get_res(t_cl *cl, size_t size,
 void					cl_set_out_arg(t_cl *cl, size_t size,
 								cl_uint arg_index);
 int						ft_printf(const char *format, ...);
-void					cl_free_all_args(size_t args_num, cl_mem *args);
+void					cl_free_all_args(cl_mem *args);
 double					cl_get_exec_time(t_cl *cl);
 
 #endif

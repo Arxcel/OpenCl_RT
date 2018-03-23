@@ -15,12 +15,10 @@
 static short		is_in_square(t_vector p1, t_object *p)
 {
 	t_vector	p_pos2;
-    t_vector	p_pos1;
-    t_vector    p_pos3;
+	t_vector	p_pos1;
+	t_vector	p_pos3;
 	t_vector	x;
 	t_vector	y;
-    t_vector    s;
-    float       d;
 
 	x = v_normalize(p->pos1 - p->pos2);
 	p_pos2 = v_normalize(p->pos2 - p1);
@@ -28,11 +26,11 @@ static short		is_in_square(t_vector p1, t_object *p)
 	p_pos3 = v_normalize(p->pos3 - p1);
 	y = v_normalize(p->pos3 - p->pos2);
 	if ((v_dot(x, p_pos2) <= 0 && v_dot(y, p_pos2) <= 0))
-    {
-        if ((v_dot(x, p_pos1) >= 0 && v_dot(y, p_pos3) >= 0))
-		    return (1);
+	{
+		if ((v_dot(x, p_pos1) >= 0 && v_dot(y, p_pos3) >= 0))
+			return (1);
 		return (0);
-    }
+	}
 	return (0);
 }
 

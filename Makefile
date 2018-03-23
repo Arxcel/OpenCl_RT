@@ -61,6 +61,7 @@ SOURCES =   main.c \
 			set_flags.c \
 			move_camera.c \
 			utils.c \
+			utils2.c \
 			validate_objects.c \
 			ui.c \
 			mouse_hooks.c \
@@ -75,6 +76,13 @@ SOURCES =   main.c \
 			ui_textures_init.c \
 			sdl_sub.c \
 			sdl_rinit.c \
+			scene_textures.c \
+			ctors_1.c \
+			ctors_2.c \
+			retrive_cameras.c \
+			retrive_lights.c \
+			retrive_objects.c \
+			retrive_utils.c 
 
 SRCS = $(addprefix $(DIR_S)/,$(SOURCES))
 
@@ -109,9 +117,9 @@ norme:
 		make norme -C $(LIBFTSDL)
 		make norme -C $(LIBMMATH)
 		echo "--------------------Checking header files $(NAME)"
-		norminette ./$(HEADER)
+		norminette ./$(HEADER) | grep "Error"
 		echo "--------------------Checking source files $(NAME)"
-		norminette ./$(DIR_S)
+		norminette ./$(DIR_S) | grep "Error"
 
 clean:
 		rm -f $(OBJS)

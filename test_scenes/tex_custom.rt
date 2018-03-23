@@ -1,13 +1,14 @@
 {
 	"objects": [{
-			"type": "sphere",
-			"color": [0.33, 0.02, 0.02],
-			"pos1": [0, -150, -1000],
-			"radius": 50,
-			"specular": 1300,
-			"reflect": 0.1,
-			"pattern":  "gradient-2",
-			"pattern_scale": 1
+			"type": "paraboloid",
+			"pos1": [0, -200, -1100],
+			"direction": [0, 1, 0],
+			"radius" : 5,
+			"color": [0.9, 0.9, 0.4],
+			"max": 100,
+			"specular": 500,
+			"pattern":  "custom-4",
+			"pattern_scale": 3
 		},
 		{
 			"type": "sphere",
@@ -16,8 +17,8 @@
 			"radius": 100,
 			"specular": 15,
 			"reflect": 0,
-			"pattern":  "gradient-2",
-			"pattern_scale": 1
+			"pattern":  "custom-3",
+			"pattern_scale": 2
 		},
 		{
 			"type": "sphere",
@@ -26,8 +27,8 @@
 			"radius": 100,
 			"specular": 15,
 			"reflect": 0,
-			"pattern":  "gradient-2",
-			"pattern_scale": 1
+			"pattern":  "custom-3",
+			"pattern_scale": 2
 		},
 		{
 			"type": "sphere",
@@ -36,8 +37,8 @@
 			"radius": 100,
 			"specular": 15,
 			"reflect": 0,
-			"pattern":  "gradient-2",
-			"pattern_scale": 1
+			"pattern":  "custom-3",
+			"pattern_scale": 2
 		},
 		{
 			"type": "sphere",
@@ -46,8 +47,8 @@
 			"radius": 100,
 			"specular": 15,
 			"reflect": 0,
-			"pattern":  "gradient-2",
-			"pattern_scale": 1
+			"pattern":  "custom-3",
+			"pattern_scale": 2
 		},
 		{
 			"type": "cylinder",
@@ -57,8 +58,8 @@
 			"radius": 50,
 			"specular": 15,
 			"reflect": 0,
-			"pattern":  "gradient-2",
-			"pattern_scale": 1
+			"pattern":  "custom-3",
+			"pattern_scale": 2
 		},
 		{
 			"type": "cylinder",
@@ -68,8 +69,8 @@
 			"radius": 50,
 			"specular": 15,
 			"reflect": 0,
-			"pattern":  "gradient-2",
-			"pattern_scale": 1
+			"pattern":  "custom-3",
+			"pattern_scale": 2
 		},
 		{
 			"type": "cylinder",
@@ -79,32 +80,19 @@
 			"radius": 50,
 			"specular": 15,
 			"reflect": 0,
-			"pattern":  "gradient-2",
-			"pattern_scale": 1
+			"pattern":  "custom-3",
+			"pattern_scale": 2
 		},
 		{
 			"type": "cylinder",
-			"direction": [0, 1, 1],
+			"direction": [0, 1, 0],
 			"color": [0.3, 0.3, 0.3],
 			"pos1": [-300, 0, -1700],
 			"radius": 50,
 			"specular": 15,
 			"reflect": 0,
-        	"pattern":  "gradient-2",
-			"pattern_scale": 1,
-			"max": 150
-		},
-		{
-			"type": "paraboloid",
-			"pos1": [300, 0, -550],
-			"direction": [0, 1, 0],
-			"radius" : 5,
-			"color": [0.9, 0.9, 0.4],
-			"max": 100,
-			"specular": 500,
-			"reflect": 0.1,
-			"pattern":  "gradient-2",
-			"pattern_scale": 0.1
+			"pattern":  "custom-3",
+			"pattern_scale": 2
 		},
 		{
 			"type": "plane",
@@ -112,9 +100,8 @@
 			"direction": [0, 1, 0],
 			"color": [0.4, 0.4, 0.4],
 			"specular": 15,
-			"reflect": 0.6,
-			"pattern":  "gradient-2",
-			"pattern_scale": 1
+            "pattern":  "custom-1",
+			"pattern_scale": 2
 		},
 		{
 			"type": "plane",
@@ -122,41 +109,9 @@
 			"direction": [0, 0, 1],
 			"color": [0.4, 0.4, 0.4],
 			"specular": 15,
-			"reflect": 0.6,
-			"pattern":  "gradient-2",
-			"pattern_scale": 1
-		},
-		{
-			"type": "disk",
-			"pos1": [0, 0, -1800],
-			"direction": [0, 0, 1],
-			"color": [0.24, 0.12, 0],
-			"radius": 800,
-			"specular": 2,
-			"reflect": 0.8,
-            "pattern":  "gradient-2",
-			"pattern_scale": 1
-		},
-		{
-			"type": "disk",
-			"pos1": [0, 0, 1800],
-			"direction": [0, 0, -1],
-			"color": [0.24, 0.12, 0],
-			"radius": 800,
-			"specular": 2,
-			"reflect": 0.8
-		},
-		{
-			"type": "conus",
-			"pos1": [-300, 200, -550],
-			"direction": [0, -1, 0],
-			"color": [0, 0.7, 0.7],
-			"specular": 2,
-			"angle": 30,
-			"min" : 30,
-			"max" : 200,
-			"pattern":  "gradient-2",
-			"pattern_scale": 1
+            "pattern":  "custom-2",
+			"pattern_scale": 25,
+			"tex_angle": -80
 		}
 	],
 	"lights": [{
@@ -176,10 +131,6 @@
 			"position": [100, 0, -1100],
 			"color": [1, 1, 1],
 			"intensity" : 1
-		},
-		{
-			"type": "ambient",
-			"intensity" : 0
 		}
 	],
 	"cameras": [{

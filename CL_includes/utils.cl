@@ -20,7 +20,6 @@ float				ft_deg2rad(float deg)
 unsigned int		set_rgb(t_vector c)
 {
 	c = v_mult_d(c, 255);
-	// c = set_sepia(c);
 	if (c[0] > 255)
 		c[0] = 255;
 	if (c[1] > 255)
@@ -34,6 +33,17 @@ unsigned int		set_rgb(t_vector c)
 	if (c[2] < 0)
 		c[2] = 0;
 	return (((int)c[0] << 16) | ((int)c[1] << 8) | (int)c[2]);
+}
+
+t_vector			get_rgb(unsigned int c)
+{
+	t_vector res;
+
+	res[0] = ((c & 0x00ff0000) >> 16);
+	res[1] = ((c & 0x0000ff00) >> 8);
+	res[2] = ((c & 0x000000ff));
+	res = v_mult_d(res, 1.0f / 255.0f);
+	return (res);
 }
 
 short				solve_quadratic(const float *p, float *x0, float *x1)

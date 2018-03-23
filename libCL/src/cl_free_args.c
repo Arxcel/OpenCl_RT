@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/12 13:07:40 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/22 21:15:28 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/23 14:14:15 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ static void		cl_free_arg(cl_mem arg)
 	}
 }
 
-void			cl_free_all_args(size_t args_num, cl_mem *args)
+void			cl_free_all_args(cl_mem *args)
 {
 	size_t	i;
 
 	i = 0;
-	while (i < args_num)
+	while (i < INDEX_NUM)
 	{
 		cl_free_arg(args[i]);
 		i++;

@@ -5,7 +5,8 @@ static float get_pattern2(t_ray *r, t_object *o)
     float scaleX;
     float scaleY;
 
-    scale = (float)o->t_scale;
+    r->tex = m_mult_v33(v_rot2(o->tex_angle), r->tex);
+    scale = (float)o->tex_scale;
     if (!scale)
         scale = 1.0;
     if (o->type == O_PLANE || o->type == O_DISK || o->type == O_TRIANGLE)
@@ -32,7 +33,8 @@ static float get_pattern3(t_ray *r, t_object *o)
     float scaleX;
     float scaleY;
 
-    scale = (float)o->t_scale;
+    r->tex = m_mult_v33(v_rot2(o->tex_angle), r->tex);
+    scale = (float)o->tex_scale;
     if (!scale)
         scale = 1.0;
     if (o->type == O_PLANE || o->type == O_DISK || o->type == O_TRIANGLE)
@@ -60,7 +62,8 @@ static float get_pattern4(t_ray *r, t_object *o)
     float scaleX;
     float scaleY;
 
-    scale = (float)o->t_scale;
+    r->tex = m_mult_v33(v_rot2(o->tex_angle), r->tex);
+    scale = (float)o->tex_scale;
     if (!scale)
         scale = 1.0;
     if (o->type == O_PLANE || o->type == O_DISK || o->type == O_TRIANGLE)
@@ -86,7 +89,8 @@ static float get_pattern5(t_ray *r, t_object *o)
     float   scale;
     float   pattern;
 
-    scale = (float)o->t_scale;
+    r->tex = m_mult_v33(v_rot2(o->tex_angle), r->tex);
+    scale = (float)o->tex_scale;
     if (!scale)
         scale = 1.0;
     if (o->type == O_PLANE || o->type == O_DISK || o->type == O_TRIANGLE)
@@ -117,7 +121,8 @@ static float get_pattern6(t_ray *r, t_object *o) // , float x, float y
     int     oddity;
     int     edge;
 
-    scale = (float)o->t_scale;
+    r->tex = m_mult_v33(v_rot2(o->tex_angle), r->tex);
+    scale = (float)o->tex_scale;
     if (!scale)
         scale = 1.0;
     if (o->type == O_PLANE || o->type == O_DISK || o->type == O_TRIANGLE)
@@ -148,20 +153,67 @@ static float get_pattern6(t_ray *r, t_object *o) // , float x, float y
 	return (edge ? 0 : 1);
 }
 
-t_vector			get_object_color(t_object *o, t_ray *r, float x, float y)
+static t_vector     get_custom(t_ray *r, t_object *o, global unsigned int *tex1)
+{
+    float scale;
+    float scaleX;
+    float scaleY;
+    int     texX;
+    int     texY;
+
+    r->tex = m_mult_v33(v_rot2(o->tex_angle), r->tex);
+    scale = (float)o->tex_scale;
+    if (!scale)
+        scale = 1.0;
+    if (o->type == O_PLANE || o->type == O_DISK || o->type == O_TRIANGLE)
+    {
+        scaleX = 0.03 / scale;
+        scaleY = 0.03 / scale;
+    }
+    else if (o->type == O_SPHERE)
+    {
+        scaleX = 5 / scale;
+        scaleY = 5 / scale;
+    }
+    else if (o->type == O_CYL || o->type == O_PARABOLOID || o->type == O_CON)
+    {
+        scaleX = 5 / scale;
+        scaleY = 0.03 / scale;
+    }
+    texX = (int)(r->tex[0] * 256 * scaleX);
+    texY = (int)(r->tex[1] * 256 * scaleY);
+    texX = texX < 0 ? -texX : texX;
+    texY = texY < 0 ? -texY : texY;
+    return (get_rgb(tex1[texX % 256 + texY % 256 * 256]));
+}
+
+t_vector			get_object_color(t_object *o,
+                                        t_ray *r,
+                                        global unsigned int *tex1,
+                                        global unsigned int *tex2,
+                                        global unsigned int *tex3,
+                                        global unsigned int *tex4)
 {
     float pattern;
 
     pattern = 0;
-    if (o->t_id == T_CHECK)
+    if (o->tex_id == T_CHECK)
 	    pattern = get_pattern2(r, o);
-    else if (o->t_id == T_GRAD1)
+    else if (o->tex_id == T_GRAD1)
         pattern = get_pattern3(r, o);
-    else if (o->t_id == T_GRAD2)
+    else if (o->tex_id == T_GRAD2)
         pattern = get_pattern4(r, o);
-    else if (o->t_id == T_CIRC)
+    else if (o->tex_id == T_CIRC)
         pattern = get_pattern5(r, o);
-    else if (o->t_id == T_BRICK)
+    else if (o->tex_id == T_BRICK)
         pattern = get_pattern6(r, o);
+    else if (o->tex_id == T_CUSTOM1)
+        return (get_custom(r, o, tex1));
+    else if (o->tex_id == T_CUSTOM2)
+        return (get_custom(r, o, tex2));
+    else if (o->tex_id == T_CUSTOM3)
+        return (get_custom(r, o, tex3));
+    else if (o->tex_id == T_CUSTOM4)
+        return (get_custom(r, o, tex4));
     return (v_mult_d(o->color, 0.5 * pattern) + v_mult_d(o->color, 0.5));
 }

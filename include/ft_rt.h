@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:32:12 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/23 11:17:21 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/23 15:24:32 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,37 @@ void				render_scene_and_ui(t_main *m);
 
 void				make_dependencies(t_main *m);
 void				filter_key(int key, t_main *m);
+void				get_scene_textures(t_main *m);
+
+/*
+** CTORS
+*/
+
+t_object			default_sphere(void);
+t_object			default_cylinder(void);
+t_object			default_conus(void);
+t_object			default_plane(void);
+t_object			default_paraboloid(void);
+t_object			default_triangle(void);
+t_object			default_disk(void);
+t_object			default_square(void);
+t_object			default_error(void);
+
+/*
+** READ DATA FROM JSON TO OBJECTS/LIGHTS/CAMERAS
+*/
+
+void				process_scene_o(json_value *value, t_scene *s);
+void				process_scene_l(json_value *value, t_scene *s);
+void				process_scene_c(json_value *value, t_scene *s);
+
+/*
+** UTILS FOR PREV BLOCK
+*/
+
+t_vector			get_color(json_value *value);
+t_vector			get_n_vector(json_value *value);
+t_vector			get_vector(json_value *value);
+float				get_number(json_value *value);
 
 #endif
