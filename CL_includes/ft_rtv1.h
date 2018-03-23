@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 11:57:16 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/21 18:26:17 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/22 16:04:41 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ float						ft_deg2rad(float deg);
 short						solve_quadratic(const float *p, float *x0, float *x1);
 unsigned int				set_rgb(t_vector c);
 t_matrix33					v_rot2(double angle);
+float						Noise_2d(float x, float y);
 /*
 **  Drawing functions
 */
@@ -45,7 +46,7 @@ unsigned int		ft_renderer(
 		int x, int y, size_t img_w, size_t img_h);
 t_vector					ft_rotate(t_vector vector, t_vector angle);
 
-float					calc_light(__global t_object	*o,
+float						calc_light(__global t_object	*o,
 									__global t_light	*l,
 									t_object h, t_ray *r);
 /*
@@ -69,6 +70,6 @@ short						get_plane_data(t_ray *ray, t_object plane, float t);
 short						get_disk_data(t_ray *ray, t_object disk, float t);
 short						get_triangle_data(t_ray *ray, t_object plane, float t);
 short						get_par_data(t_ray *ray, t_object sh, float t);
-t_vector					get_object_color(t_object *o, t_ray *r);
+t_vector					get_object_color(t_object *o, t_ray *r, float x, float y);
 short						get_square_data(t_ray *ray, t_object square, float t);
 #endif

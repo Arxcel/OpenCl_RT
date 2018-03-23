@@ -6,7 +6,7 @@
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 14:07:35 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/20 16:54:56 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/22 14:21:39 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void	ui_lines_rect_params(t_ui *ui, t_sdl *sdl)
 	ui->bg[LG_DOT].rect =
 		sdl_rect(sdl->win_w - R_FRAME_W, L_FRAME_Y + 45, 1, R_FRAME_W - 10);
 	ui->bg[DG_DOT].rect =
-		sdl_rect(5, BTN_ROW1_Y + BTN_SIZE, 1, sdl->win_w  - LOGO_W - 25);
+		sdl_rect(5, BTN_ROW1_Y + BTN_SIZE, 1, sdl->win_w - LOGO_W - 25);
 	ui->bg[CO_DOT].rect =
 		sdl_rect(5, R_SCENE_Y - 5, 1, sdl->win_w - 10);
 }

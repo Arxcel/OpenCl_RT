@@ -6,25 +6,32 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 22:15:03 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/21 18:26:39 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/23 11:16:29 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_SCENE_H
 # define FT_SCENE_H
-# define O_SPHERE	1
-# define O_CON		2
-# define O_PLANE	3
-# define O_CYL		4
-# define O_DISK		5
-# define O_TRIANGLE	6
-# define O_PARABOLOID 7
-# define O_SQUARE	8
-# define L_PAR		1
-# define L_LAMP		2
-# define L_AMBIENT	3
-# define L_AREA		4
-# define T_CHECK	2
+# define O_SPHERE		1
+# define O_CON			2
+# define O_PLANE		3
+# define O_CYL			4
+# define O_DISK			5
+# define O_TRIANGLE		6
+# define O_PARABOLOID	7
+# define O_SQUARE		8
+# define L_PAR			1
+# define L_LAMP			2
+# define L_AMBIENT		3
+# define L_AREA			4
+# define T_CHECK		2
+# define T_GRAD1		3
+# define T_GRAD2		4
+# define T_CIRC			5
+# define T_BRICK		6
+
+
+
 
 typedef float	t_vector __attribute__((vector_size(sizeof(float)*3)));
 
