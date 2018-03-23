@@ -67,7 +67,7 @@ constant	float2	grads2d[16] = {
 									{0.98078528f, -0.195090322f },
 									{0.831469612f, -0.555570233f },
 									{0.555570233f, -0.831469612f },
-									{0.195090322f, -0.98078528f }	
+									{0.195090322f, -0.98078528f }
 									};
 
 constant	char4	grads3d[16] = { 
@@ -76,12 +76,6 @@ constant	char4	grads3d[16] = {
 										{0,1,1,0},{0,-1,1,0},{0,1,-1,0},{0,-1,-1,0},
 										{1,1,0,0},{-1,1,0,0},{0,-1,1,0},{0,-1,-1,0}
 									};
-
-// Ken Perlin's improved ease curve
-float weight_poly5(float weight)
-{
-	return	weight * weight * weight * (weight * (weight * 6 - 15) + 10);		// Perlin's improved interp equation
-}
 
 #define	WEIGHT(w)	weight_poly5(w)
 

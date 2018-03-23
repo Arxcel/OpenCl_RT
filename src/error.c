@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
+/*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/01 15:00:11 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/06 10:01:30 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/23 16:03:27 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_rt.h"
 
-void	put_error(const char *err_text)
+int		put_error(const char *err_text)
 {
 	ft_putendl_fd(err_text, 2);
 	exit(1);
