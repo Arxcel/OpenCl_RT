@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 11:57:16 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/23 15:23:23 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/23 16:33:41 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,13 @@ unsigned int		ft_renderer(
 		global unsigned int *tex4);
 t_vector					ft_rotate(t_vector vector, t_vector angle);
 
-float						calc_light(__global t_object	*o,
+t_vector							calc_light(__global t_object	*o,
 									__global t_light	*l,
-									t_object h, t_ray *r);
+									t_object h, t_ray *r,
+									global unsigned int *tex1,
+									global unsigned int *tex2,
+									global unsigned int *tex3,
+									global unsigned int *tex4);
 /*
 **  Check intersections
 */

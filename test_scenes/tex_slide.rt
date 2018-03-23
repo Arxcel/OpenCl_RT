@@ -1,0 +1,61 @@
+{
+	"objects": [{
+			"type": "sphere",
+			"color": [1, 0, 0],
+			"pos1": [0, 10, -650],
+			"radius": 100,
+			"specular": 5000,
+			"reflect": 1,
+			"ior": 1.5,
+			"refract": 0.5,
+            "pattern":  "custom-3",
+			"pattern_scale": 3
+		},
+		{
+			"type": "plane",
+			"pos1": [0, 0, -1000],
+			"direction": [0, 0, 1],
+			"color": [0.5, 0.5, 0.5],
+			"specular": 15,
+			"reflect": 0
+		},
+		{
+			"type": "plane",
+			"pos1": [0, -300, 0],
+			"direction": [0, 1, 0],
+			"color": [0.7, 0, 0],
+			"specular": 15,
+			"reflect": 0,
+			"refract": 0
+		},
+		{
+			"type": "plane",
+			"pos1": [0, -100, 0],
+			"direction": [0, 1, 0],
+			"color": [0.2, 0.22, 0.85],
+			"specular": 15,
+			"reflect": 0,
+			"refract": 0
+		}
+	],
+	"lights": [{
+			"type": "lamp",
+			"position": [100, 1000, 1000],
+			"color": [1, 1, 1],
+			"intensity" : 1
+		},
+		{
+			"type": "lamp",
+			"position": [-100, 200, 300],
+			"color": [1, 1, 1],
+			"intensity" : 1
+		}
+	],
+	"cameras": [{
+		"type": "common",
+		"rotation": [0, 0, 0],
+		"position": [0, 0, 0],
+		"field_of_view": 50,
+		"bias": 0.3
+	}]
+}

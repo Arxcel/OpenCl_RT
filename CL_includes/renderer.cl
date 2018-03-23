@@ -153,6 +153,16 @@ static float	fresnel(t_vector dit, t_vector norm, float ior)
 	return (kr);
 }
 
+static	t_vector		set_light(t_vector obj_color, t_vector light)
+{
+	t_vector res;
+
+	res[0] = obj_color[0] * light[0];
+	res[1] = obj_color[1] * light[1];
+	res[2] = obj_color[2] * light[2];
+	return (res);
+}
+
 static t_vector			ft_cast_ray(
 						__global t_object	*o,
 						__global t_light	*l,
@@ -173,6 +183,7 @@ static t_vector			ft_cast_ray(
 	float		t;
 	float		kr;
 	t_vector	bias;
+	int			outside;
 
 	depth = 0;
 	mask_reflection = 1;
@@ -187,9 +198,8 @@ static t_vector			ft_cast_ray(
 		get_surface_data(r, *hit_object, t);
 		r->n_hit = v_dot(r->n_hit, r->dir) < 0 ? r->n_hit : -r->n_hit;
 		bias = v_mult_d(r->n_hit, BIAS);
-		int outside;
 		outside = v_dot(r->dir, r->n_hit) < 0 ? 1 : 0;
-		object_color = v_mult_d(get_object_color(hit_object, r, tex1, tex2, tex3, tex4), calc_light(o, l, *hit_object, r));
+		object_color = set_light(get_object_color(hit_object, r, tex1, tex2, tex3, tex4), calc_light(o, l, *hit_object, r, tex1, tex2, tex3, tex4));
 		if ((!hit_object->reflect && !hit_object->refract))
 		{
 			hit_color += v_mult_d(object_color, mask_refraction * mask_reflection);
