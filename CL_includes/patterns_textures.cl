@@ -109,7 +109,7 @@ static float get_pattern5(t_ray *r, t_object *o)
 	return (pattern > 0 ? pattern : -pattern);
 }
 
-static float get_pattern6(t_ray *r, t_object *o) // , float x, float y
+static float get_pattern6(t_ray *r, t_object *o)
 {
     float   scale;
     float   scaleX;
@@ -197,7 +197,9 @@ t_vector			get_object_color(t_object *o,
     float pattern;
 
     pattern = 0;
-    if (o->tex_id == T_CHECK)
+    if (o->tex_id == T_STD)
+        return (o->color);
+    else if (o->tex_id == T_CHECK)
 	    pattern = get_pattern2(r, o);
     else if (o->tex_id == T_GRAD1)
         pattern = get_pattern3(r, o);
