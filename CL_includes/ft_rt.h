@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 11:57:16 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/23 16:33:41 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/23 19:38:46 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct				s_ray
 float						ft_deg2rad(float deg);
 short						solve_quadratic(const float *p, float *x0, float *x1);
 unsigned int				set_rgb(t_vector c);
-t_matrix33					v_rot2(double angle);
+t_matrix33					v_rot2(float angle);
 float						Noise_2d(float x, float y);
 t_vector					get_rgb(unsigned int c);
 /*

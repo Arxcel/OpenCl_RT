@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_rtv1.h"
+#include "ft_rt.h"
 
 t_matrix	m_mult_m(t_matrix a, t_matrix b)
 {
@@ -118,9 +118,9 @@ t_matrix33	m_transpose33(t_matrix33 a)
 
 t_vector2	m_mult_p33(t_matrix33 m, t_vector2 v)
 {
-	double		a;
-	double		b;
-	double		w;
+	float		a;
+	float		b;
+	float		w;
 	t_vector2	res;
 
 	a = v[0] * m.r[0][0] + v[1] * m.r[1][0];
@@ -133,9 +133,9 @@ t_vector2	m_mult_p33(t_matrix33 m, t_vector2 v)
 
 t_vector2	m_mult_v33(t_matrix33 m, t_vector2 v)
 {
-	double		a;
-	double		b;
-	double		c;
+	float		a;
+	float		b;
+	float		c;
 	t_vector2	res;
 
 	a = v[0] * m.r[0][0] + v[1] * m.r[1][0];

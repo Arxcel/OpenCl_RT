@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_rtv1.h"
+#include "ft_rt.h"
 
 float				ft_deg2rad(float deg)
 {
@@ -66,10 +66,10 @@ short				solve_quadratic(const float *p, float *x0, float *x1)
 	return (1);
 }
 
-t_matrix33			v_rot2(double angle)
+t_matrix33			v_rot2(float angle)
 {
 	t_matrix33	a;
-	double		an;
+	float		an;
 
 	an = angle;
 	a.r[0] = (t_mrow3){cos(an), -sin(an), 0};
