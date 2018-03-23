@@ -19,6 +19,7 @@ CFLAGS = -I$(IDIR) \
 		 -I./libCL/include \
 		 -I./libSDL/SDL2.framework/Headers/ \
 		 -I./libSDL/SDL2_image.framework/Headers/ \
+		 -I./libSDL/SDL2_ttf.framework/Headers/ \
 		 -I./libftSDL/include \
 		 -I./libJson/include \
 		 -I./libmy_math/include \
@@ -36,7 +37,7 @@ LIBMMATH = libmy_math
 
 LIBTFD = libTFD
 
-SDL2_F		= -framework SDL2 -framework SDL2_image  -F ./libSDL/
+SDL2_F		= -framework SDL2 -framework SDL2_image -framework SDL2_ttf -F ./libSDL/
 
 SDL2_P		= -rpath @loader_path/libSDL/
 
@@ -72,8 +73,14 @@ SOURCES =   main.c \
 			ae_set_sharpness.c \
 			mouse_hooks.c \
 			ui_render_lines_and_corners.c \
+			ui_render_copy_buttons.c \
+			ui_render_copy_rbutton.c \
+			ui_render_copy_background.c \
+			ui_render_copy_scroll.c \
+			ui_render_copy_list.c \
 			open_export_save.c \
 			ui_buttons_init.c \
+			ui_textures_init.c \
 			sdl_sub.c \
 			sdl_rinit.c \
 

@@ -6,7 +6,7 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 18:38:51 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/19 14:07:18 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/21 23:08:52 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FT_SDL_H
 # include "SDL.h"
 # include "SDL_image.h"
+# include "SDL_ttf.h"
 # define MSG(x)	ft_killer(x)
 
 typedef struct		s_img

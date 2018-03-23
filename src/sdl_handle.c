@@ -6,7 +6,7 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 18:01:54 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/21 16:29:28 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/22 21:17:21 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,8 @@ void				sdl_loop(t_main *m)
 		sdl_hook(m);
 		if (m->sdl.changes)
 		{
+			re_draw(&m->cl, &m->sdl, &m->s);
+			set_filter(m);
 			render_scene_and_ui(m);
 			m->sdl.changes = 0;
 		}
@@ -129,7 +131,7 @@ void				sdl_hook(t_main *m)
 		else if (m->sdl.e.type == SDL_KEYDOWN)
 			key_down(m->sdl.e.key.keysym.sym, m);
 		else if (m->sdl.e.type == SDL_MOUSEBUTTONDOWN)
-			mouse_down(m->sdl.e.button.x, m->sdl.e.button.y, m);
+				mouse_down(m->sdl.e.button.x, m->sdl.e.button.y, m);
 		else if (m->sdl.e.type == SDL_MOUSEBUTTONUP)
 			mouse_up(m->sdl.e.button.x, m->sdl.e.button.y, m);
 	}
