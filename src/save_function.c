@@ -6,87 +6,11 @@
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/23 15:58:32 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/23 16:27:01 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/23 19:40:25 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_rt.h"
-
-char		*read_object_type(int i, t_main *m)
-{
-	int		t;
-
-	t = m->s.object[i].type;
-	if (t == 1)
-		return (ft_strdup("sphere"));
-	if (t == 2)
-		return (ft_strdup("conus"));
-	if (t == 3)
-		return (ft_strdup("plane"));
-	if (t == 4)
-		return (ft_strdup("cylinder"));
-	if (t == 5)
-		return (ft_strdup("disk"));
-	if (t == 6)
-		return (ft_strdup("triangle"));
-	if (t == 7)
-		return (ft_strdup("paraboloid"));
-	if (t == 8)
-		return (ft_strdup("square"));
-	return (ft_strdup(""));
-}
-
-char		*read_light_type(int i, t_main *m)
-{
-	int		t;
-
-	t = m->s.light[i].type;
-	if (t == 1)
-		return (ft_strdup("parallel"));
-	if (t == 2)
-		return (ft_strdup("lamp"));
-	if (t == 3)
-		return (ft_strdup("ambient"));
-	if (t == 4)
-		return (ft_strdup("area"));
-	return (ft_strdup(""));
-}
-
-char		*read_camera_type(int i, t_main *m)
-{
-	int		t;
-
-	t = m->s.camera[i].type;
-	if (t == 1)
-		return (ft_strdup("common"));
-	return (ft_strdup(""));
-}
-
-char		*read_pattern_type(int i, t_main *m)
-{
-	int		t;
-
-	t = m->s.object[i].tex_id;
-	if (t == 2)
-		return (ft_strdup("chessboard"));
-	if (t == 3)
-		return (ft_strdup("gradient-1"));
-	if (t == 4)
-		return (ft_strdup("gradient-2"));
-	if (t == 5)
-		return (ft_strdup("circle"));
-	if (t == 6)
-		return (ft_strdup("brick"));
-	if (t == 7)
-		return (ft_strdup("custom-1"));
-	if (t == 8)
-		return (ft_strdup("custom-2"));
-	if (t == 9)
-		return (ft_strdup("custom-3"));
-	if (t == 10)
-		return (ft_strdup("custom-4"));
-	return (ft_strdup(""));
-}
 
 static void	dprintf_obj(int fd, t_main *m, int i, char *type)
 {
@@ -94,8 +18,9 @@ static void	dprintf_obj(int fd, t_main *m, int i, char *type)
 	ft_memdel((void **)&type);
 	dprintf(fd, "\t\t\t\"color\": [%f, %f, %f],\n",
 	m->s.object[i].color[0], m->s.object[i].color[1], m->s.object[i].color[2]);
-	dprintf(fd, "\t\t\t\"direction\": [%f, %f, %f],\n",
-	m->s.object[i].dir[0], m->s.object[i].dir[1], m->s.object[i].dir[2]);
+	if (m->s.object[i].dir[0] == m->s.object[i].dir[0])
+		dprintf(fd, "\t\t\t\"direction\": [%f, %f, %f],\n",
+		m->s.object[i].dir[0], m->s.object[i].dir[1], m->s.object[i].dir[2]);
 	dprintf(fd, "\t\t\t\"pos1\": [%f, %f, %f],\n",
 	m->s.object[i].pos1[0], m->s.object[i].pos1[1], m->s.object[i].pos1[2]);
 	dprintf(fd, "\t\t\t\"pos2\": [%f, %f, %f],\n",

@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 16:41:28 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/23 16:29:49 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/23 20:09:58 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	render_scene_and_ui(t_main *m)
 	render_copy_rbutton(m);
 	render_copy_scroll(m);
 	render_copy_list(m);
+	render_copy_settings(m);
 	SDL_RenderPresent(m->sdl.ren);
 }
 
@@ -49,6 +50,7 @@ void	ui_and_sdl_init(t_main *m)
 	ui_textures_init(&m->ui, &m->sdl);
 	ui_buttons_init(&m->ui, &m->sdl);
 	ui_scroll_init(&m->ui, &m->sdl);
+	ui_settings_init(&m->ui, &m->sdl);
 	SDL_SetWindowMinimumSize(m->sdl.win, 800, 600);
 }
 
