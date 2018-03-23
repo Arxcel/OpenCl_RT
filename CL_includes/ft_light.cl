@@ -127,7 +127,7 @@ float					calc_light(__global t_object	*o,
 			{
 				light_intensity = lt * l[i].intence;
 				if (h.specular > 0)
-					light_intensity += get_shiness(lt, h.specular, light_intensity, r, light);
+					light_intensity += get_shiness(lt, h.specular, light_intensity, r, light);	
 				ret_col += vis * light_intensity * lt;
 			}
 		}

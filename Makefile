@@ -75,6 +75,7 @@ SOURCES =   main.c \
 			ui_textures_init.c \
 			sdl_sub.c \
 			sdl_rinit.c \
+			scene_textures.c
 
 SRCS = $(addprefix $(DIR_S)/,$(SOURCES))
 
@@ -109,9 +110,9 @@ norme:
 		make norme -C $(LIBFTSDL)
 		make norme -C $(LIBMMATH)
 		echo "--------------------Checking header files $(NAME)"
-		norminette ./$(HEADER)
+		norminette ./$(HEADER) | grep "Error"
 		echo "--------------------Checking source files $(NAME)"
-		norminette ./$(DIR_S)
+		norminette ./$(DIR_S) | grep "Error"
 
 clean:
 		rm -f $(OBJS)

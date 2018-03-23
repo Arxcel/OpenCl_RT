@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 22:15:03 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/23 11:16:29 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/23 14:24:11 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,11 @@
 # define T_GRAD2		4
 # define T_CIRC			5
 # define T_BRICK		6
-
-
-
+# define T_CUSTOM1		7
+# define T_CUSTOM2		8
+# define T_CUSTOM3		9
+# define T_CUSTOM4		10
+# define N_TEX			4
 
 typedef float	t_vector __attribute__((vector_size(sizeof(float)*3)));
 
@@ -93,6 +95,7 @@ typedef struct		s_scene
 	t_camera		*camera;
 	t_camera		cam_base;
 	t_cam_transform	cam_trans;
+	t_img			tex[N_TEX];
 }					t_scene;
 
 #endif

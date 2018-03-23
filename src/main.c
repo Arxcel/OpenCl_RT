@@ -6,12 +6,11 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:33:57 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/23 11:17:11 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/23 14:21:04 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_rt.h"
-
 
 static char			*get_text(void)
 {
@@ -27,26 +26,28 @@ static char			*get_text(void)
 		"#include \"sh_paraboloid.cl\"\n#include \"sh_square.cl\"\n" \
 		"kernel void kernel_entry (global t_object *object\n" \
 		", global t_light *light , global t_camera *camera\n" \
+		", global unsigned int *tex1, global unsigned int *tex2\n" \
+		", global unsigned int *tex3, global unsigned int *tex4\n" \
 		", global unsigned int *img_buf){\n" \
 		" size_t img_w = get_global_size(0);\n" \
 		" size_t img_h = get_global_size(1);\n" \
 		"unsigned int col;int x;int y;x = get_global_id(0);\n" \
 		"y = get_global_id(1);\n" \
-		"col =  ft_renderer(object,light,camera,x,y,img_w,img_h);\n"\
+		"col =  ft_renderer(object,light,camera,x,y,img_w,img_h,tex1,tex2,tex3,tex4);\n"\
 		"*(img_buf + x + y * img_w) = col;}\n");
 	return (text);
 }
 
-static void			draw(t_cl *cl, t_sdl *sdl, t_scene *s)
+static void			draw(t_main *m)
 {
-	cl_init(cl);
-	cl->flags = set_flags("./cl_includes/");
-	cl->text = get_text();
-	cl_create_program(cl, cl->flags, cl->text);
-	cl_create_kernel(cl, "kernel_entry");
-	re_draw(cl, sdl, s);
-	free(cl->flags);
-	free(cl->text);
+	cl_init(&m->cl);
+	m->cl.flags = set_flags("./cl_includes/");
+	m->cl.text = get_text();
+	cl_create_program(&m->cl, m->cl.flags, m->cl.text);
+	cl_create_kernel(&m->cl, "kernel_entry");
+	re_draw(&m->cl, &m->sdl, &m->s);
+	free(m->cl.flags);
+	free(m->cl.text);
 }
 
 void				re_draw(t_cl *cl, t_sdl *sdl, t_scene *s)
@@ -55,13 +56,17 @@ void				re_draw(t_cl *cl, t_sdl *sdl, t_scene *s)
 	cl_set_args(cl, s->object, s->o_num * sizeof(t_object), 0);
 	cl_set_args(cl, s->light, s->l_num * sizeof(t_light), 1);
 	cl_set_args(cl, s->camera, s->c_num * sizeof(t_camera), 2);
+	cl_set_args(cl, s->tex[0].pixels, s->tex[0].w * s->tex[0].h * sizeof(int), 3);
+	cl_set_args(cl, s->tex[1].pixels, s->tex[1].w * s->tex[1].h * sizeof(int), 4);
+	cl_set_args(cl, s->tex[2].pixels, s->tex[2].w * s->tex[2].h * sizeof(int), 5);
+	cl_set_args(cl, s->tex[3].pixels, s->tex[3].w * s->tex[3].h * sizeof(int), 6);
 	cl_set_out_arg(cl, (size_t)sdl->img.w *
-				sdl->img.h * sizeof(unsigned int), 3);
+				sdl->img.h * sizeof(unsigned int), 7);
 	cl_exec_kernel(cl, 2, cl->work_dim);
 	cl_get_res(cl, (size_t)sdl->img.w *
-				sdl->img.h * sizeof(unsigned int), sdl->img.pixels, 3);
+				sdl->img.h * sizeof(unsigned int), sdl->img.pixels, 7);
 	printf("OpenCl Execution time is: %0.3f milliseconds \n", cl_get_exec_time(cl));
-	cl_free_all_args(4, cl->args);
+	cl_free_all_args(cl->args);
 }
 
 int					main(int ac, char **av)
@@ -71,15 +76,14 @@ int					main(int ac, char **av)
 
 	printf("%lu\n", sizeof(test));
 	printf("%lu\n", sizeof(test.type) + sizeof(test.specular) +sizeof(test.radius) +sizeof(test.angle) +sizeof(test.reflect) +sizeof(test.refract) +sizeof(test.ior) +sizeof(test.min) +sizeof(test.max) +sizeof(test.color) +sizeof(test.dir) +sizeof(test.pos1) +sizeof(test.pos2) + sizeof(test.pos3) + sizeof(short) * 3);
-	// printf("%lu\n", sizeof(t_object));
-	// put_error("All is ok.");
 	ft_bzero(&m, sizeof(t_main));
 	ui_and_sdl_init(&m);
 	make_dependencies(&m);
 	if (ac != 2)
 		put_error("Wrong number of arguments.");
 	get_scene(av[1], &m.s);
-	draw(&m.cl, &m.sdl, &m.s);
+	get_scene_textures(&m);
+	draw(&m);
 	render_scene_and_ui(&m);
 	sdl_loop(&m);
 	return (0);

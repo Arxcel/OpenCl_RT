@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 11:33:17 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/22 16:29:45 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/23 14:23:37 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,14 @@ static int		set_t_type(json_value *value)
 		val = T_CIRC;
 	else if (!err && !ft_strcmp(value->u.string.ptr, "brick"))
 		val = T_BRICK;
+	else if (!err && !ft_strcmp(value->u.string.ptr, "custom-1"))
+		val = T_CUSTOM1;
+	else if (!err && !ft_strcmp(value->u.string.ptr, "custom-2"))
+		val = T_CUSTOM2;
+	else if (!err && !ft_strcmp(value->u.string.ptr, "custom-3"))
+		val = T_CUSTOM3;
+	else if (!err && !ft_strcmp(value->u.string.ptr, "custom-4"))
+		val = T_CUSTOM4;
 	else
 		err = 1;
 	if (err)

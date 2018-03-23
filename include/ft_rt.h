@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:32:12 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/23 11:17:21 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/23 14:16:38 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,6 @@ void				render_scene_and_ui(t_main *m);
 
 void				make_dependencies(t_main *m);
 void				filter_key(int key, t_main *m);
+void				get_scene_textures(t_main *m);
 
 #endif

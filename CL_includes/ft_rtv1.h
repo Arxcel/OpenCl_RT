@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 11:57:16 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/22 16:04:41 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/23 14:28:35 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ short						solve_quadratic(const float *p, float *x0, float *x1);
 unsigned int				set_rgb(t_vector c);
 t_matrix33					v_rot2(double angle);
 float						Noise_2d(float x, float y);
+t_vector					get_rgb(unsigned int c);
 /*
 **  Drawing functions
 */
@@ -43,7 +44,14 @@ unsigned int		ft_renderer(
 		global t_object	*o,
 		global t_light	*l,
 		global t_camera *cam,
-		int x, int y, size_t img_w, size_t img_h);
+		int x,
+		int y,
+		size_t img_w,
+		size_t img_h,
+		global unsigned int *tex1,
+		global unsigned int *tex2,
+		global unsigned int *tex3,
+		global unsigned int *tex4);
 t_vector					ft_rotate(t_vector vector, t_vector angle);
 
 float						calc_light(__global t_object	*o,
@@ -70,6 +78,11 @@ short						get_plane_data(t_ray *ray, t_object plane, float t);
 short						get_disk_data(t_ray *ray, t_object disk, float t);
 short						get_triangle_data(t_ray *ray, t_object plane, float t);
 short						get_par_data(t_ray *ray, t_object sh, float t);
-t_vector					get_object_color(t_object *o, t_ray *r, float x, float y);
+t_vector					get_object_color(t_object	*o,
+														t_ray *r,
+														global unsigned int *tex1,
+														global unsigned int *tex2,
+														global unsigned int *tex3,
+														global unsigned int *tex4);
 short						get_square_data(t_ray *ray, t_object square, float t);
 #endif
