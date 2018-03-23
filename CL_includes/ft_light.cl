@@ -16,10 +16,12 @@
 static short			is_in_area(t_light l, t_ray light)
 {
 	float	v_cos;
+	float	d;
 
 	v_cos = v_dot(light.dir, -l.dir);
 	v_cos /= v_length(light.dir) * v_length(-l.dir);
-	if (v_cos < fabs(cos(ft_deg2rad(l.ang / 2))))
+	d = l.ang / 2;
+	if (v_cos < fabs(cos(radians(d))))
 		return (0);
 	else
 		return (1);
@@ -112,12 +114,14 @@ t_vector							calc_light(__global t_object	*o,
 			if (lt > 0)
 			{
 				light_intensity = lt * l[i].intence;
-				if (shader.refract > 0 && shader.refract < 0.8)
+				if (shader.refract > 0)
 				{
 					light_intensity *= shader.refract;
+# ifdef TEXTURES_PRO 
 					get_surface_data(&light, shader, shader_distance);
 					ret_col += v_mult_d(l[i].color + get_object_color(&shader, &light, tex1, tex2, tex3, tex4), vis * light_intensity * lt);
 					continue ;
+# endif
 				}
 				if (h.specular > 0)
 					light_intensity += get_shiness(lt, h.specular, light_intensity, r, light);	

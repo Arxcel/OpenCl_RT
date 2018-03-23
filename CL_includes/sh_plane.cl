@@ -14,15 +14,14 @@
 
 short				plane_cross(t_object *p, t_ray *r, float *t)
 {
-	float a;
 	float t0;
 	t_vector v;
 
-	a = v_dot(p->dir, r->dir);
-	if (a)
+	t0 = v_dot(p->dir, r->dir);
+	if (t0)
 	{
 		v = p->pos1 - r->orig; 
-		t0 = v_dot(v, p->dir) / a;
+		t0 = v_dot(v, p->dir) / t0;
 		if (t0 > 0e-6)
 		{
 			*t = t0;

@@ -7,7 +7,7 @@
 			"specular": 5000,
 			"reflect": 1,
 			"ior": 1.5,
-			"refract": 0.5,
+			"refract": 0.7,
             "pattern":  "custom-3",
 			"pattern_scale": 3
 		},

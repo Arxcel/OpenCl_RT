@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_rtv1.h                                          :+:      :+:    :+:   */
+/*   ft_rt.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 11:57:16 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/23 19:38:46 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/23 20:20:30 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 # include "ft_scene.h"
 # ifndef M_PI
 #  define M_PI 3.14159265359f
+# endif
+# ifndef INF
+#  define INF 999999999999999999999999999999.9f
 # endif
 
 typedef struct				s_ray
@@ -31,39 +34,45 @@ typedef struct				s_ray
 /*
 **  Util functions
 */
-float						ft_deg2rad(float deg);
 short						solve_quadratic(const float *p, float *x0, float *x1);
 unsigned int				set_rgb(t_vector c);
 t_matrix33					v_rot2(float angle);
-float						Noise_2d(float x, float y);
 t_vector					get_rgb(unsigned int c);
 /*
 **  Drawing functions
 */
-unsigned int		ft_renderer(
-		global t_object	*o,
-		global t_light	*l,
-		global t_camera *cam,
-		int x,
-		int y,
-		size_t img_w,
-		size_t img_h,
-		global unsigned int *tex1,
-		global unsigned int *tex2,
-		global unsigned int *tex3,
-		global unsigned int *tex4);
+unsigned int				ft_renderer(
+							global t_object	*o,
+							global t_light	*l,
+							global t_camera *cam,
+							int x,
+							int y,
+							size_t img_w,
+							size_t img_h,
+							global unsigned int *tex1,
+							global unsigned int *tex2,
+							global unsigned int *tex3,
+							global unsigned int *tex4);
 t_vector					ft_rotate(t_vector vector, t_vector angle);
 
-t_vector							calc_light(__global t_object	*o,
-									__global t_light	*l,
-									t_object h, t_ray *r,
-									global unsigned int *tex1,
-									global unsigned int *tex2,
-									global unsigned int *tex3,
-									global unsigned int *tex4);
+t_vector					calc_light(
+							global t_object	*o,
+							global t_light	*l,
+							t_object h, t_ray *r,
+							global unsigned int *tex1,
+							global unsigned int *tex2,
+							global unsigned int *tex3,
+							global unsigned int *tex4);
 /*
 **  Check intersections
 */
+t_vector					get_object_color(
+							t_object	*o,
+							t_ray *r,
+							global unsigned int *tex1,
+							global unsigned int *tex2,
+							global unsigned int *tex3,
+							global unsigned int *tex4);
 short						sphere_cross(t_object sphere, t_ray *r, float *t);
 short						cyl_cross(t_object cyl, t_ray *r, float *t);
 short						con_cross(t_object cyl, t_ray *r, float *t);
@@ -82,12 +91,6 @@ short						get_plane_data(t_ray *ray, t_object plane, float t);
 short						get_disk_data(t_ray *ray, t_object disk, float t);
 short						get_triangle_data(t_ray *ray, t_object plane, float t);
 short						get_par_data(t_ray *ray, t_object sh, float t);
-t_vector					get_object_color(t_object	*o,
-														t_ray *r,
-														global unsigned int *tex1,
-														global unsigned int *tex2,
-														global unsigned int *tex3,
-														global unsigned int *tex4);
 short						get_square_data(t_ray *ray, t_object square, float t);
 
 #endif

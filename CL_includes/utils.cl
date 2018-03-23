@@ -12,11 +12,6 @@
 
 #include "ft_rt.h"
 
-float				ft_deg2rad(float deg)
-{
-	return (deg * 3.14 / 180);
-}
-
 unsigned int		set_rgb(t_vector c)
 {
 	c = v_mult_d(c, 255);

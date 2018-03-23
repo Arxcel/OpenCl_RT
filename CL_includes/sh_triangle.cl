@@ -34,15 +34,14 @@ static short		is_in_zone(t_vector p1, t_object *p)
 
 short				triangle_cross(t_object *p, t_ray *r, float *t)
 {
-	float		a;
 	float		t0;
 	t_vector	v;
 
-	a = v_dot(p->dir, r->dir);
-	if (a)
+	t0 = v_dot(p->dir, r->dir);
+	if (t0)
 	{
 		v = p->pos3 - r->orig; 
-		t0 = v_dot(v, p->dir) / a;
+		t0 = v_dot(v, p->dir) / t0;
 		if (t0 >= 0)
 		{
 			if (!is_in_zone(r->orig + v_mult_d(r->dir, t0), p))

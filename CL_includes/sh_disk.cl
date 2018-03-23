@@ -14,15 +14,14 @@
 
 short				disk_cross(t_object *d, t_ray *r, float *t)
 {
-	float a;
 	float t0;
 	t_vector v;
 
-	a = v_dot(d->dir, r->dir);
-	if (a)
+	t0 = v_dot(d->dir, r->dir);
+	if (t0)
 	{
         v = d->pos1 - r->orig; 
-        t0 = v_dot(v, d->dir) / a;
+        t0 = v_dot(v, d->dir) / t0;
 		if (t0 > 0e-6)
 		{
 			r->p_hit = r->orig + v_mult_d(r->dir, t0);
