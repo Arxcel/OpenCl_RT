@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 22:15:03 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/23 15:14:50 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/23 15:25:10 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,12 @@ typedef struct		s_object
 	float			ior;		// {0:float_max}
 	float			min;		// {float_min:float_max}
 	float			max;		// {float_min:float_max}
-	short			t_scale;	// {short_min:short_max}
+	unsigned short	tex_scale;	// {short_min:short_max}
 	short			type;		// {short_min:short_max}
-	short			specular;	// {short_min:short_max}
-	short			t_id;		// {short_min:short_max}
-	short			is_neg;		// {short_min:short_max}
+	unsigned short	specular;	// {short_min:short_max}
+	unsigned short	tex_id;		// {short_min:short_max}
 	short			tex_angle;
+	unsigned short	is_neg;		// {short_min:short_max}
 }					t_object;
 
 typedef struct		s_light

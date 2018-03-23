@@ -6,7 +6,7 @@ static float get_pattern2(t_ray *r, t_object *o)
     float scaleY;
 
     r->tex = m_mult_v33(v_rot2(o->tex_angle), r->tex);
-    scale = (float)o->t_scale;
+    scale = (float)o->tex_scale;
     if (!scale)
         scale = 1.0;
     if (o->type == O_PLANE || o->type == O_DISK || o->type == O_TRIANGLE)
@@ -34,7 +34,7 @@ static float get_pattern3(t_ray *r, t_object *o)
     float scaleY;
 
     r->tex = m_mult_v33(v_rot2(o->tex_angle), r->tex);
-    scale = (float)o->t_scale;
+    scale = (float)o->tex_scale;
     if (!scale)
         scale = 1.0;
     if (o->type == O_PLANE || o->type == O_DISK || o->type == O_TRIANGLE)
@@ -63,7 +63,7 @@ static float get_pattern4(t_ray *r, t_object *o)
     float scaleY;
 
     r->tex = m_mult_v33(v_rot2(o->tex_angle), r->tex);
-    scale = (float)o->t_scale;
+    scale = (float)o->tex_scale;
     if (!scale)
         scale = 1.0;
     if (o->type == O_PLANE || o->type == O_DISK || o->type == O_TRIANGLE)
@@ -90,7 +90,7 @@ static float get_pattern5(t_ray *r, t_object *o)
     float   pattern;
 
     r->tex = m_mult_v33(v_rot2(o->tex_angle), r->tex);
-    scale = (float)o->t_scale;
+    scale = (float)o->tex_scale;
     if (!scale)
         scale = 1.0;
     if (o->type == O_PLANE || o->type == O_DISK || o->type == O_TRIANGLE)
@@ -122,7 +122,7 @@ static float get_pattern6(t_ray *r, t_object *o) // , float x, float y
     int     edge;
 
     r->tex = m_mult_v33(v_rot2(o->tex_angle), r->tex);
-    scale = (float)o->t_scale;
+    scale = (float)o->tex_scale;
     if (!scale)
         scale = 1.0;
     if (o->type == O_PLANE || o->type == O_DISK || o->type == O_TRIANGLE)
@@ -162,7 +162,7 @@ static t_vector     get_custom(t_ray *r, t_object *o, global unsigned int *tex1)
     int     texY;
 
     r->tex = m_mult_v33(v_rot2(o->tex_angle), r->tex);
-    scale = (float)o->t_scale;
+    scale = (float)o->tex_scale;
     if (!scale)
         scale = 1.0;
     if (o->type == O_PLANE || o->type == O_DISK || o->type == O_TRIANGLE)
@@ -197,23 +197,23 @@ t_vector			get_object_color(t_object *o,
     float pattern;
 
     pattern = 0;
-    if (o->t_id == T_CHECK)
+    if (o->tex_id == T_CHECK)
 	    pattern = get_pattern2(r, o);
-    else if (o->t_id == T_GRAD1)
+    else if (o->tex_id == T_GRAD1)
         pattern = get_pattern3(r, o);
-    else if (o->t_id == T_GRAD2)
+    else if (o->tex_id == T_GRAD2)
         pattern = get_pattern4(r, o);
-    else if (o->t_id == T_CIRC)
+    else if (o->tex_id == T_CIRC)
         pattern = get_pattern5(r, o);
-    else if (o->t_id == T_BRICK)
+    else if (o->tex_id == T_BRICK)
         pattern = get_pattern6(r, o);
-    else if (o->t_id == T_CUSTOM1)
+    else if (o->tex_id == T_CUSTOM1)
         return (get_custom(r, o, tex1));
-    else if (o->t_id == T_CUSTOM2)
+    else if (o->tex_id == T_CUSTOM2)
         return (get_custom(r, o, tex2));
-    else if (o->t_id == T_CUSTOM3)
+    else if (o->tex_id == T_CUSTOM3)
         return (get_custom(r, o, tex3));
-    else if (o->t_id == T_CUSTOM4)
+    else if (o->tex_id == T_CUSTOM4)
         return (get_custom(r, o, tex4));
     return (v_mult_d(o->color, 0.5 * pattern) + v_mult_d(o->color, 0.5));
 }

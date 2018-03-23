@@ -113,7 +113,7 @@
 			"color": [0.4, 0.4, 0.4],
 			"specular": 15,
 			"reflect": 0.6,
-            "pattern":  "gradient-2",
+			"pattern":  "gradient-2",
 			"pattern_scale": 1
 		},
 		{
@@ -123,7 +123,7 @@
 			"color": [0.4, 0.4, 0.4],
 			"specular": 15,
 			"reflect": 0.6,
-            "pattern":  "gradient-2",
+			"pattern":  "gradient-2",
 			"pattern_scale": 1
 		},
 		{

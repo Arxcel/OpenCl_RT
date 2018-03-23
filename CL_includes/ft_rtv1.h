@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 11:57:16 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/23 14:28:35 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/23 15:23:23 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,4 +85,5 @@ t_vector					get_object_color(t_object	*o,
 														global unsigned int *tex3,
 														global unsigned int *tex4);
 short						get_square_data(t_ray *ray, t_object square, float t);
+
 #endif
