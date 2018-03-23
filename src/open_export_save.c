@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_export_save.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 14:10:10 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/23 02:34:56 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/23 11:18:07 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	export_file(t_main *m)
 	export = tinyfd_saveFileDialog("", "export.png", 1, format, NULL);
 	if (export == NULL)
 		return ;
+	re_draw(&m->cl, &m->sdl, &m->s);
+	set_filter(&m->ae);
 	surface = SDL_CreateRGBSurface(0, m->sdl.img.w, m->sdl.img.h,
 															32, 0, 0, 0, 0);
 	ft_memcpy(surface->pixels, m->sdl.img.pixels, surface->h * surface->pitch);

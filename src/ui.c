@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ui.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 16:41:28 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/22 19:56:13 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/23 11:18:35 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	render_scene_and_ui(t_main *m)
 	m->ui.bg[BACKGROUND].rect = sdl_rect(0, 0, m->sdl.win_h, m->sdl.win_w);
 	SDL_RenderCopy(m->sdl.ren, m->ui.bg[BACKGROUND].textr,
 						NULL, &m->ui.bg[BACKGROUND].rect);
+	re_draw(&m->cl, &m->sdl, &m->s);
+	set_filter(&m->ae);
 	SDL_UpdateTexture(m->sdl.texture, NULL,
 			m->sdl.img.pixels, m->sdl.img.w * sizeof(unsigned int));
 	//sdl_clear_image(&m->sdl.img);

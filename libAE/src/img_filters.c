@@ -6,13 +6,18 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 13:37:03 by afarapon          #+#    #+#             */
-/*   Updated: 2018/03/21 17:06:41 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/22 19:38:51 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_rt.h"
+#include "lib_ae.h"
 
-unsigned char	clamp_rgb(int color)
+const t_effects g_func_array[6] = {
+	&set_black_white, &set_sepia, &ae_sharpness, &set_blur, &ae_triple_blur,
+	&ae_set_median
+};
+
+unsigned char			clamp_rgb(int color)
 {
 	unsigned char	res;
 
@@ -25,7 +30,7 @@ unsigned char	clamp_rgb(int color)
 	return (res);
 }
 
-t_rgb			get_color_rgb(int col)
+t_rgb					get_color_rgb(int col)
 {
 	t_color			res;
 
@@ -33,37 +38,35 @@ t_rgb			get_color_rgb(int col)
 	return (res.argb);
 }
 
-static unsigned int		*use_filters(t_main *main, unsigned int **out)
+static unsigned int		*use_filters(t_ae *ae,
+	unsigned int **out, char *mutations)
 {
-	if (main->after_effect & AE_SMOOTH)
-		set_blur(main, out, 1);
-	if (main->after_effect & AE_M_BLUR)
-		set_blur(main, out, 10);
-	if (main->after_effect & AE_CONTR)
-		set_contrast(main, *out);
-	if (main->after_effect & AE_SEPIA)
-		set_sepia(main, *out);
-	if (main->after_effect & AE_TOON)
-		ae_test_blur(main, out, 5);
-	if (main->after_effect & AE_SHARPNESS)
-		ae_sharpness(main, out, 1);
+	size_t			i;
+
+	i = 0;
+	while (mutations[i] >= 0 && i < 15)
+	{
+		g_func_array[(size_t)mutations[i]](ae, out, 1);
+		i++;
+	}
+	set_contrast(ae, out, 1);
 	return (*out);
 }
 
-void				set_filter(t_main *main)
+void					set_filter(t_ae *ae)
 {
 	unsigned int	*out;
 	size_t			i;
 	size_t			size;
 
-	size = main->sdl.img.w * main->sdl.img.h;
-	if (main->after_effect)
+	size = *ae->w * *ae->h;
+	if (ae->after_effect)
 	{
 		i = -1;
 		out = (unsigned int*)malloc(sizeof(unsigned int) * size);
 		while (++i < size)
-			out[i] = main->sdl.img.pixels[i];
-		free(main->sdl.img.pixels);
-		main->sdl.img.pixels = use_filters(main, &out);
+			out[i] = (*ae->pixels)[i];
+		free(*ae->pixels);
+		*ae->pixels = use_filters(ae, &out, ae->effects);
 	}
 }

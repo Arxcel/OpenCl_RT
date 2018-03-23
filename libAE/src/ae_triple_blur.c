@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ae_test_blur.c                                     :+:      :+:    :+:   */
+/*   ae_triple_blur.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/21 14:16:18 by afarapon          #+#    #+#             */
-/*   Updated: 2018/03/21 16:22:44 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/22 14:37:14 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_rt.h"
+#include "lib_ae.h"
 
-static unsigned int		*test_blur(t_main *main, unsigned int *in, size_t size)
+static unsigned int		*triple_blur(t_ae *ae, unsigned int *in, size_t size)
 {
 	size_t			x;
 	size_t			y;
@@ -21,18 +21,19 @@ static unsigned int		*test_blur(t_main *main, unsigned int *in, size_t size)
 	y = 1;
 	res = (unsigned int*)malloc(sizeof(unsigned int) * size);
 	ft_bzero(res, sizeof(unsigned int) * size);
-	while (++y < (main->sdl.img.h - 2) && (x = 1))
-		while (++x < (main->sdl.img.w - 2))
-			res[x + y * main->sdl.img.w] = set_test_blur(main, in, x, y);
+	while (++y < (*ae->h - 2) && (x = 1))
+		while (++x < (*ae->w - 2))
+			res[x + y * *ae->w] = set_test_blur(ae, in, x, y);
 	free(in);
 	return (res);
 }
 
-void				ae_test_blur(t_main *main, unsigned int **in_out, size_t count)
+void					ae_triple_blur(t_ae *ae,
+	unsigned int **in_out, size_t count)
 {
 	size_t			i;
 
 	i = -1;
 	while (++i < count)
-		*in_out = test_blur(main, *in_out, main->sdl.img.h * main->sdl.img.w);
+		*in_out = triple_blur(ae, *in_out, *ae->h * *ae->w);
 }
