@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:32:12 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/23 15:24:32 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/23 15:59:38 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void				delete_scene(t_scene *s);
 ** open export save
 */
 
+void				save_function(int fd, t_main *m);
 void				export_file(t_main *m);
 void				open_file(t_main *m);
 void				save_file(t_main *m);

@@ -72,6 +72,7 @@ SOURCES =   main.c \
 			ui_render_copy_scroll.c \
 			ui_render_copy_list.c \
 			open_export_save.c \
+			save_function.c \
 			ui_buttons_init.c \
 			ui_textures_init.c \
 			sdl_sub.c \

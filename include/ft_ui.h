@@ -6,7 +6,7 @@
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 16:37:12 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/22 20:40:54 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/23 16:22:55 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@
 # define LOGO_H 67
 # define LOGO_W 130
 # define L_TEXT_H 30
+# define RAD(x) (x * M_PI / 180.0)
+# define DEG(x) (x * 180.0 / M_PI)
 
 typedef struct	s_xy
 {
