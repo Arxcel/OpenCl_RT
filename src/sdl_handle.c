@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 18:01:54 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/24 13:46:37 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/24 17:42:26 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,17 @@
 static void			pos_camera(int key, t_main *m)
 {
 	if (key == SDLK_w)
-		m->s.cam_trans.pos[2] -= 10;
+		m->s.cam_trans.pos[2] -= 0.3512;
 	else if (key == SDLK_s)
-		m->s.cam_trans.pos[2] += 10;
+		m->s.cam_trans.pos[2] += 0.3512;
 	else if (key == SDLK_a)
-		m->s.cam_trans.pos[0] -= 10;
+		m->s.cam_trans.pos[0] -= 0.3512;
 	else if (key == SDLK_d)
-		m->s.cam_trans.pos[0] += 10;
+		m->s.cam_trans.pos[0] += 0.3512;
 	else if (key == SDLK_q)
-		m->s.cam_trans.pos[1] += 10;
+		m->s.cam_trans.pos[1] += 0.3512;
 	else if (key == SDLK_e)
-		m->s.cam_trans.pos[1] -= 10;
+		m->s.cam_trans.pos[1] -= 0.3512;
 }
 
 static void			rot_camera(int key, t_main *m)
