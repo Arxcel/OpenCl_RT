@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 16:41:28 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/24 17:31:55 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/24 19:38:06 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,5 @@ void	window_resized_event(t_main *m)
 								m->sdl.win_w - R_SCENE_W_TRIM,
 								m->sdl.win_h - R_SCENE_H_TRIM);
 	m->sdl.changes = 1;
+	m->ui.scroll.first_step = 0;
 }

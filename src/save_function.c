@@ -6,7 +6,7 @@
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/23 15:58:32 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/23 19:40:25 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/24 19:51:28 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,14 @@ static void	dprintf_obj(int fd, t_main *m, int i, char *type)
 	m->s.object[i].pos2[0], m->s.object[i].pos2[1], m->s.object[i].pos2[2]);
 	dprintf(fd, "\t\t\t\"pos3\": [%f, %f, %f],\n",
 	m->s.object[i].pos3[0], m->s.object[i].pos3[1], m->s.object[i].pos3[2]);
-	dprintf(fd, "\t\t\t\"radius\": %f,\n", m->s.object[i].radius);
+	if (m->s.object[i].radius != 0)
+		dprintf(fd, "\t\t\t\"radius\": %f,\n", m->s.object[i].radius);
 	dprintf(fd, "\t\t\t\"angle\": %f,\n", DEG(2 * atan(m->s.object[i].angle)));
 	dprintf(fd, "\t\t\t\"reflect\": %f,\n", m->s.object[i].reflect);
 	dprintf(fd, "\t\t\t\"refract\": %f,\n", m->s.object[i].refract);
 	dprintf(fd, "\t\t\t\"specular\": %d,\n", m->s.object[i].specular);
-	dprintf(fd, "\t\t\t\"ior\": %f,\n", m->s.object[i].ior);
+	if (m->s.object[i].ior != 0)
+		dprintf(fd, "\t\t\t\"ior\": %f,\n", m->s.object[i].ior);
 	dprintf(fd, "\t\t\t\"min\": %f,\n", m->s.object[i].min);
 	dprintf(fd, "\t\t\t\"max\": %f,\n", m->s.object[i].max);
 	dprintf(fd, "\t\t\t\"pattern_scale\": %d,\n", m->s.object[i].tex_scale);

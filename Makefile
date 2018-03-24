@@ -77,6 +77,7 @@ SOURCES =   main.c \
 			save_function_sub.c \
 			ui_buttons_init.c \
 			ui_textures_init.c \
+			ui_settings_init.c \
 			sdl_sub.c \
 			sdl_rinit.c \
 			scene_textures.c \
