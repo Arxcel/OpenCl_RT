@@ -197,12 +197,47 @@ static t_vector     get_custom(t_ray *r, t_object *o, global unsigned int *tex1)
     return (get_rgb(tex1[texX % 256 + texY % 256 * 256]));
 }
 
+static t_vector     get_perlin(t_ray *r, t_object *o, global unsigned int *perlin)
+{
+    float scale;
+    float scaleX;
+    float scaleY;
+    int     texX;
+    int     texY;
+
+    r->tex = m_mult_v33(v_rot2(o->tex_angle), r->tex);
+    scale = (float)o->tex_scale;
+    if (!scale)
+        scale = 1.0;
+    if (o->type == O_PLANE || o->type == O_DISK || o->type == O_TRIANGLE || o->type == O_SQUARE)
+    {
+        scaleX = 0.03 / scale;
+        scaleY = 0.03 / scale;
+    }
+    else if (o->type == O_SPHERE)
+    {
+        scaleX = 5 / scale;
+        scaleY = 5 / scale;
+    }
+    else if (o->type == O_CYL || o->type == O_PARABOLOID || o->type == O_CON)
+    {
+        scaleX = 5 / scale;
+        scaleY = 0.03 / scale;
+    }
+    texX = (int)(r->tex[0] * 256 * scaleX);
+    texY = (int)(r->tex[1] * 256 * scaleY);
+    texX = texX < 0 ? -texX : texX;
+    texY = texY < 0 ? -texY : texY;
+    return (get_rgb(perlin[texX % 256 + texY % 256 * 256]));
+}
+
 t_vector			get_object_color(t_object *o,
                                         t_ray *r,
                                         global unsigned int *tex1,
                                         global unsigned int *tex2,
                                         global unsigned int *tex3,
-                                        global unsigned int *tex4)
+                                        global unsigned int *tex4,
+                                        global unsigned int *perlin)
 {
     float pattern;
 
@@ -214,7 +249,7 @@ t_vector			get_object_color(t_object *o,
     else if (o->tex_id == T_GRAD1)
         pattern = get_pattern3(r, o);
     else if (o->tex_id == T_GRAD2)
-        pattern = get_pattern4(r, o);
+       return (get_perlin(r, o, perlin));
     else if (o->tex_id == T_CIRC)
         pattern = get_pattern5(r, o);
     else if (o->tex_id == T_BRICK)

@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:32:12 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/24 13:32:47 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/24 14:59:55 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ float				ft_deg2rad(float deg);
 void				create_triangle_norm(t_object *obj);
 void				create_conus(t_object *obj);
 void				delete_scene(t_scene *s);
-
+float				perlin2d(float x, float y, float freq, int depth);
 /*
 ** open export save
 */

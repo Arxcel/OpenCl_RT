@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/07 17:09:00 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/24 13:39:51 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/24 15:15:48 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #  include "CL/cl.h"
 # endif
 # include <stdio.h>
-# define INDEX_NUM 8
+# define INDEX_NUM 9
 
 typedef struct			s_cl{
 	size_t				work_dim[2];

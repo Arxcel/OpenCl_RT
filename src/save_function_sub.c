@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   save_function_sub.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
+/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/23 16:36:55 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/23 16:37:32 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/24 15:31:38 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,9 @@ char	*read_pattern_type(int i, t_main *m)
 	if (t == 2)
 		return (ft_strdup("chessboard"));
 	if (t == 3)
-		return (ft_strdup("gradient-1"));
+		return (ft_strdup("gradient"));
 	if (t == 4)
-		return (ft_strdup("gradient-2"));
+		return (ft_strdup("perlin"));
 	if (t == 5)
 		return (ft_strdup("circle"));
 	if (t == 6)

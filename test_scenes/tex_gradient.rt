@@ -6,7 +6,7 @@
 			"radius": 50,
 			"specular": 1300,
 			"reflect": 0.1,
-			"pattern":  "gradient-2",
+			"pattern":  "gradient",
 			"pattern_scale": 1
 		},
 		{
@@ -16,7 +16,7 @@
 			"radius": 100,
 			"specular": 15,
 			"reflect": 0,
-			"pattern":  "gradient-2",
+			"pattern":  "gradient",
 			"pattern_scale": 1
 		},
 		{
@@ -26,7 +26,7 @@
 			"radius": 100,
 			"specular": 15,
 			"reflect": 0,
-			"pattern":  "gradient-2",
+			"pattern":  "gradient",
 			"pattern_scale": 1
 		},
 		{
@@ -36,7 +36,7 @@
 			"radius": 100,
 			"specular": 15,
 			"reflect": 0,
-			"pattern":  "gradient-2",
+			"pattern":  "gradient",
 			"pattern_scale": 1
 		},
 		{
@@ -46,7 +46,7 @@
 			"radius": 100,
 			"specular": 15,
 			"reflect": 0,
-			"pattern":  "gradient-2",
+			"pattern":  "gradient",
 			"pattern_scale": 1
 		},
 		{
@@ -57,7 +57,7 @@
 			"radius": 50,
 			"specular": 15,
 			"reflect": 0,
-			"pattern":  "gradient-2",
+			"pattern":  "gradient",
 			"pattern_scale": 1
 		},
 		{
@@ -68,7 +68,7 @@
 			"radius": 50,
 			"specular": 15,
 			"reflect": 0,
-			"pattern":  "gradient-2",
+			"pattern":  "gradient",
 			"pattern_scale": 1
 		},
 		{
@@ -79,7 +79,7 @@
 			"radius": 50,
 			"specular": 15,
 			"reflect": 0,
-			"pattern":  "gradient-2",
+			"pattern":  "gradient",
 			"pattern_scale": 1
 		},
 		{
@@ -90,7 +90,7 @@
 			"radius": 50,
 			"specular": 15,
 			"reflect": 0,
-        	"pattern":  "gradient-2",
+        	"pattern":  "gradient",
 			"pattern_scale": 1,
 			"max": 150
 		},
@@ -103,7 +103,7 @@
 			"max": 100,
 			"specular": 500,
 			"reflect": 0.1,
-			"pattern":  "gradient-2",
+			"pattern":  "gradient",
 			"pattern_scale": 0.1
 		},
 		{
@@ -113,7 +113,7 @@
 			"color": [0.4, 0.4, 0.4],
 			"specular": 15,
 			"reflect": 0.6,
-			"pattern":  "gradient-2",
+            "pattern":  "gradient",
 			"pattern_scale": 1
 		},
 		{
@@ -123,7 +123,7 @@
 			"color": [0.4, 0.4, 0.4],
 			"specular": 15,
 			"reflect": 0.6,
-			"pattern":  "gradient-2",
+            "pattern":  "gradient",
 			"pattern_scale": 1
 		},
 		{
@@ -134,7 +134,7 @@
 			"radius": 800,
 			"specular": 2,
 			"reflect": 0.8,
-            "pattern":  "gradient-2",
+            "pattern":  "gradient",
 			"pattern_scale": 1
 		},
 		{
@@ -155,7 +155,7 @@
 			"angle": 30,
 			"min" : 30,
 			"max" : 200,
-			"pattern":  "gradient-2",
+			"pattern":  "gradient",
 			"pattern_scale": 1
 		}
 	],

@@ -89,6 +89,7 @@ SOURCES =   main.c \
 			retrive_utils.c \
 			validation_1.c \
 			validation_2.c \
+			scene_perlin_noise.c \
 
 SRCS = $(addprefix $(DIR_S)/,$(SOURCES))
 

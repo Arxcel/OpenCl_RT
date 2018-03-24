@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 11:57:16 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/23 20:20:30 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/24 15:24:01 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ unsigned int				ft_renderer(
 							global unsigned int *tex1,
 							global unsigned int *tex2,
 							global unsigned int *tex3,
-							global unsigned int *tex4);
+							global unsigned int *tex4,
+							global unsigned int *perlin);
 t_vector					ft_rotate(t_vector vector, t_vector angle);
 
 t_vector					calc_light(
@@ -62,7 +63,8 @@ t_vector					calc_light(
 							global unsigned int *tex1,
 							global unsigned int *tex2,
 							global unsigned int *tex3,
-							global unsigned int *tex4);
+							global unsigned int *tex4,
+							global unsigned int *perlin);
 /*
 **  Check intersections
 */
@@ -72,7 +74,8 @@ t_vector					get_object_color(
 							global unsigned int *tex1,
 							global unsigned int *tex2,
 							global unsigned int *tex3,
-							global unsigned int *tex4);
+							global unsigned int *tex4,
+							global unsigned int *perlin);
 short						sphere_cross(t_object sphere, t_ray *r, float *t);
 short						cyl_cross(t_object cyl, t_ray *r, float *t);
 short						con_cross(t_object cyl, t_ray *r, float *t);

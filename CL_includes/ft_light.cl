@@ -77,7 +77,8 @@ t_vector							calc_light(__global t_object	*o,
 									global unsigned int *tex1,
 									global unsigned int *tex2,
 									global unsigned int *tex3,
-									global unsigned int *tex4)
+									global unsigned int *tex4,
+									global unsigned int *perlin)
 {
 	int				i;
 	float			lt;
@@ -116,7 +117,7 @@ t_vector							calc_light(__global t_object	*o,
 					light_intensity *= shader.refract;
 # ifdef TEXTURES_PRO 
 					get_surface_data(&light, shader, shader_distance);
-					ret_col += v_mult_d(l[i].color + get_object_color(&shader, &light, tex1, tex2, tex3, tex4), vis * light_intensity * lt);
+					ret_col += v_mult_d(l[i].color + get_object_color(&shader, &light, tex1, tex2, tex3, tex4, perlin), vis * light_intensity * lt);
 					continue ;
 # endif
 				}

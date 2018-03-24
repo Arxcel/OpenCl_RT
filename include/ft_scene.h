@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 22:15:03 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/24 13:33:53 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/24 15:05:10 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 # define T_CUSTOM2		8
 # define T_CUSTOM3		9
 # define T_CUSTOM4		10
-# define N_TEX			4
+# define N_TEX			5
 
 typedef float	t_vector __attribute__((vector_size(sizeof(float)*3)));
 
