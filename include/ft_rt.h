@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_rt.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:32:12 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/23 16:29:03 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/24 11:28:32 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,11 @@ void				delete_scene(t_scene *s);
 ** open export save
 */
 
+char				*read_object_type(int i, t_main *m);
+char				*read_light_type(int i, t_main *m);
+char				*read_camera_type(int i, t_main *m);
+char				*read_pattern_type(int i, t_main *m);
+void				save_function(int fd, t_main *m);
 void				export_file(t_main *m);
 void				open_file(t_main *m);
 void				save_file(t_main *m);
@@ -76,6 +81,7 @@ void				render_copy_buttons(t_main *m);
 void				render_copy_rbutton(t_main *m);
 void				render_copy_scroll(t_main *m);
 void				render_copy_list(t_main *m);
+void				render_copy_settings(t_main *m);
 void				sdl_rinit(t_sdl *sdl);
 void				ui_and_sdl_init(t_main *m);
 void				window_resized_event(t_main *m);
