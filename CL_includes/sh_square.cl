@@ -14,16 +14,21 @@
 
 static short		is_in_square(t_vector p1, t_object *p)
 {
-	t_vector	p_pos2;
+	t_vector	r_b;
+	t_vector	p_b;
 	t_vector	x;
 	t_vector	y;
+	float		d;
 
-	x = v_normalize(p->pos1 - p->pos2);
-	p_pos2 = v_normalize(p->pos2 - p1);
-	y = v_normalize(p->pos3 - p->pos2);
-	if ((v_dot(x, p_pos2) <= 0 && v_dot(y, p_pos2) <= 0))
+	d = v_length(p->pos2 - p->pos1);
+	p_b = p->pos1 + v_mult_d(v_normalize(p->pos2 - p->pos1), d / 2);
+	p_b = p_b + v_mult_d(v_normalize(v_cross(p->pos1 - p->pos2, p->dir)), d / 2);
+	x = v_normalize(p->pos1 - p_b);
+	r_b = v_normalize(p_b - p1);
+	y = v_normalize(p->pos2 - p_b);
+	if ((v_dot(x, r_b) <= 0 && v_dot(y, r_b) <= 0))
 	{
-		if ((v_dot(x, v_normalize(p->pos1 - p1)) >= 0 && v_dot(y, v_normalize(p->pos3 - p1)) >= 0))
+		if ((v_dot(x, v_normalize(p->pos1 - p1)) >= 0 && v_dot(y, v_normalize(p->pos2 - p1)) >= 0))
 			return (1);
 		return (0);
 	}
@@ -38,7 +43,7 @@ short				square_cross(t_object *p, t_ray *r, float *t)
 	t0 = v_dot(p->dir, r->dir);
 	if (t0)
 	{
-		v = p->pos2 - r->orig; 
+		v = p->pos1 - r->orig; 
 		t0 = v_dot(v, p->dir) / t0;
 		if (t0 >= 0)
 		{
