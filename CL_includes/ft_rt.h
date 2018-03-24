@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 11:57:16 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/24 15:24:01 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/24 15:48:46 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ short						solve_quadratic(const float *p, float *x0, float *x1);
 unsigned int				set_rgb(t_vector c);
 t_matrix33					v_rot2(float angle);
 t_vector					get_rgb(unsigned int c);
+t_vector					set_light(t_vector obj_color, t_vector light);
 /*
 **  Drawing functions
 */

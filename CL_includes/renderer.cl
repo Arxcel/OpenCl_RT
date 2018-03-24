@@ -141,7 +141,7 @@ static float	fresnel(t_vector dit, t_vector norm, float ior)
 	return (1);
 }
 
-static	t_vector		set_light(t_vector obj_color, t_vector light)
+t_vector		set_light(t_vector obj_color, t_vector light)
 {
 	t_vector res;
 

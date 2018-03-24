@@ -115,11 +115,9 @@ t_vector							calc_light(__global t_object	*o,
 				if (shader.refract > 0)
 				{
 					light_intensity *= shader.refract;
-# ifdef TEXTURES_PRO 
 					get_surface_data(&light, shader, shader_distance);
-					ret_col += v_mult_d(l[i].color + get_object_color(&shader, &light, tex1, tex2, tex3, tex4, perlin), vis * light_intensity * lt);
+					ret_col += v_mult_d(set_light(l[i].color, get_object_color(&shader, &light, tex1, tex2, tex3, tex4, perlin)), vis * light_intensity);
 					continue ;
-# endif
 				}
 				if (h.specular > 0)
 					light_intensity += get_shiness(lt, h.specular, light_intensity, r, light);	

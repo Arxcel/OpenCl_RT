@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:33:57 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/24 15:16:37 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/24 15:46:10 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,11 @@ void				re_draw(t_cl *cl, t_sdl *sdl, t_scene *s)
 	cl_s_a(cl, s->object, s->o_num * sizeof(t_object), 0);
 	cl_s_a(cl, s->light, s->l_num * sizeof(t_light), 1);
 	cl_s_a(cl, s->camera, s->c_num * sizeof(t_camera), 2);
-	cl_s_a(cl, s->tex[4].pixels, s->tex[4].w * s->tex[4].h * sizeof(int), 3);
+	cl_s_a(cl, s->tex[0].pixels, s->tex[0].w * s->tex[0].h * sizeof(int), 3);
 	cl_s_a(cl, s->tex[1].pixels, s->tex[1].w * s->tex[1].h * sizeof(int), 4);
 	cl_s_a(cl, s->tex[2].pixels, s->tex[2].w * s->tex[2].h * sizeof(int), 5);
 	cl_s_a(cl, s->tex[3].pixels, s->tex[3].w * s->tex[3].h * sizeof(int), 6);
-	cl_s_a(cl, s->tex[3].pixels, s->tex[3].w * s->tex[3].h * sizeof(int), 7);
+	cl_s_a(cl, s->tex[4].pixels, s->tex[4].w * s->tex[4].h * sizeof(int), 7);
 	cl_set_out_arg(cl, (size_t)sdl->img.w *
 				sdl->img.h * sizeof(unsigned int), 8);
 	cl_exec_kernel(cl, 2, cl->work_dim);

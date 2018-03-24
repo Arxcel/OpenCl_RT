@@ -7,9 +7,9 @@
 			"specular": 5000,
 			"reflect": 1,
 			"ior": 1.5,
-			"refract": 0.7,
-            "pattern":  "custom-3",
-			"pattern_scale": 3
+			"refract": 0.8,
+            "pattern":  "custom-4",
+			"pattern_scale": 2
 		},
 		{
 			"type": "plane",
