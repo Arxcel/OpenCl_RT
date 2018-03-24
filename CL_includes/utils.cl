@@ -14,19 +14,10 @@
 
 unsigned int		set_rgb(t_vector c)
 {
-	c = v_mult_d(c, 255);
-	if (c[0] > 255)
-		c[0] = 255;
-	if (c[1] > 255)
-		c[1] = 255;
-	if (c[2] > 255)
-		c[2] = 255;
-	if (c[0] < 0)
-		c[0] = 0;
-	if (c[1] < 0)
-		c[1] = 0;
-	if (c[2] < 0)
-		c[2] = 0;
+	c = v_mult_d(c, 255.0f);
+	c[0] = clamp(c[0], 0.0f, 255.0f);
+	c[1] = clamp(c[1], 0.0f, 255.0f);
+	c[2] = clamp(c[2], 0.0f, 255.0f);
 	return (((int)c[0] << 16) | ((int)c[1] << 8) | (int)c[2]);
 }
 
@@ -67,8 +58,8 @@ t_matrix33			v_rot2(float angle)
 	float		an;
 
 	an = angle;
-	a.r[0] = (t_mrow3){cos(an), -sin(an), 0};
-	a.r[1] = (t_mrow3){sin(an), cos(an), 0};
+	a.r[0] = (t_mrow3){native_cos(an), -native_sin(an), 0};
+	a.r[1] = (t_mrow3){native_sin(an), native_cos(an), 0};
 	a.r[2] = (t_mrow3){0, 0, 1};
 	return (a);
 }

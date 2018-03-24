@@ -89,8 +89,6 @@ static t_vector			reflect_ray(const t_ray *r)
 static t_vector			refract_ray(t_ray *r, float refract_index)
 {
 	float cosi;
-	float eta_air;
-	float eta_material;
 	float eta;
 	float k;
 
@@ -101,11 +99,8 @@ static t_vector			refract_ray(t_ray *r, float refract_index)
 		eta = 1 / refract_index;
 	}
 	else 
-	{
-		// r->n_hit = -r->n_hit;
 		eta = refract_index; 
-	}
-	k = 1 - pown(eta, 2) * (1 - pown(cosi, 2));
+	k = 1 - eta * eta * (1 - cosi * cosi);
 	return k < 0 ? (t_vector){0, 0, 0} : v_normalize(v_mult_d(r->dir, eta) + v_mult_d(r->n_hit, (eta * cosi - native_sqrt(k))));
 }
 
@@ -134,14 +129,14 @@ static float	fresnel(t_vector dit, t_vector norm, float ior)
 		etai = ior;
 		etat = 1;
 	}
-	sint = etai / etat * native_sqrt((1 - pown(cosi, 2)) < 0 ? 0 : (1 - pown(cosi, 2)));
+	sint = etai / etat * native_sqrt((1 - cosi * cosi) < 0 ? 0 : (1 - cosi * cosi));
 	if (sint < 1)
 	{
-		cost = native_sqrt((1 - pown(sint, 2)) < 0 ? 0 : (1 -  pown(sint, 2)));
+		cost = native_sqrt((1 - sint * sint) < 0 ? 0 : (1 -  sint * sint));
 		cosi = cosi < 0 ? -cosi : cosi;
 		Rs = ((etat * cosi) - (etai * cost)) / ((etat * cosi) + (etai * cost));
 		Rp = ((etai * cosi) - (etat * cost)) / ((etai * cosi) + (etat * cost));
-		return ((pown(Rs, 2) + pown(Rp, 2)) / 2);
+		return ((Rs * Rs + Rp * Rp) / 2);
 	}
 	return (1);
 }

@@ -67,6 +67,7 @@ static float get_pattern4(t_ray *r, t_object *o)
     float scale;
     float scaleX;
     float scaleY;
+    float first;
 
     r->tex = m_mult_v33(v_rot2(o->tex_angle), r->tex);
     scale = (float)o->tex_scale;
@@ -87,7 +88,8 @@ static float get_pattern4(t_ray *r, t_object *o)
         scaleX = scale * 0.1;
         scaleY = scale * 20;
     }
-	return ((sin((M_PI * r->tex[1] / scaleY)) > 0 ? sin((M_PI * r->tex[1] / scaleY)) : -sin((M_PI * r->tex[1] / scaleY))));
+    first = M_PI * r->tex[1] / scaleY;
+	return ((native_sin(first) > 0 ? native_sin(first) : -native_sin(first)));
 }
 
 static float get_pattern5(t_ray *r, t_object *o)
@@ -111,7 +113,9 @@ static float get_pattern5(t_ray *r, t_object *o)
     {
         scale *= 0.1;
     }
-    pattern = sin((sqrt(r->tex[0] * r->tex[0] + r->tex[1] * r->tex[1]) * scale));
+    pattern = r->tex[0] * r->tex[0] + r->tex[1] * r->tex[1];
+    pattern = native_sqrt(pattern) * scale;
+    pattern = native_sin(pattern);
 	return (pattern > 0 ? pattern : -pattern);
 }
 

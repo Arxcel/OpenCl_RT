@@ -31,23 +31,14 @@ t_vector		v_div_d(t_vector v, float d)
 float			v_length(t_vector v)
 {
 	float norm;
-	float sqrt_calculated;
-	float length;
 
 	norm = v[0] * v[0] + v[1] * v[1] + v[2] * v[2];
-	sqrt_calculated = sqrt(norm);
-	length = sqrt_calculated < 0 ? -sqrt_calculated : sqrt_calculated;
-	return (length);
+	return (native_sqrt(norm));
 }
 
 t_vector		v_normalize(t_vector v)
 {
-	float		norm;
-	t_vector	res;
-
-	norm = v_length(v);
-	res = v_div_d(v, norm);
-	return (res);
+	return (v_div_d(v, v_length(v)));
 }
 
 float			v_dot(t_vector v1, t_vector v2)
@@ -85,13 +76,9 @@ t_vector2		v_div_d2(t_vector2 v, float d)
 float			v_length2(t_vector2 v)
 {
 	float norm;
-	float sqrt_calculated;
-	float length;
 
 	norm = v[0] * v[0] + v[1] * v[1];
-	sqrt_calculated = native_sqrt(norm);
-	length = sqrt_calculated < 0 ? -sqrt_calculated : sqrt_calculated;
-	return (length);
+	return (native_sqrt(norm));
 }
 
 t_vector2		v_normalize2(t_vector2 v)

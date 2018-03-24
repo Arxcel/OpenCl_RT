@@ -21,7 +21,7 @@ static short			is_in_area(t_light l, t_ray light)
 	v_cos = v_dot(light.dir, -l.dir);
 	v_cos /= v_length(light.dir) * v_length(-l.dir);
 	d = l.ang / 2;
-	if (v_cos < fabs(cos(radians(d))))
+	if (v_cos < fabs(native_cos(radians(d))))
 		return (0);
 	else
 		return (1);
@@ -31,10 +31,9 @@ static t_ray			dir_light(t_vector p_hit, t_vector l_dir, t_vector n, float *d)
 {
 	t_ray	light;
 	
-	light.dir = l_dir;
+	light.dir = -v_normalize(l_dir);
 	light.orig = p_hit + v_mult_d(n, BIAS);
 	*d = INFINITY;
-	light.dir = -v_normalize(light.dir);
 	return (light);
 }
 
@@ -49,14 +48,12 @@ static t_ray			point_light(t_vector p_hit, t_vector l_pos, t_vector n, float *d)
 	return (light);
 }
 
-static float			get_shiness(float lambertian, float specular, float light_intensity, t_ray *r, t_ray light)
+static float			get_shiness(float lambertian, unsigned short specular, float light_intensity, t_ray *r, t_ray light)
 {
 	float			c_gt;
-	t_vector		shine;
 	float			corel;
 
-	shine = v_mult_d(r->n_hit, 2 * lambertian) - light.dir;
-	c_gt = v_dot(shine, -r->dir);
+	c_gt = v_dot((v_mult_d(r->n_hit, 2 * lambertian) - light.dir), -r->dir);
 	if (c_gt <= 0)
 		return (0);
 	if (specular <= 2)
@@ -71,7 +68,7 @@ static float			get_shiness(float lambertian, float specular, float light_intensi
 		corel = 0.2;
 	else
 		corel = 1;
-	return (light_intensity * native_powr(c_gt, specular) * corel);
+	return (light_intensity * pown(c_gt, specular) * corel);
 }
 
 t_vector							calc_light(__global t_object	*o,
@@ -125,7 +122,7 @@ t_vector							calc_light(__global t_object	*o,
 				}
 				if (h.specular > 0)
 					light_intensity += get_shiness(lt, h.specular, light_intensity, r, light);	
-				ret_col += v_mult_d(l[i].color, vis * light_intensity * lt);
+				ret_col += v_mult_d(l[i].color, vis * light_intensity);
 			}
 		}
 	}
