@@ -6,13 +6,13 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/07 20:52:00 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/12 12:57:07 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/24 13:39:51 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "my_cl.h"
 
-void	cl_set_args(t_cl *cl, void *a, size_t arg_size, cl_uint arg_index)
+void	cl_s_a(t_cl *cl, void *a, size_t arg_size, cl_uint arg_index)
 {
 	cl_int			res;
 

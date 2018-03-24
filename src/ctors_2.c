@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ctors_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/23 13:28:14 by afarapon          #+#    #+#             */
-/*   Updated: 2018/03/23 15:09:43 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/24 18:13:34 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ t_object			default_triangle(void)
 	ft_bzero(&result, sizeof(t_object));
 	result.type = O_TRIANGLE;
 	result.color = (t_vector){0.7, 0.7, 0.7};
-	result.specular = 0;
+	result.specular = 1;
 	result.refract = 0;
-	result.reflect = 0.1;
-	result.ior = 0.5;
-	result.pos1 = (t_vector){0, 0, 0};
-	result.pos2 = (t_vector){1, 0, -1};
-	result.pos3 = (t_vector){-1, 0, -1};
+	result.reflect = 0;
+	result.pos1 = (t_vector){0, 1, 0};
+	result.pos2 = (t_vector){10, 0, -10};
+	result.pos3 = (t_vector){-10, 0, -10};
+	create_triangle_norm(&result);
 	return (result);
 }
 
@@ -38,11 +38,10 @@ t_object			default_disk(void)
 	result.color = (t_vector){0.6, 0.6, 0.6};
 	result.specular = 2;
 	result.refract = 0;
-	result.reflect = 0.1;
-	result.ior = 0.5;
+	result.reflect = 0;
 	result.pos1 = (t_vector){0, 0, 0};
 	result.dir = (t_vector){0, 1, 0};
-	result.radius = 1;
+	result.radius = 20;
 	return (result);
 }
 
@@ -55,11 +54,12 @@ t_object			default_square(void)
 	result.color = (t_vector){0.7, 0.7, 0.7};
 	result.specular = 0;
 	result.refract = 0;
-	result.reflect = 0.1;
+	result.reflect = 0;
 	result.ior = 0.5;
-	result.pos1 = (t_vector){0, 0, 0};
-	result.pos2 = (t_vector){1, 0, -1};
-	result.pos3 = (t_vector){-1, 0, -1};
+	result.pos1 = (t_vector){-0.5, 0.5, -1};
+	result.pos2 = (t_vector){0.5, -0.5, -1};
+	result.dir = (t_vector){0, 0, 1};
+	result.min = 1;
 	return (result);
 }
 

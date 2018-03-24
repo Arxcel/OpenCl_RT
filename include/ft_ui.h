@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ui.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
+/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 16:37:12 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/23 21:49:18 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/24 18:05:18 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 # define FT_UI_H
 # define RTN 2
 # define BG_ITEMS 12
-# define BTNS 18
+# define BTNS 19
 # define SLDRS 1
-# define O_SET 15
+# define O_SET 25
 # define R_SCENE_X 218
 # define R_SCENE_Y 95
 # define R_SCENE_H_TRIM 100
@@ -90,13 +90,20 @@ typedef struct	s_ui_lst
 	int			active;
 }				t_ui_lst;
 
+/*
+** s_ui_o_set.type
+** type 0 vector, type 1 float, type 2 short, type 3 unsigned short
+** s_ui_o_set.vec_n
+** 0 vec[0] 1 vec[1] 2 vec[2]
+*/
+
 typedef struct	s_ui_o_set
 {
 	t_ui_bg		name;
 	t_ui_bg		data;
-	int			type; //type 0 vector, type 1 float, type 2 short, type 3 unsigned short
-	int			vec_n; //0 vec[0] 1 vec[1] 2 vec[2]
-	void		*p;
+	float		*p;
+	short		*sp;
+	unsigned short *usp;
 }				t_ui_o_set;
 
 typedef	struct	s_ui
@@ -126,7 +133,50 @@ enum			e_o_set
 	E_POS2_Z = 11,
 	E_POS3_X = 12,
 	E_POS3_Y = 13,
-	E_POS3_Z = 14
+	E_POS3_Z = 14,
+	E_RAD = 15,
+	E_REFL = 16,
+	E_REFR = 17,
+	E_ANGL = 18,
+	E_IOR = 18,
+	E_MIN = 19,
+	E_MAX = 20,
+	E_SPECUL = 21,
+	E_TEX_ID = 22,
+	E_TEX_SCL = 23,
+	E_TEX_ANG = 24
+};
+
+enum			e_l_set
+{
+	E_LCOL_R = 0,
+	E_LCOL_G = 1,
+	E_LCOL_B = 2,
+	E_LPOS_X = 3,
+	E_LPOS_Y = 4,
+	E_LPOS_Z = 5,
+	E_LPOS2_X = 6,
+	E_LPOS2_Y = 7,
+	E_LPOS2_Z = 8,
+	E_LDIR_X = 9,
+	E_LDIR_Y = 10,
+	E_LDIR_Z = 11,
+	E_LINTENCE = 12,
+	E_LANGLE = 13
+};
+
+enum			e_c_set
+{
+	E_CPOS_X = 0,
+	E_CPOS_Y = 1,
+	E_CPOS_Z = 2,
+	E_CDIR_X = 3,
+	E_CDIR_Y = 4,
+	E_CDIR_Z = 5,
+	E_CROT_X = 6,
+	E_CROT_Y = 7,
+	E_CROT_Z = 8,
+	E_CFOV = 9
 };
 
 enum			e_bg
@@ -164,7 +214,8 @@ enum			e_btns
 	BTN_CAM = 14,
 	BTN_LIGHT1 = 15,
 	BTN_LIGHT2 = 16,
-	BTN_LIGHT3 = 17
+	BTN_LIGHT3 = 17,
+	BTN_LIGHT4 = 18
 };
 
 void			ui_scroll_init(t_ui *ui, t_sdl *sdl);

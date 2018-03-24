@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   retrive_cameras.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
+/*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/23 15:02:37 by afarapon          #+#    #+#             */
-/*   Updated: 2018/03/24 11:28:50 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/24 16:21:08 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_rt.h"
 
-static t_camera		default_camera(void)
+t_camera			default_camera(void)
 {
 	t_camera		result;
 
@@ -74,7 +74,7 @@ void				process_scene_c(json_value *value, t_scene *s)
 
 	s->c_num = value->u.object.length + 1;
 	s->camera = (t_camera*)ft_memalloc(sizeof(t_camera) * s->c_num);
-	ft_bzero(s->camera, sizeof(s->camera));
+	ft_bzero(s->camera, sizeof(s->camera) * s->c_num);
 	x = -1;
 	while (++x < s->c_num - 1)
 	{

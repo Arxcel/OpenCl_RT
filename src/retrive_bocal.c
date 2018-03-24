@@ -1,20 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vector.c                                        :+:      :+:    :+:   */
+/*   bocal_object.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
+/*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/22 22:08:22 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/24 13:28:58 by vkozlov          ###   ########.fr       */
+/*   Created: 2018/03/23 16:59:55 by afarapon          #+#    #+#             */
+/*   Updated: 2018/03/23 17:03:36 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_mymath.h"
+#include "ft_rt.h"
 
-short		v_is_eq(t_vector v1, t_vector v2)
-{
-	if (v1[0] != v2[0] || v1[1] != v2[1] || v1[2] != v2[2])
-		return (0);
-	return (1);
-}
+void					create_bocal()

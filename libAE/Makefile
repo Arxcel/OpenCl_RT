@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+         #
+#    By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/22 11:49:59 by afarapon          #+#    #+#              #
-#    Updated: 2018/03/22 18:45:04 by afarapon         ###   ########.fr        #
+#    Updated: 2018/03/24 13:49:18 by vkozlov          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,6 +61,12 @@ obj:
 
 $(DIR_O)/%.o: $(DIR_S)/%.c $(DEPS)
 		@$(CC) $(FLAGS) -I $(HEADER) -I$(IDIR) -o $@ -c $<
+
+norme:
+		@echo "--------------------Checking header files libAE"
+		@norminette ./$(IDIR)
+		@echo "--------------------Checking source files libAE"
+		@norminette ./$(DIR_S)
 
 clean:
 		@rm -f $(OBJS)

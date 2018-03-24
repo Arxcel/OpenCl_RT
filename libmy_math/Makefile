@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vkozlov <vkozlov@student.unit.ua>          +#+  +:+       +#+         #
+#    By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/21 18:38:09 by vkozlov           #+#    #+#              #
-#    Updated: 2018/03/01 16:37:09 by vkozlov          ###   ########.fr        #
+#    Updated: 2018/03/24 13:29:15 by vkozlov          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,8 @@ HEADER = include
 
 HEADERS = -I include \
 
-SOURCES = ft_vector.c \
+SOURCES =	ft_vector.c \
+			ft_vector_.c \
 			ft_matrix.c 
 		  
 SRCS = $(addprefix $(DIR_S)/,$(SOURCES))

@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/23 14:46:38 by afarapon          #+#    #+#             */
-/*   Updated: 2018/03/24 11:27:41 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/24 18:13:37 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ static int			set_t_type(json_value *value)
 		return (T_STD);
 	else if (!ft_strcmp(value->u.string.ptr, "chessboard"))
 		return (T_CHECK);
-	else if (!ft_strcmp(value->u.string.ptr, "gradient-1"))
+	else if (!ft_strcmp(value->u.string.ptr, "gradient"))
 		return (T_GRAD1);
-	else if (!ft_strcmp(value->u.string.ptr, "gradient-2"))
+	else if (!ft_strcmp(value->u.string.ptr, "perlin"))
 		return (T_GRAD2);
 	else if (!ft_strcmp(value->u.string.ptr, "circle"))
 		return (T_CIRC);
@@ -108,15 +108,14 @@ void				process_scene_o(json_value *value, t_scene *s)
 	int x;
 
 	s->o_num = value->u.object.length + 1;
+	printf("o_num: %i\n", s->o_num);
 	s->object = (t_object*)ft_memalloc(sizeof(t_object) * s->o_num);
-	ft_bzero(s->object, sizeof(s->object));
+	ft_bzero(s->object, sizeof(s->object) * s->o_num);
 	x = -1;
 	while (++x < (s->o_num - 1))
 	{
 		get_object_info(value->u.array.values[x], &s->object[x]);
 		if (s->object[x].type == O_TRIANGLE)
-			create_triangle_norm(&s->object[x]);
-		if (s->object[x].type == O_SQUARE)
 			create_triangle_norm(&s->object[x]);
 		else if (s->object[x].type == O_CON)
 			create_conus(&s->object[x]);

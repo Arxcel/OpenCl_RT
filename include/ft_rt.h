@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:32:12 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/24 11:28:32 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/24 18:04:22 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # include "tinyfiledialogs.h"
 # include "lib_ae.h"
 # define WIN_W			1280
-# define WIN_H			600
+# define WIN_H			670
 # define MAX_ITER		5
 
 typedef struct		s_main
@@ -50,7 +50,7 @@ float				ft_deg2rad(float deg);
 void				create_triangle_norm(t_object *obj);
 void				create_conus(t_object *obj);
 void				delete_scene(t_scene *s);
-
+float				perlin2d(float x, float y, float freq, int depth);
 /*
 ** open export save
 */
@@ -113,6 +113,8 @@ t_light				default_area(void);
 t_light				default_lamp(void);
 t_light				default_parallel(void);
 t_light				default_light(void);
+t_camera			default_camera(void);
+
 
 /*
 ** READ DATA FROM JSON TO OBJECTS/LIGHTS/CAMERAS
@@ -139,5 +141,10 @@ float				get_refract(json_value *value);
 float				get_reflect(json_value *value);
 float				get_radius(json_value *value);
 
+/*
+** CREATE SHAPES FROM UI
+*/
+
+void				create_shapes(int x, int y, t_main *m);
 
 #endif

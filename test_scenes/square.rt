@@ -1,0 +1,37 @@
+{
+	"objects": [{
+			"type": "plane",
+			"pos1": [0, 0, 0],
+			"direction": [0, 1, 0],
+			"color": [0.4, 0.4, 0.4],
+			"specular": 15,
+			"reflect": 0
+		},
+        {
+			"type": "square",
+            "color": [1, 0.5, 0.25],
+            "pos1": [-1, 2, -20],
+            "pos2": [1, 0, -20],
+            "direction": [0, 0, 1],
+            "reflect": 0
+		}
+	],
+	"lights": [{
+			"type": "lamp",
+			"position": [0, 10, -8],
+			"color": [1, 1, 1],
+			"intensity" : 1
+		},
+        {
+            "type": "ambient",
+            "intensity": 0.2
+        }
+	],
+	"cameras": [{
+		"type": "common",
+		"rotation": [0, 0, 0],
+		"position": [0, 0, 0],
+		"field_of_view": 50,
+		"bias": 0.3
+	}]
+}

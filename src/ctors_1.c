@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ctors_1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/23 13:26:18 by afarapon          #+#    #+#             */
-/*   Updated: 2018/03/23 14:23:33 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/24 18:13:37 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ t_object			default_sphere(void)
 	result.color = (t_vector){0.7, 0.7, 0.7};
 	result.specular = 1;
 	result.refract = 0;
-	result.reflect = 0.1;
-	result.ior = 0.5;
+	result.reflect = 0;
 	result.pos1 = (t_vector){0, 0, 0};
 	result.radius = 1;
 	return (result);
@@ -37,8 +36,7 @@ t_object			default_cylinder(void)
 	result.color = (t_vector){0.7, 0.7, 0.7};
 	result.specular = 1;
 	result.refract = 0;
-	result.reflect = 0.1;
-	result.ior = 0.5;
+	result.reflect = 0;
 	result.pos1 = (t_vector){0, 0, 0};
 	result.radius = 1;
 	result.dir = (t_vector){0, 1, 0};
@@ -54,11 +52,11 @@ t_object			default_conus(void)
 	result.color = (t_vector){0.7, 0.7, 0.7};
 	result.specular = 1;
 	result.refract = 0;
-	result.reflect = 0.1;
-	result.ior = 0.5;
-	result.pos1 = (t_vector){0, 0, 0};
+	result.reflect = 0;
+	result.pos1 = (t_vector){0, -1, 0};
 	result.dir = (t_vector){0, 1, 0};
 	result.angle = 45;
+	create_conus(&result);
 	return (result);
 }
 
@@ -71,8 +69,7 @@ t_object			default_plane(void)
 	result.color = (t_vector){0.7, 0.7, 0.7};
 	result.specular = 1;
 	result.refract = 0;
-	result.reflect = 0.1;
-	result.ior = 0.5;
+	result.reflect = 0;
 	result.pos1 = (t_vector){0, 0, 0};
 	result.dir = (t_vector){0, 1, 0};
 	return (result);
@@ -89,8 +86,6 @@ t_object			default_paraboloid(void)
 	result.radius = 1;
 	result.specular = 1;
 	result.refract = 0;
-	result.reflect = 0.1;
-	result.max = 1;
-	result.ior = 0.5;
+	result.reflect = 0;
 	return (result);
 }
