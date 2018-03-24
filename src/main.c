@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:33:57 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/24 21:40:33 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/24 21:42:36 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,9 @@ void				re_draw(t_cl *cl, t_sdl *sdl, t_scene *s)
 	cl_s_a(cl, s->tex[2].pixels, s->tex[2].w * s->tex[2].h * sizeof(int), 5);
 	cl_s_a(cl, s->tex[3].pixels, s->tex[3].w * s->tex[3].h * sizeof(int), 6);
 	cl_s_a(cl, s->tex[4].pixels, s->tex[4].w * s->tex[4].h * sizeof(int), 7);
-	cl_set_out_arg(cl, (size_t)sdl->img.w *
-				sdl->img.h * sizeof(unsigned int), 8);
+	cl_set_out_arg(cl, sdl->img.w * sdl->img.h * sizeof(int), 8);
 	cl_exec_kernel(cl, 2, cl->work_dim);
-	cl_get_res(cl, (size_t)sdl->img.w *
-				sdl->img.h * sizeof(unsigned int), sdl->img.pixels, 8);
+	cl_get_res(cl, sdl->img.w * sdl->img.h * sizeof(int), sdl->img.pixels, 8);
 	printf("Rendering time: %0.3f milliseconds.\n", cl_get_exec_time(cl));
 	clReleaseEvent(cl->e);
 	cl_free_all_args(cl->args);
