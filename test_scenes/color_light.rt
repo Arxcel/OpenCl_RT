@@ -1,12 +1,20 @@
 {
-	"objects": [
+	"objects": [{
+			"type": "sphere",
+			"color": [0.33, 0.02, 0.02],
+			"pos1": [0, -150, -1000],
+			"radius": 50,
+			"specular": 1300,
+			"reflect": 0.1,
+			"pattern":  "chessboard"
+		},
 		{
 			"type": "sphere",
 			"color": [0.33, 0.02, 0.02],
-			"pos1": [0, -200, -1000],
+			"pos1": [0, -150, -2000],
 			"radius": 50,
-			"specular": 5000,
-			"reflect": 0.5
+			"specular": 1300,
+			"reflect": 1
 		},
 		{
 			"type": "sphere",
@@ -14,7 +22,7 @@
 			"pos1": [300, -300, -1700],
 			"radius": 100,
 			"specular": 15,
-			"reflect": 0.5
+			"reflect": 0
 		},
 		{
 			"type": "sphere",
@@ -22,7 +30,7 @@
 			"pos1": [-300, -300, -1700],
 			"radius": 100,
 			"specular": 15,
-			"reflect": 0.5
+			"reflect": 0
 		},
 		{
 			"type": "sphere",
@@ -30,7 +38,7 @@
 			"pos1": [-300, -300, -800],
 			"radius": 100,
 			"specular": 15,
-			"reflect": 0.5
+			"reflect": 0
 		},
 		{
 			"type": "sphere",
@@ -38,39 +46,7 @@
 			"pos1": [300, -300, -800],
 			"radius": 100,
 			"specular": 15,
-			"reflect": 0.5
-		},
-		{
-			"type": "sphere",
-			"color": [0.3, 0.3, 0.3],
-			"pos1": [300, 500, -1700],
-			"radius": 100,
-			"specular": 15,
-			"reflect": 0.5
-		},
-		{
-			"type": "sphere",
-			"color": [0.3, 0.3, 0.3],
-			"pos1": [-300, 500, -1700],
-			"radius": 100,
-			"specular": 15,
-			"reflect": 0.5
-		},
-		{
-			"type": "sphere",
-			"color": [0.3, 0.3, 0.3],
-			"pos1": [-300, 500, -800],
-			"radius": 100,
-			"specular": 15,
-			"reflect": 0.5
-		},
-		{
-			"type": "sphere",
-			"color": [0.3, 0.3, 0.3],
-			"pos1": [300, 500, -800],
-			"radius": 100,
-			"specular": 15,
-			"reflect": 0.5
+			"reflect": 0
 		},
 		{
 			"type": "cylinder",
@@ -79,7 +55,7 @@
 			"pos1": [-300, 0, -800],
 			"radius": 50,
 			"specular": 15,
-			"reflect": 0.4
+			"reflect": 0
 		},
 		{
 			"type": "cylinder",
@@ -88,7 +64,7 @@
 			"pos1": [300, 0, -800],
 			"radius": 50,
 			"specular": 15,
-			"reflect": 0.4
+			"reflect": 0
 		},
 		{
 			"type": "cylinder",
@@ -97,7 +73,7 @@
 			"pos1": [300, 0, -1700],
 			"radius": 50,
 			"specular": 15,
-			"reflect": 0.4
+			"reflect": 0
 		},
 		{
 			"type": "cylinder",
@@ -106,7 +82,7 @@
 			"pos1": [-300, 0, -1700],
 			"radius": 50,
 			"specular": 15,
-			"reflect": 0.4
+			"reflect": 0
 		},
 		{
 			"type": "plane",
@@ -117,69 +93,57 @@
 			"reflect": 0
 		},
 		{
-			"type": "plane",
+			"type": "disk",
 			"pos1": [0, 0, -1800],
 			"direction": [0, 0, 1],
 			"color": [0.24, 0.12, 0],
-			"specular": 15,
-			"reflect": 0.4
+			"radius": 800,
+			"specular": 2,
+			"reflect": 0.8
 		},
 		{
-			"type": "plane",
-			"pos1": [-800, 0, 0],
-			"direction": [1, 0, 0],
-			"color": [0.24, 0.12, 0],
-			"specular": 15,
-			"reflect": 0
-		},
-		{
-			"type": "plane",
-			"pos1": [0, 500, 0],
-			"direction": [0, -1, 0],
-			"color": [0.24, 0.12, 0],
-			"specular": 15,
-			"reflect": 0
-		},
-		{
-			"type": "plane",
-			"pos1": [800, 0, 0],
-			"direction": [-1, 0, 0],
-			"color": [0.24, 0.12, 0],
-			"specular": 15,
-			"reflect": 0.7
-		},
-		{
-			"type": "plane",
+			"type": "disk",
 			"pos1": [0, 0, 1800],
 			"direction": [0, 0, -1],
 			"color": [0.24, 0.12, 0],
-			"specular": 15,
-			"reflect": 0.4
-		}
+			"radius": 800,
+			"specular": 2,
+			"reflect": 0.8
+			}
 	],
-	"lights": [
-	{
-			"type": "lamp",
-			"position": [799, 300, 400],
-			"color": [1, 1, 1],
+	"lights": [{
+			"type": "parallel",
+			"position": [-10, -10, 0],
+			"color": [0, 0, 1],
 			"intensity" : 1
 		},
 		{
 			"type": "lamp",
-			"position": [-300, 300, 500],
+			"position": [1000, 1000, 10],
+			"color": [0, 1, 0],
+			"intensity" : 1
+		},
+		{
+			"type": "lamp",
+			"position": [-600, 900, 500],
+			"color": [1, 0, 0],
+			"intensity" : 1
+		},
+		{
+			"type": "lamp",
+			"position": [100, 0, -1100],
 			"color": [1, 1, 1],
 			"intensity" : 1
 		},
 		{
 			"type": "ambient",
-			"intensity": 0
+			"intensity" : 0
 		}
 	],
-	"cameras": [
-	{
+	"cameras": [{
 		"type": "common",
 		"rotation": [0, 0, 0],
-		"position": [0, 0, 300],
+		"position": [0, 0, 0],
 		"field_of_view": 50,
 		"bias": 0.3
 	}]

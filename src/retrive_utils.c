@@ -6,13 +6,13 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/23 15:04:06 by afarapon          #+#    #+#             */
-/*   Updated: 2018/03/23 15:05:04 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/23 16:53:36 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_rt.h"
 
-float	get_number(json_value *value)
+float		get_number(json_value *value)
 {
 	float ret;
 

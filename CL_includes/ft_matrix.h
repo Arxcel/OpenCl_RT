@@ -6,16 +6,16 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 22:34:23 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/21 13:10:51 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/23 19:57:26 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_MATRIX_H
 # define FT_MATRIX_H
-# include "ft_rtv1.h"
+# include "ft_rt.h"
 
 typedef float	t_mrow __attribute__((vector_size(sizeof(float)*4)));
-typedef double	t_mrow3 __attribute__((vector_size(sizeof(double)*3)));
+typedef float	t_mrow3 __attribute__((vector_size(sizeof(float)*3)));
 
 typedef struct	s_matrix
 {

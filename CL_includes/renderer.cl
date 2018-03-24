@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_rtv1.h"
+#include "ft_rt.h"
 
 void	get_surface_data(t_ray *ray, t_object object, float t)
 {
@@ -56,12 +56,12 @@ int		check_object_type(t_object object, t_ray *ray, float *t)
 static int				ft_trace(__global t_object	*o,
 								__global t_light	*l,
 								float *t_near,
-								t_object *hit_object, t_ray *ray)
+								t_object *hit_object,
+								t_ray *ray)
 {
 	float	t;
 	int		i;
 	int		flag;
-	int		check;
 	float	z_buf;
 
 	i = 0;
@@ -69,8 +69,7 @@ static int				ft_trace(__global t_object	*o,
 	z_buf = INF;
 	while (o[i].type)
 	{
-		check = check_object_type(o[i], ray, &t);
-		if (check && t < z_buf)
+		if (check_object_type(o[i], ray, &t) && t < z_buf)
 		{
 			*t_near = t;
 			z_buf = t;
@@ -90,33 +89,23 @@ static t_vector			reflect_ray(const t_ray *r)
 static t_vector			refract_ray(t_ray *r, float refract_index)
 {
 	float cosi;
-	float eta_air;
-	float eta_material;
 	float eta;
 	float k;
 
 	cosi = v_dot(r->dir, r->n_hit);
-	eta_air = 1;
-	eta_material = refract_index;
 	if (cosi < 0)
 	{
 		cosi = -cosi;
-		eta = eta_air / eta_material;
+		eta = 1 / refract_index;
 	}
 	else 
-	{
-		r->n_hit = -r->n_hit;
-		eta = eta_material / eta_air; 
-	}
+		eta = refract_index; 
 	k = 1 - eta * eta * (1 - cosi * cosi);
 	return k < 0 ? (t_vector){0, 0, 0} : v_normalize(v_mult_d(r->dir, eta) + v_mult_d(r->n_hit, (eta * cosi - native_sqrt(k))));
 }
 
-
 static float	fresnel(t_vector dit, t_vector norm, float ior)
 {
-	float kr;
-	float buf;
 	float cosi;
 	float etai;
 	float etat;
@@ -130,27 +119,36 @@ static float	fresnel(t_vector dit, t_vector norm, float ior)
 		cosi = 1;
 	else if (cosi < -1)
 		cosi = -1;
-	etai = 1;
-	etat = ior;
-
-	if (cosi > 0)
+	if (cosi < 0)
 	{
-		buf = etai;
-		etai = etat;
-		etat = buf;
+		etai = 1;
+		etat = ior;
 	}
-	sint = etai / etat * native_sqrt((1 - cosi * cosi) < 0 ? 0 : (1 - cosi * cosi));
-	if (sint >= 1)
-		kr = 1;
 	else
 	{
-		cost = native_sqrt((1 - sint * sint) < 0 ? 0 : (1 - sint * sint));
+		etai = ior;
+		etat = 1;
+	}
+	sint = etai / etat * native_sqrt((1 - cosi * cosi) < 0 ? 0 : (1 - cosi * cosi));
+	if (sint < 1)
+	{
+		cost = native_sqrt((1 - sint * sint) < 0 ? 0 : (1 -  sint * sint));
 		cosi = cosi < 0 ? -cosi : cosi;
 		Rs = ((etat * cosi) - (etai * cost)) / ((etat * cosi) + (etai * cost));
 		Rp = ((etai * cosi) - (etat * cost)) / ((etai * cosi) + (etat * cost));
-		kr = (Rs * Rs + Rp * Rp) / 2;
+		return ((Rs * Rs + Rp * Rp) / 2);
 	}
-	return (kr);
+	return (1);
+}
+
+static	t_vector		set_light(t_vector obj_color, t_vector light)
+{
+	t_vector res;
+
+	res[0] = obj_color[0] * light[0];
+	res[1] = obj_color[1] * light[1];
+	res[2] = obj_color[2] * light[2];
+	return (res);
 }
 
 static t_vector			ft_cast_ray(
@@ -164,8 +162,6 @@ static t_vector			ft_cast_ray(
 						global unsigned int *tex4)
 {
 	int			depth;
-	t_vector	reflection_color;
-	t_vector	refraction_color;
 	t_vector	object_color;
 	t_vector	hit_color;
 	float		mask_reflection;
@@ -173,23 +169,21 @@ static t_vector			ft_cast_ray(
 	float		t;
 	float		kr;
 	t_vector	bias;
+	int			outside;
 
 	depth = 0;
 	mask_reflection = 1;
 	mask_refraction = 1;
 	hit_color = (t_vector){0,0,0}; 
-	reflection_color = (t_vector){0, 0, 0};
-	refraction_color = (t_vector){0, 0, 0};
 	while (depth < MAX_ITER)
 	{
 		if (!ft_trace(o, l, &t, hit_object, r))
 			break ;
 		get_surface_data(r, *hit_object, t);
 		r->n_hit = v_dot(r->n_hit, r->dir) < 0 ? r->n_hit : -r->n_hit;
+		outside = v_dot(r->n_hit, r->dir) < 0 ? 1 : 0;
 		bias = v_mult_d(r->n_hit, BIAS);
-		int outside;
-		outside = v_dot(r->dir, r->n_hit) < 0 ? 1 : 0;
-		object_color = v_mult_d(get_object_color(hit_object, r, tex1, tex2, tex3, tex4), calc_light(o, l, *hit_object, r));
+		object_color = set_light(get_object_color(hit_object, r, tex1, tex2, tex3, tex4), calc_light(o, l, *hit_object, r, tex1, tex2, tex3, tex4));
 		if ((!hit_object->reflect && !hit_object->refract))
 		{
 			hit_color += v_mult_d(object_color, mask_refraction * mask_reflection);
@@ -226,46 +220,39 @@ static t_vector			ft_cast_ray(
     return (hit_color); 
 } 
 
-static t_ray			find_cam_dir(__global t_camera    *cam, float *iter, size_t i_w, size_t i_h)
+static t_ray				find_cam_dir(__global t_camera    *cam, int xx, int yy, size_t i_w, size_t i_h)
 {
 	float scale;
 	float x;
 	float y;
 	t_ray ray;
+	float d;
 
-	scale = native_tan(ft_deg2rad(cam->fov * 0.5));
-	x = (2 * (iter[1] + 0.5) / (float)i_w - 1) * (i_w / (float)i_h) * scale;
-	y = (1 - 2 * (iter[0] + 0.5) / (float)i_h) * scale;
-	cam->dir = (t_vector){x, y, -1};
-	cam->dir = ft_rotate(cam->dir, cam->rot);
-	ray.dir = v_normalize(cam->dir);
-	ray.orig = cam->pos;
-	iter[0] = 128.0 * (float)iter[0] / i_w;	
-	iter[1] = 72.0 * (float)iter[1] / i_h;	
+	d = cam->fov * 0.5;
+	scale = native_tan(radians(d));
+	x = (2 * (xx + 0.5) / (float)i_w - 1) * (i_w / (float)i_h) * scale;
+	y = (1 - 2 * (yy + 0.5) / (float)i_h) * scale;
+	ray.dir = v_normalize(ft_rotate((t_vector){x, y, -1}, cam->rot));
+	ray.orig = cam->pos;	
 	return (ray);
 }
 
-unsigned int		ft_renderer(
-		global t_object	*o,
-		global t_light	*l,
-		global t_camera *cam,
-		int x,
-		int y,
-		size_t img_w,
-		size_t img_h,
-		global unsigned int *tex1,
-		global unsigned int *tex2,
-		global unsigned int *tex3,
-		global unsigned int *tex4)
+unsigned int				ft_renderer(
+							global t_object	*o,
+							global t_light	*l,
+							global t_camera *cam,
+							int x,
+							int y,
+							size_t img_w,
+							size_t img_h,
+							global unsigned int *tex1,
+							global unsigned int *tex2,
+							global unsigned int *tex3,
+							global unsigned int *tex4)
 {
-	float			iter[2];
-	t_vector		res;
 	t_object		hit_object;
 	t_ray			ray;
 
-	iter[0] = y;
-	iter[1] = x;
-    ray = find_cam_dir(cam, iter, img_w, img_h);
-	res = ft_cast_ray(o, l, &ray, &hit_object, tex1, tex2, tex3, tex4);
-	return (set_rgb(res));
+    ray = find_cam_dir(cam, x, y, img_w, img_h);
+	return (set_rgb(ft_cast_ray(o, l, &ray, &hit_object, tex1, tex2, tex3, tex4)));
 }

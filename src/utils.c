@@ -6,7 +6,7 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 17:15:31 by afarapon          #+#    #+#             */
-/*   Updated: 2018/03/22 17:43:52 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/23 16:55:19 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ void				filter_key(int key, t_main *m)
 		add_effect(&m->ae, 4);
 	else if (key == SDLK_KP_6)
 		add_effect(&m->ae, 5);
-	else if (m->ae.after_effect && (key == SDLK_KP_PLUS || key == SDLK_KP_MINUS))
+	else if (m->ae.after_effect && (key == SDLK_KP_PLUS ||
+		key == SDLK_KP_MINUS))
 		m->ae.coeficient = key == SDLK_KP_PLUS ?
 			m->ae.coeficient + 30 : m->ae.coeficient - 30;
 	else if (key == SDLK_KP_0 && (m->ae.coeficient = 1))
