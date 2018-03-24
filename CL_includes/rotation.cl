@@ -10,17 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_rtv1.h"
+#include "ft_rt.h"
 
 static t_matrix			v_rot_x(float angle)
 {
 	t_matrix	a;
 	float		an;
 
-	an = -ft_deg2rad(angle);
+	an = -radians(angle);
 	a.r[0] = (t_mrow){1, 0, 0, 0};
-	a.r[1] = (t_mrow){0, cos(an), -sin(an), 0};
-	a.r[2] = (t_mrow){0, sin(an), cos(an), 0};
+	a.r[1] = (t_mrow){0, native_cos(an), -native_sin(an), 0};
+	a.r[2] = (t_mrow){0, native_sin(an), native_cos(an), 0};
 	a.r[3] = (t_mrow){0, 0, 0, 1};
 	return (a);
 }
@@ -30,10 +30,10 @@ static t_matrix			v_rot_y(float angle)
 	t_matrix	a;
 	float		an;
 
-	an = -ft_deg2rad(angle);
-	a.r[0] = (t_mrow){cos(an), 0, sin(an), 0};
+	an = -radians(angle);
+	a.r[0] = (t_mrow){native_cos(an), 0, native_sin(an), 0};
 	a.r[1] = (t_mrow){0, 1, 0, 0};
-	a.r[2] = (t_mrow){-sin(an), 0, cos(an), 0};
+	a.r[2] = (t_mrow){-native_sin(an), 0, native_cos(an), 0};
 	a.r[3] = (t_mrow){0, 0, 0, 1};
 	return (a);
 }
@@ -43,9 +43,9 @@ static t_matrix			v_rot_z(float angle)
 	t_matrix	a;
 	float		an;
 
-	an = -ft_deg2rad(angle);
-	a.r[0] = (t_mrow){cos(an), -sin(an), 0, 0};
-	a.r[1] = (t_mrow){sin(an), cos(an), 0, 0};
+	an = -radians(angle);
+	a.r[0] = (t_mrow){native_cos(an), -native_sin(an), 0, 0};
+	a.r[1] = (t_mrow){native_sin(an), native_cos(an), 0, 0};
 	a.r[2] = (t_mrow){0, 0, 1, 0};
 	a.r[3] = (t_mrow){0, 0, 0, 1};
 	return (a);

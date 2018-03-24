@@ -6,7 +6,7 @@
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 16:37:12 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/22 20:40:54 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/23 21:49:18 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # define BG_ITEMS 12
 # define BTNS 18
 # define SLDRS 1
+# define O_SET 15
 # define R_SCENE_X 218
 # define R_SCENE_Y 95
 # define R_SCENE_H_TRIM 100
@@ -33,6 +34,10 @@
 # define LOGO_H 67
 # define LOGO_W 130
 # define L_TEXT_H 30
+# define R_TEXT_H 20
+# define R_TEXT_W 90
+# define RAD(x) (x * M_PI / 180.0)
+# define DEG(x) (x * 180.0 / M_PI)
 
 typedef struct	s_xy
 {
@@ -81,7 +86,18 @@ typedef struct	s_ui_lst
 {
 	SDL_Rect	rect;
 	int			n;
+	int			active_n;
+	int			active;
 }				t_ui_lst;
+
+typedef struct	s_ui_o_set
+{
+	t_ui_bg		name;
+	t_ui_bg		data;
+	int			type; //type 0 vector, type 1 float, type 2 short, type 3 unsigned short
+	int			vec_n; //0 vec[0] 1 vec[1] 2 vec[2]
+	void		*p;
+}				t_ui_o_set;
 
 typedef	struct	s_ui
 {
@@ -91,7 +107,27 @@ typedef	struct	s_ui
 	t_ui_rbtn	rbtn;
 	t_ui_scrl	scroll;
 	t_ui_lst	list;
+	t_ui_o_set	o_set[O_SET];
 }				t_ui;
+
+enum			e_o_set
+{
+	E_COL_R = 0,
+	E_COL_G = 1,
+	E_COL_B = 2,
+	E_DIR_X = 3,
+	E_DIR_Y = 4,
+	E_DIR_Z = 5,
+	E_POS1_X = 6,
+	E_POS1_Y = 7,
+	E_POS1_Z = 8,
+	E_POS2_X = 9,
+	E_POS2_Y = 10,
+	E_POS2_Z = 11,
+	E_POS3_X = 12,
+	E_POS3_Y = 13,
+	E_POS3_Z = 14
+};
 
 enum			e_bg
 {
@@ -134,9 +170,12 @@ enum			e_btns
 void			ui_scroll_init(t_ui *ui, t_sdl *sdl);
 void			ui_buttons_init(t_ui *ui, t_sdl *sdl);
 void			ui_textures_init(t_ui *ui, t_sdl *sdl);
+void			ui_settings_init(t_ui *ui, t_sdl *sdl);
 
 void			ui_render_corners(t_ui *ui, t_sdl *sdl, SDL_Rect place);
 void			ui_render_lines(t_ui *ui, t_sdl *sdl);
+
+void			texture_from_text(char *text, t_sdl *sdl, t_ui_bg *p);
 
 /*
 ** move to libftSDL

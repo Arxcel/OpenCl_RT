@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_rtv1.h"
+#include "ft_rt.h"
 
 short				sphere_cross(t_object sphere, t_ray *r, float *t)
 {

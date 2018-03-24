@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   retrive_objects.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/23 14:46:38 by afarapon          #+#    #+#             */
-/*   Updated: 2018/03/23 16:53:19 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/24 11:27:41 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ static int			set_t_type(json_value *value)
 {
 	if (value->type != json_string)
 		put_error("Not valid texture type.");
-	if (!ft_strcmp(value->u.string.ptr, "chessboard"))
+	if (!ft_strcmp(value->u.string.ptr, ""))
+		return (T_STD);
+	else if (!ft_strcmp(value->u.string.ptr, "chessboard"))
 		return (T_CHECK);
 	else if (!ft_strcmp(value->u.string.ptr, "gradient-1"))
 		return (T_GRAD1);

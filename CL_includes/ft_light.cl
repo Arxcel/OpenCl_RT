@@ -11,15 +11,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_rtv1.h"
+#include "ft_rt.h"
 
 static short			is_in_area(t_light l, t_ray light)
 {
 	float	v_cos;
+	float	d;
 
 	v_cos = v_dot(light.dir, -l.dir);
 	v_cos /= v_length(light.dir) * v_length(-l.dir);
-	if (v_cos < fabs(cos(ft_deg2rad(l.ang / 2))))
+	d = l.ang / 2;
+	if (v_cos < fabs(native_cos(radians(d))))
 		return (0);
 	else
 		return (1);
@@ -29,10 +31,9 @@ static t_ray			dir_light(t_vector p_hit, t_vector l_dir, t_vector n, float *d)
 {
 	t_ray	light;
 	
-	light.dir = l_dir;
+	light.dir = -v_normalize(l_dir);
 	light.orig = p_hit + v_mult_d(n, BIAS);
 	*d = INFINITY;
-	light.dir = -v_normalize(light.dir);
 	return (light);
 }
 
@@ -47,14 +48,12 @@ static t_ray			point_light(t_vector p_hit, t_vector l_pos, t_vector n, float *d)
 	return (light);
 }
 
-static float			get_shiness(float lambertian, float specular, float light_intensity, t_ray *r, t_ray light)
+static float			get_shiness(float lambertian, unsigned short specular, float light_intensity, t_ray *r, t_ray light)
 {
 	float			c_gt;
-	t_vector		shine;
 	float			corel;
 
-	shine = v_mult_d(r->n_hit, 2 * lambertian) - light.dir;
-	c_gt = v_dot(shine, -r->dir);
+	c_gt = v_dot((v_mult_d(r->n_hit, 2 * lambertian) - light.dir), -r->dir);
 	if (c_gt <= 0)
 		return (0);
 	if (specular <= 2)
@@ -69,17 +68,21 @@ static float			get_shiness(float lambertian, float specular, float light_intensi
 		corel = 0.2;
 	else
 		corel = 1;
-	return (light_intensity * native_powr(c_gt, specular) * corel);
+	return (light_intensity * pown(c_gt, specular) * corel);
 }
 
-float					calc_light(__global t_object	*o,
+t_vector							calc_light(__global t_object	*o,
 									__global t_light	*l,
-									t_object h, t_ray *r)
+									t_object h, t_ray *r,
+									global unsigned int *tex1,
+									global unsigned int *tex2,
+									global unsigned int *tex3,
+									global unsigned int *tex4)
 {
 	int				i;
 	float			lt;
 	float			vis;
-	float			ret_col;
+	t_vector		ret_col;
 	float			distance;
 	float			shader_distance;
 	float			light_intensity;
@@ -87,48 +90,39 @@ float					calc_light(__global t_object	*o,
 	t_ray			light;
 
 	i = -1;
-	ret_col = 0;
-	light_intensity = 0.0;
+	ret_col = (t_vector){0, 0, 0};
 	shader.refract = 0;
 	while (l[++i].type)
 	{
-		lt = v_dot(r->n_hit, light.dir);
-		if (lt > 0 && shader.refract)
-		{
-			light_intensity = lt * l[i].intence * shader.refract;
-			if (h.specular > 0)
-				light_intensity += get_shiness(lt, h.specular, light_intensity, r, light);
-			ret_col += vis * light_intensity * lt;
-		}
 		if (l[i].type == L_AMBIENT)
-			ret_col += l[i].intence;
+			ret_col += v_mult_d((t_vector){1, 1, 1} , l[i].intence);
 		else
 		{
 			if (l[i].type == L_PAR)
 				light = dir_light(r->p_hit, l[i].pos, r->n_hit, &distance);
 			else
 				light = point_light(r->p_hit, l[i].pos, r->n_hit, &distance);
-			vis = ft_trace(o, l, &shader_distance, &shader, &(light)) ? 0 : 1;
+			vis = !ft_trace(o, l, &shader_distance, &shader, &(light));
 			if (l[i].type == L_AREA && !is_in_area(l[i], light))
 				continue ;
 			if (shader_distance > distance || (l[i].type == L_PAR && vis) || shader.refract)
 				vis = 1;
-			if (shader.refract)
-				vis = shader.refract;
 			lt = v_dot(r->n_hit, light.dir);
-			if (lt > 0 && shader.refract)
-			{
-				light_intensity = lt * l[i].intence * shader.refract;
-				if (h.specular > 0)
-					light_intensity += get_shiness(lt, h.specular, light_intensity, r, light);
-				ret_col += vis * light_intensity * lt;
-			} 
-			else if (lt > 0)
+			if (lt > 0)
 			{
 				light_intensity = lt * l[i].intence;
+				if (shader.refract > 0)
+				{
+					light_intensity *= shader.refract;
+# ifdef TEXTURES_PRO 
+					get_surface_data(&light, shader, shader_distance);
+					ret_col += v_mult_d(l[i].color + get_object_color(&shader, &light, tex1, tex2, tex3, tex4), vis * light_intensity * lt);
+					continue ;
+# endif
+				}
 				if (h.specular > 0)
 					light_intensity += get_shiness(lt, h.specular, light_intensity, r, light);	
-				ret_col += vis * light_intensity * lt;
+				ret_col += v_mult_d(l[i].color, vis * light_intensity);
 			}
 		}
 	}
