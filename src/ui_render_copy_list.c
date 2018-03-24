@@ -6,7 +6,7 @@
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/22 16:57:48 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/23 19:53:36 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/24 17:16:25 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static char	*make_text(t_main *m, int i)
 		(m->s.object[i].type == 5) ? ft_memcpy(text, "disk", 4) : 0;
 		(m->s.object[i].type == 6) ? ft_memcpy(text, "triangle", 8) : 0;
 		(m->s.object[i].type == 7) ? ft_memcpy(text, "paraboloid", 10) : 0;
-		(m->s.object[i].type == 8) ? ft_memcpy(text, "sphere", 6) : 0;
+		(m->s.object[i].type == 8) ? ft_memcpy(text, "squere", 6) : 0;
 	}
 	else if (m->ui.rbtn.status == 1)
 	{

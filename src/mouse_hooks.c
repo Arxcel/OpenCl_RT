@@ -6,7 +6,7 @@
 /*   By: pprivalo <pprivalo@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/18 22:50:56 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/23 22:05:59 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/24 17:46:08 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,60 @@ static void		choose_list_elem(int x, int y, t_main *m)
 	}
 }
 
+void			check_settings_min_max_values(t_main *m, int i)
+{
+	if (m->ui.o_set[0].p[0] < 0)
+	   m->ui.o_set[0].p[0] = 0;
+	if (m->ui.o_set[0].p[1] < 0)
+	   m->ui.o_set[0].p[1] = 0;
+	if (m->ui.o_set[0].p[2] < 0)
+	   m->ui.o_set[0].p[2] = 0;
+	if (m->ui.o_set[0].p[0] > 1)
+	   m->ui.o_set[0].p[0] = 1;
+	if (m->ui.o_set[0].p[1] > 1)
+	   m->ui.o_set[0].p[1] = 1;
+	if (m->ui.o_set[0].p[2] > 1)
+	   m->ui.o_set[0].p[2] = 1;
+	if (*m->ui.o_set[E_REFL].p < 0)
+	   *m->ui.o_set[E_REFL].p = 0;
+	if (*m->ui.o_set[E_REFL].p > 1)
+	   *m->ui.o_set[E_REFL].p = 1;
+	if (*m->ui.o_set[E_REFR].p < 0)
+	   *m->ui.o_set[E_REFR].p = 0;
+	if (*m->ui.o_set[E_REFR].p > 1)
+	   *m->ui.o_set[E_REFR].p = 1;
+	if (*m->ui.o_set[E_TEX_ID].usp < 0)
+	   *m->ui.o_set[E_TEX_ID].usp = 0;
+	if (*m->ui.o_set[E_TEX_ID].usp > 9)
+	   *m->ui.o_set[E_TEX_ID].usp = 9;
+}
+
+void			change_settings_value(t_main *m, int i)
+{
+	const char	*tmp;
+
+	tmp = tinyfd_inputBox("", "Input value", "");
+	if (tmp != NULL)
+	{
+		if (i == 0 || i == 3 || i == 6 || i == 9 || i == 12)
+			m->ui.o_set[i].p[0] = atof(tmp);
+		else if (i == 1 || i == 4 || i == 7 || i == 10 || i == 13)
+			m->ui.o_set[i].p[1] = atof(tmp);
+		else if (i == 2 || i == 5 || i == 8 || i == 11 || i == 14)
+			m->ui.o_set[i].p[2] = atof(tmp);
+		else if (i >= 15 && i < 21)
+			*m->ui.o_set[i].p = atof(tmp);
+		else if (i >= 21 && i < 24)
+			*m->ui.o_set[i].usp = ft_atoi(tmp);
+		else if (i == 24)
+			*m->ui.o_set[i].sp = ft_atoi(tmp);
+		check_settings_min_max_values(m, i);
+		re_draw(&m->cl, &m->sdl, &m->s);
+		set_filter(&m->ae);
+		render_scene_and_ui(m);
+	}
+}
+
 void			mouse_down(int x, int y, t_main *m)
 {
 	int		i;
@@ -97,20 +151,7 @@ void			mouse_down(int x, int y, t_main *m)
 	while (i != O_SET)
 	{
 		if (xy_in_rect(x, y, m->ui.o_set[i].data.rect))
-		{
-			const char	*tmp;
-
-			tmp = tinyfd_inputBox("", "Input value (dont work)", "");
-			/*
-			if (tmp != NULL)
-			{
-				m->s.object[m->ui.list.active].color[0] = atof(tmp);
-				re_draw(&m->cl, &m->sdl, &m->s);
-				set_filter(&m->ae);
-				render_scene_and_ui(m);
-			}
-			*/
-		}
+			change_settings_value(m, i);
 		i++;
 	}
 }

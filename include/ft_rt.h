@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:32:12 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/24 11:28:32 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/24 17:31:57 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # include "tinyfiledialogs.h"
 # include "lib_ae.h"
 # define WIN_W			1280
-# define WIN_H			600
+# define WIN_H			670
 # define MAX_ITER		5
 
 typedef struct		s_main
