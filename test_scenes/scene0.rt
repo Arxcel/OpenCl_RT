@@ -10,7 +10,7 @@
 	],
 	"lights": [{
 			"type": "lamp",
-			"position": [0, 0, 0],
+			"position": [200, 200, 0],
 			"color": [1, 1, 1],
 			"intensity" : 1
 		}

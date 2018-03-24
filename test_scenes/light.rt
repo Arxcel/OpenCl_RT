@@ -26,7 +26,6 @@
 	"lights": [{
 			"type": "area",
 			"position": [50, 200, -500],
-			"position2": [-50, 200, -500],
 			"color": [1, 1, 1],
 			"intensity" : 1,
 			"direction": [-0.2, -1, 0],

@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 22:15:03 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/24 15:05:10 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/24 16:52:52 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,15 @@
 # define L_AMBIENT		3
 # define L_AREA			4
 # define T_STD			0
-# define T_CHECK		2
-# define T_GRAD1		3
-# define T_GRAD2		4
-# define T_CIRC			5
-# define T_BRICK		6
-# define T_CUSTOM1		7
-# define T_CUSTOM2		8
-# define T_CUSTOM3		9
-# define T_CUSTOM4		10
+# define T_CHECK		1
+# define T_GRAD1		2
+# define T_GRAD2		3
+# define T_CIRC			4
+# define T_BRICK		5
+# define T_CUSTOM1		6
+# define T_CUSTOM2		7
+# define T_CUSTOM3		8
+# define T_CUSTOM4		9
 # define N_TEX			5
 
 typedef float	t_vector __attribute__((vector_size(sizeof(float)*3)));
