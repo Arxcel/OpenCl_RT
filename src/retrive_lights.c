@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   retrive_lights.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
+/*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/23 14:50:44 by afarapon          #+#    #+#             */
-/*   Updated: 2018/03/24 11:28:54 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/24 16:15:17 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void			process_scene_l(json_value *value, t_scene *s)
 
 	s->l_num = value->u.object.length + 1;
 	s->light = (t_light*)ft_memalloc(sizeof(t_light) * s->l_num);
-	ft_bzero(s->light, sizeof(s->light));
+	ft_bzero(s->light, sizeof(s->light) * s->l_num);
 	x = -1;
 	while (++x < (s->l_num - 1))
 	{

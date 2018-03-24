@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ui.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
+/*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 16:37:12 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/23 21:49:18 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/24 16:58:33 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define FT_UI_H
 # define RTN 2
 # define BG_ITEMS 12
-# define BTNS 18
+# define BTNS 19
 # define SLDRS 1
 # define O_SET 15
 # define R_SCENE_X 218
@@ -164,7 +164,8 @@ enum			e_btns
 	BTN_CAM = 14,
 	BTN_LIGHT1 = 15,
 	BTN_LIGHT2 = 16,
-	BTN_LIGHT3 = 17
+	BTN_LIGHT3 = 17,
+	BTN_LIGHT4 = 18
 };
 
 void			ui_scroll_init(t_ui *ui, t_sdl *sdl);

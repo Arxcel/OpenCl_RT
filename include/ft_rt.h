@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_rt.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
+/*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:32:12 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/24 11:28:32 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/24 17:17:33 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,8 @@ t_light				default_area(void);
 t_light				default_lamp(void);
 t_light				default_parallel(void);
 t_light				default_light(void);
+t_camera			default_camera(void);
+
 
 /*
 ** READ DATA FROM JSON TO OBJECTS/LIGHTS/CAMERAS
@@ -138,6 +140,28 @@ float				get_ior(json_value *value);
 float				get_refract(json_value *value);
 float				get_reflect(json_value *value);
 float				get_radius(json_value *value);
+
+/*
+** CREATE SHAPES FROM UI
+*/
+
+// void				object_array_realloc(t_main *m);
+// void				light_array_realloc(t_main *m);
+// void				camera_array_realloc(t_main *m);
+// void				create_shapes(int x, int y, t_main *m);
+// void				create_sphere(t_main *m);
+// void				create_plane(t_main *m);
+// void				create_cylinder(t_main *m);
+// void				create_con(t_main *m);
+// void				create_paraboloid(t_main *m);
+// void				create_disk(t_main *m);
+// void				create_square(t_main *m);
+// void				create_triangle(t_main *m);
+// void				create_camera(t_main *m);
+// void				create_lamp(t_main *m);
+// void				create_area(t_main *m);
+// void				create_parallel(t_main *m);
+// void				create_ambient(t_main *m);
 
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouse_hooks.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pprivalo <pprivalo@student.unit.ua>        +#+  +:+       +#+        */
+/*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/18 22:50:56 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/23 22:05:59 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/24 16:55:23 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,7 @@ void			mouse_up(int x, int y, t_main *m)
 {
 	int		i;
 
+	create_shapes(x, y, m);
 	open_save_etc(x, y, m);
 	i = -1;
 	while (++i != BTNS)

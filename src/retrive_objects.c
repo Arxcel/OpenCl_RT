@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   retrive_objects.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
+/*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/23 14:46:38 by afarapon          #+#    #+#             */
-/*   Updated: 2018/03/24 11:27:41 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/24 17:02:43 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,8 +108,9 @@ void				process_scene_o(json_value *value, t_scene *s)
 	int x;
 
 	s->o_num = value->u.object.length + 1;
+	printf("o_num: %i\n", s->o_num);
 	s->object = (t_object*)ft_memalloc(sizeof(t_object) * s->o_num);
-	ft_bzero(s->object, sizeof(s->object));
+	ft_bzero(s->object, sizeof(s->object) * s->o_num);
 	x = -1;
 	while (++x < (s->o_num - 1))
 	{
