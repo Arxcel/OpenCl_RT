@@ -6,7 +6,7 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/23 13:28:14 by afarapon          #+#    #+#             */
-/*   Updated: 2018/03/24 17:39:27 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/24 17:47:54 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_object			default_disk(void)
 	result.reflect = 0;
 	result.pos1 = (t_vector){0, 0, 0};
 	result.dir = (t_vector){0, 1, 0};
-	result.radius = 1;
+	result.radius = 20;
 	return (result);
 }
 

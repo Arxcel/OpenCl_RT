@@ -6,7 +6,7 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/24 15:40:24 by afarapon          #+#    #+#             */
-/*   Updated: 2018/03/24 17:37:02 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/24 17:46:01 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,24 @@ static void		object_array_realloc(t_main *m, t_object new_object)
 	m->sdl.changes = 1;
 }
 
-// static void		create_shapes_2(int x, int y, t_main *m)
-// {
-
-// }
+static void		create_shapes_2(int x, int y, t_main *m)
+{
+	if (xy_in_rect(x, y, m->ui.btn[BTN_CAM].rect)
+								&& m->ui.btn[BTN_CAM].status)
+		camera_array_realloc(m, default_camera());
+	else if (xy_in_rect(x, y, m->ui.btn[BTN_LIGHT1].rect)
+								&& m->ui.btn[BTN_LIGHT1].status)
+		light_array_realloc(m, default_lamp());
+	else if (xy_in_rect(x, y, m->ui.btn[BTN_LIGHT2].rect)
+								&& m->ui.btn[BTN_LIGHT2].status)
+		light_array_realloc(m, default_area());
+	else if (xy_in_rect(x, y, m->ui.btn[BTN_LIGHT3].rect)
+								&& m->ui.btn[BTN_LIGHT3].status)
+		light_array_realloc(m, default_parallel());
+	else if (xy_in_rect(x, y, m->ui.btn[BTN_LIGHT4].rect)
+								&& m->ui.btn[BTN_LIGHT4].status)
+		light_array_realloc(m, default_ambient());
+}
 
 void		create_shapes(int x, int y, t_main *m)
 {
@@ -106,19 +120,6 @@ void		create_shapes(int x, int y, t_main *m)
 	// else if (xy_in_rect(x, y, m->ui.btn[BTN_CUBE].rect)
 	// 							&& m->ui.btn[BTN_CUBE].status)
 	// 	create_camera(m);
-	else if (xy_in_rect(x, y, m->ui.btn[BTN_CAM].rect)
-								&& m->ui.btn[BTN_CAM].status)
-		camera_array_realloc(m, default_camera());
-	else if (xy_in_rect(x, y, m->ui.btn[BTN_LIGHT1].rect)
-								&& m->ui.btn[BTN_LIGHT1].status)
-		light_array_realloc(m, default_lamp());
-	else if (xy_in_rect(x, y, m->ui.btn[BTN_LIGHT2].rect)
-								&& m->ui.btn[BTN_LIGHT2].status)
-		light_array_realloc(m, default_area());
-	else if (xy_in_rect(x, y, m->ui.btn[BTN_LIGHT3].rect)
-								&& m->ui.btn[BTN_LIGHT3].status)
-		light_array_realloc(m, default_parallel());
-	else if (xy_in_rect(x, y, m->ui.btn[BTN_LIGHT4].rect)
-								&& m->ui.btn[BTN_LIGHT4].status)
-		light_array_realloc(m, default_ambient());
+	else
+		create_shapes_2(x, y, m);
 }

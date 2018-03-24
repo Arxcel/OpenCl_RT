@@ -6,7 +6,7 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:32:12 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/24 17:17:33 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/24 17:47:08 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,23 +145,6 @@ float				get_radius(json_value *value);
 ** CREATE SHAPES FROM UI
 */
 
-// void				object_array_realloc(t_main *m);
-// void				light_array_realloc(t_main *m);
-// void				camera_array_realloc(t_main *m);
-// void				create_shapes(int x, int y, t_main *m);
-// void				create_sphere(t_main *m);
-// void				create_plane(t_main *m);
-// void				create_cylinder(t_main *m);
-// void				create_con(t_main *m);
-// void				create_paraboloid(t_main *m);
-// void				create_disk(t_main *m);
-// void				create_square(t_main *m);
-// void				create_triangle(t_main *m);
-// void				create_camera(t_main *m);
-// void				create_lamp(t_main *m);
-// void				create_area(t_main *m);
-// void				create_parallel(t_main *m);
-// void				create_ambient(t_main *m);
-
+void				create_shapes(int x, int y, t_main *m);
 
 #endif
