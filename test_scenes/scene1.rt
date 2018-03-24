@@ -43,7 +43,7 @@
 		},
 		{
 			"type": "lamp",
-			"position": [-500, 5000, 3000],
+			"position": [2500, 5000, 3000],
 			"color": [1, 1, 1],
 			"intensity" : 1
 		}
@@ -51,7 +51,7 @@
 	"cameras": [{
 		"type": "common",
 		"rotation": [-10, 0, 0],
-		"position": [0, 350, 0],
+		"position": [0, 222150350, 111150],
 		"field_of_view": 50,
 	}]
 }
