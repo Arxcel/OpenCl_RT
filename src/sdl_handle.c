@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 18:01:54 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/23 16:29:51 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/24 13:46:37 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void				sdl_hook(t_main *m)
 		else if (m->sdl.e.type == SDL_KEYDOWN)
 			key_down(m->sdl.e.key.keysym.sym, m);
 		else if (m->sdl.e.type == SDL_MOUSEBUTTONDOWN)
-				mouse_down(m->sdl.e.button.x, m->sdl.e.button.y, m);
+			mouse_down(m->sdl.e.button.x, m->sdl.e.button.y, m);
 		else if (m->sdl.e.type == SDL_MOUSEBUTTONUP)
 			mouse_up(m->sdl.e.button.x, m->sdl.e.button.y, m);
 	}

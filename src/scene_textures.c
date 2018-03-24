@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/23 11:39:56 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/23 15:05:14 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/24 13:46:25 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,11 @@ static void				load_texture(unsigned int *pixels, const char *path)
 
 void					get_scene_textures(t_main *m)
 {
-    int i;
+	int i;
 
-    i = -1;
-    while (++i < N_TEX)
-        m->s.tex[i] = sdl_create_image(256, 256);
+	i = -1;
+	while (++i < N_TEX)
+		m->s.tex[i] = sdl_create_image(256, 256);
 	load_texture(m->s.tex[0].pixels, "textures/scene_textures/tex1.png");
 	load_texture(m->s.tex[1].pixels, "textures/scene_textures/tex2.png");
 	load_texture(m->s.tex[2].pixels, "textures/scene_textures/tex3.png");

@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:32:12 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/24 11:28:32 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/24 13:32:47 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,4 @@ float				get_ior(json_value *value);
 float				get_refract(json_value *value);
 float				get_reflect(json_value *value);
 float				get_radius(json_value *value);
-
-
 #endif

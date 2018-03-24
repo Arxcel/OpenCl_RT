@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 22:15:03 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/23 20:55:13 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/24 13:33:53 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,24 +40,24 @@ typedef float	t_vector __attribute__((vector_size(sizeof(float)*3)));
 
 typedef struct		s_object
 {
-	t_vector		color;		//[{0:1}, {0:1}, {0:1}] 
-	t_vector		dir;		//[{float_min:float_max}, {float_min:float_max}, {float_min:float_max}] 
-	t_vector		pos1;		//[{float_min:float_max}, {float_min:float_max}, {float_min:float_max}] 
-	t_vector		pos2;		//[{float_min:float_max}, {float_min:float_max}, {float_min:float_max}] 
-	t_vector		pos3;		//[{float_min:float_max}, {float_min:float_max}, {float_min:float_max}] 
-	float			radius;		//{float_min:float_max}
-	float			angle;		// {float_min:float_max}
-	float			reflect;	// {0:1}
-	float			refract;	// {0:1}
-	float			ior;		// {0:float_max}
-	float			min;		// {float_min:float_max}
-	float			max;		// {float_min:float_max}
-	unsigned short	tex_scale;	// {short_min:short_max}
-	short			type;		// {short_min:short_max}
-	unsigned short	specular;	// {short_min:short_max}
-	unsigned short	tex_id;		// {short_min:short_max}
+	t_vector		color;
+	t_vector		dir;
+	t_vector		pos1;
+	t_vector		pos2;
+	t_vector		pos3;
+	float			radius;
+	float			angle;
+	float			reflect;
+	float			refract;
+	float			ior;
+	float			min;
+	float			max;
+	unsigned short	tex_scale;
+	short			type;
+	unsigned short	specular;
+	unsigned short	tex_id;
 	short			tex_angle;
-	unsigned short	is_neg;		// {short_min:short_max}
+	unsigned short	is_neg;
 }					t_object;
 
 typedef struct		s_light

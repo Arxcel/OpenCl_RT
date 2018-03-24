@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ui.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
+/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 16:37:12 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/23 21:49:18 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/24 13:35:57 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,12 +90,19 @@ typedef struct	s_ui_lst
 	int			active;
 }				t_ui_lst;
 
+/*
+** s_ui_o_set.type
+** type 0 vector, type 1 float, type 2 short, type 3 unsigned short
+** s_ui_o_set.vec_n
+** 0 vec[0] 1 vec[1] 2 vec[2]
+*/
+
 typedef struct	s_ui_o_set
 {
 	t_ui_bg		name;
 	t_ui_bg		data;
-	int			type; //type 0 vector, type 1 float, type 2 short, type 3 unsigned short
-	int			vec_n; //0 vec[0] 1 vec[1] 2 vec[2]
+	int			type;
+	int			vec_n;
 	void		*p;
 }				t_ui_o_set;
 

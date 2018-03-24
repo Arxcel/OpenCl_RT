@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/07 17:09:00 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/23 14:13:48 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/24 13:39:51 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void					cl_create_queue(t_cl *cl);
 void					cl_create_kernel(t_cl *cl, const char *kernel_name);
 void					cl_create_program(t_cl *cl, const char *src_dir,
 								const char *program_text);
-void					cl_set_args(t_cl *cl, void *a,
+void					cl_s_a(t_cl *cl, void *a,
 								size_t arg_size, cl_uint arg_index);
 void					cl_exec_kernel(t_cl *cl,
 								cl_uint size_wd, const size_t *val);
