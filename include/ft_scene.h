@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_scene.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pprivalo <pprivalo@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 22:15:03 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/23 20:55:13 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/24 21:02:46 by pprivalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # define O_TRIANGLE		6
 # define O_PARABOLOID	7
 # define O_SQUARE		8
+# define O_CUBE			9
+# define O_CAPSULA		10
 # define L_PAR			1
 # define L_LAMP			2
 # define L_AMBIENT		3
@@ -54,6 +56,7 @@ typedef struct		s_object
 	float			max;		// {float_min:float_max}
 	unsigned short	tex_scale;	// {short_min:short_max}
 	short			type;		// {short_min:short_max}
+	short			mini_type;
 	unsigned short	specular;	// {short_min:short_max}
 	unsigned short	tex_id;		// {short_min:short_max}
 	short			tex_angle;

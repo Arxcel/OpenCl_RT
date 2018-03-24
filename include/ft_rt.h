@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_rt.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pprivalo <pprivalo@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:32:12 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/24 11:28:32 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/24 20:16:48 by pprivalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,8 @@ t_object			default_paraboloid(void);
 t_object			default_triangle(void);
 t_object			default_disk(void);
 t_object			default_square(void);
+t_object			default_cube(void);
+t_object			default_capsula(void);
 t_object			default_error(void);
 t_light				default_ambient(void);
 t_light				default_area(void);

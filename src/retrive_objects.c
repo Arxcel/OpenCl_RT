@@ -6,7 +6,7 @@
 /*   By: pprivalo <pprivalo@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/23 14:46:38 by afarapon          #+#    #+#             */
-/*   Updated: 2018/03/24 17:16:56 by pprivalo         ###   ########.fr       */
+/*   Updated: 2018/03/24 22:20:34 by pprivalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,12 @@ static t_object		set_defaults(json_value *value)
 		return (default_paraboloid());
 	else if (!ft_strcmp(value->u.string.ptr, "square"))
 		return (default_square());
+	else if (!ft_strcmp(value->u.string.ptr, "cube"))
+		return (default_cube());
+	else if (!ft_strcmp(value->u.string.ptr, "capsula"))
+		return (default_capsula());
+	else if (!ft_strcmp(value->u.string.ptr, "bocal"))
+		return (default_bocal());
 	put_error("Not valid texture type.");
 	return (default_error());
 }

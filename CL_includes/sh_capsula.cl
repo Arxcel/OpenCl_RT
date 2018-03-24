@@ -12,28 +12,29 @@
 
 #include "ft_rt.h"
 
-short				cube_cross(t_object *p, t_ray *r, float *t)
+short				capsula_cross(t_object *p, t_ray *r, float *t)
 {
-    float   t_min;
-    float   t_buf;
-    short   flag;
-    float   h;
+	t_object    bot;
+	float       t_min;
+	short       flag;
 
-    t_min = INFINITY;
-    h = v_length(p->pos1 - p->pos2) / sqrt(2.0);
-    if ((flag = square_cross(p, r, &t_buf)))
-        t_min = t_buf < t_min ? t_buf : t_min;
-    p->pos1 = p->pos1 + v_mult_d(p->dir, h);
-    p->pos2 = p->pos2 + v_mult_d(p->dir, h);
-    if ((flag = square_cross(p, r, &t_buf)))
-        t_min = t_buf < t_min ? t_buf : t_min;
-    *t = t_min;
-    return(flag);
+    t_min = INF;
+    bzero(&bot, sizeof(t_object));
+	bot.type = O_SPHERE;
+	bot.color = p->color;
+	bot.specular = p->specular;
+	bot.refract = p->refract;
+	bot.reflect = p->reflect;
+	bot.ior = p->ior;
+	bot.pos1 = p->pos1;
+	bot.radius = p->radius;
+	flag = sphere_cross(bot, r, &t_min);
+	return(flag);
 }
 
-short				get_cube_data(t_ray *ray, t_object square, float t)
+short				get_capsula_data(t_ray *ray, t_object cap, float t)
 {
-	ray->p_hit = ray->orig + v_mult_d(ray->dir, t);
-	ray->n_hit = square.dir;
+    if (cap.type == O_SPHERE)
+    	get_sphere_data(ray, cap, t);
 	return (1);
 }

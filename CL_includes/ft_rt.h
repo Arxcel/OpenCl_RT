@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_rt.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pprivalo <pprivalo@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 11:57:16 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/23 20:20:30 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/24 21:23:07 by pprivalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,11 @@ short						disk_cross(t_object *d, t_ray *r, float *t);
 short						triangle_cross(t_object *p, t_ray *r, float *t);
 short						square_cross(t_object *p, t_ray *r, float *t);
 short						par_cross(t_object sh, t_ray *ray, float *t);
+short						cube_cross(t_object *p, t_ray *r, float *t);
+short						capsula_cross(t_object *p, t_ray *r, float *t);
 
 void						get_surface_data(t_ray *ray, t_object object, float t);
-int							check_object_type(t_object object, t_ray *ray, float *t);
+int							check_object_type(t_object *object, t_ray *ray, float *t);
 short						get_sphere_data(t_ray *temp, t_object sphere, float t);
 short						get_cyl_data(t_ray *ray, t_object con, float t);
 short						get_con_data(t_ray *ray, t_object con, float t);
@@ -92,5 +94,7 @@ short						get_disk_data(t_ray *ray, t_object disk, float t);
 short						get_triangle_data(t_ray *ray, t_object plane, float t);
 short						get_par_data(t_ray *ray, t_object sh, float t);
 short						get_square_data(t_ray *ray, t_object square, float t);
+short						get_cube_data(t_ray *ray, t_object square, float t);
+short						get_capsula_data(t_ray *ray, t_object square, float t);
 
 #endif
