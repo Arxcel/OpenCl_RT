@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/24 14:20:07 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/24 15:05:00 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/24 21:35:39 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ static int	g_hash[] = {208, 34, 231, 213, 32, 248, 233, 56, 161, 78, 24,
 	115, 184, 21, 233, 58, 129, 233, 142, 39, 128, 211, 118, 137, 139, 255,
 	114, 20, 218, 113, 154, 27, 127, 246, 250, 1, 8, 198, 250, 209, 92, 222,
 	173, 21, 88, 102, 219};
-
 
 static int		noise2(int x, int y)
 {
@@ -63,7 +62,7 @@ static float	noise2d(float x, float y)
 						smooth_inter(u, v, (x - (int)x)), (y - (int)y)));
 }
 
-float perlin2d(float x, float y, float freq, int depth)
+float			perlin2d(float x, float y, float freq, int depth)
 {
 	float	a[2];
 	float	amp;
@@ -74,7 +73,7 @@ float perlin2d(float x, float y, float freq, int depth)
 	a[0] = x * freq;
 	a[1] = y * freq;
 	amp = 1.0;
-	res  = 0.0;
+	res = 0.0;
 	d = 0.0;
 	i = -1;
 	while (++i < depth)
@@ -84,7 +83,6 @@ float perlin2d(float x, float y, float freq, int depth)
 		amp /= 2;
 		a[0] *= 2;
 		a[1] *= 2;
-
 	}
-    return (res / d);
+	return (res / d);
 }

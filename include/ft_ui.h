@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 16:37:12 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/24 18:05:18 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/24 21:32:15 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,11 +99,11 @@ typedef struct	s_ui_lst
 
 typedef struct	s_ui_o_set
 {
-	t_ui_bg		name;
-	t_ui_bg		data;
-	float		*p;
-	short		*sp;
-	unsigned short *usp;
+	t_ui_bg			name;
+	t_ui_bg			data;
+	float			*p;
+	short			*sp;
+	unsigned short	*usp;
 }				t_ui_o_set;
 
 typedef	struct	s_ui
