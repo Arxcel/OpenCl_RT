@@ -6,7 +6,7 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:32:12 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/24 17:47:08 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/24 17:51:50 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # include "tinyfiledialogs.h"
 # include "lib_ae.h"
 # define WIN_W			1280
-# define WIN_H			600
+# define WIN_H			670
 # define MAX_ITER		5
 
 typedef struct		s_main
