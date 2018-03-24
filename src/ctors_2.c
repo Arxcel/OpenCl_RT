@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ctors_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pprivalo <pprivalo@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/23 13:28:14 by afarapon          #+#    #+#             */
-/*   Updated: 2018/03/23 15:09:43 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/24 16:25:30 by pprivalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,10 @@ t_object			default_square(void)
 	result.refract = 0;
 	result.reflect = 0.1;
 	result.ior = 0.5;
-	result.pos1 = (t_vector){0, 0, 0};
-	result.pos2 = (t_vector){1, 0, -1};
-	result.pos3 = (t_vector){-1, 0, -1};
+	result.pos1 = (t_vector){-0.5, 0.5, -1};
+	result.pos2 = (t_vector){0.5, -0.5, -1};
+	result.dir = (t_vector){0, 0, 1};
+	result.min = 1;
 	return (result);
 }
 

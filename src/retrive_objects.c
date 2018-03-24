@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   retrive_objects.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pprivalo <pprivalo@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/23 14:46:38 by afarapon          #+#    #+#             */
-/*   Updated: 2018/03/24 11:27:41 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/24 17:16:56 by pprivalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,8 +115,6 @@ void				process_scene_o(json_value *value, t_scene *s)
 	{
 		get_object_info(value->u.array.values[x], &s->object[x]);
 		if (s->object[x].type == O_TRIANGLE)
-			create_triangle_norm(&s->object[x]);
-		if (s->object[x].type == O_SQUARE)
 			create_triangle_norm(&s->object[x]);
 		else if (s->object[x].type == O_CON)
 			create_conus(&s->object[x]);
