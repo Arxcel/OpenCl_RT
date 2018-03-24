@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   sdl_sub.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
+/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 17:56:20 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/22 16:46:02 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/24 13:47:00 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_rt.h"
 
-void	sdl_recreate_img(t_img *img, size_t w, size_t h)
+void		sdl_recreate_img(t_img *img, size_t w, size_t h)
 {
 	ft_memdel((void**)&img->pixels);
 	*img = sdl_create_image(w, h);
@@ -40,7 +40,7 @@ SDL_Texture	*sdl_texture_from_file(char *filename, SDL_Renderer *renderer)
 	return (tmp);
 }
 
-int		xy_in_rect(int x, int y, SDL_Rect rect)
+int			xy_in_rect(int x, int y, SDL_Rect rect)
 {
 	x = x * RTN;
 	y = y * RTN;

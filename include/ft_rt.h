@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:32:12 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/22 19:54:06 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/24 18:04:22 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,10 @@
 # include "ft_scene.h"
 # include "ft_ui.h"
 # include "tinyfiledialogs.h"
+# include "lib_ae.h"
 # define WIN_W			1280
-# define WIN_H			600
+# define WIN_H			670
 # define MAX_ITER		5
-# define AE_SEPIA		0x1
-# define AE_TOON		0x2
-# define AE_M_BLUR		0x4
-# define AE_SMOOTH		0x8
-# define AE_CONTR		0x10
-# define AE_SHARPNESS	0x20
 
 typedef struct		s_main
 {
@@ -40,29 +35,14 @@ typedef struct		s_main
 	t_ui	ui;
 	t_cl	cl;
 	t_sdl	sdl;
-	short	after_effect;
-	short	coeficient;
+	t_ae	ae;
 }					t_main;
-
-typedef struct		s_rgb
-{
-	unsigned char	blue;
-	unsigned char	green;
-	unsigned char	red;
-	unsigned char	alpha;
-}					t_rgb;
-
-typedef union		u_color
-{
-	unsigned int	col;
-	struct s_rgb	argb;
-}					t_color;
 
 void				sdl_hook(t_main *m);
 void				sdl_loop(t_main *m);
 char				*set_flags(const char *path);
 void				get_scene(const char *filepath, t_scene *s);
-void				put_error(const char *err_text);
+int					put_error(const char *err_text);
 void				process_value(json_value *value, t_scene *s);
 void				re_draw(t_cl *cl, t_sdl *sdl, t_scene *s);
 void				move_camera(t_scene *s);
@@ -70,11 +50,16 @@ float				ft_deg2rad(float deg);
 void				create_triangle_norm(t_object *obj);
 void				create_conus(t_object *obj);
 void				delete_scene(t_scene *s);
-
+float				perlin2d(float x, float y, float freq, int depth);
 /*
 ** open export save
 */
 
+char				*read_object_type(int i, t_main *m);
+char				*read_light_type(int i, t_main *m);
+char				*read_camera_type(int i, t_main *m);
+char				*read_pattern_type(int i, t_main *m);
+void				save_function(int fd, t_main *m);
 void				export_file(t_main *m);
 void				open_file(t_main *m);
 void				save_file(t_main *m);
@@ -96,30 +81,70 @@ void				render_copy_buttons(t_main *m);
 void				render_copy_rbutton(t_main *m);
 void				render_copy_scroll(t_main *m);
 void				render_copy_list(t_main *m);
+void				render_copy_settings(t_main *m);
 void				sdl_rinit(t_sdl *sdl);
 void				ui_and_sdl_init(t_main *m);
 void				window_resized_event(t_main *m);
 void				render_scene_and_ui(t_main *m);
 
 /*
-** image after effect
+** for After effects
 */
 
-unsigned char		clamp_rgb(int color);
-void				set_filter(t_main *main);
-unsigned int		set_smooth(t_main *main, size_t x, size_t y, unsigned int *in);
-void				set_sepia(t_main *main, unsigned int *out);
-unsigned int		**get_matrix(t_main *main, size_t x, size_t y,
-	unsigned int *in);
-unsigned int		ae_calc_matrix(unsigned int **m,
-		unsigned int coef);
-void				free_matrix(unsigned int **m);
-t_rgb				get_color_rgb(int col);
-void				set_contrast(t_main *main, unsigned int *out);
-void				set_blur(t_main *main, unsigned int **in_out, size_t count);
-void				ae_test_blur(t_main *main, unsigned int **in, size_t size);
-unsigned int		set_test_blur(t_main *main, unsigned int *in, size_t x, size_t y);
-unsigned int		set_sharpness(t_main *main, size_t x, size_t y, unsigned int *in);
-void				ae_sharpness(t_main *main, unsigned int **in_out, size_t count);
+void				make_dependencies(t_main *m);
+void				filter_key(int key, t_main *m);
+void				get_scene_textures(t_main *m);
+
+/*
+** CTORS
+*/
+
+t_object			default_sphere(void);
+t_object			default_cylinder(void);
+t_object			default_conus(void);
+t_object			default_plane(void);
+t_object			default_paraboloid(void);
+t_object			default_triangle(void);
+t_object			default_disk(void);
+t_object			default_square(void);
+t_object			default_error(void);
+t_light				default_ambient(void);
+t_light				default_area(void);
+t_light				default_lamp(void);
+t_light				default_parallel(void);
+t_light				default_light(void);
+t_camera			default_camera(void);
+
+
+/*
+** READ DATA FROM JSON TO OBJECTS/LIGHTS/CAMERAS
+*/
+
+void				process_scene_o(json_value *value, t_scene *s);
+void				process_scene_l(json_value *value, t_scene *s);
+void				process_scene_c(json_value *value, t_scene *s);
+
+/*
+** UTILS AND VALIDATION FOR PREV BLOCK
+*/
+
+t_vector			get_color(json_value *value);
+t_vector			get_n_vector(json_value *value);
+t_vector			get_vector(json_value *value);
+float				get_number(json_value *value);
+float				get_max(json_value *value);
+float				get_tex_scale(json_value *value);
+float				get_tex_angle(json_value *value);
+float				get_specular(json_value *value);
+float				get_ior(json_value *value);
+float				get_refract(json_value *value);
+float				get_reflect(json_value *value);
+float				get_radius(json_value *value);
+
+/*
+** CREATE SHAPES FROM UI
+*/
+
+void				create_shapes(int x, int y, t_main *m);
 
 #endif

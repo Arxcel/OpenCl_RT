@@ -6,7 +6,7 @@
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/22 14:02:44 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/22 19:56:18 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/24 19:17:19 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	ui_textures_init(t_ui *ui, t_sdl *sdl)
 
 void	ui_scroll_init(t_ui *ui, t_sdl *sdl)
 {
-	//ft_memset(&ui->scroll, 0, sizeof(t_ui_scrl));
 	ui->scroll.r1.textr =
 		sdl_texture_from_file("textures/contrast_disk.png", sdl->ren);
 	ui->scroll.r2.textr = ui->scroll.r1.textr;
@@ -53,4 +52,25 @@ void	ui_scroll_init(t_ui *ui, t_sdl *sdl)
 	ui->scroll.b_r2.textr = ui->scroll.b_r1.textr;
 	ui->scroll.b_line.textr =
 		sdl_texture_from_file("textures/black_dot.png", sdl->ren);
+}
+
+void		texture_from_text(char *text, t_sdl *sdl, t_ui_bg *p) //move from here
+{
+	SDL_Surface	*surface;
+	SDL_Color	color;
+	TTF_Font	*font;
+
+	TTF_Init();
+	font = TTF_OpenFont("open-sans/OpenSans-Regular.ttf", 25);
+	if (font == NULL)
+		return ;
+	color.r = 200;
+	color.g = 200;
+	color.b = 200;
+	surface = TTF_RenderText_Solid(font, text, color);
+	p->rect = sdl_rect(0, 0, surface->h / 2, surface->w / 2);
+	p->textr = SDL_CreateTextureFromSurface(sdl->ren, surface);
+	SDL_FreeSurface(surface);
+	TTF_CloseFont(font);
+	TTF_Quit();
 }

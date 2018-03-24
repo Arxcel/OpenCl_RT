@@ -6,7 +6,7 @@
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/22 14:09:02 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/22 20:33:30 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/23 17:15:45 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,18 @@ static void	ui_scroll_rect_pre(t_main *m, int *start, int *l, int *l_b)
 	*l = m->sdl.win_h - R_SCENE_H_TRIM - RBTN_H - 5 - SCRL_SZ;
 	if (m->ui.rbtn.status == 0)
 	{
-		l2 = m->s.o_num * L_TEXT_H;
-		m->ui.scroll.steps = m->s.o_num;
+		l2 = (m->s.o_num - 1) * L_TEXT_H;
+		m->ui.scroll.steps = m->s.o_num - 1;
 	}
 	else if (m->ui.rbtn.status == 1)
 	{
-		l2 = m->s.l_num * L_TEXT_H;
-		m->ui.scroll.steps = m->s.l_num;
+		l2 = (m->s.l_num - 1) * L_TEXT_H;
+		m->ui.scroll.steps = m->s.l_num - 1;
 	}
 	else
 	{
-		l2 = m->s.c_num * L_TEXT_H;
-		m->ui.scroll.steps = m->s.c_num;
+		l2 = (m->s.c_num - 1) * L_TEXT_H;
+		m->ui.scroll.steps = m->s.c_num - 1;
 	}
 	*l_b = *l;
 	point_h = *l / m->ui.scroll.steps;

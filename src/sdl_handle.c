@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sdl_handle.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 18:01:54 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/22 21:17:21 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/24 18:13:55 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,17 @@
 static void			pos_camera(int key, t_main *m)
 {
 	if (key == SDLK_w)
-		m->s.cam_trans.pos[2] -= 10;
+		m->s.cam_trans.pos[2] -= 0.3512;
 	else if (key == SDLK_s)
-		m->s.cam_trans.pos[2] += 10;
+		m->s.cam_trans.pos[2] += 0.3512;
 	else if (key == SDLK_a)
-		m->s.cam_trans.pos[0] -= 10;
+		m->s.cam_trans.pos[0] -= 0.3512;
 	else if (key == SDLK_d)
-		m->s.cam_trans.pos[0] += 10;
+		m->s.cam_trans.pos[0] += 0.3512;
 	else if (key == SDLK_q)
-		m->s.cam_trans.pos[1] += 10;
+		m->s.cam_trans.pos[1] += 0.3512;
 	else if (key == SDLK_e)
-		m->s.cam_trans.pos[1] -= 10;
+		m->s.cam_trans.pos[1] -= 0.3512;
 }
 
 static void			rot_camera(int key, t_main *m)
@@ -64,42 +64,11 @@ static void			key_down(int key, t_main *m)
 	{
 		open_file(m);
 	}
-	else if (key == SDLK_KP_1)
-	{
-		m->after_effect ^= AE_SEPIA;
-		m->sdl.changes = 1;
-	}
-	else if (key == SDLK_KP_2)
-	{
-		m->after_effect ^= AE_TOON;
-		m->sdl.changes = 1;
-	}
-	else if (key == SDLK_KP_3)
-	{
-		m->after_effect ^= AE_M_BLUR;
-		m->sdl.changes = 1;
-	}
-	else if (key == SDLK_KP_4)
-	{
-		m->after_effect ^= AE_SMOOTH;
-		m->sdl.changes = 1;
-	}
-	else if (key == SDLK_KP_5)
-	{
-		m->after_effect ^= AE_CONTR;
-		m->sdl.changes = 1;
-	}
-	else if (key == SDLK_KP_PLUS || key == SDLK_KP_MINUS)
-	{
-		m->coeficient = key == SDLK_KP_PLUS ? m->coeficient + 1 : m->coeficient - 1;
-		if (m->after_effect & AE_CONTR)
-			m->sdl.changes++;
-	}
-	else if (key == SDLK_KP_6)
-	{
-		m->after_effect ^= AE_SHARPNESS;
-		m->sdl.changes = 1;
-	}
+	else if (key == SDLK_KP_1 || key == SDLK_KP_2 || key == SDLK_KP_3 ||
+		key == SDLK_KP_4 || key == SDLK_KP_5 || key == SDLK_KP_6 ||
+		key == SDLK_KP_PLUS || key == SDLK_KP_MINUS || key == SDLK_KP_MULTIPLY
+			|| key == SDLK_KP_0)
+		filter_key(key, m);
 }
 
 void				sdl_loop(t_main *m)
@@ -110,7 +79,7 @@ void				sdl_loop(t_main *m)
 		if (m->sdl.changes)
 		{
 			re_draw(&m->cl, &m->sdl, &m->s);
-			set_filter(m);
+			set_filter(&m->ae);
 			render_scene_and_ui(m);
 			m->sdl.changes = 0;
 		}
@@ -131,7 +100,7 @@ void				sdl_hook(t_main *m)
 		else if (m->sdl.e.type == SDL_KEYDOWN)
 			key_down(m->sdl.e.key.keysym.sym, m);
 		else if (m->sdl.e.type == SDL_MOUSEBUTTONDOWN)
-				mouse_down(m->sdl.e.button.x, m->sdl.e.button.y, m);
+			mouse_down(m->sdl.e.button.x, m->sdl.e.button.y, m);
 		else if (m->sdl.e.type == SDL_MOUSEBUTTONUP)
 			mouse_up(m->sdl.e.button.x, m->sdl.e.button.y, m);
 	}

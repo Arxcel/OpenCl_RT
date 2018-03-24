@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ui.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 16:41:28 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/22 19:56:13 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/24 19:38:06 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	render_scene_and_ui(t_main *m)
 	render_copy_rbutton(m);
 	render_copy_scroll(m);
 	render_copy_list(m);
+	render_copy_settings(m);
 	SDL_RenderPresent(m->sdl.ren);
 }
 
@@ -49,7 +50,8 @@ void	ui_and_sdl_init(t_main *m)
 	ui_textures_init(&m->ui, &m->sdl);
 	ui_buttons_init(&m->ui, &m->sdl);
 	ui_scroll_init(&m->ui, &m->sdl);
-	SDL_SetWindowMinimumSize(m->sdl.win, 800, 600);
+	ui_settings_init(&m->ui, &m->sdl);
+	SDL_SetWindowMinimumSize(m->sdl.win, 800, 670);
 }
 
 void	window_resized_event(t_main *m)
@@ -67,4 +69,5 @@ void	window_resized_event(t_main *m)
 								m->sdl.win_w - R_SCENE_W_TRIM,
 								m->sdl.win_h - R_SCENE_H_TRIM);
 	m->sdl.changes = 1;
+	m->ui.scroll.first_step = 0;
 }
