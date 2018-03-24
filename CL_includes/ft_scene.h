@@ -6,13 +6,13 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 22:15:03 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/23 15:37:45 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/23 19:56:52 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_SCENE_H
 # define FT_SCENE_H
-# include "ft_rtv1.h"
+# include "ft_rt.h"
 # define O_SPHERE		1
 # define O_CON			2
 # define O_PLANE		3

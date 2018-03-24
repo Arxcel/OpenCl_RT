@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:33:57 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/23 15:25:39 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/24 13:02:29 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ static char			*get_text(void)
 {
 	char *text;
 	text = ft_strdup("\n" \
-		"#include \"ft_rtv1.h\"\n#include \"sh_conus.cl\"\n" \
+		"#include \"ft_rt.h\"\n#include \"sh_conus.cl\"\n" \
 		"#include \"sh_disk.cl\"\n#include \"sh_cylinder.cl\"\n" \
 		"#include \"ft_matrix.cl\"\n#include \"ft_vector.cl\"\n" \
 		"#include \"renderer.cl\"\n#include \"rotation.cl\"\n" \
 		"#include \"sh_sphere.cl\"\n#include \"utils.cl\"\n#include \"ft_light.cl\" \n" \
 		"#include \"sh_plane.cl\"\n#include \"sh_triangle.cl\"\n" \
-		"#include \"patterns_textures.cl\"\n#include \"noise.cl\"\n" \
+		"#include \"patterns_textures.cl\"\n" \
 		"#include \"sh_paraboloid.cl\"\n#include \"sh_square.cl\"\n" \
 		"kernel void kernel_entry (global t_object *object\n" \
 		", global t_light *light , global t_camera *camera\n" \
@@ -66,6 +66,7 @@ void				re_draw(t_cl *cl, t_sdl *sdl, t_scene *s)
 	cl_get_res(cl, (size_t)sdl->img.w *
 				sdl->img.h * sizeof(unsigned int), sdl->img.pixels, 7);
 	printf("OpenCl Execution time is: %0.3f milliseconds \n", cl_get_exec_time(cl));
+	clReleaseEvent(cl->e);
 	cl_free_all_args(cl->args);
 }
 

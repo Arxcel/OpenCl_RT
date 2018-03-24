@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   retrive_cameras.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/23 15:02:37 by afarapon          #+#    #+#             */
-/*   Updated: 2018/03/23 15:20:18 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/24 11:28:50 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static t_camera		default_camera(void)
 {
 	t_camera		result;
 
-	ft_bzero(&result, sizeof(t_object));
+	ft_bzero(&result, sizeof(t_camera));
 	result.type = 1;
 	result.pos = (t_vector){0, 0, 4};
 	result.rot = (t_vector){0, 0, 0};
@@ -25,8 +25,7 @@ static t_camera		default_camera(void)
 	return (result);
 }
 
-
-static int		set_c_type(json_value *value, t_camera *c)
+static int			set_c_type(json_value *value, t_camera *c)
 {
 	int err;
 	int val;
@@ -47,7 +46,7 @@ static int		set_c_type(json_value *value, t_camera *c)
 	return (val);
 }
 
-static void		get_camera_info(json_value *value, t_camera *c)
+static void			get_camera_info(json_value *value, t_camera *c)
 {
 	int length;
 	int x;
@@ -69,7 +68,7 @@ static void		get_camera_info(json_value *value, t_camera *c)
 	}
 }
 
-void			process_scene_c(json_value *value, t_scene *s)
+void				process_scene_c(json_value *value, t_scene *s)
 {
 	int x;
 
@@ -78,7 +77,11 @@ void			process_scene_c(json_value *value, t_scene *s)
 	ft_bzero(s->camera, sizeof(s->camera));
 	x = -1;
 	while (++x < s->c_num - 1)
+	{
 		get_camera_info(value->u.array.values[x], &s->camera[x]);
+		if (s->camera[x].fov <= 0 || s->camera[x].type == -1)
+			put_error("Not valid camera");
+	}
 	s->cam_base.pos = s->camera[x - 1].pos;
 	s->cam_base.rot = s->camera[x - 1].rot;
 }
