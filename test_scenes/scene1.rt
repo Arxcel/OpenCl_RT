@@ -51,7 +51,7 @@
 	"cameras": [{
 		"type": "common",
 		"rotation": [-10, 0, 0],
-		"position": [0, 222150350, 111150],
+		"position": [0, 22222150350, 1111150],
 		"field_of_view": 50,
 	}]
 }

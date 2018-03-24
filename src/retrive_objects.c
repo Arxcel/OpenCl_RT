@@ -6,7 +6,7 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/23 14:46:38 by afarapon          #+#    #+#             */
-/*   Updated: 2018/03/24 17:02:43 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/24 22:28:15 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ static t_object		set_defaults(json_value *value)
 		return (default_paraboloid());
 	else if (!ft_strcmp(value->u.string.ptr, "square"))
 		return (default_square());
+	else if (!ft_strcmp(value->u.string.ptr, "elipsoid"))
+		return (default_elipsoid());
 	put_error("Not valid texture type.");
 	return (default_error());
 }
@@ -117,9 +119,11 @@ void				process_scene_o(json_value *value, t_scene *s)
 		get_object_info(value->u.array.values[x], &s->object[x]);
 		if (s->object[x].type == O_TRIANGLE)
 			create_triangle_norm(&s->object[x]);
-		if (s->object[x].type == O_SQUARE)
+		else if (s->object[x].type == O_SQUARE)
 			create_triangle_norm(&s->object[x]);
 		else if (s->object[x].type == O_CON)
 			create_conus(&s->object[x]);
+		else if (s->object[x].type == O_ELIPSOID)
+			validate_elipsoid(&s->object[x]);
 	}
 }

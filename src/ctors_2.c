@@ -6,7 +6,7 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/23 13:28:14 by afarapon          #+#    #+#             */
-/*   Updated: 2018/03/24 17:47:54 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/24 22:29:58 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,23 @@ t_object			default_square(void)
 	result.pos1 = (t_vector){0, 0, 0};
 	result.pos2 = (t_vector){1, 0, -1};
 	result.pos3 = (t_vector){-1, 0, -1};
+	return (result);
+}
+
+t_object			default_elipsoid(void)
+{
+	t_object		result;
+
+	ft_bzero(&result, sizeof(t_object));
+	result.type = O_ELIPSOID;
+	result.color = (t_vector){0.7, 0.7, 0.7};
+	result.specular = 1;
+	result.refract = 0;
+	result.reflect = 0;
+	result.pos1 = (t_vector){0, 0, 0};
+	result.dir = (t_vector){0, 1, 0};
+	result.radius = 1.1;
+	result.angle = 1;
 	return (result);
 }
 

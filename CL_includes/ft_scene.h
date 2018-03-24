@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_scene.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
+/*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 22:15:03 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/23 19:56:52 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/24 20:40:51 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # define O_TRIANGLE		6
 # define O_PARABOLOID	7
 # define O_SQUARE		8
+# define O_ELIPSOID		9
 # define L_PAR			1
 # define L_LAMP			2
 # define L_AMBIENT		3

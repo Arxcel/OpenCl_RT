@@ -6,7 +6,7 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/17 18:52:10 by afarapon          #+#    #+#             */
-/*   Updated: 2018/03/23 16:54:23 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/24 22:24:17 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,10 @@ void			create_conus(t_object *obj)
 
 	tmp = tan(ft_deg2rad(obj->angle / 2));
 	obj->angle = tmp;
+}
+
+void			validate_elipsoid(t_object *object)
+{
+	if (object->angle >= object->radius)
+		put_error("Not valid elipsoid");
 }

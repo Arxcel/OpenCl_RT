@@ -6,7 +6,7 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:32:12 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/24 17:51:50 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/24 22:28:05 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void				create_conus(t_object *obj);
 void				delete_scene(t_scene *s);
 
 /*
-** open export save
+** OPEN EXPORT SAVE
 */
 
 char				*read_object_type(int i, t_main *m);
@@ -114,6 +114,7 @@ t_light				default_lamp(void);
 t_light				default_parallel(void);
 t_light				default_light(void);
 t_camera			default_camera(void);
+t_object			default_elipsoid(void);
 
 
 /*
@@ -146,5 +147,6 @@ float				get_radius(json_value *value);
 */
 
 void				create_shapes(int x, int y, t_main *m);
+void				validate_elipsoid(t_object *object);
 
 #endif

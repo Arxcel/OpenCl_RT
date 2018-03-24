@@ -15,16 +15,16 @@ EXT =		ft_ui.h \
 			ft_scene.h \
 
 CFLAGS = -I$(IDIR) \
-		 -I./libft/include \
-		 -I./libCL/include \
-		 -I./libSDL/SDL2.framework/Headers/ \
-		 -I./libSDL/SDL2_image.framework/Headers/ \
-		 -I./libSDL/SDL2_ttf.framework/Headers/ \
-		 -I./libftSDL/include \
-		 -I./libJson/include \
-		 -I./libmy_math/include \
-		 -I./libTFD \
-		 -I./libAE/includes \
+		-I./libft/include \
+		-I./libCL/include \
+		-I./libSDL/SDL2.framework/Headers/ \
+		-I./libSDL/SDL2_image.framework/Headers/ \
+		-I./libSDL/SDL2_ttf.framework/Headers/ \
+		-I./libftSDL/include \
+		-I./libJson/include \
+		-I./libmy_math/include \
+		-I./libTFD \
+		-I./libAE/includes \
 
 LIBFT = libft
 

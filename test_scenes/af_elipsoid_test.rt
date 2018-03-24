@@ -1,0 +1,26 @@
+{
+	"objects": [{
+			"type": "elipsoid",
+			"size": 15,
+			"radius": 16
+		}
+	],
+	"lights": [{
+			"type": "lamp",
+			"position": [0, 0, 0],
+			"color": [1, 1, 1],
+			"intensity" : 1
+		},
+		{
+			"type": "ambient",
+			"intensity": 0.4
+		}
+	],
+	"cameras": [{
+		"type": "common",
+		"rotation": [0, 0, 0],
+		"position": [0, 0, 0],
+		"field_of_view": 50,
+		"bias": 0.3
+	}]
+}

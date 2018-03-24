@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
+/*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:33:57 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/24 13:02:29 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/24 21:48:35 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static char			*get_text(void)
 		"#include \"renderer.cl\"\n#include \"rotation.cl\"\n" \
 		"#include \"sh_sphere.cl\"\n#include \"utils.cl\"\n#include \"ft_light.cl\" \n" \
 		"#include \"sh_plane.cl\"\n#include \"sh_triangle.cl\"\n" \
-		"#include \"patterns_textures.cl\"\n" \
+		"#include \"patterns_textures.cl\"\n#include \"sh_elipsoid.cl\"\n" \
 		"#include \"sh_paraboloid.cl\"\n#include \"sh_square.cl\"\n" \
 		"kernel void kernel_entry (global t_object *object\n" \
 		", global t_light *light , global t_camera *camera\n" \
@@ -33,7 +33,7 @@ static char			*get_text(void)
 		" size_t img_h = get_global_size(1);\n" \
 		"unsigned int col;int x;int y;x = get_global_id(0);\n" \
 		"y = get_global_id(1);\n" \
-		"col =  ft_renderer(object,light,camera,x,y,img_w,img_h,tex1,tex2,tex3,tex4);\n"\
+		"col = ft_renderer(object,light,camera,x,y,img_w,img_h,tex1,tex2,tex3,tex4);\n"\
 		"*(img_buf + x + y * img_w) = col;}\n");
 	return (text);
 }
