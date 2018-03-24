@@ -79,10 +79,13 @@ SOURCES =   main.c \
 			scene_textures.c \
 			ctors_1.c \
 			ctors_2.c \
+			ctors_3.c \
 			retrive_cameras.c \
 			retrive_lights.c \
 			retrive_objects.c \
-			retrive_utils.c 
+			retrive_utils.c \
+			validation_1.c \
+			validation_2.c \
 
 SRCS = $(addprefix $(DIR_S)/,$(SOURCES))
 

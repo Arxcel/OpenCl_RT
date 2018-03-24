@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_rt.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
+/*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:32:12 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/23 15:24:32 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/23 16:29:03 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void				sdl_hook(t_main *m);
 void				sdl_loop(t_main *m);
 char				*set_flags(const char *path);
 void				get_scene(const char *filepath, t_scene *s);
-void				put_error(const char *err_text);
+int					put_error(const char *err_text);
 void				process_value(json_value *value, t_scene *s);
 void				re_draw(t_cl *cl, t_sdl *sdl, t_scene *s);
 void				move_camera(t_scene *s);
@@ -102,6 +102,11 @@ t_object			default_triangle(void);
 t_object			default_disk(void);
 t_object			default_square(void);
 t_object			default_error(void);
+t_light				default_ambient(void);
+t_light				default_area(void);
+t_light				default_lamp(void);
+t_light				default_parallel(void);
+t_light				default_light(void);
 
 /*
 ** READ DATA FROM JSON TO OBJECTS/LIGHTS/CAMERAS
@@ -112,12 +117,21 @@ void				process_scene_l(json_value *value, t_scene *s);
 void				process_scene_c(json_value *value, t_scene *s);
 
 /*
-** UTILS FOR PREV BLOCK
+** UTILS AND VALIDATION FOR PREV BLOCK
 */
 
 t_vector			get_color(json_value *value);
 t_vector			get_n_vector(json_value *value);
 t_vector			get_vector(json_value *value);
 float				get_number(json_value *value);
+float				get_max(json_value *value);
+float				get_tex_scale(json_value *value);
+float				get_tex_angle(json_value *value);
+float				get_specular(json_value *value);
+float				get_ior(json_value *value);
+float				get_refract(json_value *value);
+float				get_reflect(json_value *value);
+float				get_radius(json_value *value);
+
 
 #endif
