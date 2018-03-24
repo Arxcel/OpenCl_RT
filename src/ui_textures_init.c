@@ -6,7 +6,7 @@
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/22 14:02:44 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/23 21:16:13 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/24 16:29:36 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,38 +92,15 @@ void	ui_settings_init(t_ui *ui, t_sdl *sdl)
 	texture_from_text("Pos3 X:", sdl, &ui->o_set[E_POS3_X].name);
 	texture_from_text("Pos3 Y:", sdl, &ui->o_set[E_POS3_Y].name);
 	texture_from_text("Pos3 Z:", sdl, &ui->o_set[E_POS3_Z].name);
+	texture_from_text("Radius:", sdl, &ui->o_set[E_RAD].name);
+	texture_from_text("Reflect:", sdl, &ui->o_set[E_REFL].name);
+	texture_from_text("Refract:", sdl, &ui->o_set[E_REFR].name);
+	texture_from_text("Angle:", sdl, &ui->o_set[E_ANGL].name);
+	texture_from_text("Ior:", sdl, &ui->o_set[E_IOR].name);
+	texture_from_text("Min:", sdl, &ui->o_set[E_MIN].name);
+	texture_from_text("Max:", sdl, &ui->o_set[E_MAX].name);
+	texture_from_text("Specular:", sdl, &ui->o_set[E_SPECUL].name);
+	texture_from_text("Texture ID:", sdl, &ui->o_set[E_TEX_ID].name);
+	texture_from_text("Texture scale:", sdl, &ui->o_set[E_TEX_SCL].name);
+	texture_from_text("Texture angle:", sdl, &ui->o_set[E_TEX_ANG].name);
 }
-
-/*
-static SDL_Texture	*texture_from_text(char *text, t_sdl *sdl)
-{
-	SDL_Texture	*texture;
-	SDL_Surface	*surface;
-	SDL_Color	color;
-	TTF_Font	*font;
-
-	TTF_Init();
-	font = TTF_OpenFont("open-sans/OpenSans-Regular.ttf", 15);
-	if (font == NULL)
-		return (NULL);
-	color.r = 200;
-	color.g = 200;
-	color.b = 200;
-	surface = TTF_RenderText_Solid(font, text, color);
-	texture = SDL_CreateTextureFromSurface(sdl->ren, surface);
-	SDL_FreeSurface(surface);
-	TTF_CloseFont(font);
-	TTF_Quit();
-	return (texture);
-}
-
-void	ui_settings_init(t_ui *ui, t_sdl *sdl)
-{
-	ui->o_set[COL_R].name.textr =
-		texture_from_text("Color RED        ", sdl);
-	ui->o_set[COL_G].name.textr =
-		texture_from_text("Color GREEN      ", sdl);
-	ui->o_set[COL_B].name.textr =
-		texture_from_text("Color BLUE       ", sdl);
-}
-*/

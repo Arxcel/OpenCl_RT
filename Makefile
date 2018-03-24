@@ -90,6 +90,7 @@ SOURCES =   main.c \
 			validation_1.c \
 			validation_2.c \
 			scene_perlin_noise.c \
+			create_buttons_1.c \
 
 SRCS = $(addprefix $(DIR_S)/,$(SOURCES))
 
