@@ -11,7 +11,7 @@ static float get_pattern2(t_ray *r, t_object *o)
     scale = (float)o->tex_scale;
     if (!scale)
         scale = 1.0;
-    if (o->type == O_PLANE || o->type == O_DISK || o->type == O_TRIANGLE)
+    if (o->type == O_PLANE || o->type == O_DISK || o->type == O_TRIANGLE || o->type == O_SQUARE)
     {
         scaleX = scale * 25;
         scaleY = scale * 25;
@@ -42,7 +42,7 @@ static float get_pattern3(t_ray *r, t_object *o)
     scale = (float)o->tex_scale;
     if (!scale)
         scale = 1.0;
-    if (o->type == O_PLANE || o->type == O_DISK || o->type == O_TRIANGLE)
+    if (o->type == O_PLANE || o->type == O_DISK || o->type == O_TRIANGLE || o->type == O_SQUARE)
     {
         scaleX = scale * 50;
         scaleY = scale * 50;
@@ -73,7 +73,7 @@ static float get_pattern4(t_ray *r, t_object *o)
     scale = (float)o->tex_scale;
     if (!scale)
         scale = 1.0;
-    if (o->type == O_PLANE || o->type == O_DISK || o->type == O_TRIANGLE)
+    if (o->type == O_PLANE || o->type == O_DISK || o->type == O_TRIANGLE || o->type == O_SQUARE)
     {
         scaleX = scale * 50;
         scaleY = scale * 50;
@@ -101,7 +101,7 @@ static float get_pattern5(t_ray *r, t_object *o)
     scale = (float)o->tex_scale;
     if (!scale)
         scale = 1.0;
-    if (o->type == O_PLANE || o->type == O_DISK || o->type == O_TRIANGLE)
+    if (o->type == O_PLANE || o->type == O_DISK || o->type == O_TRIANGLE || o->type == O_SQUARE)
     {
         scale *= 0.015;
     }
@@ -135,7 +135,7 @@ static float get_pattern6(t_ray *r, t_object *o)
     scale = (float)o->tex_scale;
     if (!scale)
         scale = 1.0;
-    if (o->type == O_PLANE || o->type == O_DISK || o->type == O_TRIANGLE)
+    if (o->type == O_PLANE || o->type == O_DISK || o->type == O_TRIANGLE || o->type == O_SQUARE)
     {
         scaleX = scale * 0.02;
         scaleY = scale * 0.02;
@@ -175,7 +175,7 @@ static t_vector     get_custom(t_ray *r, t_object *o, global unsigned int *tex1)
     scale = (float)o->tex_scale;
     if (!scale)
         scale = 1.0;
-    if (o->type == O_PLANE || o->type == O_DISK || o->type == O_TRIANGLE)
+    if (o->type == O_PLANE || o->type == O_DISK || o->type == O_TRIANGLE || o->type == O_SQUARE)
     {
         scaleX = 0.03 / scale;
         scaleY = 0.03 / scale;
