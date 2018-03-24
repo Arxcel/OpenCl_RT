@@ -96,7 +96,11 @@
 			"intensity" : 0.7,
 			"direction": [0, 0, -1],
 			"angle" : 40
-		}
+		},
+        {
+            "type": "ambient",
+            "intensity": 0.2
+        }
 	],
 	"cameras": [
 	{

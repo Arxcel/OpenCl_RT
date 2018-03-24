@@ -94,7 +94,11 @@
 			"position": [0, 0, 5],
 			"color": [1, 0, 0],
 			"intensity" : 0.7
-		}
+		},
+        {
+            "type": "ambient",
+            "intensity": 0.2
+        }
 	],
 	"cameras": [
 	{

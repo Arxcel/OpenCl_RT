@@ -1,24 +1,17 @@
 {
-	"objects": [{
-			"type": "plane",
-			"pos1": [0, 0, 0],
-			"direction": [0, 1, 0],
-			"color": [0.4, 0.4, 0.4],
-			"specular": 15,
-			"reflect": 0
-		},
+	"objects": [
         {
 			"type": "square",
             "color": [1, 0.5, 0.25],
-            "pos1": [-1, 2, -20],
-            "pos2": [1, 0, -20],
+            "pos1": [-1, 2, -5],
+            "pos2": [1, 0, -5],
             "direction": [0, 0, 1],
             "reflect": 0
 		}
 	],
 	"lights": [{
 			"type": "lamp",
-			"position": [0, 10, -8],
+			"position": [0, 10, 1],
 			"color": [1, 1, 1],
 			"intensity" : 1
 		},
@@ -31,7 +24,6 @@
 		"type": "common",
 		"rotation": [0, 0, 0],
 		"position": [0, 0, 0],
-		"field_of_view": 50,
-		"bias": 0.3
+		"field_of_view": 50
 	}]
 }

@@ -13,8 +13,8 @@ static float get_pattern2(t_ray *r, t_object *o)
         scale = 1.0;
     if (o->type == O_PLANE || o->type == O_DISK || o->type == O_TRIANGLE || o->type == O_SQUARE)
     {
-        scaleX = scale * 25;
-        scaleY = scale * 25;
+        scaleX = scale * 25 / 100;
+        scaleY = scale * 25 / 100;
     }
     else if (o->type == O_SPHERE)
     {
@@ -24,7 +24,7 @@ static float get_pattern2(t_ray *r, t_object *o)
     else if (o->type == O_CYL || o->type == O_PARABOLOID || o->type == O_CON)
     {
         scaleX = scale * 0.05;
-        scaleY = scale * 10;
+        scaleY = scale * 10 / 100;
     }
     first = (M_PI * r->tex[1] / scaleY);
     second = (M_PI * r->tex[0] / scaleX);
@@ -44,18 +44,18 @@ static float get_pattern3(t_ray *r, t_object *o)
         scale = 1.0;
     if (o->type == O_PLANE || o->type == O_DISK || o->type == O_TRIANGLE || o->type == O_SQUARE)
     {
-        scaleX = scale * 50;
-        scaleY = scale * 50;
+        scaleX = scale * 25 / 100;
+        scaleY = scale * 25 / 100;
     }
     else if (o->type == O_SPHERE)
     {
-        scaleX = scale / 25;
-        scaleY = scale / 25;
+        scaleX = scale / 50;
+        scaleY = scale / 50;
     }
     else if (o->type == O_CYL || o->type == O_PARABOLOID || o->type == O_CON)
     {
-        scaleX = scale * 0.1;
-        scaleY = scale * 20;
+        scaleX = scale * 0.05;
+        scaleY = scale * 10 / 100;
     }
     first = (M_PI * r->tex[0] / scaleX);
 	return (native_sin(first) > 0 ? native_sin(first) : -native_sin(first));
@@ -75,18 +75,18 @@ static float get_pattern4(t_ray *r, t_object *o)
         scale = 1.0;
     if (o->type == O_PLANE || o->type == O_DISK || o->type == O_TRIANGLE || o->type == O_SQUARE)
     {
-        scaleX = scale * 50;
-        scaleY = scale * 50;
+        scaleX = scale * 25 / 100;
+        scaleY = scale * 25 / 100;
     }
     else if (o->type == O_SPHERE)
     {
-        scaleX = scale / 25;
-        scaleY = scale / 25;
+        scaleX = scale / 50;
+        scaleY = scale / 50;
     }
     else if (o->type == O_CYL || o->type == O_PARABOLOID || o->type == O_CON)
     {
-        scaleX = scale * 0.1;
-        scaleY = scale * 20;
+        scaleX = scale * 0.05;
+        scaleY = scale * 10 / 100;
     }
     first = M_PI * r->tex[1] / scaleY;
 	return ((native_sin(first) > 0 ? native_sin(first) : -native_sin(first)));
@@ -103,7 +103,7 @@ static float get_pattern5(t_ray *r, t_object *o)
         scale = 1.0;
     if (o->type == O_PLANE || o->type == O_DISK || o->type == O_TRIANGLE || o->type == O_SQUARE)
     {
-        scale *= 0.015;
+        scale *= 1.5;
     }
     else if (o->type == O_SPHERE)
     {
@@ -111,7 +111,7 @@ static float get_pattern5(t_ray *r, t_object *o)
     }
     else if (o->type == O_CYL || o->type == O_PARABOLOID || o->type == O_CON)
     {
-        scale *= 0.1;
+        scale *= 10;
     }
     pattern = r->tex[0] * r->tex[0] + r->tex[1] * r->tex[1];
     pattern = native_sqrt(pattern) * scale;
@@ -137,8 +137,8 @@ static float get_pattern6(t_ray *r, t_object *o)
         scale = 1.0;
     if (o->type == O_PLANE || o->type == O_DISK || o->type == O_TRIANGLE || o->type == O_SQUARE)
     {
-        scaleX = scale * 0.02;
-        scaleY = scale * 0.02;
+        scaleX = scale * 2;
+        scaleY = scale * 2;
     }
     else if (o->type == O_SPHERE)
     {
@@ -148,7 +148,7 @@ static float get_pattern6(t_ray *r, t_object *o)
     else if (o->type == O_CYL || o->type == O_PARABOLOID || o->type == O_CON)
     {
         scaleX = 10;
-        scaleY = 0.05;
+        scaleY = 5;
     }
     texX =  r->tex[0] * scaleX;
     texY =  r->tex[1] * scaleY;
@@ -177,8 +177,8 @@ static t_vector     get_custom(t_ray *r, t_object *o, global unsigned int *tex1)
         scale = 1.0;
     if (o->type == O_PLANE || o->type == O_DISK || o->type == O_TRIANGLE || o->type == O_SQUARE)
     {
-        scaleX = 0.03 / scale;
-        scaleY = 0.03 / scale;
+        scaleX = 0.5 / scale;
+        scaleY = 0.5 / scale;
     }
     else if (o->type == O_SPHERE)
     {
@@ -188,7 +188,7 @@ static t_vector     get_custom(t_ray *r, t_object *o, global unsigned int *tex1)
     else if (o->type == O_CYL || o->type == O_PARABOLOID || o->type == O_CON)
     {
         scaleX = 5 / scale;
-        scaleY = 0.03 / scale;
+        scaleY = 1 / scale;
     }
     texX = (int)(r->tex[0] * 256 * scaleX);
     texY = (int)(r->tex[1] * 256 * scaleY);
@@ -211,8 +211,8 @@ static t_vector     get_perlin(t_ray *r, t_object *o, global unsigned int *perli
         scale = 1.0;
     if (o->type == O_PLANE || o->type == O_DISK || o->type == O_TRIANGLE || o->type == O_SQUARE)
     {
-        scaleX = 0.03 / scale;
-        scaleY = 0.03 / scale;
+        scaleX = 3 / scale;
+        scaleY = 3 / scale;
     }
     else if (o->type == O_SPHERE)
     {
