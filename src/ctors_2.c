@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/23 13:28:14 by afarapon          #+#    #+#             */
-/*   Updated: 2018/03/24 18:13:34 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/24 18:16:34 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ t_object			default_square(void)
 	result.pos1 = (t_vector){-0.5, 0.5, -1};
 	result.pos2 = (t_vector){0.5, -0.5, -1};
 	result.dir = (t_vector){0, 0, 1};
-	result.min = 1;
 	return (result);
 }
 
