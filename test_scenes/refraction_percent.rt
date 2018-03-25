@@ -1,63 +1,81 @@
 {
-	"objects": [
-		{
+	"objects": [{
 			"type": "sphere",
 			"color": [1, 0, 0],
-			"pos1": [-5, 0.1, -6.5],
-			"radius": 1,
-			"specular": 5,
-			"reflect": 1,
-			"ior": 1.5,
-			"refract": 0.2,
-            "pattern":  "chessboard",
-			"pattern_scale": 2
-		},
-		{
-			"type": "sphere",
-			"color": [0, 1, 0],
-			"pos1": [-2, 0.1, -6.5],
-			"radius": 1,
-			"specular": 5,
-			"reflect": 1,
-			"ior": 1.5,
-			"refract": 0.4,
-            "pattern":  "brick",
-			"pattern_scale": 2
+			"pos1": [-5, 0.1, -8.5],
+			"radius": 0.5,
+			"specular": 5
 		},
 		{
 			"type": "sphere",
 			"color": [0, 0, 1],
-			"pos1": [1, 0.1, -6.5],
-			"radius": 1,
-			"specular": 5,
-			"reflect": 1,
-			"ior": 1.5,
-			"refract": 0.6,
-            "pattern":  "circle",
-			"pattern_scale": 2
+			"pos1": [-2, 0.1, -8.5],
+			"radius": 0.5,
+			"specular": 5
 		},
 		{
 			"type": "sphere",
+			"color": [0, 1, 0],
+			"pos1": [1, 0.1, -8.5],
+			"radius": 0.5,
+			"specular": 5
+		},
+		{
+			"type": "sphere",
+			"color": [0, 1, 1],
+			"pos1": [4, 0.1, -8.5],
+			"radius": 0.5,
+			"specular": 5
+		},{
+			"type": "sphere",
 			"color": [1, 1, 0],
+			"pos1": [7, 0.1, -8.5],
+			"radius": 0.5,
+			"specular": 5
+		},
+		{
+			"type": "sphere",
+			"color": [1, 1, 1],
+			"pos1": [-5, 0.1, -6.5],
+			"radius": 1,
+			"specular": 5,
+			"ior": 1,
+			"refract": 0.2
+		},
+		{
+			"type": "sphere",
+			"color": [1, 1, 1],
+			"pos1": [-2, 0.1, -6.5],
+			"radius": 1,
+			"specular": 5,
+			"ior": 1,
+			"refract": 0.4
+		},
+		{
+			"type": "sphere",
+			"color": [1, 1, 1],
+			"pos1": [1, 0.1, -6.5],
+			"radius": 1,
+			"specular": 5,
+			"ior": 1,
+			"refract": 0.6
+		},
+		{
+			"type": "sphere",
+			"color": [1, 1, 1],
 			"pos1": [4, 0.1, -6.5],
 			"radius": 1,
 			"specular": 5,
-			"reflect": 1,
-			"ior": 1.5,
-			"refract": 0.8,
-            "pattern":  "gradient",
-			"pattern_scale": 2
+			"ior": 1,
+			"refract": 0.8
 		},{
 			"type": "sphere",
-			"color": [1, 0, 0],
+			"color": [1, 1, 1],
 			"pos1": [7, 0.1, -6.5],
 			"radius": 1,
 			"specular": 5,
-			"reflect": 1,
-			"ior": 1.5,
-			"refract": 1,
-            "pattern":  "custom-4",
-			"pattern_scale": 2
+			"ior": 1,
+			"refract": 1
 		},
 		{
 			"type": "plane",
@@ -90,8 +108,8 @@
 	],
 	"cameras": [{
 		"type": "common",
-		"rotation": [-35, 0, 0],
-		"position": [1, 4, 4],
+		"rotation": [0, 0, 0],
+		"position": [1, 0, 4],
 		"field_of_view": 50,
 	}]
 }

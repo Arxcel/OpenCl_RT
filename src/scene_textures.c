@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/23 11:39:56 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/24 21:34:27 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/25 14:09:51 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void				generate_perlin(unsigned int *pixels)
 	size = 256 * 256;
 	while (++i < size)
 	{
-		p = perlin2d(i, i / 256, 0.1, 4);
+		p = perlin2d(i, i / 256, 0.1, 1);
 		p = fabs(p);
 		p = p > 1 ? 1 : p;
 		c[0] = p * 256;

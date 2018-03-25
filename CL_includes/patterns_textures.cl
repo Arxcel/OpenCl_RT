@@ -222,7 +222,7 @@ static t_vector     get_perlin(t_ray *r, t_object *o, global unsigned int *perli
     else if (o->type == O_CYL || o->type == O_PARABOLOID || o->type == O_CON)
     {
         scaleX = 5 / scale;
-        scaleY = 0.03 / scale;
+        scaleY = 1 / scale;
     }
     texX = (int)(r->tex[0] * 256 * scaleX);
     texY = (int)(r->tex[1] * 256 * scaleY);
