@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ctors_3.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: afarapon <afarapon@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/23 15:35:55 by afarapon          #+#    #+#             */
-/*   Updated: 2018/03/23 16:50:36 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/26 00:14:35 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_light				default_parallel(void)
 	result.type = L_PAR;
 	result.color = (t_vector){0.8, 0.8, 0.8};
 	result.pos = (t_vector){-0.5, -0.5, -0.5};
+	result.dir = (t_vector){0, -1, 0};
 	result.intence = 1;
 	return (result);
 }
@@ -44,6 +45,7 @@ t_light				default_area(void)
 	result.type = L_AREA;
 	result.color = (t_vector){0.8, 0.8, 0.8};
 	result.pos = (t_vector){-0.5, -0.5, -0.5};
+	result.dir = (t_vector){0, -1, 0};
 	result.ang = 45;
 	result.intence = 1;
 	return (result);
