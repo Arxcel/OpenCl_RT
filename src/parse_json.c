@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_json.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 11:33:17 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/24 15:49:29 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/25 16:24:41 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,8 @@ void			get_scene(const char *filename, t_scene *s)
 	int			file_size;
 	char		*file_str;
 
-	if (ft_strcmp(".rt", (char*)(filename + ft_strlen(filename) - 3)))
-		put_error("Wrong file format. Please choose file *.rt");
+	if (ft_strcmp(".json", (char*)(filename + ft_strlen(filename) - 5)))
+		put_error("Wrong file format. Please choose file *.json");
 	ft_bzero(s, sizeof(s));
 	file_str = get_file_content(filename, &file_size);
 	json = (json_char*)file_str;
