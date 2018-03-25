@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 16:37:12 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/25 00:15:29 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/25 15:40:32 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define FT_UI_H
 # define RTN 2
 # define BG_ITEMS 12
-# define BTNS 19
+# define BTNS 30
 # define SLDRS 1
 # define O_SET 25
 # define LI_SET 14
@@ -40,6 +40,8 @@
 # define R_TEXT_W 90
 # define RAD(x) (x * M_PI / 180.0)
 # define DEG(x) (x * 180.0 / M_PI)
+# define TEXTURE_ON(x, y) ui->btn[x].on = sdl_texture_from_file(y, sdl->ren);
+# define TEXTURE_OFF(x, y) ui->btn[x].off = sdl_texture_from_file(y, sdl->ren);
 
 typedef struct		s_xy
 {
@@ -200,19 +202,30 @@ enum				e_btns
 	EXPORT = 3,
 	PREV_CAM = 4,
 	NEXT_CAM = 5,
-	BTN_SPHERE = 6,
-	BTN_CYLINDER = 7,
-	BTN_CONUS = 8,
-	BTN_PARABOLOID = 9,
-	BTN_DISK = 10,
-	BTN_PLANE = 11,
-	BTN_TRIANGLE = 12,
-	BTN_CUBE = 13,
-	BTN_CAM = 14,
-	BTN_LIGHT1 = 15,
-	BTN_LIGHT2 = 16,
-	BTN_LIGHT3 = 17,
-	BTN_LIGHT4 = 18
+	BTN_AE1 = 6,
+	BTN_AE2 = 7,
+	BTN_AE3 = 8,
+	BTN_AE4 = 9,
+	BTN_AE5 = 10,
+	BTN_AE6 = 11,
+	BTN_PLUS = 12,
+	BTN_MINUS = 13,
+	BTN_ZERO = 14,
+	BTN_ONE = 15,
+	BTN_SPHERE = 16,
+	BTN_CYLINDER = 17,
+	BTN_CONUS = 18,
+	BTN_PARABOLOID = 19,
+	BTN_DISK = 20,
+	BTN_PLANE = 21,
+	BTN_TRIANGLE = 22,
+	BTN_SQUARE = 23,
+	BTN_CUBE = 24,
+	BTN_CAM = 25,
+	BTN_LIGHT1 = 26,
+	BTN_LIGHT2 = 27,
+	BTN_LIGHT3 = 28,
+	BTN_LIGHT4 = 29
 };
 
 void				ui_scroll_init(t_ui *ui, t_sdl *sdl);

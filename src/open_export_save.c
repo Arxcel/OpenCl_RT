@@ -6,7 +6,7 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 14:10:10 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/23 16:50:11 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/25 17:35:56 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	open_file(t_main *m)
 {
 	const char	*open;
-	const char	*format[1] = { "*.rt" };
+	const char	*format[1] = { "*.json" };
 
 	open = tinyfd_openFileDialog("", "", 1, format, NULL, 0);
 	if (open == NULL)
@@ -64,7 +64,7 @@ void	save_file(t_main *m)
 void	save_as_file(t_main *m)
 {
 	const char	*save;
-	const char	*format[1] = { "*.rt" };
+	const char	*format[1] = { "*.json" };
 	int			fd;
 
 	save = tinyfd_saveFileDialog("", "example.rt", 1, format, NULL);

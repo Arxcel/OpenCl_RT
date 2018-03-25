@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:32:12 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/24 18:04:22 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/25 17:09:02 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ void				sdl_rinit(t_sdl *sdl);
 void				ui_and_sdl_init(t_main *m);
 void				window_resized_event(t_main *m);
 void				render_scene_and_ui(t_main *m);
+void				change_settings_value(int x, int y, t_main *m);
 
 /*
 ** for After effects
@@ -94,6 +95,8 @@ void				render_scene_and_ui(t_main *m);
 void				make_dependencies(t_main *m);
 void				filter_key(int key, t_main *m);
 void				get_scene_textures(t_main *m);
+int					flush_effects(t_ae *ae);
+void				add_effect(t_ae *ae, int val);
 
 /*
 ** CTORS

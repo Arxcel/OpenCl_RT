@@ -6,7 +6,7 @@
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/22 14:08:49 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/23 20:11:55 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/25 15:58:28 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ static void	ui_btn_rect_params(t_ui *ui)
 		ui->btn[i].rect = sdl_rect(x, y, BTN_SIZE, BTN_SIZE);
 		x += BTN_ROW1_X + BTN_SIZE;
 		i++;
-		if (i == 4 || i == 14 || i == 15)
+		if (i == 4 || i == 6 || i == 12 || i == 14 || i == 25 || i == 26)
 			x += 15;
-		if (i == 6)
+		if (i == 16)
 		{
 			y += BTN_ROW1_Y + BTN_SIZE;
 			x = BTN_ROW1_X;
