@@ -20,6 +20,28 @@
 			"pattern_scale": 1
 		},
 		{
+			"type": "barbell",
+            "color": [0.25, 0.5, 1],
+            "pos1": [-3, -2.5, -5],
+            "direction": [0, 1, 0],
+            "max": 2,
+            "radius": 0.2,
+			"pattern":  "brick",
+			"pattern_scale": 1,
+			"specular": 1500,
+		},
+		{
+			"type": "capsula",
+            "color": [0, 0, 1],
+            "pos1": [2, -2.5, -5],
+            "direction": [0, 1, 0],
+            "max": 0.5,
+            "radius": 0.3,
+			"pattern":  "brick",
+			"pattern_scale": 1,
+			"specular": 1500,
+		},
+		{
 			"type": "sphere",
 			"color": [0.3, 0.3, 0.3],
 			"pos1": [-3, -3, -17],
