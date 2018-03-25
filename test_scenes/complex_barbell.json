@@ -6,7 +6,7 @@
             "direction": [1, 0, 0],
             "max": 20,
             "radius": 2,
-			"specular": 1500,
+			"specular": 1500
 		},
 		{
 			"type": "barbell",
@@ -15,7 +15,7 @@
             "direction": [0.8, 0, 0.2],
             "max": 20,
             "radius": 2,
-			"specular": 1500,
+			"specular": 1500
 		},
 		{
 			"type": "barbell",
@@ -24,7 +24,7 @@
             "direction": [0.6, 0, 0.4],
             "max": 20,
             "radius": 2,
-			"specular": 1500,
+			"specular": 1500
 		},
 		{
 			"type": "barbell",
@@ -33,7 +33,7 @@
             "direction": [0.4, 0, 0.6],
             "max": 20,
             "radius": 2,
-			"specular": 1500,
+			"specular": 1500
 		},
 		{
 			"type": "barbell",
@@ -42,7 +42,7 @@
             "direction": [0.2, 0, 0.8],
             "max": 20,
             "radius": 2,
-			"specular": 1500,
+			"specular": 1500
 		},
 		{
 			"type": "barbell",
@@ -51,7 +51,7 @@
             "direction": [0, 0, 1],
             "max": 20,
             "radius": 2,
-			"specular": 1500,
+			"specular": 1500
 		},
 		{
 			"type": "barbell",
@@ -60,7 +60,7 @@
             "direction": [-0.2, 0, 0.8],
             "max": 20,
             "radius": 2,
-			"specular": 1500,
+			"specular": 1500
 		},
 		{
 			"type": "barbell",
@@ -69,7 +69,7 @@
             "direction": [-0.4, 0, 0.6],
             "max": 20,
             "radius": 2,
-			"specular": 1500,
+			"specular": 1500
 		},
 		{
 			"type": "barbell",
@@ -78,7 +78,7 @@
             "direction": [-0.6, 0, 0.4],
             "max": 20,
             "radius": 2,
-			"specular": 1500,
+			"specular": 1500
 		},
 		{
 			"type": "barbell",
@@ -87,7 +87,7 @@
             "direction": [-0.8, 0, 0.2],
             "max": 20,
             "radius": 2,
-			"specular": 1500,
+			"specular": 1500
 		},
 		{
 			"type": "barbell",
@@ -96,11 +96,21 @@
             "direction": [-1, 0, 0],
             "max": 20,
             "radius": 2,
-			"specular": 1500,
+			"specular": 1500
 		},
 		{
 			"type": "plane",
-			"pos1": [0, -30, 0]
+			"pos1": [0, 0, -100],
+			"direction": [0, 0, 1],
+			"color": [0.7, 0.7, 0.7],
+			"specular": 15
+		},
+        {
+			"type": "plane",
+			"pos1": [0, -30, 0],
+			"direction": [0, 1, 0],
+			"color": [0.2, 0.2, 0.7],
+			"specular": 15
 		}
 	],
 	"lights": [{
@@ -117,8 +127,7 @@
 	"cameras": [{
 		"type": "common",
 		"rotation": [0, 0, 0],
-		"position": [0, 2, 0],
-		"field_of_view": 50,
-		"bias": 0.3
+		"position": [0, 1, 15],
+		"field_of_view": 50
 	}]
 }

@@ -20,7 +20,7 @@
 			"pos1": [-0.1, 0.5, -5],
 			"radius": 0.4,
 			"specular": 15
-		},
+		}
 	],
 	"lights": [{
 			"type": "area",

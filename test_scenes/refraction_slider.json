@@ -1,0 +1,89 @@
+{
+	"objects": [
+		{
+			"type": "sphere",
+			"color": [1, 0, 0],
+			"pos1": [-5, 0.1, -6.5],
+			"radius": 1,
+			"specular": 5,
+			"ior": 1.5,
+			"refract": 0.2,
+            "pattern":  "chessboard",
+			"pattern_scale": 2
+		},
+		{
+			"type": "sphere",
+			"color": [0, 1, 0],
+			"pos1": [-2, 0.1, -6.5],
+			"radius": 1,
+			"specular": 5,
+			"ior": 1.5,
+			"refract": 0.4,
+            "pattern":  "brick",
+			"pattern_scale": 2
+		},
+		{
+			"type": "sphere",
+			"color": [0, 0, 1],
+			"pos1": [1, 0.1, -6.5],
+			"radius": 1,
+			"specular": 5,
+			"ior": 1.5,
+			"refract": 0.6,
+            "pattern":  "circle",
+			"pattern_scale": 2
+		},
+		{
+			"type": "sphere",
+			"color": [1, 1, 0],
+			"pos1": [4, 0.1, -6.5],
+			"radius": 1,
+			"specular": 5,
+			"ior": 1.5,
+			"refract": 0.8,
+            "pattern":  "gradient",
+			"pattern_scale": 2
+		},{
+			"type": "sphere",
+			"color": [1, 0, 0],
+			"pos1": [7, 0.1, -6.5],
+			"radius": 1,
+			"specular": 5,
+			"ior": 1.5,
+			"refract": 1,
+            "pattern":  "custom-4",
+			"pattern_scale": 2
+		},
+		{
+			"type": "plane",
+			"pos1": [0, 0, -10],
+			"direction": [0, 0, 1],
+			"color": [0.5, 0.5, 0.5],
+			"specular": 15
+		},
+		{
+			"type": "plane",
+			"pos1": [0, -1, 0],
+			"direction": [0, 1, 0],
+			"color": [0.5, 0.5, 0.5],
+			"specular": 15
+		}
+	],
+	"lights": [{
+			"type": "lamp",
+			"position": [0, 2, 0],
+			"color": [1, 1, 1],
+			"intensity" : 2
+		},
+        {
+            "type": "ambient",
+            "intensity": 0.2
+        }
+	],
+	"cameras": [{
+		"type": "common",
+		"rotation": [0, 0, 0],
+		"position": [1, 0, 4],
+		"field_of_view": 50
+	}]
+}

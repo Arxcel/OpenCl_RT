@@ -1,26 +1,26 @@
 {
-	"objects": [
-        {
-			"type": "square",
-            "color": [1, 0.5, 0.25],
-            "pos1": [-1, 2, -5],
-            "pos2": [1, 0, -5],
-            "direction": [0, 0, 1],
-            "reflect": 0
+	"objects": [{
+			"type": "conus",
+			"pos1": [0, 0, -5.5],
+			"direction": [0.4, 1, 0.2],
+			"color": [0, 0.7, 0.7],
+			"specular": 2,
+			"angle": 30,
+			"max": 2
 		},
-        {
+		{
 			"type": "plane",
 			"pos1": [0, 0, -15],
 			"direction": [0, 0, 1],
 			"color": [0.7, 0.7, 0.7],
-			"specular": 15,
+			"specular": 15
 		},
         {
 			"type": "plane",
 			"pos1": [0, -2, 0],
 			"direction": [0, 1, 0],
 			"color": [0.2, 0.2, 0.7],
-			"specular": 15,
+			"specular": 15
 		}
 	],
 	"lights": [{
@@ -37,7 +37,7 @@
 	"cameras": [{
 		"type": "common",
 		"rotation": [0, 0, 0],
-		"position": [0, 0, 0],
+		"position": [0, 0, 3],
 		"field_of_view": 50
 	}]
 }

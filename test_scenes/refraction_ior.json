@@ -1,72 +1,98 @@
 {
-	"objects": [
-		{
+	"objects": [{
 			"type": "sphere",
 			"color": [1, 0, 0],
-			"pos1": [-5, 0.1, -6.5],
-			"radius": 1,
-			"specular": 5,
-			"ior": 1.5,
-			"refract": 0.2,
-            "pattern":  "chessboard",
-			"pattern_scale": 2
-		},
-		{
-			"type": "sphere",
-			"color": [0, 1, 0],
-			"pos1": [-2, 0.1, -6.5],
-			"radius": 1,
-			"specular": 5,
-			"ior": 1.5,
-			"refract": 0.4,
-            "pattern":  "brick",
-			"pattern_scale": 2
+			"pos1": [-5, 0.1, -8.5],
+			"radius": 0.5,
+			"specular": 5
 		},
 		{
 			"type": "sphere",
 			"color": [0, 0, 1],
-			"pos1": [1, 0.1, -6.5],
-			"radius": 1,
-			"specular": 5,
-			"ior": 1.5,
-			"refract": 0.6,
-            "pattern":  "circle",
-			"pattern_scale": 2
+			"pos1": [-2, 0.1, -8.5],
+			"radius": 0.5,
+			"specular": 5
 		},
 		{
 			"type": "sphere",
+			"color": [0, 1, 0],
+			"pos1": [1, 0.1, -8.5],
+			"radius": 0.5,
+			"specular": 5
+		},
+		{
+			"type": "sphere",
+			"color": [0, 1, 1],
+			"pos1": [4, 0.1, -8.5],
+			"radius": 0.5,
+			"specular": 5
+		},{
+			"type": "sphere",
 			"color": [1, 1, 0],
+			"pos1": [7, 0.1, -8.5],
+			"radius": 0.5,
+			"specular": 5
+		},
+		{
+			"type": "sphere",
+			"color": [1, 1, 1],
+			"pos1": [-5, 0.1, -6.5],
+			"radius": 1,
+			"specular": 5,
+			"ior": 0.6,
+			"refract": 0.9
+		},
+		{
+			"type": "sphere",
+			"color": [1, 1, 1],
+			"pos1": [-2, 0.1, -6.5],
+			"radius": 1,
+			"specular": 5,
+			"ior": 0.8,
+			"refract": 0.9
+		},
+		{
+			"type": "sphere",
+			"color": [1, 1, 1],
+			"pos1": [1, 0.1, -6.5],
+			"radius": 1,
+			"specular": 5,
+			"ior": 1,
+			"refract": 0.9
+		},
+		{
+			"type": "sphere",
+			"color": [1, 1, 1],
 			"pos1": [4, 0.1, -6.5],
 			"radius": 1,
 			"specular": 5,
-			"ior": 1.5,
-			"refract": 0.8,
-            "pattern":  "gradient",
-			"pattern_scale": 2
+			"ior": 1.2,
+			"refract": 0.9
 		},{
 			"type": "sphere",
-			"color": [1, 0, 0],
+			"color": [1, 1, 1],
 			"pos1": [7, 0.1, -6.5],
 			"radius": 1,
 			"specular": 5,
-			"ior": 1.5,
-			"refract": 1,
-            "pattern":  "custom-4",
-			"pattern_scale": 2
+			"ior": 1.4,
+			"refract": 0.9
 		},
 		{
 			"type": "plane",
 			"pos1": [0, 0, -10],
 			"direction": [0, 0, 1],
 			"color": [0.5, 0.5, 0.5],
-			"specular": 15
+			"specular": 15,
+			"reflect": 0
 		},
 		{
 			"type": "plane",
 			"pos1": [0, -1, 0],
 			"direction": [0, 1, 0],
 			"color": [0.5, 0.5, 0.5],
-			"specular": 15
+			"specular": 15,
+			"reflect": 0,
+			"refract": 0
 		}
 	],
 	"lights": [{
@@ -84,6 +110,6 @@
 		"type": "common",
 		"rotation": [0, 0, 0],
 		"position": [1, 0, 4],
-		"field_of_view": 50,
+		"field_of_view": 50
 	}]
 }

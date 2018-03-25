@@ -1,31 +1,45 @@
 {
 	"objects": [{
 			"type": "conus",
-			"pos1": [0, 0, -5.5],
-			"direction": [0.4, 1, 0.2],
+			"pos1": [0, 2, -7.5],
+			"direction": [-1, 1, 0],
 			"color": [0, 0.7, 0.7],
 			"specular": 2,
-			"angle": 30,
-			"max": 2
+			"angle": 65
 		},
-		{
+        {
+			"type": "cylinder",
+			"direction": [1, 0.5, 0],
+			"color": [0.1, 0.7, 0.1],
+			"pos1": [-1, 2, -7.5],
+			"radius": 0.5,
+			"specular": 15
+		},
+        {
+			"type": "sphere",
+			"color": [0.8 ,0.1, 0.1],
+			"pos1": [0, 2, -5],
+			"radius": 0.6,
+			"specular": 100
+		},
+        {
 			"type": "plane",
 			"pos1": [0, 0, -15],
 			"direction": [0, 0, 1],
 			"color": [0.7, 0.7, 0.7],
-			"specular": 15,
+			"specular": 15
 		},
         {
 			"type": "plane",
-			"pos1": [0, -2, 0],
+			"pos1": [0, 1, 0],
 			"direction": [0, 1, 0],
 			"color": [0.2, 0.2, 0.7],
-			"specular": 15,
+			"specular": 15
 		}
 	],
 	"lights": [{
 			"type": "lamp",
-			"position": [0, 10, 1],
+			"position": [5, 5, 5],
 			"color": [1, 1, 1],
 			"intensity" : 1
 		},
@@ -37,7 +51,7 @@
 	"cameras": [{
 		"type": "common",
 		"rotation": [0, 0, 0],
-		"position": [0, 0, 3],
+		"position": [0, 3, 3],
 		"field_of_view": 50
 	}]
 }

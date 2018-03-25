@@ -110,6 +110,6 @@
 		"type": "common",
 		"rotation": [0, 0, 0],
 		"position": [1, 0, 4],
-		"field_of_view": 50,
+		"field_of_view": 50
 	}]
 }
