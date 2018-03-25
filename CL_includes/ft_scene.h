@@ -6,7 +6,7 @@
 /*   By: pprivalo <pprivalo@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 22:15:03 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/24 22:22:11 by pprivalo         ###   ########.fr       */
+/*   Updated: 2018/03/25 13:46:50 by pprivalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define O_SQUARE		8
 # define O_CUBE			9
 # define O_CAPSULA		10
+# define O_BARBELL		11
 # define L_PAR			1
 # define L_LAMP			2
 # define L_AMBIENT		3

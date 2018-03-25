@@ -31,8 +31,18 @@ void	get_surface_data(t_ray *ray, t_object object, float t)
 	else if (object.type == O_SQUARE)
 		get_square_data(ray, object, t);
 	else if (object.type == O_CUBE)
-		get_cube_data(ray, object, t);
+	{
+		if(object.mini_type == O_SQUARE)
+			get_square_data(ray, object, t);
+	}
 	else if (object.type == O_CAPSULA)
+	{
+		if(object.mini_type == O_SPHERE)
+			get_sphere_data(ray, object, t);
+		else if(object.mini_type == O_CYL)
+			get_cyl_data(ray, object, t);
+	}
+	else if (object.type == O_BARBELL)
 	{
 		if(object.mini_type == O_SPHERE)
 			get_sphere_data(ray, object, t);
@@ -43,13 +53,6 @@ void	get_surface_data(t_ray *ray, t_object object, float t)
 
 int		check_object_type(t_object *object, t_ray *ray, float *t)
 {
-	short		flag;
-	float		t_buf;
-	float		t_min;
-	t_vector	par_buf;
-
-	t_buf = INF;
-	t_min = INF;
 	if (object->type == O_SPHERE)
 		return (sphere_cross(*object, ray, t));
 	else if (object->type == O_CYL)
@@ -69,35 +72,9 @@ int		check_object_type(t_object *object, t_ray *ray, float *t)
 	else if (object->type == O_CUBE)
 		return (cube_cross(object, ray, t));
 	else if (object->type == O_CAPSULA)
-	{
-		flag = 0;
-		if (sphere_cross(*object, ray, &t_buf) && t_buf < t_min)
-		{
-			t_min = t_buf;
-			object->mini_type = O_SPHERE;
-			flag = 1;
-			*t = t_buf;
-		}
-		if (cyl_cross(*object, ray, &t_buf) && t_buf < t_min)
-		{
-			t_min = t_buf;
-			object->mini_type = O_CYL;
-			flag = 1;
-			*t = t_buf;
-		}
-		par_buf = object->pos1;
-		object->pos1 = object->pos1 + v_mult_d(v_normalize(object->dir), object->max);
-		if (sphere_cross(*object, ray, &t_buf) && t_buf < t_min)
-		{
-			t_min = t_buf;
-			object->mini_type = O_SPHERE;
-			flag = 1;
-			*t = t_buf;
-		}
-		else
-			object->pos1 = par_buf;
-		return(flag);
-	}
+		return (capsula_cross(object, ray, t));
+	else if (object->type == O_BARBELL)
+		return (barbell_cross(object, ray, t));
 	return (0);
 }
 

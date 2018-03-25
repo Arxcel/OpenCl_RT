@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sh_square.cl                                       :+:      :+:    :+:   */
+/*   sh_barbell.cl                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pprivalo <pprivalo@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,12 +12,13 @@
 
 #include "ft_rt.h"
 
-short				capsula_cross(t_object *object, t_ray *ray, float *t)
+short				barbell_cross(t_object *object, t_ray *ray, float *t)
 {
 	short		flag;
 	float		t_buf;
 	float		t_min;
-	t_vector	par_buf;
+	t_vector	vec_buf;
+	float		par_buf;
 
 	t_buf = INF;
 	t_min = INF;
@@ -29,6 +30,8 @@ short				capsula_cross(t_object *object, t_ray *ray, float *t)
 		flag = 1;
 		*t = t_buf;
 	}
+	par_buf = object->radius;
+	object->radius /= 3;
 	if (cyl_cross(*object, ray, &t_buf) && t_buf < t_min)
 	{
 		t_min = t_buf;
@@ -36,7 +39,8 @@ short				capsula_cross(t_object *object, t_ray *ray, float *t)
 		flag = 1;
 		*t = t_buf;
 	}
-	par_buf = object->pos1;
+		object->radius = par_buf;
+	vec_buf = object->pos1;
 	object->pos1 = object->pos1 + v_mult_d(v_normalize(object->dir), object->max);
 	if (sphere_cross(*object, ray, &t_buf) && t_buf < t_min)
 	{
@@ -46,6 +50,6 @@ short				capsula_cross(t_object *object, t_ray *ray, float *t)
 		*t = t_buf;
 	}
 	else
-		object->pos1 = par_buf;
+		object->pos1 = vec_buf;
 	return(flag);
 }

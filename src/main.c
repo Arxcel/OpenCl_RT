@@ -6,7 +6,7 @@
 /*   By: pprivalo <pprivalo@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:33:57 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/24 20:14:27 by pprivalo         ###   ########.fr       */
+/*   Updated: 2018/03/25 12:47:09 by pprivalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static char			*get_text(void)
 		"#include \"sh_plane.cl\"\n#include \"sh_triangle.cl\"\n" \
 		"#include \"patterns_textures.cl\"\n#include \"sh_cube.cl\"\n" \
 		"#include \"sh_paraboloid.cl\"\n#include \"sh_square.cl\"\n" \
-		"#include \"sh_capsula.cl\"\n" \
+		"#include \"sh_capsula.cl\"\n#include \"sh_barbell.cl\"\n" \
 		"kernel void kernel_entry (global t_object *object\n" \
 		", global t_light *light , global t_camera *camera\n" \
 		", global unsigned int *tex1, global unsigned int *tex2\n" \

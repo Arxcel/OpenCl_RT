@@ -12,28 +12,40 @@
 
 #include "ft_rt.h"
 
-short				cube_cross(t_object *p, t_ray *r, float *t)
+short				cube_cross(t_object *o, t_ray *ray, float *t)
 {
-    float   t_min;
-    float   t_buf;
-    short   flag;
-    float   h;
+    short		flag;
+	float		t_buf;
+	float		t_min;
+	t_vector	par_buf[3];
+    float       d;
 
-    t_min = INFINITY;
-    h = v_length(p->pos1 - p->pos2) / sqrt(2.0);
-    if ((flag = square_cross(p, r, &t_buf)))
-        t_min = t_buf < t_min ? t_buf : t_min;
-    p->pos1 = p->pos1 + v_mult_d(p->dir, h);
-    p->pos2 = p->pos2 + v_mult_d(p->dir, h);
-    if ((flag = square_cross(p, r, &t_buf)))
-        t_min = t_buf < t_min ? t_buf : t_min;
-    *t = t_min;
-    return(flag);
-}
-
-short				get_cube_data(t_ray *ray, t_object square, float t)
-{
-	ray->p_hit = ray->orig + v_mult_d(ray->dir, t);
-	ray->n_hit = square.dir;
-	return (1);
+	t_buf = INF;
+	t_min = INF;
+	flag = 0;
+    d = v_length(o->pos1 - o->pos2);
+	if (square_cross(o, ray, &t_buf) && t_buf < t_min)
+	{
+		t_min = t_buf;
+		o->mini_type = O_SQUARE;
+		flag = 1;
+		*t = t_buf;
+	}
+	par_buf[0] = o->pos1;
+    par_buf[1] = o->pos2;
+	o->pos1 = o->pos1 + v_mult_d(v_normalize(o->dir), d / sqrt(2.0));
+    o->pos2 = o->pos2 + v_mult_d(v_normalize(o->dir), d / sqrt(2.0));
+	if (square_cross(o, ray, &t_buf) && t_buf < t_min)
+	{
+		t_min = t_buf;
+		o->mini_type = O_SQUARE;
+		flag = 1;
+		*t = t_buf;
+	}
+	else
+    {
+		o->pos1 = par_buf[0];
+        o->pos2 = par_buf[0];
+    }
+	return(flag);
 }
