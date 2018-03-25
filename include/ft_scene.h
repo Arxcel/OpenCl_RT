@@ -6,7 +6,7 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 22:15:03 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/24 20:40:39 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/25 14:13:21 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,39 +26,39 @@
 # define L_AMBIENT		3
 # define L_AREA			4
 # define T_STD			0
-# define T_CHECK		2
-# define T_GRAD1		3
-# define T_GRAD2		4
-# define T_CIRC			5
-# define T_BRICK		6
-# define T_CUSTOM1		7
-# define T_CUSTOM2		8
-# define T_CUSTOM3		9
-# define T_CUSTOM4		10
-# define N_TEX			4
+# define T_CHECK		1
+# define T_GRAD1		2
+# define T_GRAD2		3
+# define T_CIRC			4
+# define T_BRICK		5
+# define T_CUSTOM1		6
+# define T_CUSTOM2		7
+# define T_CUSTOM3		8
+# define T_CUSTOM4		9
+# define N_TEX			5
 
 typedef float	t_vector __attribute__((vector_size(sizeof(float)*3)));
 
 typedef struct		s_object
 {
-	t_vector		color;		//[{0:1}, {0:1}, {0:1}] 
-	t_vector		dir;		//[{float_min:float_max}, {float_min:float_max}, {float_min:float_max}] 
-	t_vector		pos1;		//[{float_min:float_max}, {float_min:float_max}, {float_min:float_max}] 
-	t_vector		pos2;		//[{float_min:float_max}, {float_min:float_max}, {float_min:float_max}] 
-	t_vector		pos3;		//[{float_min:float_max}, {float_min:float_max}, {float_min:float_max}] 
-	float			radius;		//{float_min:float_max}
-	float			angle;		// {float_min:float_max}
-	float			reflect;	// {0:1}
-	float			refract;	// {0:1}
-	float			ior;		// {0:float_max}
-	float			min;		// {float_min:float_max}
-	float			max;		// {float_min:float_max}
-	unsigned short	tex_scale;	// {short_min:short_max}
-	short			type;		// {short_min:short_max}
-	unsigned short	specular;	// {short_min:short_max}
-	unsigned short	tex_id;		// {short_min:short_max}
+	t_vector		color;
+	t_vector		dir;
+	t_vector		pos1;
+	t_vector		pos2;
+	t_vector		pos3;
+	float			radius;
+	float			angle;
+	float			reflect;
+	float			refract;
+	float			ior;
+	float			min;
+	float			max;
+	unsigned short	tex_scale;
+	short			type;
+	unsigned short	specular;
+	unsigned short	tex_id;
 	short			tex_angle;
-	unsigned short	is_neg;		// {short_min:short_max}
+	unsigned short	is_neg;
 }					t_object;
 
 typedef struct		s_light

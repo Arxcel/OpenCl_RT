@@ -6,7 +6,7 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/23 14:46:38 by afarapon          #+#    #+#             */
-/*   Updated: 2018/03/24 22:28:15 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/25 16:58:17 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ static int			set_t_type(json_value *value)
 		return (T_STD);
 	else if (!ft_strcmp(value->u.string.ptr, "chessboard"))
 		return (T_CHECK);
-	else if (!ft_strcmp(value->u.string.ptr, "gradient-1"))
+	else if (!ft_strcmp(value->u.string.ptr, "gradient"))
 		return (T_GRAD1);
-	else if (!ft_strcmp(value->u.string.ptr, "gradient-2"))
+	else if (!ft_strcmp(value->u.string.ptr, "perlin"))
 		return (T_GRAD2);
 	else if (!ft_strcmp(value->u.string.ptr, "circle"))
 		return (T_CIRC);
@@ -42,7 +42,7 @@ static int			set_t_type(json_value *value)
 static t_object		set_defaults(json_value *value)
 {
 	if (value->type != json_string)
-		put_error("Not valid texture type.");
+		put_error("Not valid json type.");
 	if (!ft_strcmp(value->u.string.ptr, "plane"))
 		return (default_plane());
 	else if (!ft_strcmp(value->u.string.ptr, "sphere"))
@@ -61,7 +61,7 @@ static t_object		set_defaults(json_value *value)
 		return (default_square());
 	else if (!ft_strcmp(value->u.string.ptr, "elipsoid"))
 		return (default_elipsoid());
-	put_error("Not valid texture type.");
+	put_error("Not valid object type.");
 	return (default_error());
 }
 
@@ -76,7 +76,7 @@ static void			get_object_info_single(t_object *o,
 	o->refract = !ft_strcmp(n, "refract") ? get_refract(val) : o->refract;
 	o->radius = !ft_strcmp(n, "radius") ? get_radius(val) : o->radius;
 	o->specular = !ft_strcmp(n, "specular") ? get_specular(val) : o->specular;
-	o->angle = !ft_strcmp(n, "angle") ? get_number(val) : o->angle;
+	o->angle = !ft_strcmp(n, "angle") || !ft_strcmp(n, "size") ? get_number(val) : o->angle;
 	o->reflect = !ft_strcmp(n, "reflect") ? get_reflect(val) : o->reflect;
 	o->pos1 = !ft_strcmp(n, "pos1") ? get_vector(val) : o->pos1;
 	o->pos2 = !ft_strcmp(n, "pos2") ? get_vector(val) : o->pos2;
@@ -118,8 +118,6 @@ void				process_scene_o(json_value *value, t_scene *s)
 	{
 		get_object_info(value->u.array.values[x], &s->object[x]);
 		if (s->object[x].type == O_TRIANGLE)
-			create_triangle_norm(&s->object[x]);
-		else if (s->object[x].type == O_SQUARE)
 			create_triangle_norm(&s->object[x]);
 		else if (s->object[x].type == O_CON)
 			create_conus(&s->object[x]);

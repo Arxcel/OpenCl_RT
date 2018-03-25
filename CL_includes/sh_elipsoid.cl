@@ -44,30 +44,16 @@ short				cross_elipsoid(t_object elips, t_ray *r, float *t)
 
 short				get_elipsoid_data(t_ray *ray, t_object elips, float t)
 {
-	float		a;
-	float		b;
 	t_vector	cmid;
 	t_vector	R;
-	float		A1;
-	float		A2;
-	t_vector	X;
-	float		r2;
 
-	r2 = elips.radius * elips.radius;
-	X = ray->orig - elips.pos1;
-	A1 = 2 * elips.angle * v_dot(ray->dir, elips.dir);
-	A2 = r2 + 2 * elips.angle * v_dot(X, elips.dir) - elips.angle;
-	a = 4 * elips.radius * elips.radius * v_dot(ray->dir, ray->dir) - A1 * A1;
-	b = 2.0 * (4 * elips.radius * elips.radius * v_dot(ray->dir, X) - A1 * A2);
 
-	cmid = elips.pos1 + v_mult_d(ray->dir, elips.angle / 2);
+	cmid = elips.pos1 + v_mult_d(elips.dir, elips.angle / 2);
 	ray->p_hit = ray->orig + v_mult_d(ray->dir, t);
 	R = ray->p_hit - cmid;
-	ray->n_hit = -v_normalize(R - v_mult_d(ray->dir, (1 - (b * b) / (a * a)) * (v_dot(R, ray->dir))));
-	// ray->p_hit = ray->orig + v_mult_d(ray->dir, t);
-	// ray->n_hit = v_normalize(ray->p_hit - sphere.pos1);
-	// ray->tex[0] = (1 + atan2(ray->n_hit[2], ray->n_hit[0]) / M_PI) * 0.5;
-	// ray->tex[1] = acos(ray->n_hit[1]) / M_PI;
+	ray->n_hit = v_normalize(R);
+	ray->tex[0] = (1 + atan2(ray->n_hit[2], ray->n_hit[0]) / M_PI) * 0.5;
+	ray->tex[1] = acos(ray->n_hit[1]) / M_PI;
 	return (1);
 }
 

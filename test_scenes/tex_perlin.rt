@@ -2,191 +2,178 @@
 	"objects": [{
 			"type": "sphere",
 			"color": [0.33, 0.02, 0.02],
-			"pos1": [0, -150, -1000],
-			"radius": 50,
+			"pos1": [0, -1.5, -10],
+			"radius": 0.5,
 			"specular": 1300,
 			"reflect": 0.1,
-			"pattern":  "gradient-1",
+			"pattern":  "perlin",
 			"pattern_scale": 1
 		},
 		{
 			"type": "sphere",
 			"color": [0.3, 0.3, 0.3],
-			"pos1": [300, -300, -1700],
-			"radius": 100,
+			"pos1": [3, -3, -17],
+			"radius": 1,
 			"specular": 15,
 			"reflect": 0,
-			"pattern":  "gradient-1",
+			"pattern":  "perlin",
 			"pattern_scale": 1
 		},
 		{
 			"type": "sphere",
 			"color": [0.3, 0.3, 0.3],
-			"pos1": [-300, -300, -1700],
-			"radius": 100,
+			"pos1": [-3, -3, -17],
+			"radius": 1,
 			"specular": 15,
 			"reflect": 0,
-			"pattern":  "gradient-1",
+			"pattern":  "perlin",
 			"pattern_scale": 1
 		},
 		{
 			"type": "sphere",
 			"color": [0.3, 0.3, 0.3],
-			"pos1": [-300, -300, -800],
-			"radius": 100,
+			"pos1": [-3, -3, -8],
+			"radius": 1,
 			"specular": 15,
 			"reflect": 0,
-			"pattern":  "gradient-1",
+			"pattern":  "perlin",
 			"pattern_scale": 1
 		},
 		{
 			"type": "sphere",
 			"color": [0.3, 0.3, 0.3],
-			"pos1": [300, -300, -800],
-			"radius": 100,
+			"pos1": [3, -3, -8],
+			"radius": 1,
 			"specular": 15,
 			"reflect": 0,
-			"pattern":  "gradient-1",
+			"pattern":  "perlin",
 			"pattern_scale": 1
 		},
 		{
 			"type": "cylinder",
 			"direction": [0, 1, 0],
 			"color": [0.3, 0.3, 0.3],
-			"pos1": [-300, 0, -800],
-			"radius": 50,
+			"pos1": [-3, 0, -8],
+			"radius": 0.5,
 			"specular": 15,
 			"reflect": 0,
-			"pattern":  "gradient-1",
+			"pattern":  "perlin",
 			"pattern_scale": 1
 		},
 		{
 			"type": "cylinder",
 			"direction": [0, 1, 0],
 			"color": [0.3, 0.3, 0.3],
-			"pos1": [300, 0, -800],
-			"radius": 50,
+			"pos1": [3, 0, -8],
+			"radius": 0.5,
 			"specular": 15,
 			"reflect": 0,
-			"pattern":  "gradient-1",
+			"pattern":  "perlin",
 			"pattern_scale": 1
 		},
 		{
 			"type": "cylinder",
 			"direction": [0, 1, 0],
 			"color": [0.3, 0.3, 0.3],
-			"pos1": [300, 0, -1700],
-			"radius": 50,
+			"pos1": [3, 0, -17],
+			"radius": 0.5,
 			"specular": 15,
 			"reflect": 0,
-			"pattern":  "gradient-1",
+			"pattern":  "perlin",
 			"pattern_scale": 1
 		},
 		{
 			"type": "cylinder",
 			"direction": [0, 1, 1],
 			"color": [0.3, 0.3, 0.3],
-			"pos1": [-300, 0, -1700],
-			"radius": 50,
+			"pos1": [-3, 0, -17],
+			"radius": 0.5,
 			"specular": 15,
 			"reflect": 0,
-        	"pattern":  "gradient-1",
+        	"pattern":  "perlin",
 			"pattern_scale": 1,
-			"max": 150
+			"max": 1.5
 		},
 		{
 			"type": "paraboloid",
-			"pos1": [300, 0, -550],
+			"pos1": [3, 0, -5.5],
 			"direction": [0, 1, 0],
-			"radius" : 5,
+			"radius" : 0.05,
 			"color": [0.9, 0.9, 0.4],
-			"max": 100,
+			"max": 1,
 			"specular": 500,
 			"reflect": 0.1,
-			"pattern":  "gradient-1",
+			"pattern":  "perlin",
 			"pattern_scale": 0.1
 		},
 		{
 			"type": "plane",
-			"pos1": [0, -300, 0],
+			"pos1": [0, -3, 0],
 			"direction": [0, 1, 0],
 			"color": [0.4, 0.4, 0.4],
 			"specular": 15,
-			"reflect": 0.6,
-            "pattern":  "gradient-1",
-			"pattern_scale": 1
+			"reflect": 0.6
 		},
 		{
 			"type": "plane",
-			"pos1": [0, 0, -1900],
+			"pos1": [0, 0, -19],
 			"direction": [0, 0, 1],
 			"color": [0.4, 0.4, 0.4],
 			"specular": 15,
-			"reflect": 0.6,
-            "pattern":  "gradient-1",
-			"pattern_scale": 1
+			"reflect": 0.6
 		},
 		{
 			"type": "disk",
-			"pos1": [0, 0, -1800],
+			"pos1": [0, 0, -18],
 			"direction": [0, 0, 1],
 			"color": [0.24, 0.12, 0],
-			"radius": 800,
+			"radius": 8,
 			"specular": 2,
-			"reflect": 0.8,
-            "pattern":  "gradient-1",
-			"pattern_scale": 1
+			"reflect": 0.8
 		},
 		{
 			"type": "disk",
-			"pos1": [0, 0, 1800],
+			"pos1": [0, 0, 18],
 			"direction": [0, 0, -1],
 			"color": [0.24, 0.12, 0],
-			"radius": 800,
+			"radius": 8,
 			"specular": 2,
 			"reflect": 0.8
 		},
 		{
 			"type": "conus",
-			"pos1": [-300, 200, -550],
+			"pos1": [-3, 2, -5.5],
 			"direction": [0, -1, 0],
 			"color": [0, 0.7, 0.7],
 			"specular": 2,
 			"angle": 30,
-			"min" : 30,
-			"max" : 200,
-			"pattern":  "gradient-1",
+			"min" : 0.3,
+			"max" : 2,
+			"pattern":  "perlin",
 			"pattern_scale": 1
 		}
 	],
 	"lights": [{
 			"type": "lamp",
-			"position": [1000, 1000, 10],
+			"position": [10, 10, 0.1],
 			"color": [1, 1, 1],
 			"intensity" : 1
 		},
 		{
 			"type": "lamp",
-			"position": [-600, 900, 500],
+			"position": [-6, 9, 5],
 			"color": [1, 1, 1],
 			"intensity" : 1
 		},
-		{
-			"type": "lamp",
-			"position": [100, 0, -1100],
-			"color": [1, 1, 1],
-			"intensity" : 1
-		},
-		{
-			"type": "ambient",
-			"intensity" : 0
-		}
+        {
+            "type": "ambient",
+            "intensity": 0.2
+        }
 	],
 	"cameras": [{
 		"type": "common",
 		"rotation": [0, 0, 0],
 		"position": [0, 0, 0],
-		"field_of_view": 50,
-		"bias": 0.3
+		"field_of_view": 50
 	}]
 }

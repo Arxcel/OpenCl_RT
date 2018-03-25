@@ -145,7 +145,7 @@ static float	fresnel(t_vector dit, t_vector norm, float ior)
 	return (1);
 }
 
-static	t_vector		set_light(t_vector obj_color, t_vector light)
+t_vector		set_light(t_vector obj_color, t_vector light)
 {
 	t_vector res;
 
@@ -159,11 +159,12 @@ static t_vector			ft_cast_ray(
 						__global t_object	*o,
 						__global t_light	*l,
 						t_ray				*r,
-						t_object *hit_object,
+						t_object			*hit_object,
 						global unsigned int *tex1,
 						global unsigned int *tex2,
 						global unsigned int *tex3,
-						global unsigned int *tex4)
+						global unsigned int *tex4,
+						global unsigned int *perlin)
 {
 	int			depth;
 	t_vector	object_color;
@@ -187,7 +188,7 @@ static t_vector			ft_cast_ray(
 		r->n_hit = v_dot(r->n_hit, r->dir) < 0 ? r->n_hit : -r->n_hit;
 		outside = v_dot(r->n_hit, r->dir) < 0 ? 1 : 0;
 		bias = v_mult_d(r->n_hit, BIAS);
-		object_color = set_light(get_object_color(hit_object, r, tex1, tex2, tex3, tex4), calc_light(o, l, *hit_object, r, tex1, tex2, tex3, tex4));
+		object_color = set_light(get_object_color(hit_object, r, tex1, tex2, tex3, tex4, perlin), calc_light(o, l, *hit_object, r, tex1, tex2, tex3, tex4, perlin));
 		if ((!hit_object->reflect && !hit_object->refract))
 		{
 			hit_color += v_mult_d(object_color, mask_refraction * mask_reflection);
@@ -252,11 +253,12 @@ unsigned int				ft_renderer(
 							global unsigned int *tex1,
 							global unsigned int *tex2,
 							global unsigned int *tex3,
-							global unsigned int *tex4)
+							global unsigned int *tex4,
+							global unsigned int *perlin)
 {
 	t_object		hit_object;
 	t_ray			ray;
 
     ray = find_cam_dir(cam, x, y, img_w, img_h);
-	return (set_rgb(ft_cast_ray(o, l, &ray, &hit_object, tex1, tex2, tex3, tex4)));
+	return (set_rgb(ft_cast_ray(o, l, &ray, &hit_object, tex1, tex2, tex3, tex4, perlin)));
 }

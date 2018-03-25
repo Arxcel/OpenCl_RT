@@ -89,6 +89,7 @@ SOURCES =   main.c \
 			retrive_utils.c \
 			validation_1.c \
 			validation_2.c \
+			scene_perlin_noise.c \
 			create_buttons_1.c \
 
 SRCS = $(addprefix $(DIR_S)/,$(SOURCES))
@@ -123,10 +124,11 @@ norme:
 		make norme -C $(LIBCL)
 		make norme -C $(LIBFTSDL)
 		make norme -C $(LIBMMATH)
+		make norme -C $(LIBAE)
 		echo "--------------------Checking header files $(NAME)"
-		norminette ./$(HEADER) | grep "Error"
+		norminette ./$(HEADER)
 		echo "--------------------Checking source files $(NAME)"
-		norminette ./$(DIR_S) | grep "Error"
+		norminette ./$(DIR_S)
 
 clean:
 		rm -f $(OBJS)

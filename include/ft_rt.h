@@ -6,7 +6,7 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:32:12 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/24 22:28:05 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/25 14:13:17 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ float				ft_deg2rad(float deg);
 void				create_triangle_norm(t_object *obj);
 void				create_conus(t_object *obj);
 void				delete_scene(t_scene *s);
-
+float				perlin2d(float x, float y, float freq, int depth);
 /*
 ** OPEN EXPORT SAVE
 */
@@ -115,7 +115,6 @@ t_light				default_parallel(void);
 t_light				default_light(void);
 t_camera			default_camera(void);
 t_object			default_elipsoid(void);
-
 
 /*
 ** READ DATA FROM JSON TO OBJECTS/LIGHTS/CAMERAS

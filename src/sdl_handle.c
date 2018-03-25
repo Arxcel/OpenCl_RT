@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 18:01:54 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/23 16:29:51 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/24 18:13:55 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,17 @@
 static void			pos_camera(int key, t_main *m)
 {
 	if (key == SDLK_w)
-		m->s.cam_trans.pos[2] -= 10;
+		m->s.cam_trans.pos[2] -= 0.3512;
 	else if (key == SDLK_s)
-		m->s.cam_trans.pos[2] += 10;
+		m->s.cam_trans.pos[2] += 0.3512;
 	else if (key == SDLK_a)
-		m->s.cam_trans.pos[0] -= 10;
+		m->s.cam_trans.pos[0] -= 0.3512;
 	else if (key == SDLK_d)
-		m->s.cam_trans.pos[0] += 10;
+		m->s.cam_trans.pos[0] += 0.3512;
 	else if (key == SDLK_q)
-		m->s.cam_trans.pos[1] += 10;
+		m->s.cam_trans.pos[1] += 0.3512;
 	else if (key == SDLK_e)
-		m->s.cam_trans.pos[1] -= 10;
+		m->s.cam_trans.pos[1] -= 0.3512;
 }
 
 static void			rot_camera(int key, t_main *m)
@@ -100,7 +100,7 @@ void				sdl_hook(t_main *m)
 		else if (m->sdl.e.type == SDL_KEYDOWN)
 			key_down(m->sdl.e.key.keysym.sym, m);
 		else if (m->sdl.e.type == SDL_MOUSEBUTTONDOWN)
-				mouse_down(m->sdl.e.button.x, m->sdl.e.button.y, m);
+			mouse_down(m->sdl.e.button.x, m->sdl.e.button.y, m);
 		else if (m->sdl.e.type == SDL_MOUSEBUTTONUP)
 			mouse_up(m->sdl.e.button.x, m->sdl.e.button.y, m);
 	}

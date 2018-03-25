@@ -2,24 +2,27 @@
 	"objects": [{
 			"type": "sphere",
 			"color": [0.8 ,0.1, 0.1],
-			"pos1": [0, 0, -300],
-			"radius": 100,
+			"pos1": [0, 0, -3],
+			"radius": 1,
 			"specular": 100,
 			"reflect": 0
 		}
 	],
 	"lights": [{
 			"type": "lamp",
-			"position": [0, 0, 0],
+			"position": [2, 2, 0],
 			"color": [1, 1, 1],
 			"intensity" : 1
-		}
+		},
+        {
+            "type": "ambient",
+            "intensity": 0.2
+        }
 	],
 	"cameras": [{
 		"type": "common",
 		"rotation": [0, 0, 0],
 		"position": [0, 0, 0],
 		"field_of_view": 50,
-		"bias": 0.3
 	}]
 }
