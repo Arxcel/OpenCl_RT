@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:32:12 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/25 12:49:45 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/25 14:31:19 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,9 @@ t_object			default_paraboloid(void);
 t_object			default_triangle(void);
 t_object			default_disk(void);
 t_object			default_square(void);
+t_object			default_cube(void);
+t_object			default_capsula(void);
+t_object			default_barbell(void);
 t_object			default_error(void);
 t_light				default_ambient(void);
 t_light				default_area(void);
