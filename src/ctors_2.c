@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/23 13:28:14 by afarapon          #+#    #+#             */
-/*   Updated: 2018/03/25 14:44:08 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/25 17:53:18 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_object			default_disk(void)
 	result.reflect = 0;
 	result.pos1 = (t_vector){0, 0, 0};
 	result.dir = (t_vector){0, 1, 0};
-	result.radius = 20;
+	result.radius = 2;
 	return (result);
 }
 
@@ -62,21 +62,20 @@ t_object			default_square(void)
 	return (result);
 }
 
-t_object			default_cube(void)
+t_object			default_elipsoid(void)
 {
 	t_object		result;
 
 	ft_bzero(&result, sizeof(t_object));
-	result.type = O_CUBE;
+	result.type = O_ELIPSOID;
 	result.color = (t_vector){0.7, 0.7, 0.7};
-	result.specular = 0;
+	result.specular = 1;
 	result.refract = 0;
-	result.reflect = 0.1;
-	result.ior = 0.5;
-	result.pos1 = (t_vector){-1, 1, -20};
-	result.pos2 = (t_vector){1, 1, -18};
-	result.dir = (t_vector){0, 2, 0};
-	result.min = 1;
+	result.reflect = 0;
+	result.pos1 = (t_vector){0, 0, 0};
+	result.dir = (t_vector){0, 1, 0};
+	result.radius = 1.1;
+	result.angle = 1;
 	return (result);
 }
 

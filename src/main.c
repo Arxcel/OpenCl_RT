@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:33:57 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/25 17:38:37 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/25 17:53:25 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static char			*get_text(void)
 	"#include \"sh_plane.cl\"\n#include \"sh_triangle.cl\"\n" \
 	"#include \"sh_capsula.cl\"\n#include \"sh_barbell.cl\"\n" \
 	"#include \"patterns_textures.cl\"\n#include \"ft_light.cl\"\n" \
+	"#include \"sh_elipsoid.cl\"\n" \
 	"#include \"sh_paraboloid.cl\"\n#include \"sh_square.cl\"\n" \
 	"kernel void kernel_entry (global t_object *o\n" \
 	", global t_light *l , global t_camera *c\n" \

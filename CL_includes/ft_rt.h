@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 11:57:16 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/25 14:30:30 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/25 17:50:14 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,5 +99,7 @@ short						get_disk_data(t_ray *ray, t_object disk, float t);
 short						get_triangle_data(t_ray *ray, t_object plane, float t);
 short						get_par_data(t_ray *ray, t_object sh, float t);
 short						get_square_data(t_ray *ray, t_object square, float t);
+short						get_elipsoid_data(t_ray *ray, t_object elips, float t);
+short						cross_elipsoid(t_object elips, t_ray *r, float *t);
 
 #endif

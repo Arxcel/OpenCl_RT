@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:32:12 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/25 17:38:08 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/25 17:56:04 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void				create_conus(t_object *obj);
 void				delete_scene(t_scene *s);
 float				perlin2d(float x, float y, float freq, int depth);
 /*
-** open export save
+** OPEN EXPORT SAVE
 */
 
 char				*read_object_type(int i, t_main *m);
@@ -110,7 +110,6 @@ t_object			default_paraboloid(void);
 t_object			default_triangle(void);
 t_object			default_disk(void);
 t_object			default_square(void);
-t_object			default_cube(void);
 t_object			default_capsula(void);
 t_object			default_barbell(void);
 t_object			default_error(void);
@@ -120,6 +119,7 @@ t_light				default_lamp(void);
 t_light				default_parallel(void);
 t_light				default_light(void);
 t_camera			default_camera(void);
+t_object			default_elipsoid(void);
 
 /*
 ** READ DATA FROM JSON TO OBJECTS/LIGHTS/CAMERAS
@@ -151,5 +151,6 @@ float				get_radius(json_value *value);
 */
 
 void				create_shapes(int x, int y, t_main *m);
+void				validate_elipsoid(t_object *object);
 
 #endif

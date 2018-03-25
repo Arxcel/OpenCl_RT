@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_flags.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
+/*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 11:01:13 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/24 20:38:27 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/25 14:28:16 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char			*set_flags(const char *path)
 	flags = ft_strjoin("-I ", path);
 	flags = add_value(pair(" -D MAX_ITER=", MAX_ITER), flags);
 	to_free = flags;
-	flags = ft_strjoin(flags, " -D BIAS=0.3");
+	flags = ft_strjoin(flags, " -D BIAS=0.0001");
 	free(to_free);
 	return (flags);
 }
