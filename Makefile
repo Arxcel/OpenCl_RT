@@ -1,6 +1,6 @@
 CC = clang
 
-NAME = rt
+NAME = RT
 
 KEYS = -Wall -Wextra -Werror
 
