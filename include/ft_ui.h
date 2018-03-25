@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 16:37:12 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/25 21:44:36 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/26 02:34:35 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ typedef struct		s_ui_scrl
 	int				visible_steps;
 	int				possible_steps;
 	int				first_step;
+	int				status;
 }					t_ui_scrl;
 
 typedef struct		s_ui_lst

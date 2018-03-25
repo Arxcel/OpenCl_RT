@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 18:01:54 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/24 18:13:55 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/26 02:50:26 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,47 @@ void				sdl_loop(t_main *m)
 	}
 }
 
+static void		scroll_move(int x, int y, t_main *m)
+{
+	static int yy;
+
+	if (m->ui.scroll.status)
+	{
+		if (yy < y)
+		{
+			m->ui.scroll.first_step += 1;
+			yy = y;
+		}
+		else
+		{
+			m->ui.scroll.first_step -= 1;
+			yy = y;
+		}
+		if (m->ui.scroll.first_step > m->ui.scroll.steps -
+									m->ui.scroll.possible_steps)
+			m->ui.scroll.first_step = m->ui.scroll.steps -
+									m->ui.scroll.possible_steps;
+		if (m->ui.scroll.first_step < 0)
+			m->ui.scroll.first_step = 0;
+		render_scene_and_ui(m);
+	}
+}
+
+static void		scroll_move_whell(int x, int y, t_main *m)
+{
+	if (y > 0)
+		m->ui.scroll.first_step -= 1;
+	else
+		m->ui.scroll.first_step += 1;
+	if (m->ui.scroll.first_step > m->ui.scroll.steps -
+								m->ui.scroll.possible_steps)
+		m->ui.scroll.first_step = m->ui.scroll.steps -
+								m->ui.scroll.possible_steps;
+	if (m->ui.scroll.first_step < 0)
+		m->ui.scroll.first_step = 0;
+	render_scene_and_ui(m);
+}
+
 void				sdl_hook(t_main *m)
 {
 	while (SDL_PollEvent(&m->sdl.e) != 0)
@@ -103,5 +144,9 @@ void				sdl_hook(t_main *m)
 			mouse_down(m->sdl.e.button.x, m->sdl.e.button.y, m);
 		else if (m->sdl.e.type == SDL_MOUSEBUTTONUP)
 			mouse_up(m->sdl.e.button.x, m->sdl.e.button.y, m);
+		else if (m->sdl.e.type == SDL_MOUSEMOTION)
+			scroll_move(m->sdl.e.motion.x, m->sdl.e.motion.y, m);
+		else if (m->sdl.e.type == SDL_MOUSEWHEEL)
+			scroll_move_whell(m->sdl.e.wheel.x, m->sdl.e.wheel.y, m);
 	}
 }

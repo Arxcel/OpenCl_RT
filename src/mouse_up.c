@@ -6,7 +6,7 @@
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/25 16:58:27 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/25 19:45:37 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/26 02:27:33 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,4 +103,5 @@ void			mouse_up(int x, int y, t_main *m)
 			m->ui.btn[i].status = 0;
 			render_scene_and_ui(m);
 		}
+	m->ui.scroll.status = 0;
 }
