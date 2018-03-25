@@ -73,6 +73,9 @@ SOURCES =   main.c \
 			ui_render_copy_scroll.c \
 			ui_render_copy_list.c \
 			ui_render_copy_settings.c \
+			ui_o_settings_rebuild.c \
+			ui_l_settings_rebuild.c \
+			ui_c_settings_rebuild.c \
 			change_settings_value.c \
 			open_export_save.c \
 			save_function.c \

@@ -6,20 +6,16 @@
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/22 14:09:02 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/23 17:15:45 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/25 20:01:25 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_rt.h"
 
-static void	ui_scroll_rect_pre(t_main *m, int *start, int *l, int *l_b)
+static int	l2_making(t_main *m)
 {
-	int		y;
 	int		l2;
-	int		point_h;
 
-	y = R_SCENE_Y + RBTN_H + 5;
-	*l = m->sdl.win_h - R_SCENE_H_TRIM - RBTN_H - 5 - SCRL_SZ;
 	if (m->ui.rbtn.status == 0)
 	{
 		l2 = (m->s.o_num - 1) * L_TEXT_H;
@@ -35,6 +31,18 @@ static void	ui_scroll_rect_pre(t_main *m, int *start, int *l, int *l_b)
 		l2 = (m->s.c_num - 1) * L_TEXT_H;
 		m->ui.scroll.steps = m->s.c_num - 1;
 	}
+	return (l2);
+}
+
+static void	ui_scroll_rect_pre(t_main *m, int *start, int *l, int *l_b)
+{
+	int		y;
+	int		l2;
+	int		point_h;
+
+	y = R_SCENE_Y + RBTN_H + 5;
+	*l = m->sdl.win_h - R_SCENE_H_TRIM - RBTN_H - 5 - SCRL_SZ;
+	l2 = l2_making(m);
 	*l_b = *l;
 	point_h = *l / m->ui.scroll.steps;
 	*start = y + m->ui.scroll.first_step * point_h;

@@ -6,7 +6,7 @@
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 17:50:08 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/25 16:55:26 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/25 21:42:36 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,12 @@ static void	ui_buttons_init_1(t_ui *ui, t_sdl *sdl)
 {
 	TEXTURE_ON(OPEN, "textures/btns/open_on.png");
 	TEXTURE_OFF(OPEN, "textures/btns/open_off.png");
-	TEXTURE_ON(SAVE, "textures/btns/save_on.png");
-	TEXTURE_OFF(SAVE, "textures/btns/save_off.png");
 	TEXTURE_ON(SAVE_AS, "textures/btns/save_as_on.png");
 	TEXTURE_OFF(SAVE_AS, "textures/btns/save_as_off.png");
 	TEXTURE_ON(EXPORT, "textures/btns/export_on.png");
 	TEXTURE_OFF(EXPORT, "textures/btns/export_off.png");
-	TEXTURE_ON(BTN_CUBE, "textures/btns/cube_on.png");
-	TEXTURE_OFF(BTN_CUBE, "textures/btns/cube_off.png");
+	TEXTURE_ON(BTN_SQUARE, "textures/btns/square_on.png");
+	TEXTURE_OFF(BTN_SQUARE, "textures/btns/square_off.png");
 	TEXTURE_ON(BTN_PARABOLOID, "textures/btns/paraboloid_on.png");
 	TEXTURE_OFF(BTN_PARABOLOID, "textures/btns/paraboloid_off.png");
 	TEXTURE_ON(BTN_PLANE, "textures/btns/plane_on.png");
@@ -56,8 +54,10 @@ static void	ui_buttons_init_2(t_ui *ui, t_sdl *sdl)
 	TEXTURE_OFF(BTN_LIGHT3, "textures/btns/new_light3_off.png");
 	TEXTURE_ON(BTN_LIGHT4, "textures/btns/new_light4_on.png");
 	TEXTURE_OFF(BTN_LIGHT4, "textures/btns/new_light4_off.png");
-	TEXTURE_ON(BTN_SQUARE, "textures/btns/square_on.png");
-	TEXTURE_OFF(BTN_SQUARE, "textures/btns/square_off.png");
+	TEXTURE_ON(BTN_CAPS, "textures/btns/capsula_on.png");
+	TEXTURE_OFF(BTN_CAPS, "textures/btns/capsula_off.png");
+	TEXTURE_ON(BTN_BARB, "textures/btns/barbell_on.png");
+	TEXTURE_OFF(BTN_BARB, "textures/btns/barbell_off.png");
 }
 
 static void	ui_rbutton_init(t_ui *ui, t_sdl *sdl)

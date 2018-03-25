@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 14:10:10 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/25 17:48:53 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/25 18:21:02 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,20 +45,6 @@ void	export_file(t_main *m)
 	ft_memcpy(surface->pixels, m->sdl.img.pixels, surface->h * surface->pitch);
 	IMG_SavePNG(surface, export);
 	SDL_FreeSurface(surface);
-}
-
-void	save_file(t_main *m)
-{
-	(void)m;
-	tinyfd_messageBox(
-			"Error",
-			"Not yet! We need JSON SAVE function!",
-			"ok",
-			"error",
-			1);
-	/*
-	** save JSON code here
-	*/
 }
 
 void	save_as_file(t_main *m)

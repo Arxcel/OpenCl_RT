@@ -6,7 +6,7 @@
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/25 16:58:27 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/25 17:04:58 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/25 19:45:37 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,6 @@ static void		open_save_etc(int x, int y, t_main *m)
 	if (xy_in_rect(x, y, m->ui.btn[OPEN].rect)
 								&& m->ui.btn[OPEN].status)
 		open_file(m);
-	else if (xy_in_rect(x, y, m->ui.btn[SAVE].rect)
-								&& m->ui.btn[SAVE].status)
-		save_file(m);
 	else if (xy_in_rect(x, y, m->ui.btn[SAVE_AS].rect)
 								&& m->ui.btn[SAVE_AS].status)
 		save_as_file(m);
@@ -33,17 +30,18 @@ static void		cam_switch(int x, int y, t_main *m)
 	if (xy_in_rect(x, y, m->ui.btn[NEXT_CAM].rect)
 								&& m->ui.btn[NEXT_CAM].status)
 	{
-		m->s.cam = (m->s.cam + 1) % (m->s.c_num - 1);
+		m->s.cam++;
+		if (m->s.cam >= m->s.c_num - 2)
+			m->s.cam = m->s.c_num - 2;
 		re_draw(&m->cl, &m->sdl, &m->s);
 		set_filter(&m->ae);
 	}
 	else if (xy_in_rect(x, y, m->ui.btn[PREV_CAM].rect)
 								&& m->ui.btn[PREV_CAM].status)
 	{
-		if (m->s.cam > 0)
-			m->s.cam -= 1;
-		if (m->s.cam == 0)
-			m->s.cam = m->s.c_num - 2;
+		m->s.cam--;
+		if (m->s.cam <= 0)
+			m->s.cam = 0;
 		re_draw(&m->cl, &m->sdl, &m->s);
 		set_filter(&m->ae);
 	}
