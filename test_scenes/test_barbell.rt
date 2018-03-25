@@ -1,0 +1,124 @@
+{
+	"objects": [{
+			"type": "barbell",
+            "color": [0.25, 0.5, 1],
+            "pos1": [-10, -25, -50],
+            "direction": [1, 0, 0],
+            "max": 20,
+            "radius": 2,
+			"specular": 1500,
+		},
+		{
+			"type": "barbell",
+            "color": [0.25, 0.5, 1],
+            "pos1": [-8, -20, -54],
+            "direction": [0.8, 0, 0.2],
+            "max": 20,
+            "radius": 2,
+			"specular": 1500,
+		},
+		{
+			"type": "barbell",
+            "color": [0.25, 0.5, 1],
+            "pos1": [-6, -15, -58],
+            "direction": [0.6, 0, 0.4],
+            "max": 20,
+            "radius": 2,
+			"specular": 1500,
+		},
+		{
+			"type": "barbell",
+            "color": [0.25, 0.5, 1],
+            "pos1": [-4, -10, -62],
+            "direction": [0.4, 0, 0.6],
+            "max": 20,
+            "radius": 2,
+			"specular": 1500,
+		},
+		{
+			"type": "barbell",
+            "color": [0.25, 0.5, 1],
+            "pos1": [-2, -5, -66],
+            "direction": [0.2, 0, 0.8],
+            "max": 20,
+            "radius": 2,
+			"specular": 1500,
+		},
+		{
+			"type": "barbell",
+            "color": [0.25, 0.5, 1],
+            "pos1": [0, 0, -70],
+            "direction": [0, 0, 1],
+            "max": 20,
+            "radius": 2,
+			"specular": 1500,
+		},
+		{
+			"type": "barbell",
+            "color": [0.25, 0.5, 1],
+            "pos1": [2, 5, -66],
+            "direction": [-0.2, 0, 0.8],
+            "max": 20,
+            "radius": 2,
+			"specular": 1500,
+		},
+		{
+			"type": "barbell",
+            "color": [0.25, 0.5, 1],
+            "pos1": [4, 10, -62],
+            "direction": [-0.4, 0, 0.6],
+            "max": 20,
+            "radius": 2,
+			"specular": 1500,
+		},
+		{
+			"type": "barbell",
+            "color": [0.25, 0.5, 1],
+            "pos1": [6, 15, -58],
+            "direction": [-0.6, 0, 0.4],
+            "max": 20,
+            "radius": 2,
+			"specular": 1500,
+		},
+		{
+			"type": "barbell",
+            "color": [0.25, 0.5, 1],
+            "pos1": [8, 20, -54],
+            "direction": [-0.8, 0, 0.2],
+            "max": 20,
+            "radius": 2,
+			"specular": 1500,
+		},
+		{
+			"type": "barbell",
+            "color": [0.25, 0.5, 1],
+            "pos1": [10, 25, -50],
+            "direction": [-1, 0, 0],
+            "max": 20,
+            "radius": 2,
+			"specular": 1500,
+		},
+		{
+			"type": "plane",
+			"pos1": [0, -30, 0]
+		}
+	],
+	"lights": [{
+			"type": "lamp",
+			"position": [10, 10, 10],
+			"color": [1, 1, 1],
+			"intensity" : 1
+		},
+        {
+            "type": "ambient",
+            "intensity": 0.2
+        }
+	],
+	"cameras": [{
+		"type": "common",
+		"rotation": [0, 0, 0],
+		"position": [0, 2, 0],
+		"field_of_view": 50,
+		"bias": 0.3
+	}]
+}

@@ -30,26 +30,51 @@ void	get_surface_data(t_ray *ray, t_object object, float t)
 		get_par_data(ray, object, t);
 	else if (object.type == O_SQUARE)
 		get_square_data(ray, object, t);
+	else if (object.type == O_CUBE)
+	{
+		if(object.mini_type == O_SQUARE)
+			get_square_data(ray, object, t);
+	}
+	else if (object.type == O_CAPSULA)
+	{
+		if(object.mini_type == O_SPHERE)
+			get_sphere_data(ray, object, t);
+		else if(object.mini_type == O_CYL)
+			get_cyl_data(ray, object, t);
+	}
+	else if (object.type == O_BARBELL)
+	{
+		if(object.mini_type == O_SPHERE)
+			get_sphere_data(ray, object, t);
+		else if(object.mini_type == O_CYL)
+			get_cyl_data(ray, object, t);
+	}
 }
 
-int		check_object_type(t_object object, t_ray *ray, float *t)
+int		check_object_type(t_object *object, t_ray *ray, float *t)
 {
-	if (object.type == O_SPHERE)
-		return (sphere_cross(object, ray, t));
-	else if (object.type == O_CYL)
-		return (cyl_cross(object, ray, t));
-	else if (object.type == O_CON)
-		return (con_cross(object, ray, t));
-	else if (object.type == O_PLANE)
-		return (plane_cross(&object, ray, t));
-	else if (object.type == O_DISK)
-		return (disk_cross(&object, ray, t));
-	else if (object.type == O_TRIANGLE)
-		return (triangle_cross(&object, ray, t));
-	else if (object.type == O_PARABOLOID)
-		return (par_cross(object, ray, t));
-	else if (object.type == O_SQUARE)
-		return (square_cross(&object, ray, t));
+	if (object->type == O_SPHERE)
+		return (sphere_cross(*object, ray, t));
+	else if (object->type == O_CYL)
+		return (cyl_cross(*object, ray, t));
+	else if (object->type == O_CON)
+		return (con_cross(*object, ray, t));
+	else if (object->type == O_PLANE)
+		return (plane_cross(object, ray, t));
+	else if (object->type == O_DISK)
+		return (disk_cross(object, ray, t)); 
+	else if (object->type == O_TRIANGLE)
+		return (triangle_cross(object, ray, t));
+	else if (object->type == O_PARABOLOID)
+		return (par_cross(*object, ray, t));
+	else if (object->type == O_SQUARE)
+		return (square_cross(object, ray, t));
+	else if (object->type == O_CUBE)
+		return (cube_cross(object, ray, t));
+	else if (object->type == O_CAPSULA)
+		return (capsula_cross(object, ray, t));
+	else if (object->type == O_BARBELL)
+		return (barbell_cross(object, ray, t));
 	return (0);
 }
 
@@ -63,17 +88,19 @@ static int				ft_trace(__global t_object	*o,
 	int		i;
 	int		flag;
 	float	z_buf;
+	t_object	o_buf;
 
 	i = 0;
 	flag = 0;
 	z_buf = INF;
 	while (o[i].type)
 	{
-		if (check_object_type(o[i], ray, &t) && t < z_buf)
+		o_buf = o[i];
+		if (check_object_type(&(o_buf), ray, &t) && t < z_buf)
 		{
 			*t_near = t;
 			z_buf = t;
-			*hit_object = o[i];
+			*hit_object = o_buf;
 			flag = 1;
 		}
 		i++;
