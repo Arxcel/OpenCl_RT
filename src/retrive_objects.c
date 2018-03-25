@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/23 14:46:38 by afarapon          #+#    #+#             */
-/*   Updated: 2018/03/25 14:33:09 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/25 17:55:09 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int			set_t_type(json_value *value)
 static t_object		set_defaults(json_value *value)
 {
 	if (value->type != json_string)
-		put_error("Not valid texture type.");
+		put_error("Not valid json type.");
 	if (!ft_strcmp(value->u.string.ptr, "plane"))
 		return (default_plane());
 	else if (!ft_strcmp(value->u.string.ptr, "sphere"))
@@ -59,13 +59,13 @@ static t_object		set_defaults(json_value *value)
 		return (default_paraboloid());
 	else if (!ft_strcmp(value->u.string.ptr, "square"))
 		return (default_square());
-	else if (!ft_strcmp(value->u.string.ptr, "cube"))
-		return (default_cube());
 	else if (!ft_strcmp(value->u.string.ptr, "capsula"))
 		return (default_capsula());
 	else if (!ft_strcmp(value->u.string.ptr, "barbell"))
 		return (default_barbell());
-	put_error("Not valid texture type.");
+	else if (!ft_strcmp(value->u.string.ptr, "elipsoid"))
+		return (default_elipsoid());
+	put_error("Not valid object type.");
 	return (default_error());
 }
 
@@ -80,7 +80,7 @@ static void			get_object_info_single(t_object *o,
 	o->refract = !ft_strcmp(n, "refract") ? get_refract(val) : o->refract;
 	o->radius = !ft_strcmp(n, "radius") ? get_radius(val) : o->radius;
 	o->specular = !ft_strcmp(n, "specular") ? get_specular(val) : o->specular;
-	o->angle = !ft_strcmp(n, "angle") ? get_number(val) : o->angle;
+	o->angle = !ft_strcmp(n, "angle") || !ft_strcmp(n, "size") ? get_number(val) : o->angle;
 	o->reflect = !ft_strcmp(n, "reflect") ? get_reflect(val) : o->reflect;
 	o->pos1 = !ft_strcmp(n, "pos1") ? get_vector(val) : o->pos1;
 	o->pos2 = !ft_strcmp(n, "pos2") ? get_vector(val) : o->pos2;
@@ -125,5 +125,7 @@ void				process_scene_o(json_value *value, t_scene *s)
 			create_triangle_norm(&s->object[x]);
 		else if (s->object[x].type == O_CON)
 			create_conus(&s->object[x]);
+		else if (s->object[x].type == O_ELIPSOID)
+			validate_elipsoid(&s->object[x]);
 	}
 }

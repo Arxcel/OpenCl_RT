@@ -15,16 +15,16 @@ EXT =		ft_ui.h \
 			ft_scene.h \
 
 CFLAGS = -I$(IDIR) \
-		 -I./libft/include \
-		 -I./libCL/include \
-		 -I./libSDL/SDL2.framework/Headers/ \
-		 -I./libSDL/SDL2_image.framework/Headers/ \
-		 -I./libSDL/SDL2_ttf.framework/Headers/ \
-		 -I./libftSDL/include \
-		 -I./libJson/include \
-		 -I./libmy_math/include \
-		 -I./libTFD \
-		 -I./libAE/includes \
+		-I./libft/include \
+		-I./libCL/include \
+		-I./libSDL/SDL2.framework/Headers/ \
+		-I./libSDL/SDL2_image.framework/Headers/ \
+		-I./libSDL/SDL2_ttf.framework/Headers/ \
+		-I./libftSDL/include \
+		-I./libJson/include \
+		-I./libmy_math/include \
+		-I./libTFD \
+		-I./libAE/includes \
 
 LIBFT = libft
 
@@ -64,7 +64,8 @@ SOURCES =   main.c \
 			utils2.c \
 			validate_objects.c \
 			ui.c \
-			mouse_hooks.c \
+			mouse_down.c \
+			mouse_up.c \
 			ui_render_lines_and_corners.c \
 			ui_render_copy_buttons.c \
 			ui_render_copy_rbutton.c \
@@ -72,11 +73,13 @@ SOURCES =   main.c \
 			ui_render_copy_scroll.c \
 			ui_render_copy_list.c \
 			ui_render_copy_settings.c \
+			change_settings_value.c \
 			open_export_save.c \
 			save_function.c \
 			save_function_sub.c \
 			ui_buttons_init.c \
 			ui_textures_init.c \
+			ui_settings_init.c \
 			sdl_sub.c \
 			sdl_rinit.c \
 			scene_textures.c \

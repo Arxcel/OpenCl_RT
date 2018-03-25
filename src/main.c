@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:33:57 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/25 16:25:36 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/25 17:53:25 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static char			*get_text(void)
 	"#include \"sh_plane.cl\"\n#include \"sh_triangle.cl\"\n" \
 	"#include \"sh_capsula.cl\"\n#include \"sh_barbell.cl\"\n" \
 	"#include \"patterns_textures.cl\"\n#include \"ft_light.cl\"\n" \
+	"#include \"sh_elipsoid.cl\"\n" \
 	"#include \"sh_paraboloid.cl\"\n#include \"sh_square.cl\"\n" \
 	"kernel void kernel_entry (global t_object *o\n" \
 	", global t_light *l , global t_camera *c\n" \
@@ -58,7 +59,7 @@ void				re_draw(t_cl *cl, t_sdl *sdl, t_scene *s)
 	move_camera(s);
 	cl_s_a(cl, s->object, s->o_num * sizeof(t_object), 0);
 	cl_s_a(cl, s->light, s->l_num * sizeof(t_light), 1);
-	cl_s_a(cl, s->camera, s->c_num * sizeof(t_camera), 2);
+	cl_s_a(cl, s->camera + s->cam, s->c_num * sizeof(t_camera), 2);
 	cl_s_a(cl, s->tex[0].pixels, s->tex[0].w * s->tex[0].h * sizeof(int), 3);
 	cl_s_a(cl, s->tex[1].pixels, s->tex[1].w * s->tex[1].h * sizeof(int), 4);
 	cl_s_a(cl, s->tex[2].pixels, s->tex[2].w * s->tex[2].h * sizeof(int), 5);
