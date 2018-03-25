@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 22:15:03 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/24 16:52:52 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/25 00:55:30 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ typedef struct		s_scene
 	t_camera		cam_base;
 	t_cam_transform	cam_trans;
 	t_img			tex[N_TEX];
+	unsigned char	cam;
 }					t_scene;
 
 #endif

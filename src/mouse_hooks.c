@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/18 22:50:56 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/24 22:18:19 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/25 01:09:51 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -253,12 +253,34 @@ static void		open_save_etc(int x, int y, t_main *m)
 		export_file(m);
 }
 
+static void		cam_switch(int x, int y, t_main *m)
+{
+	if (xy_in_rect(x, y, m->ui.btn[NEXT_CAM].rect)
+								&& m->ui.btn[NEXT_CAM].status)
+	{
+		m->s.cam = (m->s.cam + 1) % (m->s.c_num - 1);
+		re_draw(&m->cl, &m->sdl, &m->s);
+		set_filter(&m->ae);
+	}
+	else if (xy_in_rect(x, y, m->ui.btn[PREV_CAM].rect)
+								&& m->ui.btn[PREV_CAM].status)
+	{
+		if (m->s.cam > 0)
+			m->s.cam -= 1;
+		if (m->s.cam == 0)
+			m->s.cam = m->s.c_num - 2;
+		re_draw(&m->cl, &m->sdl, &m->s);
+		set_filter(&m->ae);
+	}
+}
+
 void			mouse_up(int x, int y, t_main *m)
 {
 	int		i;
 
 	create_shapes(x, y, m);
 	open_save_etc(x, y, m);
+	cam_switch(x, y, m);
 	i = -1;
 	while (++i != BTNS)
 		if (m->ui.btn[i].status == 1)

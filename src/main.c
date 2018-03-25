@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:33:57 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/24 15:46:10 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/25 00:16:48 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void				re_draw(t_cl *cl, t_sdl *sdl, t_scene *s)
 	move_camera(s);
 	cl_s_a(cl, s->object, s->o_num * sizeof(t_object), 0);
 	cl_s_a(cl, s->light, s->l_num * sizeof(t_light), 1);
-	cl_s_a(cl, s->camera, s->c_num * sizeof(t_camera), 2);
+	cl_s_a(cl, s->camera + s->cam, s->c_num * sizeof(t_camera), 2);
 	cl_s_a(cl, s->tex[0].pixels, s->tex[0].w * s->tex[0].h * sizeof(int), 3);
 	cl_s_a(cl, s->tex[1].pixels, s->tex[1].w * s->tex[1].h * sizeof(int), 4);
 	cl_s_a(cl, s->tex[2].pixels, s->tex[2].w * s->tex[2].h * sizeof(int), 5);
