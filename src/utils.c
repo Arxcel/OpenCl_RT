@@ -6,7 +6,7 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 17:15:31 by afarapon          #+#    #+#             */
-/*   Updated: 2018/03/23 16:55:19 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/25 16:33:34 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int					flush_effects(t_ae *ae)
 	return (1);
 }
 
-static void			add_effect(t_ae *ae, int val)
+void			add_effect(t_ae *ae, int val)
 {
 	int				i;
 

@@ -6,7 +6,7 @@
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/22 16:57:48 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/24 17:16:25 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/25 01:05:46 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ static void	make_and_put_text(t_main *m, int x, int y, int i)
 	if (font == NULL)
 		return ;
 	text = make_text(m, i);
+	if (i == 0 && m->ui.rbtn.status == 2)
+		ft_memcpy(text, "main cam", 8);
 	text = add_text_id(text, i);
 	surface = TTF_RenderText_Solid(font, text, sdl_color(m, i));
 	ft_memdel((void **)&text);

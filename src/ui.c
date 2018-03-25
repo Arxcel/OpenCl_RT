@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 16:41:28 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/24 17:31:55 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/25 15:54:45 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	ui_and_sdl_init(t_main *m)
 	ui_buttons_init(&m->ui, &m->sdl);
 	ui_scroll_init(&m->ui, &m->sdl);
 	ui_settings_init(&m->ui, &m->sdl);
-	SDL_SetWindowMinimumSize(m->sdl.win, 800, 670);
+	SDL_SetWindowMinimumSize(m->sdl.win, 900, 670);
 }
 
 void	window_resized_event(t_main *m)
@@ -69,4 +69,5 @@ void	window_resized_event(t_main *m)
 								m->sdl.win_w - R_SCENE_W_TRIM,
 								m->sdl.win_h - R_SCENE_H_TRIM);
 	m->sdl.changes = 1;
+	m->ui.scroll.first_step = 0;
 }

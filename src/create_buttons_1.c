@@ -6,7 +6,7 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/24 15:40:24 by afarapon          #+#    #+#             */
-/*   Updated: 2018/03/24 17:46:01 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/25 16:14:50 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,9 +117,9 @@ void		create_shapes(int x, int y, t_main *m)
 	else if (xy_in_rect(x, y, m->ui.btn[BTN_TRIANGLE].rect)
 								&& m->ui.btn[BTN_TRIANGLE].status)
 		object_array_realloc(m, default_triangle());
-	// else if (xy_in_rect(x, y, m->ui.btn[BTN_CUBE].rect)
-	// 							&& m->ui.btn[BTN_CUBE].status)
-	// 	create_camera(m);
+	else if (xy_in_rect(x, y, m->ui.btn[BTN_SQUARE].rect)
+								&& m->ui.btn[BTN_SQUARE].status)
+		object_array_realloc(m, default_square());
 	else
 		create_shapes_2(x, y, m);
 }
