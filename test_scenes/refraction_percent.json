@@ -97,9 +97,9 @@
 	],
 	"lights": [{
 			"type": "lamp",
-			"position": [0, 2, 0],
+			"position": [0, 6, 6],
 			"color": [1, 1, 1],
-			"intensity" : 2
+			"intensity" : 1
 		},
         {
             "type": "ambient",
