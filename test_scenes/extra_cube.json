@@ -130,8 +130,8 @@
 	],
 	"cameras": [{
 		"type": "common",
-		"rotation": [0, 0, 0],
-		"position": [0, 0, 6],
+		"rotation": [-25, 15, 0],
+		"position": [1.76, 1.76, 4.95],
 		"field_of_view": 50
 	}]
 }
