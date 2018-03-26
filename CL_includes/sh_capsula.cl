@@ -22,6 +22,7 @@ short				capsula_cross(t_object *object, t_ray *ray, float *t)
 	t_buf = INF;
 	t_min = INF;
 	flag = 0;
+	object->dir = v_normalize(object->dir);
 	if (sphere_cross(*object, ray, &t_buf) && t_buf < t_min)
 	{
 		t_min = t_buf;
