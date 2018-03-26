@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   retrive_cameras.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/23 15:02:37 by afarapon          #+#    #+#             */
-/*   Updated: 2018/03/26 11:46:04 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/26 15:53:27 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ void				process_scene_c(json_value *value, t_scene *s)
 	x = -1;
 	while (++x < s->c_num - 1)
 	{
+		if (value->u.array.values[x]->type != json_object)
+			put_error("Not valid json object.");
 		get_camera_info(value->u.array.values[x], &s->camera[x]);
 		if (s->camera[x].fov <= 0 || s->camera[x].type == -1)
 			put_error("Not valid camera");

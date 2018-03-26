@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   retrive_lights.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/23 14:50:44 by afarapon          #+#    #+#             */
-/*   Updated: 2018/03/26 11:44:30 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/26 15:53:22 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ void			process_scene_l(json_value *value, t_scene *s)
 	x = -1;
 	while (++x < (s->l_num - 1))
 	{
+		if (value->u.array.values[x]->type != json_object)
+			put_error("Not valid json object.");
 		get_light_info(value->u.array.values[x], &s->light[x]);
 		if (s->light[x].type == -1)
 		{

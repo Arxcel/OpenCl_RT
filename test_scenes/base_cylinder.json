@@ -1,12 +1,5 @@
 {
-	"objects": [{
-			"type": "cylinder",
-			"direction": [0, 1, 0],
-			"color": [0.1, 0.7, 0.1],
-			"pos1": [0, 0, -5],
-			"radius": 0.5,
-			"specular": 15
-		}
+	"objects": [
 	],
 	"lights": [{
 			"type": "lamp",
