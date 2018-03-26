@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_rt.h"
+#include "ft_rt.cl"
 
 void	get_surface_data(t_ray *ray, t_object object, float t)
 {

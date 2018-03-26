@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_rt.h                                            :+:      :+:    :+:   */
+/*   ft_rt.cl                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pprivalo <pprivalo@student.unit.ua>        +#+  +:+       +#+        */
+/*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 11:57:16 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/26 12:00:37 by pprivalo         ###   ########.fr       */
+/*   Updated: 2018/03/26 13:06:19 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_RTV1_H
 # define FT_RTV1_H
-# include "ft_vector.h"
-# include "ft_matrix.h"
-# include "ft_scene.h"
+# include "ft_vector_h.cl"
+# include "ft_matrix_h.cl"
+# include "ft_scene_h.cl"
 # ifndef M_PI
 #  define M_PI 3.14159265359f
 # endif
@@ -34,14 +34,17 @@ typedef struct				s_ray
 /*
 **  Util functions
 */
+
 short						solve_quadratic(const float *p, float *x0, float *x1);
 unsigned int				set_rgb(t_vector c);
 t_matrix33					v_rot2(float angle);
 t_vector					get_rgb(unsigned int c);
 t_vector					set_light(t_vector obj_color, t_vector light);
+
 /*
 **  Drawing functions
 */
+
 unsigned int				ft_renderer(
 							global t_object	*o,
 							global t_light	*l,
@@ -66,9 +69,11 @@ t_vector							calc_light(__global t_object	*o,
 									global unsigned int *tex3,
 									global unsigned int *tex4,
 									global unsigned int *perlin);
+
 /*
 **  Check intersections
 */
+
 t_vector					get_object_color(
 							t_object	*o,
 							t_ray *r,
@@ -89,7 +94,6 @@ short						par_cross(t_object sh, t_ray *ray, float *t);
 short						capsula_cross(t_object *p, t_ray *r, float *t);
 short						barbell_cross(t_object *object, t_ray *ray, float *t);
 short						ring_cross(t_object *object, t_ray *ray, float *t);
-
 void						get_surface_data(t_ray *ray, t_object object, float t);
 int							check_object_type(t_object *object, t_ray *ray, float *t);
 short						get_sphere_data(t_ray *temp, t_object sphere, float t);

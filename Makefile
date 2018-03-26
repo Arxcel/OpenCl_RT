@@ -56,6 +56,7 @@ DEPS = $(patsubst %,$(HEADER)/%,$(_DEPS))
 
 SOURCES =   main.c \
 			sdl_handle.c \
+			sdl_handle_new.c \
 			parse_json.c \
 			error.c \
 			set_flags.c \
@@ -90,6 +91,7 @@ SOURCES =   main.c \
 			ctors_1.c \
 			ctors_2.c \
 			ctors_3.c \
+			ctors_4.c \
 			retrive_cameras.c \
 			retrive_lights.c \
 			retrive_objects.c \

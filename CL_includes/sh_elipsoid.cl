@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_rt.h"
+#include "ft_rt.cl"
 
 short				cross_elipsoid(t_object elips, t_ray *r, float *t)
 {

@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:32:12 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/26 13:11:57 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/26 13:15:05 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ void				ui_l_settings_rebuild(t_main *m);
 void				ui_c_settings_rebuild(t_main *m);
 void				scroll_move(int y, t_main *m);
 void				scroll_move_whell(int y, t_main *m);
+void				mouse_scene_rot(int x, int y, t_main *m);
 
 /*
 ** for After effects
@@ -152,6 +153,9 @@ float				get_ior(json_value *value);
 float				get_refract(json_value *value);
 float				get_reflect(json_value *value);
 float				get_radius(json_value *value);
+float				get_intensity(json_value *value);
+float				get_fov(json_value *value);
+t_object			get_obj_for_retrive(json_value *value);
 
 /*
 ** CREATE SHAPES FROM UI

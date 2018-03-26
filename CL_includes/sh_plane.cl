@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_rt.h"
+#include "ft_rt.cl"
 
 short				plane_cross(t_object *p, t_ray *r, float *t)
 {

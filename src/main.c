@@ -3,43 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pprivalo <pprivalo@student.unit.ua>        +#+  +:+       +#+        */
+/*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:33:57 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/26 12:04:47 by pprivalo         ###   ########.fr       */
+/*   Updated: 2018/03/26 13:07:15 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_rt.h"
 
+const char	*g_text = "\n" \
+"#include \"ft_rt.cl\"\n#include \"sh_conus.cl\"\n" \
+"#include \"sh_disk.cl\"\n#include \"sh_cylinder.cl\"\n" \
+"#include \"ft_matrix.cl\"\n#include \"ft_vector.cl\"\n" \
+"#include \"renderer.cl\"\n#include \"rotation.cl\"\n" \
+"#include \"sh_sphere.cl\"\n#include \"utils.cl\"\n" \
+"#include \"sh_ring.cl\"\n" \
+"#include \"sh_plane.cl\"\n#include \"sh_triangle.cl\"\n" \
+"#include \"sh_capsula.cl\"\n#include \"sh_barbell.cl\"\n" \
+"#include \"patterns_textures.cl\"\n#include \"ft_light.cl\"\n" \
+"#include \"sh_elipsoid.cl\"\n#include \"sh_cd_disk.cl\"\n" \
+"#include \"sh_paraboloid.cl\"\n#include \"sh_square.cl\"\n" \
+"kernel void kernel_entry (global t_object *o\n" \
+", global t_light *l , global t_camera *c\n" \
+", global unsigned int *tex1, global unsigned int *tex2\n" \
+", global unsigned int *tex3, global unsigned int *tex4\n" \
+", global unsigned int *perlin\n" \
+", global unsigned int *img_buf){\n" \
+" size_t img_w = get_global_size(0);\n" \
+" size_t img_h = get_global_size(1);\n" \
+"unsigned int col;int x;int y;x = get_global_id(0);\n" \
+"y = get_global_id(1);\n" \
+"col=ft_renderer(o,l,c,x,y,img_w,img_h,tex1,tex2,tex3,tex4,perlin);\n"\
+"*(img_buf + x + y * img_w) = col;}\n";
+
 static char			*get_text(void)
 {
 	char *text;
 
-	text = ft_strdup("\n" \
-	"#include \"ft_rt.h\"\n#include \"sh_conus.cl\"\n" \
-	"#include \"sh_disk.cl\"\n#include \"sh_cylinder.cl\"\n" \
-	"#include \"ft_matrix.cl\"\n#include \"ft_vector.cl\"\n" \
-	"#include \"renderer.cl\"\n#include \"rotation.cl\"\n" \
-	"#include \"sh_sphere.cl\"\n#include \"utils.cl\"\n" \
-	"#include \"sh_plane.cl\"\n#include \"sh_triangle.cl\"\n" \
-	"#include \"sh_capsula.cl\"\n#include \"sh_barbell.cl\"\n" \
-	"#include \"patterns_textures.cl\"\n#include \"ft_light.cl\"\n" \
-	"#include \"sh_elipsoid.cl\"\n#include \"sh_cd_disk.cl\"\n" \
-	"#include \"sh_paraboloid.cl\"\n#include \"sh_square.cl\"\n" \
-	"#include \"sh_ring.cl\"\n" \
-	"kernel void kernel_entry (global t_object *o\n" \
-	", global t_light *l , global t_camera *c\n" \
-	", global unsigned int *tex1, global unsigned int *tex2\n" \
-	", global unsigned int *tex3, global unsigned int *tex4\n" \
-	", global unsigned int *perlin\n" \
-	", global unsigned int *img_buf){\n" \
-	" size_t img_w = get_global_size(0);\n" \
-	" size_t img_h = get_global_size(1);\n" \
-	"unsigned int col;int x;int y;x = get_global_id(0);\n" \
-	"y = get_global_id(1);\n" \
-	"col=ft_renderer(o,l,c,x,y,img_w,img_h,tex1,tex2,tex3,tex4,perlin);\n"\
-	"*(img_buf + x + y * img_w) = col;}\n");
+	text = ft_strdup((char*)g_text);
 	return (text);
 }
 

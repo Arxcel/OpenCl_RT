@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_rt.h"
+#include "ft_rt.cl"
 
 unsigned int		set_rgb(t_vector c)
 {

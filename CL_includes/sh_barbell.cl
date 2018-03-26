@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_rt.h"
+#include "ft_rt.cl"
 
 short				barbell_cross(t_object *object, t_ray *ray, float *t)
 {

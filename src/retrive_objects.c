@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   retrive_objects.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pprivalo <pprivalo@student.unit.ua>        +#+  +:+       +#+        */
+/*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/23 14:46:38 by afarapon          #+#    #+#             */
-/*   Updated: 2018/03/26 12:10:15 by pprivalo         ###   ########.fr       */
+/*   Updated: 2018/03/26 12:46:07 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int			set_t_type(json_value *value)
 {
 	if (value->type != json_string)
-		put_error("Not valid texture type.");
+		put_error("Not valid json type.");
 	if (!ft_strcmp(value->u.string.ptr, ""))
 		return (T_STD);
 	else if (!ft_strcmp(value->u.string.ptr, "chessboard"))
@@ -41,6 +41,8 @@ static int			set_t_type(json_value *value)
 
 static t_object		set_defaults(json_value *value)
 {
+	t_object	result;
+
 	if (value->type != json_string)
 		put_error("Not valid json type.");
 	if (!ft_strcmp(value->u.string.ptr, "plane"))
@@ -51,24 +53,9 @@ static t_object		set_defaults(json_value *value)
 		return (default_cylinder());
 	else if (!ft_strcmp(value->u.string.ptr, "conus"))
 		return (default_conus());
-	else if (!ft_strcmp(value->u.string.ptr, "disk"))
-		return (default_disk());
-	else if (!ft_strcmp(value->u.string.ptr, "triangle"))
-		return (default_triangle());
-	else if (!ft_strcmp(value->u.string.ptr, "paraboloid"))
-		return (default_paraboloid());
-	else if (!ft_strcmp(value->u.string.ptr, "square"))
-		return (default_square());
-	else if (!ft_strcmp(value->u.string.ptr, "capsula"))
-		return (default_capsula());
-	else if (!ft_strcmp(value->u.string.ptr, "barbell"))
-		return (default_barbell());
-	else if (!ft_strcmp(value->u.string.ptr, "elipsoid"))
-		return (default_elipsoid());
-	else if (!ft_strcmp(value->u.string.ptr, "cd-disk"))
-		return (default_cddisk());
-	else if (!ft_strcmp(value->u.string.ptr, "ring"))
-		return (default_ring());
+	result = get_obj_for_retrive(value);
+	if (result.type > 0)
+		return (result);
 	put_error("Not valid object type.");
 	return (default_error());
 }
@@ -83,8 +70,10 @@ static void			get_object_info_single(t_object *o,
 	o->ior = !ft_strcmp(n, "ior") ? get_ior(val) : o->ior;
 	o->refract = !ft_strcmp(n, "refract") ? get_refract(val) : o->refract;
 	o->radius = !ft_strcmp(n, "radius") ? get_radius(val) : o->radius;
-	o->specular = !ft_strcmp(n, "specular") ? get_specular(val) : o->specular;
-	o->angle = !ft_strcmp(n, "angle") || !ft_strcmp(n, "size") ? get_number(val) : o->angle;
+	o->specular = !ft_strcmp(n, "specular") ?
+		get_specular(val) : o->specular;
+	o->angle = !ft_strcmp(n, "angle") || !ft_strcmp(n, "size") ?
+		get_number(val) : o->angle;
 	o->reflect = !ft_strcmp(n, "reflect") ? get_reflect(val) : o->reflect;
 	o->pos1 = !ft_strcmp(n, "pos1") ? get_vector(val) : o->pos1;
 	o->pos2 = !ft_strcmp(n, "pos2") ? get_vector(val) : o->pos2;

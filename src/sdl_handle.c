@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sdl_handle.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
+/*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 18:01:54 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/26 04:07:31 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/26 12:52:55 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,22 +83,6 @@ void				sdl_loop(t_main *m)
 			render_scene_and_ui(m);
 			m->sdl.changes = 0;
 		}
-	}
-}
-
-void				mouse_scene_rot(int x, int y, t_main *m) // TEST
-{
-	if (m->ui.scene_status)
-	{
-		if (y < (int)(R_SCENE_Y + m->sdl.img.h / 2))
-			m->s.cam_trans.rot[0] += 2.5;
-		else
-			m->s.cam_trans.rot[0] -= 2.5;
-		if (x < (int)(R_SCENE_X + m->sdl.img.w / 2))
-			m->s.cam_trans.rot[1] += 2.5;
-		else
-			m->s.cam_trans.rot[1] -= 2.5;
-		m->sdl.changes = 1;
 	}
 }
 
