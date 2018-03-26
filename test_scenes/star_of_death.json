@@ -1,0 +1,46 @@
+{
+	"objects": [
+		{
+			"type": "sphere",
+			"color": [1, 0.5, 0.25],
+			"pos1": [-0.3, 0.5, -2.5],
+			"radius": 0.4,
+			"specular": 100,
+			"reflect": 0,
+			"negative": 1
+		},
+		{
+			"type": "sphere",
+			"color": [0.4 ,0.4, 0.4],
+			"pos1": [0, 0, -3],
+			"radius": 1,
+			"specular": 100,
+			"reflect": 0
+		},
+		{
+			"type": "plane",
+			"color": [0.4 ,0.4, 0.4],
+			"pos1": [0, 0, -10],
+			"direction": [0, 0, 1],
+			"specular": 100,
+			"reflect": 0,
+		}
+	],
+	"lights": [{
+			"type": "lamp",
+			"position": [2, 2, 0],
+			"color": [1, 1, 1],
+			"intensity" : 1
+		},
+        {
+            "type": "ambient",
+            "intensity": 0.4
+        }
+	],
+	"cameras": [{
+		"type": "common",
+		"rotation": [0, 0, 0],
+		"position": [0, 0, 0],
+		"field_of_view": 50
+	}]
+}

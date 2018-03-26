@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_rt.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pprivalo <pprivalo@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:32:12 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/26 11:43:55 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/26 12:08:35 by pprivalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,7 @@ t_light				default_light(void);
 t_camera			default_camera(void);
 t_object			default_elipsoid(void);
 t_object			default_cddisk(void);
+t_object			default_ring(void);
 
 /*
 ** READ DATA FROM JSON TO OBJECTS/LIGHTS/CAMERAS
