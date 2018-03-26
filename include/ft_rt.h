@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:32:12 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/25 17:56:04 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/26 03:01:49 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ char				*read_pattern_type(int i, t_main *m);
 void				save_function(int fd, t_main *m);
 void				export_file(t_main *m);
 void				open_file(t_main *m);
-void				save_file(t_main *m);
 void				save_as_file(t_main *m);
 
 /*
@@ -87,6 +86,12 @@ void				ui_and_sdl_init(t_main *m);
 void				window_resized_event(t_main *m);
 void				render_scene_and_ui(t_main *m);
 void				change_settings_value(int x, int y, t_main *m);
+SDL_Color			sdl_text_color(t_main *m, int i);
+void				ui_o_settings_rebuild(t_main *m);
+void				ui_l_settings_rebuild(t_main *m);
+void				ui_c_settings_rebuild(t_main *m);
+void				scroll_move(int y, t_main *m);
+void				scroll_move_whell(int y, t_main *m);
 
 /*
 ** for After effects

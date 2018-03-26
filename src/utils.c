@@ -6,18 +6,18 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 17:15:31 by afarapon          #+#    #+#             */
-/*   Updated: 2018/03/25 16:33:34 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/25 20:49:21 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_rt.h"
 
-float				ft_deg2rad(float deg)
+float	ft_deg2rad(float deg)
 {
 	return (deg * M_PI / 180);
 }
 
-int					flush_effects(t_ae *ae)
+int		flush_effects(t_ae *ae)
 {
 	int				i;
 
@@ -27,7 +27,7 @@ int					flush_effects(t_ae *ae)
 	return (1);
 }
 
-void			add_effect(t_ae *ae, int val)
+void	add_effect(t_ae *ae, int val)
 {
 	int				i;
 
@@ -38,7 +38,7 @@ void			add_effect(t_ae *ae, int val)
 		ae->effects[i] = val;
 }
 
-void				make_dependencies(t_main *m)
+void	make_dependencies(t_main *m)
 {
 	int				i;
 
@@ -49,7 +49,7 @@ void				make_dependencies(t_main *m)
 	flush_effects(&m->ae);
 }
 
-void				filter_key(int key, t_main *m)
+void	filter_key(int key, t_main *m)
 {
 	if (key == SDLK_KP_1)
 		add_effect(&m->ae, 0);

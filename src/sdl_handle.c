@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 18:01:54 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/24 18:13:55 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/26 04:07:31 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,22 @@ void				sdl_loop(t_main *m)
 	}
 }
 
+void				mouse_scene_rot(int x, int y, t_main *m) // TEST
+{
+	if (m->ui.scene_status)
+	{
+		if (y < (int)(R_SCENE_Y + m->sdl.img.h / 2))
+			m->s.cam_trans.rot[0] += 2.5;
+		else
+			m->s.cam_trans.rot[0] -= 2.5;
+		if (x < (int)(R_SCENE_X + m->sdl.img.w / 2))
+			m->s.cam_trans.rot[1] += 2.5;
+		else
+			m->s.cam_trans.rot[1] -= 2.5;
+		m->sdl.changes = 1;
+	}
+}
+
 void				sdl_hook(t_main *m)
 {
 	while (SDL_PollEvent(&m->sdl.e) != 0)
@@ -103,5 +119,12 @@ void				sdl_hook(t_main *m)
 			mouse_down(m->sdl.e.button.x, m->sdl.e.button.y, m);
 		else if (m->sdl.e.type == SDL_MOUSEBUTTONUP)
 			mouse_up(m->sdl.e.button.x, m->sdl.e.button.y, m);
+		else if (m->sdl.e.type == SDL_MOUSEMOTION)
+		{
+			scroll_move(m->sdl.e.motion.y, m);
+			mouse_scene_rot(m->sdl.e.motion.x, m->sdl.e.motion.y, m);
+		}
+		else if (m->sdl.e.type == SDL_MOUSEWHEEL)
+			scroll_move_whell(m->sdl.e.wheel.y, m);
 	}
 }

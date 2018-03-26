@@ -6,7 +6,7 @@
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/24 19:16:21 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/24 20:07:07 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/25 19:31:08 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static void	ui_c_settings_init(t_ui *ui, t_sdl *sdl)
 	texture_from_text("FOV:", sdl, &ui->c_set[E_CFOV].name);
 }
 
-void	ui_settings_init(t_ui *ui, t_sdl *sdl)
+void		ui_settings_init(t_ui *ui, t_sdl *sdl)
 {
 	ui_o_settings_init_1(ui, sdl);
 	ui_o_settings_init_2(ui, sdl);
