@@ -6,7 +6,7 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:32:12 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/26 12:00:59 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/26 12:54:23 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ void				ui_l_settings_rebuild(t_main *m);
 void				ui_c_settings_rebuild(t_main *m);
 void				scroll_move(int y, t_main *m);
 void				scroll_move_whell(int y, t_main *m);
+void				mouse_scene_rot(int x, int y, t_main *m);
 
 /*
 ** for After effects
@@ -126,6 +127,7 @@ t_light				default_light(void);
 t_camera			default_camera(void);
 t_object			default_elipsoid(void);
 t_object			default_cddisk(void);
+t_object			default_ring(void);
 
 /*
 ** READ DATA FROM JSON TO OBJECTS/LIGHTS/CAMERAS
@@ -153,6 +155,7 @@ float				get_reflect(json_value *value);
 float				get_radius(json_value *value);
 float				get_intensity(json_value *value);
 float				get_fov(json_value *value);
+t_object			get_obj_for_retrive(json_value *value);
 
 /*
 ** CREATE SHAPES FROM UI

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_rt.h"
+#include "ft_rt.cl"
 
 t_matrix	m_mult_m(t_matrix a, t_matrix b)
 {

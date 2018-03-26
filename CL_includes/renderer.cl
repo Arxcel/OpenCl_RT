@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_rt.h"
+#include "ft_rt.cl"
 
 void	get_surface_data(t_ray *ray, t_object object, float t)
 {
@@ -46,6 +46,13 @@ void	get_surface_data(t_ray *ray, t_object object, float t)
 		else if(object.mini_type == O_CYL)
 			get_cyl_data(ray, object, t);
 	}
+	else if (object.type == O_RING)
+	{
+		if(object.mini_type == O_CDDISK)
+			get_cddisk_data(ray, object, t);
+		else if(object.mini_type == O_CYL)
+			get_cyl_data(ray, object, t);
+	}
 	else if (object.type == O_ELIPSOID)
 		get_elipsoid_data(ray, object, t);
 }
@@ -74,6 +81,8 @@ int		check_object_type(t_object *object, t_ray *ray, float *t)
 		return (capsula_cross(object, ray, t));
 	else if (object->type == O_BARBELL)
 		return (barbell_cross(object, ray, t));
+	else if (object->type == O_RING)
+		return (ring_cross(object, ray, t));
 	else if (object->type == O_ELIPSOID)
 		return (cross_elipsoid(*object, ray, t));
 	return (0);

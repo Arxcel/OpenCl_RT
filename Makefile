@@ -56,6 +56,7 @@ DEPS = $(patsubst %,$(HEADER)/%,$(_DEPS))
 
 SOURCES =   main.c \
 			sdl_handle.c \
+			sdl_handle_new.c \
 			parse_json.c \
 			error.c \
 			set_flags.c \

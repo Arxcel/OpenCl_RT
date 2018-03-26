@@ -12,7 +12,7 @@
 
 #ifndef FT_MATRIX_H
 # define FT_MATRIX_H
-# include "ft_rt.h"
+# include "ft_rt.cl"
 
 typedef float	t_mrow __attribute__((vector_size(sizeof(float)*4)));
 typedef float	t_mrow3 __attribute__((vector_size(sizeof(float)*3)));

@@ -6,18 +6,19 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:33:57 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/26 12:26:01 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/26 13:07:15 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_rt.h"
 
 const char	*g_text = "\n" \
-"#include \"ft_rt.h\"\n#include \"sh_conus.cl\"\n" \
+"#include \"ft_rt.cl\"\n#include \"sh_conus.cl\"\n" \
 "#include \"sh_disk.cl\"\n#include \"sh_cylinder.cl\"\n" \
 "#include \"ft_matrix.cl\"\n#include \"ft_vector.cl\"\n" \
 "#include \"renderer.cl\"\n#include \"rotation.cl\"\n" \
 "#include \"sh_sphere.cl\"\n#include \"utils.cl\"\n" \
+"#include \"sh_ring.cl\"\n" \
 "#include \"sh_plane.cl\"\n#include \"sh_triangle.cl\"\n" \
 "#include \"sh_capsula.cl\"\n#include \"sh_barbell.cl\"\n" \
 "#include \"patterns_textures.cl\"\n#include \"ft_light.cl\"\n" \
@@ -40,7 +41,7 @@ static char			*get_text(void)
 {
 	char *text;
 
-	text = ft_strdup(g_text);
+	text = ft_strdup((char*)g_text);
 	return (text);
 }
 

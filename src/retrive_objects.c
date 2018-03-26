@@ -6,7 +6,7 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/23 14:46:38 by afarapon          #+#    #+#             */
-/*   Updated: 2018/03/26 12:12:09 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/26 12:46:07 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ static int			set_t_type(json_value *value)
 
 static t_object		set_defaults(json_value *value)
 {
+	t_object	result;
+
 	if (value->type != json_string)
 		put_error("Not valid json type.");
 	if (!ft_strcmp(value->u.string.ptr, "plane"))
@@ -51,22 +53,9 @@ static t_object		set_defaults(json_value *value)
 		return (default_cylinder());
 	else if (!ft_strcmp(value->u.string.ptr, "conus"))
 		return (default_conus());
-	else if (!ft_strcmp(value->u.string.ptr, "disk"))
-		return (default_disk());
-	else if (!ft_strcmp(value->u.string.ptr, "triangle"))
-		return (default_triangle());
-	else if (!ft_strcmp(value->u.string.ptr, "paraboloid"))
-		return (default_paraboloid());
-	else if (!ft_strcmp(value->u.string.ptr, "square"))
-		return (default_square());
-	else if (!ft_strcmp(value->u.string.ptr, "capsula"))
-		return (default_capsula());
-	else if (!ft_strcmp(value->u.string.ptr, "barbell"))
-		return (default_barbell());
-	else if (!ft_strcmp(value->u.string.ptr, "elipsoid"))
-		return (default_elipsoid());
-	else if (!ft_strcmp(value->u.string.ptr, "cd-disk"))
-		return (default_cddisk());
+	result = get_obj_for_retrive(value);
+	if (result.type > 0)
+		return (result);
 	put_error("Not valid object type.");
 	return (default_error());
 }

@@ -6,7 +6,7 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/23 15:04:06 by afarapon          #+#    #+#             */
-/*   Updated: 2018/03/23 16:53:36 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/26 12:57:05 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,4 +81,27 @@ t_vector	get_color(json_value *value)
 			be more than 1 or less than 0.");
 	}
 	return (v);
+}
+
+t_object	get_obj_for_retrive(json_value *value)
+{
+	if (!ft_strcmp(value->u.string.ptr, "disk"))
+		return (default_disk());
+	else if (!ft_strcmp(value->u.string.ptr, "triangle"))
+		return (default_triangle());
+	else if (!ft_strcmp(value->u.string.ptr, "paraboloid"))
+		return (default_paraboloid());
+	else if (!ft_strcmp(value->u.string.ptr, "square"))
+		return (default_square());
+	else if (!ft_strcmp(value->u.string.ptr, "capsula"))
+		return (default_capsula());
+	else if (!ft_strcmp(value->u.string.ptr, "barbell"))
+		return (default_barbell());
+	else if (!ft_strcmp(value->u.string.ptr, "elipsoid"))
+		return (default_elipsoid());
+	else if (!ft_strcmp(value->u.string.ptr, "cd-disk"))
+		return (default_cddisk());
+	else if (!ft_strcmp(value->u.string.ptr, "ring"))
+		return (default_ring());
+	return (default_error());
 }
