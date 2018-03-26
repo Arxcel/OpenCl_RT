@@ -223,7 +223,7 @@ static t_vector			ft_cast_ray(
 		else if (t < 5000)
 			bias = v_mult_d(r->n_hit, (t * 0.2f));
 		else
-			bias = v_mult_d(r->n_hit, (t * 2.0f));
+			bias = v_mult_d(r->n_hit, (2.0f));
 		object_color = set_light(get_object_color(hit_object, r, tex1, tex2, tex3, tex4, perlin), calc_light(o, l, *hit_object, r, &bias, tex1, tex2, tex3, tex4, perlin));
 		if ((!hit_object->reflect && !hit_object->refract))
 		{
