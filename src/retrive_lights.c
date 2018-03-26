@@ -6,7 +6,7 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/23 14:50:44 by afarapon          #+#    #+#             */
-/*   Updated: 2018/03/24 16:15:17 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/26 11:44:30 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void		get_light_info(json_value *value, t_light *l)
 		if (!ft_strcmp(value->u.object.values[x].name, "color"))
 			l->color = get_color(value->u.object.values[x].value);
 		if (!ft_strcmp(value->u.object.values[x].name, "intensity"))
-			l->intence = get_number(value->u.object.values[x].value);
+			l->intence = get_intensity(value->u.object.values[x].value);
 		if (l->type == -1 || l->intence < 0)
 			put_error("Not valid light type/intensity");
 	}

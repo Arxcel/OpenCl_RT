@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_rt.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
+/*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:32:12 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/26 10:17:13 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/26 11:47:38 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,6 +150,8 @@ float				get_ior(json_value *value);
 float				get_refract(json_value *value);
 float				get_reflect(json_value *value);
 float				get_radius(json_value *value);
+float				get_intensity(json_value *value);
+float				get_fov(json_value *value);
 
 /*
 ** CREATE SHAPES FROM UI
