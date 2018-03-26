@@ -11,14 +11,14 @@
 		},
 		{
 			"type": "triangle",
-			"color": [1, 0.5, 0.25],
+			"color": [0.25, 1, 0.5],
 			"pos1": [-13, 0, -5],
 			"pos2": [-15, 0, -5],
 			"pos3": [-14, 2, -5]
 		},
 		{
 			"type": "square",
-            "color": [1, 0.5, 0.25],
+            "color": [0.5, 0.25, 1],
             "pos1": [-11, 2, -5],
             "pos2": [-9, 0, -5],
             "direction": [0, 0, 1],
@@ -26,7 +26,7 @@
 		},
 		{
 			"type": "disk",
-            "color": [1, 0.5, 0.25],
+            "color": [1, 0.75, 0.25],
 			"radius": 1.2,
             "pos1": [-6, 1, -5],
             "direction": [0, 0, 1],
@@ -89,7 +89,7 @@
 	"cameras": [{
 		"type": "common",
 		"rotation": [0, 0, 0],
-		"position": [0, 0, 3],
+		"position": [-7.75, 0, 12],
 		"field_of_view": 50
 	}]
 }
