@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:33:57 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/25 17:53:25 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/26 09:42:51 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void				re_draw(t_cl *cl, t_sdl *sdl, t_scene *s)
 	cl_set_out_arg(cl, sdl->img.w * sdl->img.h * sizeof(int), 8);
 	cl_exec_kernel(cl, 2, cl->work_dim);
 	cl_get_res(cl, sdl->img.w * sdl->img.h * sizeof(int), sdl->img.pixels, 8);
-	printf("Rendering time: %0.3f milliseconds.\n", cl_get_exec_time(cl));
+	printf("Last frame time: %0.3f milliseconds.\n", cl_get_exec_time(cl));
 	clReleaseEvent(cl->e);
 	cl_free_all_args(cl->args);
 }

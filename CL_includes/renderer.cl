@@ -183,15 +183,15 @@ t_vector		set_light(t_vector obj_color, t_vector light)
 }
 
 static t_vector			ft_cast_ray(
-						__global t_object	*o,
-						__global t_light	*l,
-						t_ray				*r,
-						t_object			*hit_object,
-						global unsigned int *tex1,
-						global unsigned int *tex2,
-						global unsigned int *tex3,
-						global unsigned int *tex4,
-						global unsigned int *perlin)
+									global t_object		*o,
+									global t_light		*l,
+									t_ray				*r,
+									t_object			*hit_object,
+									global unsigned int *tex1,
+									global unsigned int *tex2,
+									global unsigned int *tex3,
+									global unsigned int *tex4,
+									global unsigned int *perlin)
 {
 	int			depth;
 	t_vector	object_color;
@@ -214,8 +214,8 @@ static t_vector			ft_cast_ray(
 		get_surface_data(r, *hit_object, t);
 		r->n_hit = v_dot(r->n_hit, r->dir) < 0 ? r->n_hit : -r->n_hit;
 		outside = v_dot(r->n_hit, r->dir) < 0 ? 1 : 0;
-		bias = v_mult_d(r->n_hit, BIAS);
-		object_color = set_light(get_object_color(hit_object, r, tex1, tex2, tex3, tex4, perlin), calc_light(o, l, *hit_object, r, tex1, tex2, tex3, tex4, perlin));
+		bias = v_mult_d(r->n_hit, (t * 0.00005f));
+		object_color = set_light(get_object_color(hit_object, r, tex1, tex2, tex3, tex4, perlin), calc_light(o, l, *hit_object, r, &bias, tex1, tex2, tex3, tex4, perlin));
 		if ((!hit_object->reflect && !hit_object->refract))
 		{
 			hit_color += v_mult_d(object_color, mask_refraction * mask_reflection);
@@ -252,7 +252,12 @@ static t_vector			ft_cast_ray(
     return (hit_color); 
 } 
 
-static t_ray				find_cam_dir(__global t_camera    *cam, int xx, int yy, size_t i_w, size_t i_h)
+static t_ray				find_cam_dir(
+										global t_camera *cam,
+										int				xx,
+										int				yy,
+										size_t			i_w,
+										size_t			i_h)
 {
 	float scale;
 	float x;
@@ -270,18 +275,18 @@ static t_ray				find_cam_dir(__global t_camera    *cam, int xx, int yy, size_t i
 }
 
 unsigned int				ft_renderer(
-							global t_object	*o,
-							global t_light	*l,
-							global t_camera *cam,
-							int x,
-							int y,
-							size_t img_w,
-							size_t img_h,
-							global unsigned int *tex1,
-							global unsigned int *tex2,
-							global unsigned int *tex3,
-							global unsigned int *tex4,
-							global unsigned int *perlin)
+										global t_object		*o,
+										global t_light		*l,
+										global t_camera		*cam,
+										int					x,
+										int					y,
+										size_t				img_w,
+										size_t				img_h,
+										global unsigned int *tex1,
+										global unsigned int *tex2,
+										global unsigned int *tex3,
+										global unsigned int *tex4,
+										global unsigned int *perlin)
 {
 	t_object		hit_object;
 	t_ray			ray;
