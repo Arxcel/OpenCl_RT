@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ui_render_copy_background.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
+/*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/22 14:08:30 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/25 21:56:57 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/26 14:19:34 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	add_effects_stats(char *text, t_main *m)
 	char	*temp;
 
 	i = 0;
-	while (i != 15)
+	while (i != EFFECTS_SIZE)
 	{
 		if (m->ae.effects[i] != -1)
 		{

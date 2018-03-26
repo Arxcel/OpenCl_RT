@@ -6,7 +6,7 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 17:15:31 by afarapon          #+#    #+#             */
-/*   Updated: 2018/03/25 20:49:21 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/26 14:19:52 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		flush_effects(t_ae *ae)
 	int				i;
 
 	i = -1;
-	while (++i < 15)
+	while (++i < EFFECTS_SIZE)
 		ae->effects[i] = -1;
 	return (1);
 }
@@ -32,9 +32,9 @@ void	add_effect(t_ae *ae, int val)
 	int				i;
 
 	i = 0;
-	while (ae->effects[i] != -1 && i < 15)
+	while (ae->effects[i] != -1 && i < EFFECTS_SIZE)
 		i++;
-	if (i < 15 && val >= 0 && val <= 5)
+	if (i < EFFECTS_SIZE && val >= 0 && val <= 5)
 		ae->effects[i] = val;
 }
 
