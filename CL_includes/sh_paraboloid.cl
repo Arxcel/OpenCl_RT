@@ -22,9 +22,9 @@ short				par_cross(t_object sh, t_ray *ray, float *t)
 	float		m1;
 	float		m2;
 
+	sh.dir = v_normalize(sh.dir);
 	x = ray->orig - sh.pos1;
 	params[0] = v_dot(ray->dir, ray->dir) - v_dot(ray->dir, sh.dir) * v_dot(ray->dir, sh.dir);
-
 	params[1] = 2 * (v_dot(x, ray->dir) - v_dot(ray->dir, sh.dir) * (v_dot(x, sh.dir) + 2 * sh.radius));
 	params[2] = v_dot(x, x) - v_dot(x, sh.dir) * (v_dot(x, sh.dir) + 4 * sh.radius);
 	if (!solve_quadratic(params, &t2, &t1))

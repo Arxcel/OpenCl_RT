@@ -18,6 +18,7 @@ short				cddisk_cross(t_object *d, t_ray *r, float *t)
 	t_vector v;
 
 	t0 = v_dot(d->dir, r->dir);
+	d->dir = v_normalize(d->dir);
 	if (t0)
 	{
         v = d->pos1 - r->orig; 

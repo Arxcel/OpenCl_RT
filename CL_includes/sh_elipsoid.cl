@@ -22,6 +22,7 @@ short				cross_elipsoid(t_object elips, t_ray *r, float *t)
 	float		A2;
 	float		r2;
 
+	elips.dir = v_normalize(elips.dir);
 	r2 = elips.radius * elips.radius;
 	X = r->orig - elips.pos1;
 	A1 = 2 * elips.angle * v_dot(r->dir, elips.dir);

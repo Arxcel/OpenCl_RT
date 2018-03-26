@@ -17,6 +17,7 @@ static short		is_in_zone(t_vector p1, t_object *p)
 	t_vector	c0;
 	t_vector	e0;
 
+	p->dir = v_normalize(p->dir);
 	e0 = p->pos2 - p->pos1;
 	c0 = p1 - p->pos1;
 	if (v_dot(p->dir, v_cross(e0, c0)) < 0)

@@ -1,0 +1,212 @@
+{
+	"objects": [{
+			"type": "plane",
+			"pos1": [0, 0, -1000],
+			"color": [0.5, 1, 1],
+			"direction": [0, 0, -1],
+			"pattern":  "custom-4",
+			"pattern_scale": 1000,
+			"tex_angle": 0
+		},
+		{
+			"type": "disk",
+			"color": [1, 0.8, 0.25],
+			"pos1": [0, -4, 0],
+			"direction": [0, -1, 0],
+			"radius": 800,
+			"specular": 100,
+			"reflect": 0,
+			"pattern":  "custom-1",
+			"pattern_scale": 2
+		},
+
+		{
+			"type": "capsula",
+			"pos1": [0, -2, -6],
+			"color": [0.2, 0.2, 0.2],
+			"max": 0.35,
+			"specular": 1500
+		},
+		{
+			"type": "capsula",
+			"pos1": [0, -2, -6],
+			"color": [0.4, 0.4, 1],
+			"specular": 1500
+		},
+
+		{
+			"type": "sphere",
+			"pos1": [0, 2.15, -6],
+			"color": [1, 0.77, 0.56],
+			"radius": 1.1
+		},
+		{
+			"type": "cylinder",
+			"pos1": [0, 0, -6],
+			"color": [1, 0.77, 0.56],
+			"direction": [0, 1, 0],
+			"radius": 0.3,
+			"max": 2
+		},
+
+		{
+			"type": "capsula",
+			"pos1": [0.8, 0.5, -6],
+			"color": [0.4, 0.4, 1],
+			"direction": [0.5, -1, 0],
+			"radius": 0.33,
+			"max": 0.75
+		},
+		{
+			"type": "capsula",
+			"pos1": [0.8, 0.5, -6],
+			"color": [1, 0.77, 0.56],
+			"direction": [0.5, -1, 0],
+			"radius": 0.33,
+			"max": 1.9
+		},
+		
+		{
+			"type": "capsula",
+			"pos1": [-0.8, 0.5, -6],
+			"color": [0.4, 0.4, 1],
+			"direction": [-0.5, -1, 0],
+			"radius": 0.33,
+			"max": 0.75
+		},
+		{
+			"type": "capsula",
+			"pos1": [-0.8, 0.5, -6],
+			"color": [1, 0.77, 0.56],
+			"direction": [-0.5, -1, 0],
+			"radius": 0.33,
+			"max": 1.9
+		},
+
+		{
+			"type": "capsula",
+			"pos1": [0.5, -2.5, -6],
+			"color": [0.2, 0.2, 0.2],
+			"direction": [0, -1, 0],
+			"radius": 0.33,
+			"max": 0.75,
+		},
+		{
+			"type": "capsula",
+			"pos1": [0.5, -2.5, -6],
+			"color": [1, 0.77, 0.56],
+			"direction": [0, -1, 0],
+			"radius": 0.33,
+			"max": 1.9,
+		},
+
+		{
+			"type": "capsula",
+			"pos1": [-0.5, -2.5, -6],
+			"color": [0.2, 0.2, 0.2],
+			"direction": [0, -1, 0],
+			"radius": 0.33,
+			"max": 0.75,
+		},
+		{
+			"type": "capsula",
+			"pos1": [-0.5, -2.5, -6],
+			"color": [1, 0.77, 0.56],
+			"direction": [0, -1, 0],
+			"radius": 0.33,
+			"max": 1.9,
+		},
+
+		{
+			"type": "capsula",
+			"pos1": [0.5, -4, -6],
+			"color": [0.2, 0.2, 0.2],
+			"direction": [0, 0, 1],
+			"radius": 0.34,
+			"max": 0.5
+		},
+		{
+			"type": "capsula",
+			"pos1": [-0.5, -4, -6],
+			"color": [0.2, 0.2, 0.2],
+			"direction": [0, 0, 1],
+			"radius": 0.34,
+			"max": 0.5
+		},
+
+		{
+			"type": "disk",
+			"pos1": [0, 2.6, -6],
+			"color": [0.2, 0.17, 0.14],
+			"direction": [0, 1, 0],
+			"radius": 1.5,
+			"specular": 25000
+		},
+		{
+			"type": "ring",
+			"pos1": [0, 2.6, -6],
+			"color": [0.2, 0.17, 0.14],
+			"direction": [0, 1, 0],
+			"radius": 1.02,
+			"max": 1,
+			"min": 0,
+			"specular": 25000
+		},
+
+		{
+			"type": "disk",
+			"pos1": [-0.35, 2.2, -4.8],
+			"color": [0.2, 0.17, 0.14],
+			"direction": [0, 0, 1],
+			"radius": 0.25,
+			"specular": 2500,
+			"reflect": 0.2,
+			"refract": 0.1,
+			"ior": 0.9
+		},
+		{
+			"type": "disk",
+			"pos1": [0.35, 2.2, -4.8],
+			"color": [0.2, 0.17, 0.14],
+			"direction": [0, 0, 1],
+			"radius": 0.25,
+			"specular": 2500,
+			"reflect": 0.2,
+			"refract": 0.1,
+			"ior": 0.9
+		},
+
+		{
+			"type": "capsula",
+			"pos1": [0, 2, -4.9],
+			"color": [1, 0.77, 0.56],
+			"direction": [0, -1, 0.4],
+			"radius": 0.1,
+			"specular": 2500,
+			"max": 0.1
+		},
+	],
+	"lights": [{
+			"type": "lamp",
+			"position": [10, 10, 0],
+			"color": [1, 1, 1],
+			"intensity" : 0.5
+		},
+		{
+			"type": "parallel",
+			"direction": [-1, -1, -1],
+			"color": [1, 1, 1],
+			"intensity" : 0.5
+		},
+        {
+            "type": "ambient",
+            "intensity": 0.2
+        }
+	],
+	"cameras": [{
+		"type": "common",
+		"rotation": [0, 25, 0],
+		"position": [4.9, 0, 4.21],
+		"field_of_view": 50
+	}]
+}

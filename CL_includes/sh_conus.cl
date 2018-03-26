@@ -22,6 +22,7 @@ short			con_cross(t_object con, t_ray *r, float *t)
 	float		m2;
 
 	x = r->orig - con.pos1;
+	con.dir = v_normalize(con.dir);
 	p[0] = v_dot(r->dir, r->dir) - (1 + con.angle * con.angle) * v_dot(r->dir, con.dir) * v_dot(r->dir, con.dir);
 	p[1] = 2 * (v_dot(r->dir, x) - (1 + con.angle * con.angle) * v_dot(r->dir, con.dir) * v_dot(x, con.dir));
 	p[2] = v_dot(x, x) - (1 + con.angle * con.angle) * v_dot(x, con.dir) * v_dot(x, con.dir);
