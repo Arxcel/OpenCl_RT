@@ -1,6 +1,15 @@
 {
 	"objects": [
 		{
+			"type": "cd-disk",
+            "color": [1, 0.5, 0.25],
+			"radius": 1.2,
+            "pos1": [-18, 1, -5],
+            "direction": [0, 0, 1],
+			"reflect": 0,
+			"min": 0.2
+		},
+		{
 			"type": "triangle",
 			"color": [1, 0.5, 0.25],
 			"pos1": [-13, 0, -5],

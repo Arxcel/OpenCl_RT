@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ctors_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afarapon <afarapon@student.unit.ua>        +#+  +:+       +#+        */
+/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/23 13:28:14 by afarapon          #+#    #+#             */
-/*   Updated: 2018/03/26 00:03:00 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/26 11:44:18 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,23 @@ t_object			default_barbell(void)
 	result.pos1 = (t_vector){0, 0, 0};
 	result.dir = (t_vector){0, 1, 0};
 	result.max = 2;
+	result.radius = 1;
+	return (result);
+}
+
+t_object			default_cddisk(void)
+{
+	t_object		result;
+
+	ft_bzero(&result, sizeof(t_object));
+	result.type = O_CDDISK;
+	result.color = (t_vector){0.7, 0.7, 0.7};
+	result.specular = 1;
+	result.refract = 0;
+	result.reflect = 0;
+	result.pos1 = (t_vector){0, 0, 0};
+	result.dir = (t_vector){0, 0, 1};
+	result.min = 0.2;
 	result.radius = 1;
 	return (result);
 }

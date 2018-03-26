@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:32:12 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/26 10:17:13 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/26 11:43:55 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,7 @@ t_light				default_parallel(void);
 t_light				default_light(void);
 t_camera			default_camera(void);
 t_object			default_elipsoid(void);
+t_object			default_cddisk(void);
 
 /*
 ** READ DATA FROM JSON TO OBJECTS/LIGHTS/CAMERAS
