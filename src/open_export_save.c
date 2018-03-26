@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_export_save.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
+/*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 14:10:10 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/25 18:21:02 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/26 14:05:33 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	open_file(t_main *m)
 	ft_memset(&m->s.cam_trans.pos, 0, sizeof(t_vector));
 	ft_memset(&m->s.cam_trans.rot, 0, sizeof(t_vector));
 	get_scene(open, &m->s);
+	ft_bzero(&m->ae, sizeof(t_ae));
+	make_dependencies(m);
 	re_draw(&m->cl, &m->sdl, &m->s);
 	render_scene_and_ui(m);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lib_ae.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
+/*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/22 11:51:11 by afarapon          #+#    #+#             */
-/*   Updated: 2018/03/24 13:44:11 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/26 14:29:33 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # define O5 0.0965324 * COEF
 # define O6 0.1591549 * COEF
 # define FILTER_SIZE	256
+# define EFFECTS_SIZE	8
 
 typedef struct			s_ae
 {
@@ -37,7 +38,7 @@ typedef struct			s_ae
 	size_t			*h;
 	short			after_effect;
 	short			coeficient;
-	char			effects[15];
+	char			effects[EFFECTS_SIZE];
 }						t_ae;
 
 typedef void	(*t_effects)(t_ae *ae, unsigned int **in_out, size_t count);

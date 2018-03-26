@@ -6,7 +6,7 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 18:01:54 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/26 12:52:55 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/26 14:32:08 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,11 @@ static void			pos_camera(int key, t_main *m)
 		m->s.cam_trans.pos[1] += 0.3512;
 	else if (key == SDLK_e)
 		m->s.cam_trans.pos[1] -= 0.3512;
+	else if (key == SDLK_SPACE)
+	{
+		m->s.cam_trans.pos = (t_vector){0, 0, 4};
+		m->s.cam_trans.rot = (t_vector){0, 0, 0};
+	}
 }
 
 static void			rot_camera(int key, t_main *m)
@@ -49,7 +54,7 @@ static void			key_down(int key, t_main *m)
 	if (key == SDLK_ESCAPE)
 		m->sdl.running = 0;
 	else if (key == SDLK_w || key == SDLK_s || key == SDLK_a || key == SDLK_d
-				|| key == SDLK_q || key == SDLK_e)
+				|| key == SDLK_q || key == SDLK_e || key == SDLK_SPACE)
 	{
 		pos_camera(key, m);
 		m->sdl.changes = 1;
