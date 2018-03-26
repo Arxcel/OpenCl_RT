@@ -161,13 +161,13 @@
 			"type": "lamp",
 			"position": [10, 10, 0.1],
 			"color": [1, 1, 1],
-			"intensity" : 1
+			"intensity" : 0.7
 		},
 		{
 			"type": "lamp",
 			"position": [-6, 9, 5],
 			"color": [1, 1, 1],
-			"intensity" : 1
+			"intensity" : 0.7
 		},
         {
             "type": "ambient",

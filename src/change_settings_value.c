@@ -6,38 +6,26 @@
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/25 17:07:00 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/25 17:09:16 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/26 03:06:40 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_rt.h"
 
-void			check_o_settings_min_max_values(t_main *m, int i)
+void			check_o_settings_min_max_values(t_main *m)
 {
-	if (m->ui.o_set[0].p[0] < 0)
-		m->ui.o_set[0].p[0] = 0;
-	if (m->ui.o_set[0].p[1] < 0)
-		m->ui.o_set[0].p[1] = 0;
-	if (m->ui.o_set[0].p[2] < 0)
-		m->ui.o_set[0].p[2] = 0;
-	if (m->ui.o_set[0].p[0] > 1)
-		m->ui.o_set[0].p[0] = 1;
-	if (m->ui.o_set[0].p[1] > 1)
-		m->ui.o_set[0].p[1] = 1;
-	if (m->ui.o_set[0].p[2] > 1)
-		m->ui.o_set[0].p[2] = 1;
-	if (*m->ui.o_set[E_REFL].p < 0)
-	   *m->ui.o_set[E_REFL].p = 0;
-	if (*m->ui.o_set[E_REFL].p > 1)
-	   *m->ui.o_set[E_REFL].p = 1;
-	if (*m->ui.o_set[E_REFR].p < 0)
-	   *m->ui.o_set[E_REFR].p = 0;
-	if (*m->ui.o_set[E_REFR].p > 1)
-	   *m->ui.o_set[E_REFR].p = 1;
-	if (*m->ui.o_set[E_TEX_ID].usp < 0)
-	   *m->ui.o_set[E_TEX_ID].usp = 0;
-	if (*m->ui.o_set[E_TEX_ID].usp > 9)
-	   *m->ui.o_set[E_TEX_ID].usp = 9;
+	(m->ui.o_set[0].p[0] < 0) ? m->ui.o_set[0].p[0] = 0 : 0;
+	(m->ui.o_set[0].p[1] < 0) ? m->ui.o_set[0].p[1] = 0 : 0;
+	(m->ui.o_set[0].p[2] < 0) ? m->ui.o_set[0].p[2] = 0 : 0;
+	(m->ui.o_set[0].p[0] > 1) ? m->ui.o_set[0].p[0] = 1 : 0;
+	(m->ui.o_set[0].p[1] > 1) ? m->ui.o_set[0].p[1] = 1 : 0;
+	(m->ui.o_set[0].p[2] > 1) ? m->ui.o_set[0].p[2] = 1 : 0;
+	(*m->ui.o_set[E_REFL].p < 0) ? *m->ui.o_set[E_REFL].p = 0 : 0;
+	(*m->ui.o_set[E_REFL].p > 1) ? *m->ui.o_set[E_REFL].p = 1 : 0;
+	(*m->ui.o_set[E_REFR].p < 0) ? *m->ui.o_set[E_REFR].p = 0 : 0;
+	(*m->ui.o_set[E_REFR].p > 1) ? *m->ui.o_set[E_REFR].p = 1 : 0;
+	(*m->ui.o_set[E_TEX_ID].usp < 0) ? *m->ui.o_set[E_TEX_ID].usp = 0 : 0;
+	(*m->ui.o_set[E_TEX_ID].usp > 9) ? *m->ui.o_set[E_TEX_ID].usp = 9 : 0;
 }
 
 void			change_o_settings_value(t_main *m, int i)
@@ -59,27 +47,11 @@ void			change_o_settings_value(t_main *m, int i)
 			*m->ui.o_set[i].usp = ft_atoi(tmp);
 		else if (i == 24)
 			*m->ui.o_set[i].sp = ft_atoi(tmp);
-		check_o_settings_min_max_values(m, i);
+		check_o_settings_min_max_values(m);
 		re_draw(&m->cl, &m->sdl, &m->s);
 		set_filter(&m->ae);
 		render_scene_and_ui(m);
 	}
-}
-
-void			check_l_settings_min_max_values(t_main *m, int i)
-{
-	if (m->ui.l_set[0].p[0] < 0)
-		m->ui.l_set[0].p[0] = 0;
-	if (m->ui.l_set[0].p[1] < 0)
-		m->ui.l_set[0].p[1] = 0;
-	if (m->ui.l_set[0].p[2] < 0)
-		m->ui.l_set[0].p[2] = 0;
-	if (m->ui.l_set[0].p[0] > 1)
-		m->ui.l_set[0].p[0] = 1;
-	if (m->ui.l_set[0].p[1] > 1)
-		m->ui.l_set[0].p[1] = 1;
-	if (m->ui.l_set[0].p[2] > 1)
-		m->ui.l_set[0].p[2] = 1;
 }
 
 void			change_l_settings_value(t_main *m, int i)
@@ -97,7 +69,12 @@ void			change_l_settings_value(t_main *m, int i)
 			m->ui.l_set[i].p[2] = atof(tmp);
 		else if (i >= 12 && i < 14)
 			*m->ui.l_set[i].p = atof(tmp);
-		check_l_settings_min_max_values(m, i);
+		(m->ui.l_set[0].p[0] < 0) ? m->ui.l_set[0].p[0] = 0 : 0;
+		(m->ui.l_set[0].p[1] < 0) ? m->ui.l_set[0].p[1] = 0 : 0;
+		(m->ui.l_set[0].p[2] < 0) ? m->ui.l_set[0].p[2] = 0 : 0;
+		(m->ui.l_set[0].p[0] > 1) ? m->ui.l_set[0].p[0] = 1 : 0;
+		(m->ui.l_set[0].p[1] > 1) ? m->ui.l_set[0].p[1] = 1 : 0;
+		(m->ui.l_set[0].p[2] > 1) ? m->ui.l_set[0].p[2] = 1 : 0;
 		re_draw(&m->cl, &m->sdl, &m->s);
 		set_filter(&m->ae);
 		render_scene_and_ui(m);

@@ -6,14 +6,14 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 16:37:12 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/25 17:38:27 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/26 04:04:00 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_UI_H
 # define FT_UI_H
 # define RTN 2
-# define BG_ITEMS 12
+# define BG_ITEMS 15
 # define BTNS 30
 # define SLDRS 1
 # define O_SET 25
@@ -84,6 +84,7 @@ typedef struct		s_ui_scrl
 	int				visible_steps;
 	int				possible_steps;
 	int				first_step;
+	int				status;
 }					t_ui_scrl;
 
 typedef struct		s_ui_lst
@@ -114,6 +115,7 @@ typedef	struct		s_ui
 	t_ui_set		o_set[O_SET];
 	t_ui_set		l_set[LI_SET];
 	t_ui_set		c_set[CA_SET];
+	int				scene_status;
 }					t_ui;
 
 enum				e_o_set
@@ -191,36 +193,39 @@ enum				e_bg
 	DG_DOT = 8,
 	LG_DOT = 9,
 	CO_DOT = 10,
-	LOGO = 11
+	LOGO = 11,
+	SET_1 = 12,
+	SET_2 = 13,
+	SET_3 = 14
 };
 
 enum				e_btns
 {
 	OPEN = 0,
-	SAVE = 1,
-	SAVE_AS = 2,
-	EXPORT = 3,
-	PREV_CAM = 4,
-	NEXT_CAM = 5,
-	BTN_AE1 = 6,
-	BTN_AE2 = 7,
-	BTN_AE3 = 8,
-	BTN_AE4 = 9,
-	BTN_AE5 = 10,
-	BTN_AE6 = 11,
-	BTN_PLUS = 12,
-	BTN_MINUS = 13,
-	BTN_ZERO = 14,
-	BTN_ONE = 15,
-	BTN_SPHERE = 16,
-	BTN_CYLINDER = 17,
-	BTN_CONUS = 18,
-	BTN_PARABOLOID = 19,
-	BTN_DISK = 20,
-	BTN_PLANE = 21,
-	BTN_TRIANGLE = 22,
-	BTN_SQUARE = 23,
-	BTN_CUBE = 24,
+	SAVE_AS = 1,
+	EXPORT = 2,
+	PREV_CAM = 3,
+	NEXT_CAM = 4,
+	BTN_AE1 = 5,
+	BTN_AE2 = 6,
+	BTN_AE3 = 7,
+	BTN_AE4 = 8,
+	BTN_AE5 = 9,
+	BTN_AE6 = 10,
+	BTN_PLUS = 11,
+	BTN_MINUS = 12,
+	BTN_ZERO = 13,
+	BTN_ONE = 14,
+	BTN_SPHERE = 15,
+	BTN_CYLINDER = 16,
+	BTN_CONUS = 17,
+	BTN_PARABOLOID = 18,
+	BTN_DISK = 19,
+	BTN_PLANE = 20,
+	BTN_TRIANGLE = 21,
+	BTN_SQUARE = 22,
+	BTN_CAPS = 23,
+	BTN_BARB = 24,
 	BTN_CAM = 25,
 	BTN_LIGHT1 = 26,
 	BTN_LIGHT2 = 27,

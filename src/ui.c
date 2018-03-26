@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 16:41:28 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/25 15:54:45 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/25 19:31:55 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	render_scene_and_ui(t_main *m)
 						NULL, &m->ui.bg[BACKGROUND].rect);
 	SDL_UpdateTexture(m->sdl.texture, NULL,
 			m->sdl.img.pixels, m->sdl.img.w * sizeof(unsigned int));
-	//sdl_clear_image(&m->sdl.img);
 	SDL_RenderCopy(m->sdl.ren, m->sdl.texture, NULL, &m->ui.scene_place);
 	render_copy_background(m);
 	render_copy_buttons(m);

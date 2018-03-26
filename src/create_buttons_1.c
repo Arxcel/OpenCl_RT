@@ -6,7 +6,7 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/24 15:40:24 by afarapon          #+#    #+#             */
-/*   Updated: 2018/03/25 16:14:50 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/26 03:08:10 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void		light_array_realloc(t_main *m, t_light new_object)
 	ft_bzero(new_array, sizeof(t_light) * (m->s.l_num + 1));
 	i = 0;
 	m->s.light[m->s.l_num - 1] = new_object;
-	while (i < m->s.l_num)
+	while (i < (size_t)m->s.l_num)
 	{
 		new_array[i] = m->s.light[i];
 		i++;
@@ -35,14 +35,14 @@ static void		light_array_realloc(t_main *m, t_light new_object)
 
 static void		camera_array_realloc(t_main *m, t_camera new_object)
 {
-	t_camera		*new_array;
+	t_camera	*new_array;
 	size_t		i;
 
 	new_array = (t_camera*)malloc(sizeof(t_camera) * (m->s.c_num + 1));
 	ft_bzero(new_array, sizeof(t_camera) * (m->s.c_num + 1));
 	i = 0;
 	m->s.camera[m->s.c_num - 1] = new_object;
-	while (i < m->s.c_num)
+	while (i < (size_t)m->s.c_num)
 	{
 		new_array[i] = m->s.camera[i];
 		i++;
@@ -63,7 +63,7 @@ static void		object_array_realloc(t_main *m, t_object new_object)
 	ft_bzero(new_array, sizeof(t_object) * (m->s.o_num + 1));
 	i = 0;
 	m->s.object[m->s.o_num - 1] = new_object;
-	while (i < m->s.o_num)
+	while (i < (size_t)m->s.o_num)
 	{
 		new_array[i] = m->s.object[i];
 		i++;
@@ -92,9 +92,18 @@ static void		create_shapes_2(int x, int y, t_main *m)
 	else if (xy_in_rect(x, y, m->ui.btn[BTN_LIGHT4].rect)
 								&& m->ui.btn[BTN_LIGHT4].status)
 		light_array_realloc(m, default_ambient());
+	else if (xy_in_rect(x, y, m->ui.btn[BTN_SQUARE].rect)
+								&& m->ui.btn[BTN_SQUARE].status)
+		object_array_realloc(m, default_square());
+	else if (xy_in_rect(x, y, m->ui.btn[BTN_CAPS].rect)
+								&& m->ui.btn[BTN_CAPS].status)
+		object_array_realloc(m, default_capsula());
+	else if (xy_in_rect(x, y, m->ui.btn[BTN_BARB].rect)
+								&& m->ui.btn[BTN_BARB].status)
+		object_array_realloc(m, default_barbell());
 }
 
-void		create_shapes(int x, int y, t_main *m)
+void			create_shapes(int x, int y, t_main *m)
 {
 	if (xy_in_rect(x, y, m->ui.btn[BTN_SPHERE].rect)
 								&& m->ui.btn[BTN_SPHERE].status)
@@ -117,9 +126,6 @@ void		create_shapes(int x, int y, t_main *m)
 	else if (xy_in_rect(x, y, m->ui.btn[BTN_TRIANGLE].rect)
 								&& m->ui.btn[BTN_TRIANGLE].status)
 		object_array_realloc(m, default_triangle());
-	else if (xy_in_rect(x, y, m->ui.btn[BTN_SQUARE].rect)
-								&& m->ui.btn[BTN_SQUARE].status)
-		object_array_realloc(m, default_square());
 	else
 		create_shapes_2(x, y, m);
 }

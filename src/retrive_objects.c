@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/23 14:46:38 by afarapon          #+#    #+#             */
-/*   Updated: 2018/03/25 17:55:09 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/25 22:09:15 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,6 @@ void				process_scene_o(json_value *value, t_scene *s)
 	int x;
 
 	s->o_num = value->u.object.length + 1;
-	printf("o_num: %i\n", s->o_num);
 	s->object = (t_object*)ft_memalloc(sizeof(t_object) * s->o_num);
 	ft_bzero(s->object, sizeof(s->object) * s->o_num);
 	x = -1;

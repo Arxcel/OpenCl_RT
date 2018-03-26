@@ -27,22 +27,22 @@ static short			is_in_area(t_light l, t_ray light)
 		return (1);
 }
 
-static t_ray			dir_light(t_vector p_hit, t_vector l_dir, t_vector n, float *d)
+static t_ray			dir_light(t_vector p_hit, t_vector l_dir, t_vector n, float *d, t_vector *bias)
 {
 	t_ray	light;
 	
 	light.dir = -v_normalize(l_dir);
-	light.orig = p_hit + v_mult_d(n, BIAS);
+	light.orig = p_hit + *bias;
 	*d = INFINITY;
 	return (light);
 }
 
-static t_ray			point_light(t_vector p_hit, t_vector l_pos, t_vector n, float *d)
+static t_ray			point_light(t_vector p_hit, t_vector l_pos, t_vector n, float *d, t_vector *bias)
 {
 	t_ray	light;
 	
 	light.dir = p_hit - l_pos;
-	light.orig = p_hit + v_mult_d(n, BIAS);
+	light.orig = p_hit + *bias;
 	*d = v_length(light.dir);
 	light.dir = -v_normalize(light.dir);
 	return (light);
@@ -74,6 +74,7 @@ static float			get_shiness(float lambertian, unsigned short specular, float ligh
 t_vector							calc_light(__global t_object	*o,
 									__global t_light	*l,
 									t_object h, t_ray *r,
+									t_vector	*bias,
 									global unsigned int *tex1,
 									global unsigned int *tex2,
 									global unsigned int *tex3,
@@ -100,9 +101,9 @@ t_vector							calc_light(__global t_object	*o,
 		else
 		{
 			if (l[i].type == L_PAR)
-				light = dir_light(r->p_hit, l[i].pos, r->n_hit, &distance);
+				light = dir_light(r->p_hit, l[i].pos, r->n_hit, &distance, bias);
 			else
-				light = point_light(r->p_hit, l[i].pos, r->n_hit, &distance);
+				light = point_light(r->p_hit, l[i].pos, r->n_hit, &distance, bias);
 			vis = !ft_trace(o, l, &shader_distance, &shader, &(light));
 			if (l[i].type == L_AREA && !is_in_area(l[i], light))
 				continue ;

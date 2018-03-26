@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 17:56:20 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/24 13:47:00 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/25 20:12:45 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,23 @@ int			xy_in_rect(int x, int y, SDL_Rect rect)
 			x <= rect.x + rect.w && y <= rect.y + rect.h)
 		return (1);
 	return (0);
+}
+
+SDL_Color	sdl_text_color(t_main *m, int i)
+{
+	SDL_Color	temp;
+
+	if (m->ui.list.active == i + 1)
+	{
+		temp.r = 200;
+		temp.g = 200;
+		temp.b = 200;
+	}
+	else
+	{
+		temp.r = 30;
+		temp.g = 30;
+		temp.b = 30;
+	}
+	return (temp);
 }
