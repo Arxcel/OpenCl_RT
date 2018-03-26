@@ -6,7 +6,7 @@
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/22 14:09:02 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/26 02:59:07 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/26 15:57:57 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,10 @@ static void	ui_scroll_rect_pre(t_main *m, int *start, int *l, int *l_b)
 	l2 = l2_making(m);
 	*l_b = *l;
 	point_h = (double)*l / m->ui.scroll.steps;
-	*start = y + m->ui.scroll.first_step * point_h;
+	if (m->s.o_num < 2 || m->s.c_num < 2 || m->s.l_num < 2)
+		*start = y;
+	else
+		*start = y + m->ui.scroll.first_step * point_h;
 	if (l2 > *l)
 	{
 		*l = (double)((double)(*l - *l % L_TEXT_H) / l2) * *l;
