@@ -6,7 +6,7 @@
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/25 17:10:20 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/26 03:06:11 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/26 03:45:51 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,5 +95,7 @@ void			mouse_down(int x, int y, t_main *m)
 		m->ui.scroll.status = 1;
 	if (xy_in_rect(x, y, m->ui.list.rect))
 		choose_list_elem(x, y, m);
+	if (xy_in_rect(x, y, m->ui.scene_place))
+		m->ui.scene_status = 1;
 	change_settings_value(x, y, m);
 }

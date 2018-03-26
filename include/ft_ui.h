@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 16:37:12 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/26 02:34:35 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/26 04:04:00 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ typedef	struct		s_ui
 	t_ui_set		o_set[O_SET];
 	t_ui_set		l_set[LI_SET];
 	t_ui_set		c_set[CA_SET];
+	int				scene_status;
 }					t_ui;
 
 enum				e_o_set
