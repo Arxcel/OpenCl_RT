@@ -56,7 +56,6 @@ DEPS = $(patsubst %,$(HEADER)/%,$(_DEPS))
 
 SOURCES =   main.c \
 			sdl_handle.c \
-			sdl_handle_new.c \
 			parse_json.c \
 			error.c \
 			set_flags.c \
@@ -79,6 +78,7 @@ SOURCES =   main.c \
 			ui_c_settings_rebuild.c \
 			ui_scroll_move.c \
 			change_settings_value.c \
+			check_settings_min_max_values.c \
 			open_export_save.c \
 			save_function.c \
 			save_function_sub.c \

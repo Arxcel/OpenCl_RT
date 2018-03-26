@@ -6,7 +6,7 @@
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/25 20:22:11 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/25 20:44:40 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/26 15:43:20 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void		ui_l_settings_rebuild(t_main *m)
 	char	*text;
 	int		a;
 
-	text = ft_strnew(20);
+	text = ft_strnew(100);
 	a = m->ui.list.active - 1;
 	ui_l_settings_data_textures(m, text, a);
 	sprintf(text, "%.2f       ", m->s.light[a].intence);

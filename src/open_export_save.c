@@ -6,7 +6,7 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 14:10:10 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/26 14:05:33 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/26 14:58:14 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	open_file(t_main *m)
 		return ;
 	delete_scene(&m->s);
 	m->ui.scroll.first_step = 0;
+	m->ui.list.active = 0;
 	ft_memset(&m->s.cam_trans.pos, 0, sizeof(t_vector));
 	ft_memset(&m->s.cam_trans.rot, 0, sizeof(t_vector));
 	get_scene(open, &m->s);

@@ -6,7 +6,7 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 18:01:54 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/26 14:32:08 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/26 15:05:33 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,10 +109,7 @@ void				sdl_hook(t_main *m)
 		else if (m->sdl.e.type == SDL_MOUSEBUTTONUP)
 			mouse_up(m->sdl.e.button.x, m->sdl.e.button.y, m);
 		else if (m->sdl.e.type == SDL_MOUSEMOTION)
-		{
 			scroll_move(m->sdl.e.motion.y, m);
-			mouse_scene_rot(m->sdl.e.motion.x, m->sdl.e.motion.y, m);
-		}
 		else if (m->sdl.e.type == SDL_MOUSEWHEEL)
 			scroll_move_whell(m->sdl.e.wheel.y, m);
 	}

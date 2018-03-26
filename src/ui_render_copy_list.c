@@ -6,7 +6,7 @@
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/22 16:57:48 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/25 20:17:02 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/26 15:50:04 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,13 @@ static void	make_obj_text(char *text, t_main *m, int i)
 	(m->s.object[i].type == 5) ? ft_memcpy(text, "disk", 4) : 0;
 	(m->s.object[i].type == 6) ? ft_memcpy(text, "triangle", 8) : 0;
 	(m->s.object[i].type == 7) ? ft_memcpy(text, "paraboloid", 10) : 0;
-	(m->s.object[i].type == 8) ? ft_memcpy(text, "squere", 6) : 0;
+	(m->s.object[i].type == 8) ? ft_memcpy(text, "square", 6) : 0;
 	(m->s.object[i].type == 9) ? ft_memcpy(text, "cube", 4) : 0;
 	(m->s.object[i].type == 10) ? ft_memcpy(text, "capsula", 7) : 0;
 	(m->s.object[i].type == 11) ? ft_memcpy(text, "barbell", 7) : 0;
 	(m->s.object[i].type == 12) ? ft_memcpy(text, "elipsoid", 8) : 0;
+	(m->s.object[i].type == 13) ? ft_memcpy(text, "cd-disk", 8) : 0;
+	(m->s.object[i].type == 14) ? ft_memcpy(text, "ring", 8) : 0;
 }
 
 static char	*make_text(t_main *m, int i)
