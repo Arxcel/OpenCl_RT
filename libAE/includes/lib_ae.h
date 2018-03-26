@@ -6,7 +6,7 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/22 11:51:11 by afarapon          #+#    #+#             */
-/*   Updated: 2018/03/26 14:18:08 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/26 14:29:33 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define O5 0.0965324 * COEF
 # define O6 0.1591549 * COEF
 # define FILTER_SIZE	256
-# define EFFECTS_SIZE	15
+# define EFFECTS_SIZE	8
 
 typedef struct			s_ae
 {
