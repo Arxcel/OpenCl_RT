@@ -24,6 +24,8 @@ void	get_surface_data(t_ray *ray, t_object object, float t)
 		get_plane_data(ray, object, t);
 	else if (object.type == O_DISK)
 		get_disk_data(ray, object, t);
+	else if (object.type == O_CDDISK)
+		get_cddisk_data(ray, object, t);
 	else if (object.type == O_TRIANGLE)
 		get_triangle_data(ray, object, t);
 	else if (object.type == O_PARABOLOID)
@@ -64,7 +66,9 @@ int		check_object_type(t_object *object, t_ray *ray, float *t)
 	else if (object->type == O_PLANE)
 		return (plane_cross(object, ray, t));
 	else if (object->type == O_DISK)
-		return (disk_cross(object, ray, t)); 
+		return (disk_cross(object, ray, t));
+	else if (object->type == O_CDDISK)
+		return (cddisk_cross(object, ray, t)); 
 	else if (object->type == O_TRIANGLE)
 		return (triangle_cross(object, ray, t));
 	else if (object->type == O_PARABOLOID)

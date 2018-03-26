@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 22:15:03 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/25 19:42:35 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/26 11:33:45 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define O_CAPSULA		10
 # define O_BARBELL		11
 # define O_ELIPSOID		12
+# define O_CDDISK		13
 # define L_PAR			1
 # define L_LAMP			2
 # define L_AMBIENT		3
