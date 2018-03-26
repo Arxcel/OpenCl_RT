@@ -6,13 +6,13 @@
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/25 17:07:00 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/25 20:08:08 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/26 03:06:40 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_rt.h"
 
-void			check_o_settings_min_max_values(t_main *m, int i)
+void			check_o_settings_min_max_values(t_main *m)
 {
 	(m->ui.o_set[0].p[0] < 0) ? m->ui.o_set[0].p[0] = 0 : 0;
 	(m->ui.o_set[0].p[1] < 0) ? m->ui.o_set[0].p[1] = 0 : 0;
@@ -47,7 +47,7 @@ void			change_o_settings_value(t_main *m, int i)
 			*m->ui.o_set[i].usp = ft_atoi(tmp);
 		else if (i == 24)
 			*m->ui.o_set[i].sp = ft_atoi(tmp);
-		check_o_settings_min_max_values(m, i);
+		check_o_settings_min_max_values(m);
 		re_draw(&m->cl, &m->sdl, &m->s);
 		set_filter(&m->ae);
 		render_scene_and_ui(m);

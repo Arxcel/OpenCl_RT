@@ -6,7 +6,7 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/24 15:40:24 by afarapon          #+#    #+#             */
-/*   Updated: 2018/03/25 19:51:02 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/26 03:08:10 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void		light_array_realloc(t_main *m, t_light new_object)
 	ft_bzero(new_array, sizeof(t_light) * (m->s.l_num + 1));
 	i = 0;
 	m->s.light[m->s.l_num - 1] = new_object;
-	while (i < m->s.l_num)
+	while (i < (size_t)m->s.l_num)
 	{
 		new_array[i] = m->s.light[i];
 		i++;
@@ -42,7 +42,7 @@ static void		camera_array_realloc(t_main *m, t_camera new_object)
 	ft_bzero(new_array, sizeof(t_camera) * (m->s.c_num + 1));
 	i = 0;
 	m->s.camera[m->s.c_num - 1] = new_object;
-	while (i < m->s.c_num)
+	while (i < (size_t)m->s.c_num)
 	{
 		new_array[i] = m->s.camera[i];
 		i++;
@@ -63,7 +63,7 @@ static void		object_array_realloc(t_main *m, t_object new_object)
 	ft_bzero(new_array, sizeof(t_object) * (m->s.o_num + 1));
 	i = 0;
 	m->s.object[m->s.o_num - 1] = new_object;
-	while (i < m->s.o_num)
+	while (i < (size_t)m->s.o_num)
 	{
 		new_array[i] = m->s.object[i];
 		i++;

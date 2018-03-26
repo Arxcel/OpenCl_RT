@@ -4,7 +4,7 @@ NAME = RT
 
 KEYS = -Wall -Wextra -Werror
 
-FLAGS = -flto -O3
+FLAGS = -flto -O3 $(KEYS)
 
 IDIR = ./include
 
@@ -76,6 +76,7 @@ SOURCES =   main.c \
 			ui_o_settings_rebuild.c \
 			ui_l_settings_rebuild.c \
 			ui_c_settings_rebuild.c \
+			ui_scroll_move.c \
 			change_settings_value.c \
 			open_export_save.c \
 			save_function.c \

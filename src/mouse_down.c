@@ -6,7 +6,7 @@
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/25 17:10:20 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/26 02:49:32 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/26 03:06:11 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void		rbtn_status(int x, int y, t_main *m)
 	}
 }
 
-static void		scroll_set_position(int x, int y, t_main *m)
+static void		scroll_set_position(int y, t_main *m)
 {
 	m->ui.scroll.first_step += (y * RTN - m->ui.scroll.line.rect.y)
 																/ L_TEXT_H;
@@ -90,7 +90,7 @@ void			mouse_down(int x, int y, t_main *m)
 	}
 	rbtn_status(x, y, m);
 	if (xy_in_rect(x, y, m->ui.scroll.b_line.rect))
-		scroll_set_position(x, y, m);
+		scroll_set_position(y, m);
 	if (xy_in_rect(x, y, m->ui.scroll.line.rect))
 		m->ui.scroll.status = 1;
 	if (xy_in_rect(x, y, m->ui.list.rect))
