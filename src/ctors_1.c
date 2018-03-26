@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ctors_1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
+/*   By: afarapon <afarapon@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/23 13:26:18 by afarapon          #+#    #+#             */
-/*   Updated: 2018/03/24 18:13:37 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/25 23:59:41 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ t_object			default_paraboloid(void)
 
 	ft_bzero(&result, sizeof(t_object));
 	result.type = O_PARABOLOID;
+	result.pos1 = (t_vector){0, 0, 0};
 	result.color = (t_vector){0.7, 0.7, 0.7};
 	result.dir = (t_vector){0, 1, 0};
 	result.radius = 1;
