@@ -215,13 +215,15 @@ static t_vector			ft_cast_ray(
 		r->n_hit = v_dot(r->n_hit, r->dir) < 0 ? r->n_hit : -r->n_hit;
 		outside = v_dot(r->n_hit, r->dir) < 0 ? 1 : 0;
 		if (t < 100)
-			bias = v_mult_d(r->n_hit, (t * 0.0001f));
+			bias = v_mult_d(r->n_hit, (t * 0.0002f));
 		else if (t < 500)
-			bias = v_mult_d(r->n_hit, (t * 0.001f));
+			bias = v_mult_d(r->n_hit, (t * 0.002f));
 		else if (t < 1000)
-			bias = v_mult_d(r->n_hit, (t * 0.01f));
+			bias = v_mult_d(r->n_hit, (t * 0.02f));
 		else if (t < 5000)
-			bias = v_mult_d(r->n_hit, (t * 0.1f));
+			bias = v_mult_d(r->n_hit, (t * 0.2f));
+		else
+			bias = v_mult_d(r->n_hit, (t * 2.0f));
 		object_color = set_light(get_object_color(hit_object, r, tex1, tex2, tex3, tex4, perlin), calc_light(o, l, *hit_object, r, &bias, tex1, tex2, tex3, tex4, perlin));
 		if ((!hit_object->reflect && !hit_object->refract))
 		{
