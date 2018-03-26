@@ -32,11 +32,6 @@ void	get_surface_data(t_ray *ray, t_object object, float t)
 		get_par_data(ray, object, t);
 	else if (object.type == O_SQUARE)
 		get_square_data(ray, object, t);
-	else if (object.type == O_CUBE)
-	{
-		if(object.mini_type == O_SQUARE)
-			get_square_data(ray, object, t);
-	}
 	else if (object.type == O_CAPSULA)
 	{
 		if(object.mini_type == O_SPHERE)
@@ -75,8 +70,6 @@ int		check_object_type(t_object *object, t_ray *ray, float *t)
 		return (par_cross(*object, ray, t));
 	else if (object->type == O_SQUARE)
 		return (square_cross(object, ray, t));
-	else if (object->type == O_CUBE)
-		return (cube_cross(object, ray, t));
 	else if (object->type == O_CAPSULA)
 		return (capsula_cross(object, ray, t));
 	else if (object->type == O_BARBELL)
