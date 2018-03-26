@@ -6,7 +6,7 @@
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/25 20:21:55 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/25 20:41:17 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/26 15:40:31 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ void		ui_o_settings_rebuild(t_main *m)
 	int		a;
 
 	a = m->ui.list.active - 1;
-	text = ft_strnew(20);
+	text = ft_strnew(100);
 	ui_o_settings_data_textures_1(m, text, a);
 	ui_o_settings_data_textures_2(m, text, a);
 	sprintf(text, "%hu       ", m->s.object[a].tex_scale);

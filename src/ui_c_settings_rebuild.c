@@ -6,7 +6,7 @@
 /*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/25 20:22:22 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/25 20:46:39 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/26 15:47:49 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void		ui_c_settings_rebuild(t_main *m)
 	char	*text;
 	int		a;
 
-	text = ft_strnew(20);
+	text = ft_strnew(100);
 	a = m->ui.list.active - 1;
 	ui_c_settings_data_textures(m, text, a);
 	ft_memdel((void **)&text);

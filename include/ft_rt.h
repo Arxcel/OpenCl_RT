@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:32:12 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/26 13:15:05 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/26 15:30:30 by anestor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,9 @@ void				ui_l_settings_rebuild(t_main *m);
 void				ui_c_settings_rebuild(t_main *m);
 void				scroll_move(int y, t_main *m);
 void				scroll_move_whell(int y, t_main *m);
-void				mouse_scene_rot(int x, int y, t_main *m);
+void				check_o_settings_min_max_values(t_main *m);
+void				check_l_settings_min_max_values(t_main *m);
+void				check_c_settings_min_max_values(t_main *m);
 
 /*
 ** for After effects
