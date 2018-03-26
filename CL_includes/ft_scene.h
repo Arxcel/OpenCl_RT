@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_scene.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pprivalo <pprivalo@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 22:15:03 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/26 11:43:49 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/26 11:57:22 by pprivalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define O_BARBELL		11
 # define O_ELIPSOID		12
 # define O_CDDISK		13
+# define O_RING			14
 # define L_PAR			1
 # define L_LAMP			2
 # define L_AMBIENT		3

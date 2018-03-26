@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   retrive_objects.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pprivalo <pprivalo@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/23 14:46:38 by afarapon          #+#    #+#             */
-/*   Updated: 2018/03/26 11:44:29 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/26 12:10:15 by pprivalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ static t_object		set_defaults(json_value *value)
 		return (default_elipsoid());
 	else if (!ft_strcmp(value->u.string.ptr, "cd-disk"))
 		return (default_cddisk());
+	else if (!ft_strcmp(value->u.string.ptr, "ring"))
+		return (default_ring());
 	put_error("Not valid object type.");
 	return (default_error());
 }
