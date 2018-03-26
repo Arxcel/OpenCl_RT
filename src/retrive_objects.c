@@ -6,7 +6,7 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/23 14:46:38 by afarapon          #+#    #+#             */
-/*   Updated: 2018/03/26 11:37:22 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/26 12:03:13 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ static t_object		set_defaults(json_value *value)
 		return (default_barbell());
 	else if (!ft_strcmp(value->u.string.ptr, "elipsoid"))
 		return (default_elipsoid());
+	else if (!ft_strcmp(value->u.string.ptr, "cd-disk"))
+		return (default_cddisk());
 	put_error("Not valid object type.");
 	return (default_error());
 }

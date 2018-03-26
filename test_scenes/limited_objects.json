@@ -1,0 +1,95 @@
+{
+	"objects": [
+		{
+			"type": "cd-disk",
+            "color": [1, 0.5, 0.25],
+			"radius": 1.2,
+            "pos1": [-18, 1, -5],
+            "direction": [0, 0, 1],
+			"reflect": 0,
+			"min": 0.2
+		},
+		{
+			"type": "triangle",
+			"color": [1, 0.5, 0.25],
+			"pos1": [-13, 0, -5],
+			"pos2": [-15, 0, -5],
+			"pos3": [-14, 2, -5]
+		},
+		{
+			"type": "square",
+            "color": [1, 0.5, 0.25],
+            "pos1": [-11, 2, -5],
+            "pos2": [-9, 0, -5],
+            "direction": [0, 0, 1],
+            "reflect": 0
+		},
+		{
+			"type": "disk",
+            "color": [1, 0.5, 0.25],
+			"radius": 1.2,
+            "pos1": [-6, 1, -5],
+            "direction": [0, 0, 1],
+            "reflect": 0
+		},
+		{
+			"type": "paraboloid",
+			"pos1": [-3, 0, -5],
+			"direction": [0.4, 1, -0.2],
+			"radius" : 0.1,
+			"color": [0.9, 0.9, 0.4],
+			"specular": 15,
+			"max": 2
+
+		},
+		{
+			"type": "conus",
+			"pos1": [0, 0, -5],
+			"direction": [0.4, 1, -0.2],
+			"color": [0, 0.7, 0.7],
+			"specular": 2,
+			"angle": 30,
+			"max": 2
+		},
+		{
+			"type": "cylinder",
+			"direction": [0.4, 1, -0.2],
+			"color": [0.1, 0.7, 0.1],
+			"pos1": [3, 0, -5],
+			"radius": 0.5,
+			"specular": 15,
+			"max": 2
+		},
+		{
+			"type": "plane",
+			"pos1": [0, 0, -15],
+			"direction": [0, 0, 1],
+			"color": [0.7, 0.7, 0.7],
+			"specular": 15
+		},
+        {
+			"type": "plane",
+			"pos1": [0, -2, 0],
+			"direction": [0, 1, 0],
+			"color": [0.2, 0.2, 0.7],
+			"specular": 15
+		}
+	],
+	"lights": [{
+			"type": "lamp",
+			"position": [0, 10, 1],
+			"color": [1, 1, 1],
+			"intensity" : 1
+		},
+        {
+            "type": "ambient",
+            "intensity": 0.2
+        }
+	],
+	"cameras": [{
+		"type": "common",
+		"rotation": [0, 0, 0],
+		"position": [0, 0, 3],
+		"field_of_view": 50
+	}]
+}
