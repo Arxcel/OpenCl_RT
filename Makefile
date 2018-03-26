@@ -90,6 +90,7 @@ SOURCES =   main.c \
 			ctors_1.c \
 			ctors_2.c \
 			ctors_3.c \
+			ctors_4.c \
 			retrive_cameras.c \
 			retrive_lights.c \
 			retrive_objects.c \
