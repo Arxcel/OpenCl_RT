@@ -17,6 +17,7 @@ short				disk_cross(t_object *d, t_ray *r, float *t)
 	float t0;
 	t_vector v;
 
+	d->dir = v_normalize(d->dir);
 	t0 = v_dot(d->dir, r->dir);
 	if (t0)
 	{

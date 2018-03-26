@@ -6,7 +6,7 @@
 /*   By: pprivalo <pprivalo@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:33:57 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/26 12:04:47 by pprivalo         ###   ########.fr       */
+/*   Updated: 2018/03/26 15:32:06 by pprivalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int					main(int ac, char **av)
 	make_dependencies(&m);
 	if (ac != 1)
 		put_error("You dont need arguments.");
-	get_scene("./textures/scene_textures/default_scene.json", &m.s);
+	get_scene("./test_scenes/extra_cube.json", &m.s);
 	get_scene_textures(&m);
 	draw(&m);
 	render_scene_and_ui(&m);

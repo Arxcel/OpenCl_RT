@@ -20,6 +20,7 @@ static short		is_in_square(t_vector p1, t_object *p)
 	t_vector	y;
 	float		d;
 
+	p->dir = v_normalize(p->dir);
 	d = v_length(p->pos2 - p->pos1);
 	p_b = p->pos1 + v_mult_d(v_normalize(p->pos2 - p->pos1), d / 2);
 	p_b = p_b + v_mult_d(v_normalize(v_cross(p->pos1 - p->pos2, p->dir)), d / 2);
