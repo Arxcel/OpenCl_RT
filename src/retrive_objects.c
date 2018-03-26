@@ -6,7 +6,7 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/23 14:46:38 by afarapon          #+#    #+#             */
-/*   Updated: 2018/03/26 12:03:13 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/26 12:12:09 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,10 @@ static void			get_object_info_single(t_object *o,
 	o->ior = !ft_strcmp(n, "ior") ? get_ior(val) : o->ior;
 	o->refract = !ft_strcmp(n, "refract") ? get_refract(val) : o->refract;
 	o->radius = !ft_strcmp(n, "radius") ? get_radius(val) : o->radius;
-	o->specular = !ft_strcmp(n, "specular") ? get_specular(val) : o->specular;
-	o->angle = !ft_strcmp(n, "angle") || !ft_strcmp(n, "size") ? get_number(val) : o->angle;
+	o->specular = !ft_strcmp(n, "specular") ?
+		get_specular(val) : o->specular;
+	o->angle = !ft_strcmp(n, "angle") || !ft_strcmp(n, "size") ?
+		get_number(val) : o->angle;
 	o->reflect = !ft_strcmp(n, "reflect") ? get_reflect(val) : o->reflect;
 	o->pos1 = !ft_strcmp(n, "pos1") ? get_vector(val) : o->pos1;
 	o->pos2 = !ft_strcmp(n, "pos2") ? get_vector(val) : o->pos2;
