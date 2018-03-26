@@ -101,7 +101,7 @@ t_vector							calc_light(__global t_object	*o,
 		else
 		{
 			if (l[i].type == L_PAR)
-				light = dir_light(r->p_hit, l[i].pos, r->n_hit, &distance, bias);
+				light = dir_light(r->p_hit, l[i].dir, r->n_hit, &distance, bias);
 			else
 				light = point_light(r->p_hit, l[i].pos, r->n_hit, &distance, bias);
 			vis = !ft_trace(o, l, &shader_distance, &shader, &(light));
