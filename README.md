@@ -23,6 +23,7 @@ make
 ## Authors
 
 Vadim Kozlov
+
 Andriy Faraponov
 
 Pavlo Privalov
