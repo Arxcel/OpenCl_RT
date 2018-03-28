@@ -22,7 +22,10 @@ make
 ```
 ## Authors
 
-Vadim Kozlov /
-Andriy Faraponov /
-Pavlo Privalov /
-Andriy Nestor /
+Vadim Kozlov
+
+Andriy Faraponov
+
+Pavlo Privalov
+
+Andriy Nestor
