@@ -16,7 +16,7 @@ Mac OS El Capitan / Sierra / High Sierra
 ## Installation
 
 ```bash
-git clone https://github.com/andreyfaraponov/RayTracer.git ~/RT
+git clone https://github.com/Arxcel/unit_RT.git ~/RT
 cd ~/RT
 make
 ```
