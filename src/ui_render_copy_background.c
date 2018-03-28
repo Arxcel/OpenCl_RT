@@ -6,57 +6,11 @@
 /*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/22 14:08:30 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/26 14:19:34 by afarapon         ###   ########.fr       */
+/*   Updated: 2018/03/28 11:28:57 by afarapon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_rt.h"
-
-static void	add_effects_stats(char *text, t_main *m)
-{
-	int		i;
-	char	*temp;
-
-	i = 0;
-	while (i != EFFECTS_SIZE)
-	{
-		if (m->ae.effects[i] != -1)
-		{
-			temp = ft_itoa(m->ae.effects[i] + 1);
-			ft_strcat(text, temp);
-			ft_strcat(text, ", ");
-			ft_memdel((void **)&temp);
-		}
-		else
-			ft_strcat(text, "0, ");
-		i++;
-	}
-}
-
-static void	ui_stat_text_make(t_main *m)
-{
-	char	*text;
-	char	*temp;
-	t_ui_bg	i;
-
-	text = ft_strnew(100);
-	ft_strcat(text, "cam #");
-	temp = ft_itoa(m->s.cam + 1);
-	ft_strcat(text, temp);
-	ft_memdel((void **)&temp);
-	ft_strcat(text, ", effects: ");
-	add_effects_stats(text, m);
-	if (m->ae.after_effect == 1)
-		ft_strcat(text, "ON.");
-	else
-		ft_strcat(text, "OFF.");
-	texture_from_text(text, &m->sdl, &i);
-	i.rect.x = 450;
-	i.rect.y = m->sdl.win_h * 2 - 50;
-	SDL_RenderCopy(m->sdl.ren, i.textr, NULL, &i.rect);
-	SDL_DestroyTexture(i.textr);
-	ft_memdel((void **)&text);
-}
 
 static void	ui_bg_rect_params(t_ui *ui, t_sdl *sdl)
 {
@@ -87,5 +41,4 @@ void		render_copy_background(t_main *m)
 	ui_render_corners(&m->ui, &m->sdl, m->ui.bg[LEFT_FRAME].rect);
 	ui_render_corners(&m->ui, &m->sdl, m->ui.bg[RIGHT_FRAME].rect);
 	ui_render_lines(&m->ui, &m->sdl);
-	ui_stat_text_make(m);
 }
