@@ -1,5 +1,5 @@
 # RT - Generate images according to Raytracing protocol.
-The final project of the first year in Unit Factory (42).
+The final project of the first year in UNIT Factory (42).
 
 *Read this in other languages: [English](README.md), [Русский](README-ru.md).*
 
