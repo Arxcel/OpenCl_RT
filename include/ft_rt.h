@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:32:12 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/26 15:30:30 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/29 17:09:59 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 # include "ft_scene.h"
 # include "ft_ui.h"
 # include "tinyfiledialogs.h"
-# include "lib_ae.h"
 # define WIN_W			1280
 # define WIN_H			670
 # define MAX_ITER		5
@@ -35,7 +34,6 @@ typedef struct		s_main
 	t_ui	ui;
 	t_cl	cl;
 	t_sdl	sdl;
-	t_ae	ae;
 }					t_main;
 
 void				sdl_hook(t_main *m);
@@ -95,16 +93,7 @@ void				scroll_move_whell(int y, t_main *m);
 void				check_o_settings_min_max_values(t_main *m);
 void				check_l_settings_min_max_values(t_main *m);
 void				check_c_settings_min_max_values(t_main *m);
-
-/*
-** for After effects
-*/
-
-void				make_dependencies(t_main *m);
-void				filter_key(int key, t_main *m);
 void				get_scene_textures(t_main *m);
-int					flush_effects(t_ae *ae);
-void				add_effect(t_ae *ae, int val);
 
 /*
 ** CTORS

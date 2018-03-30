@@ -6,7 +6,7 @@
 /*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/21 16:33:57 by vkozlov           #+#    #+#             */
-/*   Updated: 2018/03/26 16:31:47 by vkozlov          ###   ########.fr       */
+/*   Updated: 2018/03/29 17:09:53 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ int					main(int ac, char **av)
 	(void)av;
 	ft_bzero(&m, sizeof(t_main));
 	ui_and_sdl_init(&m);
-	make_dependencies(&m);
 	if (ac != 1)
 		put_error("You dont need arguments.");
 	get_scene("./textures/scene_textures/default_scene.json", &m.s);

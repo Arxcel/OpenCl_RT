@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_export_save.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afarapon <afarapon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 14:10:10 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/26 14:58:14 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/29 17:13:03 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ void	open_file(t_main *m)
 	ft_memset(&m->s.cam_trans.pos, 0, sizeof(t_vector));
 	ft_memset(&m->s.cam_trans.rot, 0, sizeof(t_vector));
 	get_scene(open, &m->s);
-	ft_bzero(&m->ae, sizeof(t_ae));
-	make_dependencies(m);
 	re_draw(&m->cl, &m->sdl, &m->s);
 	render_scene_and_ui(m);
 }
@@ -42,7 +40,6 @@ void	export_file(t_main *m)
 	if (export == NULL)
 		return ;
 	re_draw(&m->cl, &m->sdl, &m->s);
-	set_filter(&m->ae);
 	surface = SDL_CreateRGBSurface(0, m->sdl.img.w, m->sdl.img.h,
 															32, 0, 0, 0, 0);
 	ft_memcpy(surface->pixels, m->sdl.img.pixels, surface->h * surface->pitch);

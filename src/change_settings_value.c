@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   change_settings_value.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
+/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/25 17:07:00 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/26 15:29:17 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/29 17:12:38 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void			change_o_settings_value(t_main *m, int i)
 			*m->ui.o_set[i].sp = ft_atoi(tmp);
 		check_o_settings_min_max_values(m);
 		re_draw(&m->cl, &m->sdl, &m->s);
-		set_filter(&m->ae);
 		render_scene_and_ui(m);
 	}
 }
@@ -55,7 +54,6 @@ void			change_l_settings_value(t_main *m, int i)
 			*m->ui.l_set[i].p = atof(tmp);
 		check_l_settings_min_max_values(m);
 		re_draw(&m->cl, &m->sdl, &m->s);
-		set_filter(&m->ae);
 		render_scene_and_ui(m);
 	}
 }
@@ -77,7 +75,6 @@ void			change_c_settings_value(t_main *m, int i)
 			*m->ui.c_set[i].p = atof(tmp);
 		check_c_settings_min_max_values(m);
 		re_draw(&m->cl, &m->sdl, &m->s);
-		set_filter(&m->ae);
 		render_scene_and_ui(m);
 	}
 }

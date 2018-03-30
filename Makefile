@@ -24,7 +24,6 @@ CFLAGS = -I$(IDIR) \
 		-I./libJson/include \
 		-I./libmy_math/include \
 		-I./libTFD \
-		-I./libAE/includes \
 
 LIBFT = libft
 
@@ -37,8 +36,6 @@ LIBFTSDL = libftSDL
 LIBMMATH = libmy_math
 
 LIBTFD = libTFD
-
-LIBAE = libAE
 
 SDL2_F		= -framework SDL2 -framework SDL2_image -framework SDL2_ttf -F ./libSDL/
 
@@ -109,7 +106,7 @@ all: obj $(NAME)
 
 $(NAME): $(OBJS) $(EXTENSIONS)
 		make libs
-		$(CC) -o $(NAME) $(OBJS) $(FLAGS) $(CFLAGS) -L $(LIBFT) -lft $(LIBTFD)/libtfd.a -L $(LIBMMATH) -lmy_math -L $(LIBJSON) -lJSON -L $(LIBCL) -lCL -framework OpenCl $(SDL2_P) $(SDL2_F) -L $(LIBFTSDL) -lftsdl -L $(LIBAE) -lae
+		$(CC) -o $(NAME) $(OBJS) $(FLAGS) $(CFLAGS) -L $(LIBFT) -lft $(LIBTFD)/libtfd.a -L $(LIBMMATH) -lmy_math -L $(LIBJSON) -lJSON -L $(LIBCL) -lCL -framework OpenCl $(SDL2_P) $(SDL2_F) -L $(LIBFTSDL) -lftsdl
 
 		
 
@@ -120,7 +117,6 @@ libs:
 	make -C $(LIBCL)
 	make -C $(LIBFTSDL)
 	make -C $(LIBTFD)
-	make -C $(LIBAE)
 
 obj:
 	mkdir -p obj
@@ -133,7 +129,6 @@ norme:
 		make norme -C $(LIBCL)
 		make norme -C $(LIBFTSDL)
 		make norme -C $(LIBMMATH)
-		make norme -C $(LIBAE)
 		echo "--------------------Checking header files $(NAME)"
 		norminette ./$(HEADER)
 		echo "--------------------Checking source files $(NAME)"
@@ -147,7 +142,6 @@ clean:
 		make clean -C $(LIBJSON)
 		make clean -C $(LIBMMATH)
 		make clean -C $(LIBTFD)
-		make clean -C $(LIBAE)
 		rm -rf $(DIR_O)
 
 fclean: clean
@@ -158,7 +152,6 @@ fclean: clean
 		make fclean -C $(LIBJSON)
 		make fclean -C $(LIBMMATH)
 		make fclean -C $(LIBTFD)
-		make fclean -C $(LIBAE)
 
 re: fclean all
 
