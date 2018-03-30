@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ui_buttons_init.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anestor <anestor@student.unit.ua>          +#+  +:+       +#+        */
+/*   By: vkozlov <vkozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 17:50:08 by anestor           #+#    #+#             */
-/*   Updated: 2018/03/25 21:42:36 by anestor          ###   ########.fr       */
+/*   Updated: 2018/03/30 14:35:38 by vkozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,26 +74,6 @@ static void	ui_buttons_init_3(t_ui *ui, t_sdl *sdl)
 {
 	TEXTURE_ON(BTN_SQUARE, "textures/btns/square_on.png");
 	TEXTURE_OFF(BTN_SQUARE, "textures/btns/square_off.png");
-	TEXTURE_ON(BTN_AE1, "textures/btns/ae1_on.png");
-	TEXTURE_OFF(BTN_AE1, "textures/btns/ae1_off.png");
-	TEXTURE_ON(BTN_AE2, "textures/btns/ae2_on.png");
-	TEXTURE_OFF(BTN_AE2, "textures/btns/ae2_off.png");
-	TEXTURE_ON(BTN_AE3, "textures/btns/ae3_on.png");
-	TEXTURE_OFF(BTN_AE3, "textures/btns/ae3_off.png");
-	TEXTURE_ON(BTN_AE4, "textures/btns/ae4_on.png");
-	TEXTURE_OFF(BTN_AE4, "textures/btns/ae4_off.png");
-	TEXTURE_ON(BTN_AE5, "textures/btns/ae5_on.png");
-	TEXTURE_OFF(BTN_AE5, "textures/btns/ae5_off.png");
-	TEXTURE_ON(BTN_AE6, "textures/btns/ae6_on.png");
-	TEXTURE_OFF(BTN_AE6, "textures/btns/ae6_off.png");
-	TEXTURE_ON(BTN_PLUS, "textures/btns/aeplus_on.png");
-	TEXTURE_OFF(BTN_PLUS, "textures/btns/aeplus_off.png");
-	TEXTURE_ON(BTN_MINUS, "textures/btns/aeminus_on.png");
-	TEXTURE_OFF(BTN_MINUS, "textures/btns/aeminus_off.png");
-	TEXTURE_ON(BTN_ZERO, "textures/btns/aezero_on.png");
-	TEXTURE_OFF(BTN_ZERO, "textures/btns/aezero_off.png");
-	TEXTURE_ON(BTN_ONE, "textures/btns/aeone_on.png");
-	TEXTURE_OFF(BTN_ONE, "textures/btns/aeone_off.png");
 }
 
 void		ui_buttons_init(t_ui *ui, t_sdl *sdl)
